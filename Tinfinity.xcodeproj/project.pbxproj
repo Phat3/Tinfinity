@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECD61AD005750048C3A0 /* AppDelegate.swift */; };
+		4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECD81AD005750048C3A0 /* ViewController.swift */; };
+		4198ECDC1AD005750048C3A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198ECDA1AD005750048C3A0 /* Main.storyboard */; };
+		4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198ECDD1AD005750048C3A0 /* Images.xcassets */; };
+		4198ECE11AD005750048C3A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4198ECDF1AD005750048C3A0 /* LaunchScreen.xib */; };
+		4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4198ECE71AD005750048C3A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4198ECC91AD005750048C3A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4198ECD01AD005750048C3A0;
+			remoteInfo = Tinfinity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4198ECD11AD005750048C3A0 /* Tinfinity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinfinity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4198ECD51AD005750048C3A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4198ECD61AD005750048C3A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4198ECD81AD005750048C3A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4198ECDB1AD005750048C3A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4198ECDD1AD005750048C3A0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4198ECE01AD005750048C3A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4198ECE61AD005750048C3A0 /* TinfinityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinfinityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4198ECEB1AD005750048C3A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinfinityTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4198ECCE1AD005750048C3A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4198ECE31AD005750048C3A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4198ECC81AD005750048C3A0 = {
+			isa = PBXGroup;
+			children = (
+				4198ECD31AD005750048C3A0 /* Tinfinity */,
+				4198ECE91AD005750048C3A0 /* TinfinityTests */,
+				4198ECD21AD005750048C3A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4198ECD21AD005750048C3A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4198ECD11AD005750048C3A0 /* Tinfinity.app */,
+				4198ECE61AD005750048C3A0 /* TinfinityTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
+			isa = PBXGroup;
+			children = (
+				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
+				4198ECD81AD005750048C3A0 /* ViewController.swift */,
+				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
+				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
+				4198ECDF1AD005750048C3A0 /* LaunchScreen.xib */,
+				4198ECD41AD005750048C3A0 /* Supporting Files */,
+			);
+			path = Tinfinity;
+			sourceTree = "<group>";
+		};
+		4198ECD41AD005750048C3A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4198ECD51AD005750048C3A0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4198ECE91AD005750048C3A0 /* TinfinityTests */ = {
+			isa = PBXGroup;
+			children = (
+				4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */,
+				4198ECEA1AD005750048C3A0 /* Supporting Files */,
+			);
+			path = TinfinityTests;
+			sourceTree = "<group>";
+		};
+		4198ECEA1AD005750048C3A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4198ECEB1AD005750048C3A0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4198ECD01AD005750048C3A0 /* Tinfinity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4198ECF01AD005760048C3A0 /* Build configuration list for PBXNativeTarget "Tinfinity" */;
+			buildPhases = (
+				4198ECCD1AD005750048C3A0 /* Sources */,
+				4198ECCE1AD005750048C3A0 /* Frameworks */,
+				4198ECCF1AD005750048C3A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tinfinity;
+			productName = Tinfinity;
+			productReference = 4198ECD11AD005750048C3A0 /* Tinfinity.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4198ECE51AD005750048C3A0 /* TinfinityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4198ECF31AD005760048C3A0 /* Build configuration list for PBXNativeTarget "TinfinityTests" */;
+			buildPhases = (
+				4198ECE21AD005750048C3A0 /* Sources */,
+				4198ECE31AD005750048C3A0 /* Frameworks */,
+				4198ECE41AD005750048C3A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4198ECE81AD005750048C3A0 /* PBXTargetDependency */,
+			);
+			name = TinfinityTests;
+			productName = TinfinityTests;
+			productReference = 4198ECE61AD005750048C3A0 /* TinfinityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4198ECC91AD005750048C3A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Sebastiano Mariani";
+				TargetAttributes = {
+					4198ECD01AD005750048C3A0 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					4198ECE51AD005750048C3A0 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 4198ECD01AD005750048C3A0;
+					};
+				};
+			};
+			buildConfigurationList = 4198ECCC1AD005750048C3A0 /* Build configuration list for PBXProject "Tinfinity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4198ECC81AD005750048C3A0;
+			productRefGroup = 4198ECD21AD005750048C3A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4198ECD01AD005750048C3A0 /* Tinfinity */,
+				4198ECE51AD005750048C3A0 /* TinfinityTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4198ECCF1AD005750048C3A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4198ECDC1AD005750048C3A0 /* Main.storyboard in Resources */,
+				4198ECE11AD005750048C3A0 /* LaunchScreen.xib in Resources */,
+				4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4198ECE41AD005750048C3A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4198ECCD1AD005750048C3A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
+				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4198ECE21AD005750048C3A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4198ECE81AD005750048C3A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4198ECD01AD005750048C3A0 /* Tinfinity */;
+			targetProxy = 4198ECE71AD005750048C3A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4198ECDA1AD005750048C3A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4198ECDB1AD005750048C3A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4198ECDF1AD005750048C3A0 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4198ECE01AD005750048C3A0 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4198ECEE1AD005760048C3A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4198ECEF1AD005760048C3A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4198ECF11AD005760048C3A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Tinfinity/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4198ECF21AD005760048C3A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Tinfinity/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4198ECF41AD005760048C3A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TinfinityTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinfinity.app/Tinfinity";
+			};
+			name = Debug;
+		};
+		4198ECF51AD005760048C3A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TinfinityTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinfinity.app/Tinfinity";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4198ECCC1AD005750048C3A0 /* Build configuration list for PBXProject "Tinfinity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4198ECEE1AD005760048C3A0 /* Debug */,
+				4198ECEF1AD005760048C3A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4198ECF01AD005760048C3A0 /* Build configuration list for PBXNativeTarget "Tinfinity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4198ECF11AD005760048C3A0 /* Debug */,
+				4198ECF21AD005760048C3A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4198ECF31AD005760048C3A0 /* Build configuration list for PBXNativeTarget "TinfinityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4198ECF41AD005760048C3A0 /* Debug */,
+				4198ECF51AD005760048C3A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4198ECC91AD005750048C3A0 /* Project object */;
+}

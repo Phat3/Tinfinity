@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -31,6 +32,9 @@ class ViewController: UIViewController {
         
         */
         
+        Alamofire.request(.POST, "http://local.tinfinity.com/prova").responseString { (_, _, string, _) in
+            println(string!)
+        }
     }
 
     override func didReceiveMemoryWarning() {

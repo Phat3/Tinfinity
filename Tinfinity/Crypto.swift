@@ -35,7 +35,7 @@ class Crypto{
     private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent: true, kSecAttrApplicationTag: KeychainLabel.privateKey]
     
     //referenza alla chiave pubblica vera e propria
-    private var publicKey : SecKeyRef?
+     var publicKey : SecKeyRef?
     
     //referenza alla chiave private vera e propria
     private var privateKey : SecKeyRef?

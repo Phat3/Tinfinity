@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         
         
         //DEBUG
-    
+        /*
         var testo = "ciao come va?"
         
         println("Testo in chiaro : \(testo)")
@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         
         println("Testo decriptato : \(plain)")
         
+        */
         
     }
 

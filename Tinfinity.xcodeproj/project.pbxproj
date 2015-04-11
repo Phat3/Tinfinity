@@ -14,7 +14,7 @@
 		4198ECE11AD005750048C3A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4198ECDF1AD005750048C3A0 /* LaunchScreen.xib */; };
 		4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */; };
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
-		41C44AC31AD2CCA9005E7B42 /* Alamofire.framework in Copy Framework */ = {isa = PBXBuildFile; fileRef = 41C44AB81AD2CB42005E7B42 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,41 +25,6 @@
 			remoteGlobalIDString = 4198ECD01AD005750048C3A0;
 			remoteInfo = Tinfinity;
 		};
-		41C44AB71AD2CB42005E7B42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		41C44AB91AD2CB42005E7B42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
-			remoteInfo = "Alamofire OSX";
-		};
-		41C44ABB1AD2CB42005E7B42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS Tests";
-		};
-		41C44ABD1AD2CB42005E7B42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
-			remoteInfo = "Alamofire OSX Tests";
-		};
-		41C44AC11AD2CC83005E7B42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,7 +34,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				41C44AC31AD2CCA9005E7B42 /* Alamofire.framework in Copy Framework */,
 			);
 			name = "Copy Framework";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,7 +52,9 @@
 		4198ECEB1AD005750048C3A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinfinityTests.swift; sourceTree = "<group>"; };
 		4198ECF91AD0343E0048C3A0 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
-		41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
+		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,10 +79,11 @@
 		4198ECC81AD005750048C3A0 = {
 			isa = PBXGroup;
 			children = (
-				41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */,
 				4198ECD31AD005750048C3A0 /* Tinfinity */,
 				4198ECE91AD005750048C3A0 /* TinfinityTests */,
 				4198ECD21AD005750048C3A0 /* Products */,
+				93D4075F43E8D65AAB48F9B7 /* Pods */,
+				BC6AF7D4EBC58139FFDAD7FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,15 +143,21 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
-		41C44AB11AD2CB42005E7B42 /* Products */ = {
+		93D4075F43E8D65AAB48F9B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				41C44AB81AD2CB42005E7B42 /* Alamofire.framework */,
-				41C44ABA1AD2CB42005E7B42 /* Alamofire.framework */,
-				41C44ABC1AD2CB42005E7B42 /* Alamofire iOS Tests.xctest */,
-				41C44ABE1AD2CB42005E7B42 /* Alamofire OSX Tests.xctest */,
+				B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */,
+				5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */,
 			);
-			name = Products;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC6AF7D4EBC58139FFDAD7FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8918A07EDD7E7ADDAFC70793 /* Pods.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,15 +167,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4198ECF01AD005760048C3A0 /* Build configuration list for PBXNativeTarget "Tinfinity" */;
 			buildPhases = (
+				6BF52E5B4B055B24D11545B8 /* Check Pods Manifest.lock */,
 				4198ECCD1AD005750048C3A0 /* Sources */,
 				4198ECCE1AD005750048C3A0 /* Frameworks */,
 				4198ECCF1AD005750048C3A0 /* Resources */,
 				41C44AC01AD2CBD6005E7B42 /* Copy Framework */,
+				CDCCEB99007DDCED60F2FF2E /* Embed Pods Frameworks */,
+				BA714736C7D7952700034E90 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				41C44AC21AD2CC83005E7B42 /* PBXTargetDependency */,
 			);
 			name = Tinfinity;
 			productName = Tinfinity;
@@ -255,12 +231,6 @@
 			mainGroup = 4198ECC81AD005750048C3A0;
 			productRefGroup = 4198ECD21AD005750048C3A0 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 41C44AB11AD2CB42005E7B42 /* Products */;
-					ProjectRef = 41C44AB01AD2CB42005E7B42 /* Alamofire.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4198ECD01AD005750048C3A0 /* Tinfinity */,
@@ -268,37 +238,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		41C44AB81AD2CB42005E7B42 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 41C44AB71AD2CB42005E7B42 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		41C44ABA1AD2CB42005E7B42 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 41C44AB91AD2CB42005E7B42 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		41C44ABC1AD2CB42005E7B42 /* Alamofire iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire iOS Tests.xctest";
-			remoteRef = 41C44ABB1AD2CB42005E7B42 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		41C44ABE1AD2CB42005E7B42 /* Alamofire OSX Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire OSX Tests.xctest";
-			remoteRef = 41C44ABD1AD2CB42005E7B42 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4198ECCF1AD005750048C3A0 /* Resources */ = {
@@ -319,6 +258,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6BF52E5B4B055B24D11545B8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA714736C7D7952700034E90 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDCCEB99007DDCED60F2FF2E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4198ECCD1AD005750048C3A0 /* Sources */ = {
@@ -346,11 +333,6 @@
 			isa = PBXTargetDependency;
 			target = 4198ECD01AD005750048C3A0 /* Tinfinity */;
 			targetProxy = 4198ECE71AD005750048C3A0 /* PBXContainerItemProxy */;
-		};
-		41C44AC21AD2CC83005E7B42 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = 41C44AC11AD2CC83005E7B42 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -455,6 +437,7 @@
 		};
 		4198ECF11AD005760048C3A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tinfinity/Info.plist;
@@ -465,6 +448,7 @@
 		};
 		4198ECF21AD005760048C3A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tinfinity/Info.plist;

@@ -23,16 +23,16 @@ class Crypto{
         static var publicKey : String = "com.tinfinity.crypto.publickey"
         
         static var privateKey : String = "com.tinfinity.crypto.privatekey"
-
+        
     }
     
     //opzioni per la chiave pubblica
     //la vogliamo permanente e con la label specificata
-    private let publicKeyParameters: [String: AnyObject] = [kSecAttrIsPermanent: true, kSecAttrApplicationTag: KeychainLabel.publicKey]
+    private let publicKeyParameters: [String : AnyObject] = [kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.publicKey]
     
     //opzioni per la chiave privata
     //la vogliamo permanente e con la label specificata
-    private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent: true, kSecAttrApplicationTag: KeychainLabel.privateKey]
+    private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.privateKey]
     
     //referenza alla chiave pubblica vera e propria
      var publicKey : SecKeyRef?
@@ -40,25 +40,24 @@ class Crypto{
     //referenza alla chiave private vera e propria
     private var privateKey : SecKeyRef?
     
-    private var blockSize : UInt?
+    private var blockSize : Int = 0
     
     //costruttore che controlla se esistono gia le chiavi nel keychain
     //se non esistyono le crea
     init(){
         
         //controlliamo se abbiamo la chiave gia salvata nel keychain
-        self.privateKey = self.findKey(KeychainLabel.privateKey)
-        self.publicKey = self.findKey(KeychainLabel.publicKey)
+        privateKey = findKey(KeychainLabel.privateKey)
+        publicKey = findKey(KeychainLabel.publicKey)
         
         //se non esistono (prima volta che si attiva l applicazione) la generiamo
-        if ( (self.privateKey == nil) || (self.publicKey == nil)){
+        if ( (privateKey == nil) || (publicKey == nil)){
             println("entrato")
-            self.generateRSAKeys()
+            generateRSAKeys()
             
         }
         
         self.blockSize = SecKeyGetBlockSize(publicKey)
-
     }
     
     //ritorna il vaolore della chive se presente nel keychain altrimenti ritorna nil
@@ -66,10 +65,10 @@ class Crypto{
         
         //parametri di ricerca
         let query: [String: AnyObject] = [
-            kSecClass: kSecClassKey,
-            kSecAttrKeyType: kSecAttrKeyTypeRSA,
-            kSecAttrApplicationTag: tag,
-            kSecReturnRef: true
+            kSecClass as! String : kSecClassKey as! String,
+            kSecAttrKeyType as! String : kSecAttrKeyTypeRSA,
+            kSecAttrApplicationTag as! String: tag,
+            kSecReturnRef as! String : true as Bool
         ]
         
         var keyPtr: Unmanaged<AnyObject>?
@@ -77,14 +76,14 @@ class Crypto{
         
         //controlliamo l esito
         switch result {
-            case noErr:
-                let key = keyPtr!.takeRetainedValue() as SecKey
-                return key
-            case errSecItemNotFound:
-                return nil
-            default:
-                println("Error occurred: \(result)`")
-                return nil
+        case noErr:
+            let key = keyPtr!.takeRetainedValue() as! SecKey
+            return key
+        case errSecItemNotFound:
+            return nil
+        default:
+            println("Error occurred: \(result)`")
+            return nil
         }
     }
     
@@ -93,10 +92,10 @@ class Crypto{
         
         //definiamo i parametri generali
         let parameters: [String: AnyObject] = [
-            kSecAttrKeyType: kSecAttrKeyTypeRSA,
-            kSecAttrKeySizeInBits: 2048,
-            kSecPublicKeyAttrs.takeUnretainedValue() as String: publicKeyParameters,
-            kSecPrivateKeyAttrs.takeUnretainedValue() as String: privateKeyParameters
+            kSecAttrKeyType as! String : kSecAttrKeyTypeRSA,
+            kSecAttrKeySizeInBits as! String : 2048 as Int,
+            (kSecPublicKeyAttrs.takeUnretainedValue() as! String) as String: publicKeyParameters,
+            (kSecPrivateKeyAttrs.takeUnretainedValue() as! String) as String: privateKeyParameters
         ]
         
         var publicKeyPtr, privateKeyPtr: Unmanaged<SecKey>?
@@ -117,9 +116,9 @@ class Crypto{
         //step2 : ricavare la lunghezza del testo in utf8
         let plainTextDataLength = UInt(plainTextData.count)
         //step3 : creare il buffer per il testo criptato
-        var encryptedData = [UInt8](count: Int(self.blockSize!), repeatedValue: 0)
+        var encryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)
         //step4 : criptare
-        SecKeyEncrypt(publicKey, SecPadding(kSecPaddingPKCS1),  plainTextData, plainTextDataLength, &encryptedData, &self.blockSize!)
+        SecKeyEncrypt(self.publicKey as SecKey!, SecPadding(kSecPaddingPKCS1) as SecPadding,  plainTextData, Int(plainTextDataLength), &encryptedData, &self.blockSize)
         //ritorniamo il cipher
         return encryptedData
         
@@ -128,15 +127,15 @@ class Crypto{
     //decripta il messaggio usando RSA
     func RSADecrypt(encryptedData : [UInt8]) -> String{
         //step1 : creare il buffer per i dati decriptati
-        var decryptedData = [UInt8](count: Int(self.blockSize!), repeatedValue: 0)
-
+        var decryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)
+        
         //decriptare
-        SecKeyDecrypt(privateKey, SecPadding(kSecPaddingPKCS1),encryptedData, self.blockSize!, &decryptedData, &self.blockSize!)
+        SecKeyDecrypt(privateKey, SecPadding(kSecPaddingPKCS1),encryptedData, self.blockSize, &decryptedData, &self.blockSize)
         
         let decryptedText = String(bytes: decryptedData, encoding:NSUTF8StringEncoding)
         //ritorniamo il plain
         return decryptedText!
     }
     
-
+    
 }

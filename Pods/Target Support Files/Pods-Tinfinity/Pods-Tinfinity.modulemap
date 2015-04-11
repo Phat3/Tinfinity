@@ -1,0 +1,6 @@
+framework module Pods_Tinfinity {
+  umbrella header "Pods-Tinfinity-umbrella.h"
+
+  export *
+  module * { export * }
+}

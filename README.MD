@@ -1,15 +1,26 @@
-INSTALLAZIONE
+## DESCRIPTION
 
-1 - Installare cocoapods
+Tynfinity is an IOS application that provide an encrypted point-to-point proximity chat.
+
+
+## REQUIREMETS
+
+- iOS 8.2+ / Mac OS X 10.10+
+- Xcode 6.3
+
+
+## INSTALLATION
+
+1 - Install cocoapods
 
 	gem install cocoapods
 
-2 - Fare setup iniziale di pod (solo se non si è mai fatto) 
+2 -  Run the pod initial setup 
 	
 	pod setup
 
-3 - Installare dipendenze
+3 - Install dependencies with pod
 
 	pod install
 
-4 - Aprire il progetto in xcode da Tinfinity.xcworkspace e non da Tinfinity.xcodeproj
+4 - Open the project in xcode from the file called Tinfinity.xcworkspace and not from Tinfinity.xcodeproj

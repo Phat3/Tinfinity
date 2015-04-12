@@ -19,9 +19,10 @@ class ViewController: UIViewController {
         
         //DEBUG
         
-        let socket = SocketIOClient(socketURL: "localhost:3000")
+        var chat = ChatComunicaction()
         
-        socket.connect()
+        chat.connectToServer();
+        
         
         /*
         var testo = "ciao come va?"

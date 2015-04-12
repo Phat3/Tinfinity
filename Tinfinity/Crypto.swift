@@ -5,19 +5,16 @@
 //  Created by Sebastiano Mariani on 04/04/15.
 //  Copyright (c) 2015 Sebastiano Mariani. All rights reserved.
 //
-//  Classe per gestire tutte le funzioni crittografiche dell applicazione
-
 import Foundation
 
-
-
+///  Class that manages all the cryptographic functionalities of the application
 class Crypto{
     
     
-    //trucco per poter avere variabili di classe
-    //non sono ancora state implementate in swift
+    //Workaround to implement class static attributes
+    //(they are not implemented yet in Swift)
     //
-    //struct che definisce le label poer riprendere le chiavi create dal keychain
+    //This struct defines the keychain IDs of the keys
     private struct KeychainLabel{
         
         static var publicKey : String = "com.tinfinity.crypto.publickey"
@@ -26,44 +23,43 @@ class Crypto{
         
     }
     
-    //opzioni per la chiave pubblica
-    //la vogliamo permanente e con la label specificata
+    //option for the public key
+    //we want that the key is permanently stored in our keychain with the specified ID
     private let publicKeyParameters: [String : AnyObject] = [kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.publicKey]
     
-    //opzioni per la chiave privata
-    //la vogliamo permanente e con la label specificata
+    //option for the public key
+    //we want that the key is permanently stored in our keychain with the specified ID
     private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.privateKey]
     
-    //referenza alla chiave pubblica vera e propria
+    //reference to the public key
      var publicKey : SecKeyRef?
     
-    //referenza alla chiave private vera e propria
+    //reference to the private key
     private var privateKey : SecKeyRef?
     
     private var blockSize : Int = 0
     
-    //costruttore che controlla se esistono gia le chiavi nel keychain
-    //se non esistyono le crea
+    /// Class constructor that checks if the keys are already present i our keychain
+    /// If not the kets are created
     init(){
         
-        //controlliamo se abbiamo la chiave gia salvata nel keychain
-        privateKey = findKey(KeychainLabel.privateKey)
-        publicKey = findKey(KeychainLabel.publicKey)
+        //check if we have already the keys
+        self.privateKey = findKey(KeychainLabel.privateKey)
+        self.publicKey = findKey(KeychainLabel.publicKey)
         
-        //se non esistono (prima volta che si attiva l applicazione) la generiamo
+        //If not create
         if ( (privateKey == nil) || (publicKey == nil)){
-            println("entrato")
-            generateRSAKeys()
-            
+            self.generateRSAKeys()
         }
-        
+        //get the blocksize respect to the key size
         self.blockSize = SecKeyGetBlockSize(publicKey)
     }
     
-    //ritorna il vaolore della chive se presente nel keychain altrimenti ritorna nil
+    /// Returns the value of the key if its present
+    /// If not it returns nil
     private func findKey(tag: String) -> SecKey? {
         
-        //parametri di ricerca
+        //query paramenters
         let query: [String: AnyObject] = [
             kSecClass as! String : kSecClassKey as! String,
             kSecAttrKeyType as! String : kSecAttrKeyTypeRSA,
@@ -74,7 +70,7 @@ class Crypto{
         var keyPtr: Unmanaged<AnyObject>?
         let result = SecItemCopyMatching(query, &keyPtr)
         
-        //controlliamo l esito
+        /// check the query result
         switch result {
         case noErr:
             let key = keyPtr!.takeRetainedValue() as! SecKey
@@ -87,7 +83,10 @@ class Crypto{
         }
     }
     
-    //genera la coppia di chiavi pubbliche e private RSA
+    
+    /*------------------------ RSA ------------------------*/
+    
+    /// Generates the RSA key pair
     private func generateRSAKeys(){
         
         //definiamo i parametri generali
@@ -100,16 +99,16 @@ class Crypto{
         
         var publicKeyPtr, privateKeyPtr: Unmanaged<SecKey>?
         
-        //generiamo
+        //let s generate
         SecKeyGeneratePair(parameters, &publicKeyPtr, &privateKeyPtr)
         
-        //settiamo le referenze
+        //set the reference
         self.privateKey = privateKeyPtr!.takeRetainedValue()
         self.publicKey = publicKeyPtr!.takeRetainedValue()
         
     }
     
-    //cripta il messaggio usando RSA
+    /// Encrypt the essage using the RSA public key
     func RSAEncrypt(message : String) -> [UInt8]{
         //step1 : convertire il plaintext in utf8
         let plainTextData = [UInt8](message.utf8)
@@ -124,7 +123,7 @@ class Crypto{
         
     }
     
-    //decripta il messaggio usando RSA
+    /// Decrypt the message using RSA private key
     func RSADecrypt(encryptedData : [UInt8]) -> String{
         //step1 : creare il buffer per i dati decriptati
         var decryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)

@@ -19,11 +19,8 @@ class ViewController: UIViewController {
         
         //DEBUG
         
-        var chat = ChatComunicaction()
-        
-        chat.connectToServer();
-        
-        
+        println("sdasd")
+
         /*
         var testo = "ciao come va?"
         

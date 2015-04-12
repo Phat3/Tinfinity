@@ -11,7 +11,7 @@ import Foundation
 import Socket_IO_Client_Swift
 
 
-class ChatComunicaction {
+class ChatManager{
 
     //reference to the socket io client
     //At the moment we hardcode the url directly here

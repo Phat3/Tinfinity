@@ -16,10 +16,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        //DEBUG
+     
         
-        //DEBUG
-        
+        /*
         var testo = "ciao come va?"
         
         println("Testo in chiaro : \(testo)")
@@ -48,6 +47,7 @@ class ViewController: UIViewController {
         var plain: String = cryptoAPI.RSADecrypt(buffer)
         
         println("Testo decriptato : \(plain)")
+        */
         
         /*
 

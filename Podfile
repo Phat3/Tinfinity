@@ -14,3 +14,4 @@ platform :ios, '8.2'
 use_frameworks!
 
 pod 'Alamofire', '~> 1.2'
+pod 'Socket.IO-Client-Swift', '~> 1.3.2'

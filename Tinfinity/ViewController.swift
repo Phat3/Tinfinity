@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Socket_IO_Client_Swift
 
 class ViewController: UIViewController {
 
@@ -16,7 +17,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-     
+        //DEBUG
+        
+        let socket = SocketIOClient(socketURL: "localhost:3000")
+        
+        socket.connect()
         
         /*
         var testo = "ciao come va?"

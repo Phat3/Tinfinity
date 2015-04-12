@@ -11,7 +11,12 @@ import Alamofire
 import Socket_IO_Client_Swift
 
 class ViewController: UIViewController {
-
+    
+    var chat = ChatManager()
+    
+    @IBOutlet weak var prova: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +25,9 @@ class ViewController: UIViewController {
         //DEBUG
         
         println("sdasd")
+    
+        
+        self.chat.connectToServer()
 
         /*
         var testo = "ciao come va?"
@@ -52,17 +60,6 @@ class ViewController: UIViewController {
         println("Testo decriptato : \(plain)")
         */
         
-        /*
-
-        Alamofire.request(.POST, "http://local.tinfinity.com/prova", parameters: ["foo": base64])
-            .responseString { (_, _, string, _) in
-                println(string!)
-            }
-            .responseJSON { (_, _, JSON, _) in
-                println(JSON!)
-            }
-
-        */
 
     }
 
@@ -71,6 +68,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func sendmess(sender: AnyObject) {
+       println("premuto")
+       self.chat.sendMessage()
+        
+    }
 
 }
 

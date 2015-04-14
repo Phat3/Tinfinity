@@ -29,36 +29,20 @@ class ViewController: UIViewController {
         
         self.chat.connectToServer()
 
-        /*
+        
         var testo = "ciao come va?"
         
         println("Testo in chiaro : \(testo)")
         
         var cryptoAPI = Crypto()
         
-        var cipher: [UInt8] = cryptoAPI.RSAEncrypt(testo)
-        
-
-        //creiamo un oggetto data con i byte del chipher e encodiamolo in base64 cosi da poter essere mandato come stringa
-        var base64 = NSData(bytes: cipher, length: cipher.count).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        //creaimo un oggetto data partendo da una stringa encodata in base64 (ricaviamo i byte del cipher originale)
-        let base64dec = NSData(base64EncodedString: base64, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
-        //prepariamo il buffer da riempire
-        var buffer = [UInt8]()
-        //referenza ai byte del cipher
-        let bytes = UnsafePointer<UInt8>(base64dec.bytes)
-        //riempiamo il buffer
-        for i in 0 ..< base64dec.length
-        {
-            buffer.append(bytes[i])
-        }
-        println(buffer)
+        var cipher: String = cryptoAPI.RSAEncrypt(testo)
 
         //decrypt del cipher
-        var plain: String = cryptoAPI.RSADecrypt(buffer)
+        var plain: String = cryptoAPI.RSADecrypt(cipher)
         
         println("Testo decriptato : \(plain)")
-        */
+        
         
 
     }

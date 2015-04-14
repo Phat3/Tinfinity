@@ -109,7 +109,7 @@ class Crypto{
     }
     
     /// Encrypt the essage using the RSA public key
-    func RSAEncrypt(message : String) -> [UInt8]{
+    func RSAEncrypt(message : String) -> String{
         //step1 : convertire il plaintext in utf8
         let plainTextData = [UInt8](message.utf8)
         //step2 : ricavare la lunghezza del testo in utf8
@@ -118,18 +118,30 @@ class Crypto{
         var encryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)
         //step4 : criptare
         SecKeyEncrypt(self.publicKey as SecKey!, SecPadding(kSecPaddingPKCS1) as SecPadding,  plainTextData, Int(plainTextDataLength), &encryptedData, &self.blockSize)
+        var base64 = NSData(bytes: encryptedData, length: encryptedData.count).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         //ritorniamo il cipher
-        return encryptedData
+        return base64
         
     }
     
     /// Decrypt the message using RSA private key
-    func RSADecrypt(encryptedData : [UInt8]) -> String{
+    func RSADecrypt(encryptedDataBase64 : String) -> String{
+        
+        let base64dec = NSData(base64EncodedString: encryptedDataBase64, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
+        //prepariamo il buffer da riempire
+        var buffer = [UInt8]()
+        //referenza ai byte del cipher
+        let bytes = UnsafePointer<UInt8>(base64dec.bytes)
+        //riempiamo il buffer
+        for i in 0 ..< base64dec.length
+        {
+            buffer.append(bytes[i])
+        }
         //step1 : creare il buffer per i dati decriptati
         var decryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)
         
         //decriptare
-        SecKeyDecrypt(privateKey, SecPadding(kSecPaddingPKCS1),encryptedData, self.blockSize, &decryptedData, &self.blockSize)
+        SecKeyDecrypt(privateKey, SecPadding(kSecPaddingPKCS1), buffer, self.blockSize, &decryptedData, &self.blockSize)
         
         let decryptedText = String(bytes: decryptedData, encoding:NSUTF8StringEncoding)
         //ritorniamo il plain

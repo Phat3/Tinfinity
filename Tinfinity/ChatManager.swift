@@ -17,6 +17,10 @@ class ChatManager{
     //At the moment we hardcode the url directly here
     private let socket = SocketIOClient(socketURL: "localhost:3000", opts : ["log" : true])
     
+    init(){
+        //init the handlers
+        self.addHandlers()
+    }
     
     /// Connect to the server through the websocket
     func connectToServer(){
@@ -27,6 +31,16 @@ class ChatManager{
     func sendMessage(){
         //TODO integrate crypto functionality before sending the message
         self.socket.emit("message", "messaggio da swift")
+    }
+    
+    func addHandlers() {
+        // Our socket handlers go here
+        
+        //handkers of chat server reply
+        self.socket.on("reply") {[weak self] data, ack in
+            println(data)
+            return
+        }
     }
 
 }

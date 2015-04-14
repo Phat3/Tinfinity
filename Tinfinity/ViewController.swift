@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         
         self.chat.connectToServer()
 
-        
+        /*
         var testo = "ciao come va?"
         
         println("Testo in chiaro : \(testo)")
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         var plain: String = cryptoAPI.RSADecrypt(cipher)
         
         println("Testo decriptato : \(plain)")
-        
+        */
         
 
     }

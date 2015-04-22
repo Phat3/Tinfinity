@@ -1,15 +1,131 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eyS-4q-GEQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="CgD-Jm-gnF">
+            <objects>
+                <viewController storyboardIdentifier="loginViewController" id="eyS-4q-GEQ" customClass="LoginViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pEZ-HF-UdM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tv0-b8-ngK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Srg-Cu-9xA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" restorationIdentifier="loginButton" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-jp-9vd" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="252" id="9d3-ni-djj"/>
+                                    <constraint firstAttribute="height" constant="78" id="yua-cE-6TA"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9d3-ni-djj"/>
+                                        <exclude reference="yua-cE-6TA"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="9d3-ni-djj"/>
+                                        <include reference="yua-cE-6TA"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoU-9O-h3y" userLabel="Title">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="aHf-D3-zgG"/>
+                                    <constraint firstAttribute="height" constant="96" id="wiE-dY-nBy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="aHf-D3-zgG"/>
+                                        <exclude reference="wiE-dY-nBy"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="aHf-D3-zgG"/>
+                                        <include reference="wiE-dY-nBy"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YoU-9O-h3y" firstAttribute="top" secondItem="pEZ-HF-UdM" secondAttribute="bottom" constant="26" id="7ZH-c2-CsA"/>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="top" secondItem="pEZ-HF-UdM" secondAttribute="bottom" constant="341" id="OMX-Ya-vCA">
+                                <variation key="heightClass=regular-widthClass=compact" constant="175"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="YoU-9O-h3y" secondAttribute="centerX" id="fH3-Gz-a3n"/>
+                            <constraint firstAttribute="centerX" secondItem="RTV-jp-9vd" secondAttribute="centerX" id="fMm-Uz-BfY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RTV-jp-9vd" secondAttribute="trailing" constant="58" id="l29-GE-XgR">
+                                <variation key="heightClass=regular-widthClass=compact" constant="68"/>
+                            </constraint>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="top" secondItem="YoU-9O-h3y" secondAttribute="bottom" constant="53" id="lHa-Sy-wwg"/>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="leading" secondItem="Srg-Cu-9xA" secondAttribute="leadingMargin" constant="58" id="pDd-6u-ifS">
+                                <variation key="heightClass=regular-widthClass=compact" constant="48"/>
+                            </constraint>
+                            <constraint firstItem="Tv0-b8-ngK" firstAttribute="top" secondItem="RTV-jp-9vd" secondAttribute="bottom" constant="361" id="xv6-uP-hQT">
+                                <variation key="heightClass=regular-widthClass=compact" constant="527"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="RTV-jp-9vd"/>
+                                <exclude reference="YoU-9O-h3y"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="xv6-uP-hQT"/>
+                                <exclude reference="7ZH-c2-CsA"/>
+                                <exclude reference="fH3-Gz-a3n"/>
+                                <exclude reference="OMX-Ya-vCA"/>
+                                <exclude reference="fMm-Uz-BfY"/>
+                                <exclude reference="l29-GE-XgR"/>
+                                <exclude reference="lHa-Sy-wwg"/>
+                                <exclude reference="pDd-6u-ifS"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="RTV-jp-9vd"/>
+                                <include reference="YoU-9O-h3y"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="xv6-uP-hQT"/>
+                                <include reference="7ZH-c2-CsA"/>
+                                <include reference="fH3-Gz-a3n"/>
+                                <include reference="OMX-Ya-vCA"/>
+                                <include reference="fMm-Uz-BfY"/>
+                                <exclude reference="l29-GE-XgR"/>
+                                <include reference="lHa-Sy-wwg"/>
+                                <exclude reference="pDd-6u-ifS"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="RTV-jp-9vd" id="IgW-83-5tb"/>
+                        <outlet property="titleLabel" destination="YoU-9O-h3y" id="GE7-Ha-PZu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lbo-6h-wIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-661.5" y="195"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -209,7 +325,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="e25-ss-Beh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">

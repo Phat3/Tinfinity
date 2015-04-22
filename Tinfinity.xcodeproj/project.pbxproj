@@ -16,6 +16,9 @@
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
 		512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF41ADD5B50004ED28D /* Chat.swift */; };
+		51B1AE361AE78439006AE203 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */; };
+		51B1AE391AE784F6006AE203 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */; };
+		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
 		5E5311A51ADAABE90052DAB6 /* ChatComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -58,6 +61,11 @@
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		512ABEF41ADD5B50004ED28D /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		51B1AE331AE7840C006AE203 /* FBSDKCoreKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FBSDKCoreKit; path = ../../FacebookSDK/FBSDKCoreKit.framework/FBSDKCoreKit; sourceTree = "<group>"; };
+		51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		51B1AE3A1AE78663006AE203 /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
+		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComunication.swift; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51B1AE391AE784F6006AE203 /* FBSDKLoginKit.framework in Frameworks */,
+				51B1AE361AE78439006AE203 /* FBSDKCoreKit.framework in Frameworks */,
 				92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +117,8 @@
 			children = (
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
+				51B1AE3B1AE79178006AE203 /* LoginViewController.swift */,
+				51B1AE3A1AE78663006AE203 /* Bridge-Header.h */,
 				512ABEF41ADD5B50004ED28D /* Chat.swift */,
 				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
@@ -164,6 +176,9 @@
 		BC6AF7D4EBC58139FFDAD7FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */,
+				51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */,
+				51B1AE331AE7840C006AE203 /* FBSDKCoreKit */,
 				8918A07EDD7E7ADDAFC70793 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -324,6 +339,7 @@
 				512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */,
 				512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */,
 				4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */,
+				51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */,
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
 				5E5311A51ADAABE90052DAB6 /* ChatComunication.swift in Sources */,
 				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,
@@ -445,10 +461,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/SmokingRooster/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = Tinfinity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/SmokingRooster/Documents/FacebookSDK/FBSDKCoreKit.framework,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
 			};
 			name = Debug;
 		};
@@ -458,10 +483,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/SmokingRooster/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = Tinfinity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/SmokingRooster/Documents/FacebookSDK/FBSDKCoreKit.framework,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
 			};
 			name = Release;
 		};

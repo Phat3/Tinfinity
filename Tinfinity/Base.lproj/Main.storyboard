@@ -22,19 +22,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="252" id="9d3-ni-djj"/>
-                                    <constraint firstAttribute="height" constant="78" id="yua-cE-6TA"/>
+                                    <constraint firstAttribute="height" constant="78" id="4ge-Fj-L6I"/>
+                                    <constraint firstAttribute="width" constant="252" id="lme-03-czq"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="9d3-ni-djj"/>
-                                        <exclude reference="yua-cE-6TA"/>
+                                        <exclude reference="4ge-Fj-L6I"/>
+                                        <exclude reference="lme-03-czq"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="9d3-ni-djj"/>
-                                        <include reference="yua-cE-6TA"/>
+                                        <include reference="4ge-Fj-L6I"/>
+                                        <include reference="lme-03-czq"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -63,22 +63,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YoU-9O-h3y" firstAttribute="top" secondItem="pEZ-HF-UdM" secondAttribute="bottom" constant="26" id="7ZH-c2-CsA"/>
-                            <constraint firstItem="RTV-jp-9vd" firstAttribute="top" secondItem="pEZ-HF-UdM" secondAttribute="bottom" constant="341" id="OMX-Ya-vCA">
-                                <variation key="heightClass=regular-widthClass=compact" constant="175"/>
-                            </constraint>
-                            <constraint firstAttribute="centerX" secondItem="YoU-9O-h3y" secondAttribute="centerX" id="fH3-Gz-a3n"/>
-                            <constraint firstAttribute="centerX" secondItem="RTV-jp-9vd" secondAttribute="centerX" id="fMm-Uz-BfY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RTV-jp-9vd" secondAttribute="trailing" constant="58" id="l29-GE-XgR">
-                                <variation key="heightClass=regular-widthClass=compact" constant="68"/>
-                            </constraint>
-                            <constraint firstItem="RTV-jp-9vd" firstAttribute="top" secondItem="YoU-9O-h3y" secondAttribute="bottom" constant="53" id="lHa-Sy-wwg"/>
-                            <constraint firstItem="RTV-jp-9vd" firstAttribute="leading" secondItem="Srg-Cu-9xA" secondAttribute="leadingMargin" constant="58" id="pDd-6u-ifS">
-                                <variation key="heightClass=regular-widthClass=compact" constant="48"/>
-                            </constraint>
-                            <constraint firstItem="Tv0-b8-ngK" firstAttribute="top" secondItem="RTV-jp-9vd" secondAttribute="bottom" constant="361" id="xv6-uP-hQT">
-                                <variation key="heightClass=regular-widthClass=compact" constant="527"/>
-                            </constraint>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="leading" secondItem="Srg-Cu-9xA" secondAttribute="leadingMargin" constant="58" id="6zu-EK-fOR"/>
+                            <constraint firstItem="Tv0-b8-ngK" firstAttribute="top" secondItem="RTV-jp-9vd" secondAttribute="bottom" constant="527" id="H8C-eu-XzB"/>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="top" secondItem="YoU-9O-h3y" secondAttribute="bottom" constant="53" id="SbX-WJ-HW0"/>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="centerX" secondItem="YoU-9O-h3y" secondAttribute="centerX" id="WW8-XR-EFY"/>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="centerX" secondItem="Srg-Cu-9xA" secondAttribute="centerX" id="lWa-3Z-xc6"/>
+                            <constraint firstItem="RTV-jp-9vd" firstAttribute="top" secondItem="Srg-Cu-9xA" secondAttribute="top" constant="195" id="yfU-Yb-GuW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -86,14 +76,12 @@
                                 <exclude reference="YoU-9O-h3y"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="xv6-uP-hQT"/>
-                                <exclude reference="7ZH-c2-CsA"/>
-                                <exclude reference="fH3-Gz-a3n"/>
-                                <exclude reference="OMX-Ya-vCA"/>
-                                <exclude reference="fMm-Uz-BfY"/>
-                                <exclude reference="l29-GE-XgR"/>
-                                <exclude reference="lHa-Sy-wwg"/>
-                                <exclude reference="pDd-6u-ifS"/>
+                                <exclude reference="6zu-EK-fOR"/>
+                                <exclude reference="SbX-WJ-HW0"/>
+                                <exclude reference="WW8-XR-EFY"/>
+                                <exclude reference="lWa-3Z-xc6"/>
+                                <exclude reference="yfU-Yb-GuW"/>
+                                <exclude reference="H8C-eu-XzB"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -102,30 +90,72 @@
                                 <include reference="YoU-9O-h3y"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="xv6-uP-hQT"/>
-                                <include reference="7ZH-c2-CsA"/>
-                                <include reference="fH3-Gz-a3n"/>
-                                <include reference="OMX-Ya-vCA"/>
-                                <include reference="fMm-Uz-BfY"/>
-                                <exclude reference="l29-GE-XgR"/>
-                                <include reference="lHa-Sy-wwg"/>
-                                <exclude reference="pDd-6u-ifS"/>
+                                <include reference="6zu-EK-fOR"/>
+                                <include reference="SbX-WJ-HW0"/>
+                                <include reference="WW8-XR-EFY"/>
+                                <include reference="lWa-3Z-xc6"/>
+                                <include reference="yfU-Yb-GuW"/>
+                                <include reference="H8C-eu-XzB"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="RTV-jp-9vd" id="IgW-83-5tb"/>
                         <outlet property="titleLabel" destination="YoU-9O-h3y" id="GE7-Ha-PZu"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="loginExecuted" id="dKX-Yn-0NG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbo-6h-wIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-661.5" y="195"/>
+            <point key="canvasLocation" x="-730.5" y="165"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
+        <scene sceneID="RGA-Bn-Qe5">
+            <objects>
+                <viewController id="yWW-kr-CKN" userLabel="Menu View Controller" customClass="MenuViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iUn-R6-jrm"/>
+                        <viewControllerLayoutGuide type="bottom" id="prn-yS-hx0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UdV-tF-xS9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Qt-dA-ZGv" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="25" y="60" width="250" height="80"/>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="0Qt-dA-ZGv"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="0Qt-dA-ZGv"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="200"/>
+                    <connections>
+                        <outlet property="loginButton" destination="0Qt-dA-ZGv" id="Xl9-7e-ets"/>
+                        <segue destination="eyS-4q-GEQ" kind="show" identifier="logoutExecuted" id="tMh-hs-tfS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y8R-pc-fp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-295.5" y="863.25"/>
+        </scene>
+        <!--Map View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="mainViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="vXZ-lx-hvc" userLabel="Map View Controller" customClass="ViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -210,6 +240,11 @@
                                         <include reference="Vcp-Sv-P3A"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="yWW-kr-CKN" kind="popoverPresentation" popoverAnchorView="Qxj-Bp-rmS" id="Bhl-z9-bLM">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -270,13 +305,15 @@
                             </mask>
                         </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="800"/>
                     <connections>
                         <outlet property="mapView" destination="IKh-9u-SQJ" id="ah3-aW-w9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43.5" y="141"/>
+            <point key="canvasLocation" x="46.5" y="165"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="R24-Ou-Ud3">
@@ -538,7 +575,7 @@
                 <exit id="z8O-Ss-nkT" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7G-vm-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740.25" y="141"/>
+            <point key="canvasLocation" x="826.5" y="165"/>
         </scene>
     </scenes>
     <resources>

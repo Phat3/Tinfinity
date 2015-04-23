@@ -16,6 +16,7 @@
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
 		512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF41ADD5B50004ED28D /* Chat.swift */; };
+		5181E0CA1AE8EDD20061DC01 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5181E0C91AE8EDD20061DC01 /* MenuViewController.swift */; };
 		51B1AE361AE78439006AE203 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */; };
 		51B1AE391AE784F6006AE203 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */; };
 		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
@@ -61,6 +62,7 @@
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		512ABEF41ADD5B50004ED28D /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		5181E0C91AE8EDD20061DC01 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		51B1AE331AE7840C006AE203 /* FBSDKCoreKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FBSDKCoreKit; path = ../../FacebookSDK/FBSDKCoreKit.framework/FBSDKCoreKit; sourceTree = "<group>"; };
 		51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
+				5181E0C91AE8EDD20061DC01 /* MenuViewController.swift */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
 				4198ECD41AD005750048C3A0 /* Supporting Files */,
 				4198ECF81AD033CD0048C3A0 /* Support */,
@@ -339,6 +342,7 @@
 				512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */,
 				512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */,
 				4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */,
+				5181E0CA1AE8EDD20061DC01 /* MenuViewController.swift in Sources */,
 				51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */,
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
 				5E5311A51ADAABE90052DAB6 /* ChatComunication.swift in Sources */,

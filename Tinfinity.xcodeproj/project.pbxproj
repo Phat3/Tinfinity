@@ -234,6 +234,7 @@
 				TargetAttributes = {
 					4198ECD01AD005750048C3A0 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 56Z6WHJ65V;
 					};
 					4198ECE51AD005750048C3A0 = {
 						CreatedOnToolsVersion = 6.2;
@@ -461,6 +462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/SmokingRooster/Documents/FacebookSDK,
@@ -483,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/SmokingRooster/Documents/FacebookSDK,

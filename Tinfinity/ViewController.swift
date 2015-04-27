@@ -25,9 +25,17 @@ class ViewController: UIViewController {
         //DEBUG
         
         println("sdasd")
+        
+        var http = HttpReqWraper()
+        
+        //http.post("http://localhost:3000/auth/register-step1", params: ["foo" : "bar"])
+        
+        var cry = Crypto()
+        
+        cry.send()
     
         
-        self.chat.connectToServer()
+        //self.chat.connectToServer()
 
         /*
         var testo = "ciao come va?"

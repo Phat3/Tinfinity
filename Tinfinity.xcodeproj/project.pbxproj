@@ -15,6 +15,8 @@
 		4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */; };
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
 		5E5311A51ADAABE90052DAB6 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5311A41ADAABE90052DAB6 /* ChatManager.swift */; };
+		5EB2DAEB1AE40F46000F32A0 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB2DAEA1AE40F46000F32A0 /* LoginManager.swift */; };
+		5EB2DAED1AE40F84000F32A0 /* HttpReqWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB2DAEC1AE40F84000F32A0 /* HttpReqWrapper.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		4198ECF91AD0343E0048C3A0 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5E5311A41ADAABE90052DAB6 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		5EB2DAEA1AE40F46000F32A0 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		5EB2DAEC1AE40F84000F32A0 /* HttpReqWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReqWrapper.swift; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +105,7 @@
 		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
 			isa = PBXGroup;
 			children = (
+				5EB2DAE91AE40F22000F32A0 /* Login */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
@@ -142,8 +147,17 @@
 			children = (
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
 				5E5311A41ADAABE90052DAB6 /* ChatManager.swift */,
+				5EB2DAEC1AE40F84000F32A0 /* HttpReqWrapper.swift */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		5EB2DAE91AE40F22000F32A0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5EB2DAEA1AE40F46000F32A0 /* LoginManager.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		93D4075F43E8D65AAB48F9B7 /* Pods */ = {
@@ -315,6 +329,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB2DAED1AE40F84000F32A0 /* HttpReqWrapper.swift in Sources */,
+				5EB2DAEB1AE40F46000F32A0 /* LoginManager.swift in Sources */,
 				4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */,
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
 				5E5311A51ADAABE90052DAB6 /* ChatManager.swift in Sources */,

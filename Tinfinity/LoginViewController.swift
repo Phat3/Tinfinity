@@ -13,13 +13,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
 
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     
-    @IBOutlet weak var titleLabel: UILabel!
+    var api: ServerAPIController?
+    var profile: UserProfile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        titleLabel.text = "Benvenuto in Tinfity!"
         
         loginButton.delegate = self
         
@@ -37,6 +36,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         else {
             // Navigate to other view
             println("Funzione 2")
+            api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
+            api?.retrieveProfileFromServer({ (result) -> Void in
+                self.profile = result
+            })
             performSegueWithIdentifier("loginExecuted", sender: self)
         }
     }
@@ -44,11 +47,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
        
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-    
+       
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,14 +59,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         if (FBSDKAccessToken.currentAccessToken() != nil){
             
             // User is already logged in, do work such as go to next view controller.
+            api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
+            api?.retrieveProfileFromServer({ (result) -> Void in
+                self.profile = result
+            })
             performSegueWithIdentifier("loginExecuted", sender: self)
-        }
-        else{
             
+        }
+        else{            
             loginButton.center = self.view.center
             loginButton.readPermissions = ["public_profile", "email", "user_friends"]
             loginButton.delegate = self
         }
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "loginExecuted") {
+            println("Prepare for segue eseguito")
+            var mainViewcontroller = segue.destinationViewController as! ViewController;
+        }
     }
 }

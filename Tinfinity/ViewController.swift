@@ -14,10 +14,12 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+    var profile: UserProfile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         
         //inizializzazione mappa
         locationManager.delegate = self
@@ -141,12 +143,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         println("Error while updating location " + error.localizedDescription)
     }
-   
+
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "goToSettings") {
+            var settingsViewcontroller = segue.destinationViewController as! SettingsViewController;
+            settingsViewcontroller.profile = self.profile
+        }
+    }
 
 
 }

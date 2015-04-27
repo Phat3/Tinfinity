@@ -16,6 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Ufc-qy-fNw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SK5-r8-xFS">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwp-J9-qPk" userLabel="Home Button">
@@ -169,18 +170,18 @@
                                 <exclude reference="7U6-V4-8DP"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="HWW-Hu-j6f"/>
-                                <exclude reference="OSB-1z-M7X"/>
-                                <exclude reference="fjV-NI-eeS"/>
-                                <exclude reference="y02-TU-0wn"/>
-                                <exclude reference="QGI-6S-MyQ"/>
-                                <exclude reference="aUU-21-c5s"/>
-                                <exclude reference="gdg-aA-fHB"/>
-                                <exclude reference="zD6-hZ-EXB"/>
                                 <exclude reference="1FH-Ju-GZJ"/>
                                 <exclude reference="N9q-Yl-rPi"/>
                                 <exclude reference="O97-3K-tCa"/>
                                 <exclude reference="PnS-3z-NWM"/>
+                                <exclude reference="QGI-6S-MyQ"/>
+                                <exclude reference="aUU-21-c5s"/>
+                                <exclude reference="gdg-aA-fHB"/>
+                                <exclude reference="zD6-hZ-EXB"/>
+                                <exclude reference="HWW-Hu-j6f"/>
+                                <exclude reference="OSB-1z-M7X"/>
+                                <exclude reference="fjV-NI-eeS"/>
+                                <exclude reference="y02-TU-0wn"/>
                                 <exclude reference="XSq-QW-Yac"/>
                                 <exclude reference="nXc-VM-C4e"/>
                                 <exclude reference="s57-uk-nmd"/>
@@ -196,18 +197,18 @@
                                 <include reference="7U6-V4-8DP"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="HWW-Hu-j6f"/>
-                                <include reference="OSB-1z-M7X"/>
-                                <include reference="fjV-NI-eeS"/>
-                                <include reference="y02-TU-0wn"/>
-                                <include reference="QGI-6S-MyQ"/>
-                                <include reference="aUU-21-c5s"/>
-                                <include reference="gdg-aA-fHB"/>
-                                <include reference="zD6-hZ-EXB"/>
                                 <include reference="1FH-Ju-GZJ"/>
                                 <include reference="N9q-Yl-rPi"/>
                                 <include reference="O97-3K-tCa"/>
                                 <include reference="PnS-3z-NWM"/>
+                                <include reference="QGI-6S-MyQ"/>
+                                <include reference="aUU-21-c5s"/>
+                                <include reference="gdg-aA-fHB"/>
+                                <include reference="zD6-hZ-EXB"/>
+                                <include reference="HWW-Hu-j6f"/>
+                                <include reference="OSB-1z-M7X"/>
+                                <include reference="fjV-NI-eeS"/>
+                                <include reference="y02-TU-0wn"/>
                                 <include reference="XSq-QW-Yac"/>
                                 <include reference="nXc-VM-C4e"/>
                                 <include reference="s57-uk-nmd"/>
@@ -235,7 +236,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Tv0-b8-ngK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Srg-Cu-9xA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" restorationIdentifier="loginButton" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-jp-9vd" customClass="FBSDKLoginButton">
@@ -299,12 +300,12 @@
                                 <exclude reference="TUm-ho-jq8"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="u50-cu-2Le"/>
                                 <exclude reference="8dp-hV-z5c"/>
                                 <exclude reference="C8N-iq-DEY"/>
                                 <exclude reference="G7S-Zw-Kfq"/>
                                 <exclude reference="PA8-2Y-5ze"/>
                                 <exclude reference="yb0-VJ-d6V"/>
-                                <exclude reference="u50-cu-2Le"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -313,12 +314,12 @@
                                 <include reference="TUm-ho-jq8"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="u50-cu-2Le"/>
                                 <include reference="8dp-hV-z5c"/>
                                 <include reference="C8N-iq-DEY"/>
                                 <include reference="G7S-Zw-Kfq"/>
                                 <include reference="PA8-2Y-5ze"/>
                                 <include reference="yb0-VJ-d6V"/>
-                                <include reference="u50-cu-2Le"/>
                             </mask>
                         </variation>
                     </view>

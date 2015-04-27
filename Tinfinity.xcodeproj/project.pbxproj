@@ -475,7 +475,8 @@
 					/Users/SmokingRooster/Documents/FacebookSDK/FBSDKCoreKit.framework,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -498,7 +499,8 @@
 					/Users/SmokingRooster/Documents/FacebookSDK/FBSDKCoreKit.framework,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

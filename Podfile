@@ -15,3 +15,4 @@ use_frameworks!
 
 pod 'Alamofire', '~> 1.2'
 pod 'Socket.IO-Client-Swift', '~>2.0.3'
+pod 'Facebook-iOS-SDK', '~>4.0.1'

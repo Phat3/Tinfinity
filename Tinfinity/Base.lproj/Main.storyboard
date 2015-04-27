@@ -138,12 +138,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="S3G-Wm-TbO">
-                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="190" y="421" width="20" height="20"/>
-                                </variation>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -173,7 +167,6 @@
                                 <exclude reference="S5Y-g4-Qd7"/>
                                 <exclude reference="AYm-En-EEB"/>
                                 <exclude reference="7U6-V4-8DP"/>
-                                <exclude reference="S3G-Wm-TbO"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="HWW-Hu-j6f"/>
@@ -201,7 +194,6 @@
                                 <include reference="S5Y-g4-Qd7"/>
                                 <include reference="AYm-En-EEB"/>
                                 <include reference="7U6-V4-8DP"/>
-                                <include reference="S3G-Wm-TbO"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="HWW-Hu-j6f"/>
@@ -223,7 +215,6 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="activitySpinner" destination="S3G-Wm-TbO" id="tB0-4w-cBh"/>
                         <outlet property="firstName" destination="S5Y-g4-Qd7" id="PWY-QP-28v"/>
                         <outlet property="lastName" destination="7U6-V4-8DP" id="AP9-kR-Ir5"/>
                         <outlet property="loginButton" destination="sBE-BC-aaZ" id="BiK-Og-0Bo"/>

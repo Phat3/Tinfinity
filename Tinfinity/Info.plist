@@ -5,7 +5,7 @@
 	<key>Authentication Path</key>
 	<string>/api/auth/fb</string>
 	<key>Server URL</key>
-	<string>http://git.rmdesign.it:3000</string>
+	<string>http://tinfinity.eu</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

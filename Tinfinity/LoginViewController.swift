@@ -76,7 +76,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "loginExecuted") {
-            println("Prepare for segue eseguito")
             var mainViewcontroller = segue.destinationViewController as! ViewController;
         }
     }

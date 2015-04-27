@@ -58,10 +58,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        if firstName != ""{
-            activitySpinner.startAnimating()
-        }
-    }
+    
         
 }

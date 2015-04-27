@@ -61,9 +61,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         if (FBSDKAccessToken.currentAccessToken() != nil){
             
             // User is already logged in, do work such as go to next view controller.
+            
+            //instatiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
             api?.retrieveProfileFromServer({ (result) -> Void in
                 self.profile = result
+                println(result.firstName)
             })
             performSegueWithIdentifier("loginExecuted", sender: self)
             
@@ -78,7 +81,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "loginExecuted") {
-            var mainViewcontroller = segue.destinationViewController as! ViewController;
+            var mainViewcontroller = segue.destinationViewController as! ViewController
         }
     }
 }

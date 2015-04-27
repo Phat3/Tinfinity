@@ -15,6 +15,7 @@ use_frameworks!
 
 pod 'Alamofire', '~> 1.2'
 pod 'Socket.IO-Client-Swift', '~>2.0.3'
+
 pod 'FBSDKCoreKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'FBSDKShareKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'FBSDKLoginKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'

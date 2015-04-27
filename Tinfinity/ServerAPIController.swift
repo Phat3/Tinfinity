@@ -46,7 +46,6 @@ class ServerAPIController{
                     if let name = json["name"] as? String {
                         if let surname = json["surname"] as? String {
                             profileInfo = UserProfile(name: name, surname: surname)
-                            println(profileInfo!.firstName)
                             completion(result: profileInfo!)
                         }
                     }

@@ -19,8 +19,6 @@
 		51AADA951AECDF07007225CD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA941AECDF07007225CD /* SettingsViewController.swift */; };
 		51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA981AEE1774007225CD /* ServerAPIController.swift */; };
 		51AADA9B1AEE2D6F007225CD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA9A1AEE2D6F007225CD /* UserProfile.swift */; };
-		51B1AE361AE78439006AE203 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */; };
-		51B1AE391AE784F6006AE203 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */; };
 		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
 		5E5311A51ADAABE90052DAB6 /* ChatComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -67,10 +65,6 @@
 		51AADA941AECDF07007225CD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		51AADA981AEE1774007225CD /* ServerAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerAPIController.swift; sourceTree = "<group>"; };
 		51AADA9A1AEE2D6F007225CD /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		51B1AE331AE7840C006AE203 /* FBSDKCoreKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FBSDKCoreKit; path = ../../FacebookSDK/FBSDKCoreKit.framework/FBSDKCoreKit; sourceTree = "<group>"; };
-		51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		51B1AE3A1AE78663006AE203 /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
 		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComunication.swift; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,8 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51B1AE391AE784F6006AE203 /* FBSDKLoginKit.framework in Frameworks */,
-				51B1AE361AE78439006AE203 /* FBSDKCoreKit.framework in Frameworks */,
 				92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,7 +119,6 @@
 				51AADA9A1AEE2D6F007225CD /* UserProfile.swift */,
 				51B1AE3B1AE79178006AE203 /* LoginViewController.swift */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
-				51B1AE3A1AE78663006AE203 /* Bridge-Header.h */,
 				512ABEF41ADD5B50004ED28D /* Chat.swift */,
 				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
@@ -185,9 +176,6 @@
 		BC6AF7D4EBC58139FFDAD7FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				51B1AE381AE784F6006AE203 /* FBSDKLoginKit.framework */,
-				51B1AE351AE78439006AE203 /* FBSDKCoreKit.framework */,
-				51B1AE331AE7840C006AE203 /* FBSDKCoreKit */,
 				8918A07EDD7E7ADDAFC70793 /* Pods.framework */,
 			);
 			name = Frameworks;

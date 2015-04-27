@@ -4,21 +4,6 @@
 <dict>
 	<key>Authentication Path</key>
 	<string>/api/auth/fb</string>
-	<key>Server URL</key>
-	<string>http://tinfinity.eu</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb439360779551762</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookDisplayName</key>
-	<string>TinFinity</string>
-	<key>FacebookAppID</key>
-	<string>439360779551762</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -35,10 +20,25 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb439360779551762</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>439360779551762</string>
+	<key>FacebookDisplayName</key>
+	<string>TinFinity</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>Server URL</key>
+	<string>http://tinfinity.eu</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

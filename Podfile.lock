@@ -1,13 +1,64 @@
 PODS:
   - Alamofire (1.2.0)
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - FBSDKCoreKit (4.0.1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.0.1)
+    - FBSDKCoreKit/no-arc (= 4.0.1)
+  - FBSDKCoreKit/arc (4.0.1):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.0.1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.0.1):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.0.1):
+    - FBSDKCoreKit
   - Socket.IO-Client-Swift (2.0.3)
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
+  - FBSDKCoreKit (from `https://github.com/facebook/facebook-ios-sdk.git`, branch
+    `dev`)
+  - FBSDKLoginKit (from `https://github.com/facebook/facebook-ios-sdk.git`, branch
+    `dev`)
+  - FBSDKShareKit (from `https://github.com/facebook/facebook-ios-sdk.git`, branch
+    `dev`)
   - Socket.IO-Client-Swift (~> 2.0.3)
+
+EXTERNAL SOURCES:
+  FBSDKCoreKit:
+    :branch: dev
+    :git: https://github.com/facebook/facebook-ios-sdk.git
+  FBSDKLoginKit:
+    :branch: dev
+    :git: https://github.com/facebook/facebook-ios-sdk.git
+  FBSDKShareKit:
+    :branch: dev
+    :git: https://github.com/facebook/facebook-ios-sdk.git
+
+CHECKOUT OPTIONS:
+  FBSDKCoreKit:
+    :commit: 643100533d857cdf2350f246c7f37343c993d086
+    :git: https://github.com/facebook/facebook-ios-sdk.git
+  FBSDKLoginKit:
+    :commit: 643100533d857cdf2350f246c7f37343c993d086
+    :git: https://github.com/facebook/facebook-ios-sdk.git
+  FBSDKShareKit:
+    :commit: 643100533d857cdf2350f246c7f37343c993d086
+    :git: https://github.com/facebook/facebook-ios-sdk.git
 
 SPEC CHECKSUMS:
   Alamofire: d765c5c1713aa64106b0228aaa600a1e6851f68d
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  FBSDKCoreKit: 5e11fb5dd3d30f6bc992d4ba376b54641ab81db7
+  FBSDKLoginKit: bcaee14298da54be1370f51826fce581ad251358
+  FBSDKShareKit: 53d08b90197a6576d038f79122c707da0e70cdb1
   Socket.IO-Client-Swift: 7056c5d80491edc1fbe7462070c249635a86959e
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.36.4

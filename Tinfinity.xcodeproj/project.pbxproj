@@ -21,6 +21,7 @@
 		51AADA9B1AEE2D6F007225CD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA9A1AEE2D6F007225CD /* UserProfile.swift */; };
 		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
 		5E5311A51ADAABE90052DAB6 /* ChatComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */; };
+		8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComunication.swift; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReqWrapper.swift; sourceTree = "<group>"; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 		4198ECF81AD033CD0048C3A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */,
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
 				5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */,
 			);
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */,
 				512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */,
 				512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */,
 				512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */,

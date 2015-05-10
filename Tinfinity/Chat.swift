@@ -2,8 +2,8 @@
 //  Chat.swift
 //  tinFinity
 //
-//  Created by Alberto Fumagalli on 16/02/15.
-//  Copyright (c) 2015 Alberto Fumagalli. All rights reserved.
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
 //
 
 import Foundation
@@ -13,7 +13,7 @@ class Chat {
     
     var name : String
     var surname: String
-    var avatar : String
+    var image : UIImage?
     var incMessages = [
         String("hey"),
         String("what's up?")
@@ -24,10 +24,13 @@ class Chat {
         String("Nothing mutch")
     ]
     
-    init(name:String, surname:String, avatar:String){
+    init(name:String, surname:String, image:String?){
         self.name = name
         self.surname = surname
-        self.avatar = avatar
+        
+        if let imageData = NSData(contentsOfURL: NSURL(string: image!)!){
+            self.image = UIImage(data: imageData)
+        }
     }
     
 }

@@ -18,8 +18,8 @@ class UserProfile{
     var token: String?
     
     init(name: String,surname :String){
-        firstName = name
-        lastName = surname
+        self.firstName = name
+        self.lastName = surname
     }
     
     func fullName() -> String {

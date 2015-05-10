@@ -17,11 +17,9 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     var chats:Array <Chat> = [
-        Chat(name:"Alberto", surname:"Fumagalli", avatar:"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10940548_10205850224402630_1175390953583471916_n.jpg?oh=c628610b24d82039e95bb70675c7d87f&oe=555E6416&__gda__=1431927296_9b78b4026548545be7872e338a2e88e0"),
-        Chat(name:"Sebastiano  ",surname: "Mariani", avatar:"https://myapnea.org/assets/default-user-cbd45c51fcd2805b037bc985438f7b6d.jpg"),
-        Chat(name:"Riccardo", surname:"Mastellone", avatar:"https://pbs.twimg.com/profile_images/1725683917/340366_10150967276105109_758290108_21632905_1767193586_o.jpg"),
-        Chat(name:"Pippo",surname: "Caio", avatar:"https://myapnea.org/assets/default-user-cbd45c51fcd2805b037bc985438f7b6d.jpg"),
-        Chat(name:"Pluto", surname:"Brini", avatar:"https://myapnea.org/assets/default-user-cbd45c51fcd2805b037bc985438f7b6d.jpg"),
+        Chat(name:"Alberto", surname:"Fumagalli", image:"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10940548_10205850224402630_1175390953583471916_n.jpg?oh=c628610b24d82039e95bb70675c7d87f&oe=555E6416&__gda__=1431927296_9b78b4026548545be7872e338a2e88e0"),
+        Chat(name:"Sebastiano  ",surname: "Mariani", image:"https://myapnea.org/assets/default-user-cbd45c51fcd2805b037bc985438f7b6d.jpg"),
+        Chat(name:"Riccardo", surname:"Mastellone", image:"https://pbs.twimg.com/profile_images/1725683917/340366_10150967276105109_758290108_21632905_1767193586_o.jpg"),
        
     ]
     
@@ -70,9 +68,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         let chat = chats[indexPath.row]
         cell.nameLabel.text = chat.name + " " + chat.surname
         cell.messageLabel.text = chat.outMessages[0]
-        if let imageData = NSData(contentsOfURL: NSURL(string: chat.avatar)!){
-            cell.chatAvatar.image = UIImage(data: imageData)
-        }
+        cell.chatAvatar.image = chat.image
         
         //Now we need to make the chatAvatar look round
         var frame = cell.chatAvatar.frame

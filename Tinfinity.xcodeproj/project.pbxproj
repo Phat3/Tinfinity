@@ -121,7 +121,6 @@
 				51AADA941AECDF07007225CD /* SettingsViewController.swift */,
 				51B1AE3B1AE79178006AE203 /* LoginViewController.swift */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
-				512ABEF41ADD5B50004ED28D /* Chat.swift */,
 				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
@@ -170,6 +169,7 @@
 		8B1957CE1AFFC003003E2F35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				512ABEF41ADD5B50004ED28D /* Chat.swift */,
 				51AADA9A1AEE2D6F007225CD /* UserProfile.swift */,
 			);
 			name = Models;

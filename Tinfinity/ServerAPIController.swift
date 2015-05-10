@@ -40,6 +40,11 @@ class ServerAPIController{
                 let name = json["name"].string;
                 let surname = json["surname"].string;
                 profileInfo = UserProfile(name: name!, surname: surname!)
+                profileInfo!.email = json["email"].string;
+                
+                let url = NSURL(string: json["image"].string!)
+                let data = NSData(contentsOfURL: url!)
+                profileInfo!.image = UIImage(data: data!)
                 completion(result: profileInfo!)
         }
     }

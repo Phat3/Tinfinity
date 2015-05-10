@@ -68,7 +68,28 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         let chat = chats[indexPath.row]
         cell.nameLabel.text = chat.name + " " + chat.surname
         cell.messageLabel.text = chat.outMessages[0]
-        cell.chatAvatar.image = chat.image
+        
+        // Immagine già recuperata, usiamola
+        if(chat.image != nil) {
+            cell.chatAvatar.image = chat.image
+        } else {
+            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: chat.imageUrl!)!)
+            let mainQueue = NSOperationQueue.mainQueue()
+            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                if error == nil {
+                    // Convert the downloaded data in to a UIImage object
+                    chat.image = UIImage(data: data)
+                    // Update the cell
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.chatTableView.reloadData()
+                    })
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
         
         //Now we need to make the chatAvatar look round
         var frame = cell.chatAvatar.frame

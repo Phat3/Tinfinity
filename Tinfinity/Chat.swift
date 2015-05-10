@@ -13,6 +13,7 @@ class Chat {
     
     var name : String
     var surname: String
+    var imageUrl : String?
     var image : UIImage?
     var incMessages = [
         String("hey"),
@@ -27,10 +28,7 @@ class Chat {
     init(name:String, surname:String, image:String?){
         self.name = name
         self.surname = surname
-        
-        if let imageData = NSData(contentsOfURL: NSURL(string: image!)!){
-            self.image = UIImage(data: imageData)
-        }
+        self.imageUrl = image
     }
     
 }

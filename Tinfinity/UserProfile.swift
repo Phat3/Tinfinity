@@ -2,22 +2,28 @@
 //  UserProfile.swift
 //  Tinfinity
 //
-//  Created by Alberto Fumagalli on 27/04/15.
-//  Copyright (c) 2015 Sebastiano Mariani. All rights reserved.
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
 //
 
 import Foundation
+import UIKit
 
 class UserProfile{
     
     var firstName: String
     var lastName: String
+    var email: String?
+    var image : UIImage?
+    var token: String?
     
     init(name: String,surname :String){
-        
         firstName = name
         lastName = surname
-        
+    }
+    
+    func fullName() -> String {
+        return firstName + " " + lastName
     }
     
     

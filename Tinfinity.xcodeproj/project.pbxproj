@@ -115,10 +115,10 @@
 		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
 			isa = PBXGroup;
 			children = (
+				8B1957CE1AFFC003003E2F35 /* Models */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
 				51AADA941AECDF07007225CD /* SettingsViewController.swift */,
-				51AADA9A1AEE2D6F007225CD /* UserProfile.swift */,
 				51B1AE3B1AE79178006AE203 /* LoginViewController.swift */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
 				512ABEF41ADD5B50004ED28D /* Chat.swift */,
@@ -165,6 +165,14 @@
 				5E5311A41ADAABE90052DAB6 /* ChatComunication.swift */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		8B1957CE1AFFC003003E2F35 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				51AADA9A1AEE2D6F007225CD /* UserProfile.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		93D4075F43E8D65AAB48F9B7 /* Pods */ = {

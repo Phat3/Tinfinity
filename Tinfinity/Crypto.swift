@@ -32,7 +32,7 @@ class Crypto{
     private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.privateKey]
     
     //reference to the public key
-     var publicKey : SecKeyRef?
+    var publicKey : SecKeyRef?
     
     //reference to the private key
     private var privateKey : SecKeyRef?
@@ -146,6 +146,34 @@ class Crypto{
         let decryptedText = String(bytes: decryptedData, encoding:NSUTF8StringEncoding)
         //ritorniamo il plain
         return decryptedText!
+    }
+    
+    func send(){
+        
+        var http = HttpReqWraper()
+        
+        
+        //query paramenters
+        let query: [String: AnyObject] = [
+            kSecClass as! String : kSecClassKey as! String,
+            kSecAttrKeyType as! String : kSecAttrKeyTypeRSA,
+            kSecAttrApplicationTag as! String: "com.tinfinity.crypto.publickey",
+            kSecReturnRef as! String : true as Bool
+        ]
+        //get the reference to the publickey
+        var keyPtr: Unmanaged<AnyObject>?
+        //get bytes
+        let result = SecItemCopyMatching(query, &keyPtr)
+        //create a data object
+        var publickeyData = NSData(bytes: &keyPtr!, length: self.blockSize)
+        //encode it with base64
+        var base64PublicKey = publickeyData.base64EncodedStringWithOptions(nil)
+        
+        println(base64PublicKey)
+                    
+        //http.post("http://localhost:3000/auth/register-step1", params: ["key" : self.publicKey!])
+        
+        
     }
     
     

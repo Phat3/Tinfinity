@@ -31,6 +31,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.chatTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.chatTableView.dataSource = self
+        
+        self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
     }
 
     override func didReceiveMemoryWarning() {

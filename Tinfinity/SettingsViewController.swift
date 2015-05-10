@@ -30,6 +30,8 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate{
         //firstName.text = profile!.firstName
         //lastName.text = profile!.lastName
         
+        self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
+        
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {

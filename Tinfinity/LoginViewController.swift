@@ -24,6 +24,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         
         loginButton.delegate = self
         
+        self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
+        
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {

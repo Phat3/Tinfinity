@@ -167,13 +167,21 @@ class Crypto{
         //create a data object
         var publickeyData = NSData(bytes: &keyPtr!, length: self.blockSize)
         //encode it with base64
-        var base64PublicKey = publickeyData.base64EncodedStringWithOptions(nil)
+        var base64PublicKey = publickeyData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         
         println(base64PublicKey)
-                    
+        
+        println(base64ToSecKey(base64PublicKey))
+        
         //http.post("http://localhost:3000/auth/register-step1", params: ["key" : self.publicKey!])
         
         
+    }
+    
+    func base64ToSecKey(key : String){
+        
+       
+    
     }
     
     

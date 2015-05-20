@@ -80,11 +80,12 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
-                    chat.image = UIImage(data: data)
+                    let image = UIImage(data: data)
                     // Update the cell
-                    
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.chatTableView.reloadData()
+                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
+                            cellToUpdate.imageView?.image = image
+                        }
                     })
                 }
                 else {

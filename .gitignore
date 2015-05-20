@@ -47,3 +47,5 @@ Temporary Items
 Pods/*
 
 .bundle
+
+Podfile.lock

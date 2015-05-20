@@ -23,7 +23,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         // Do any additional setup after loading the view, typically from a nib.
         
         loginButton.delegate = self
-        
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
     }
@@ -43,6 +42,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
             api?.retrieveProfileFromServer({ (result) -> Void in
                 self.profile = result
+                println(result.firstName)
             })
             performSegueWithIdentifier("loginExecuted", sender: self)
         }

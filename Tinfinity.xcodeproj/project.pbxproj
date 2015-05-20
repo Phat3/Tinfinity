@@ -16,7 +16,7 @@
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
 		512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF41ADD5B50004ED28D /* Chat.swift */; };
-		51AADA951AECDF07007225CD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA941AECDF07007225CD /* SettingsViewController.swift */; };
+		51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */; };
 		51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA981AEE1774007225CD /* ServerAPIController.swift */; };
 		51AADA9B1AEE2D6F007225CD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA9A1AEE2D6F007225CD /* UserProfile.swift */; };
 		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
@@ -64,7 +64,7 @@
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		512ABEF41ADD5B50004ED28D /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		51AADA941AECDF07007225CD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		51AADA981AEE1774007225CD /* ServerAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerAPIController.swift; sourceTree = "<group>"; };
 		51AADA9A1AEE2D6F007225CD /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -120,9 +120,9 @@
 				8B1957CE1AFFC003003E2F35 /* Models */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
-				51AADA941AECDF07007225CD /* SettingsViewController.swift */,
 				51B1AE3B1AE79178006AE203 /* LoginViewController.swift */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
+				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
 				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
@@ -355,11 +355,11 @@
 				4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */,
 				51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */,
 				51AADA9B1AEE2D6F007225CD /* UserProfile.swift in Sources */,
+				51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */,
 				8B9460BA1AFFD03A00B00CDE /* ChatComunication.swift in Sources */,
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
 				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,
 				51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */,
-				51AADA951AECDF07007225CD /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

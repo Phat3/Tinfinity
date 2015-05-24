@@ -35,9 +35,12 @@ class ServerAPIController{
                 
                 var json = JSON(data!)
                 
+                let id = json["userId"].string;
                 let name = json["name"].string;
                 let surname = json["surname"].string;
-                account.user = User(firstName: name!, lastName: surname!)
+                
+                //Per il momento l'user id non è ritornato dal server e lo mettiamo manualmente
+                account.user = User(userId: "1", firstName: name!, lastName: surname!)
                 account.user.email = json["email"].string;
                 
                 //Non necessario siccome l'immagine profilo viene presa dall'apposita view di facebook e per gli altri utenti vengono caricate al momento dell'apertura della chat

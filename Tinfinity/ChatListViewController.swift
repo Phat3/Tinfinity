@@ -39,21 +39,17 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     */
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count
         
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nil
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
     
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //we need to obtain the cell to set his values
         let cell: ChatCustomCell = chatTableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCustomCell
@@ -90,13 +86,13 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         //Now we need to make the chatAvatar look round
-        var frame = cell.chatAvatar.frame
+        /*var frame = cell.chatAvatar.frame
         let imageSize = 55 as CGFloat
         frame.size.height = imageSize
         frame.size.width  = imageSize
         cell.chatAvatar.frame = frame
         cell.chatAvatar.layer.cornerRadius = imageSize / 2.0
-        cell.chatAvatar.clipsToBounds = true
+        cell.chatAvatar.clipsToBounds = true*/
         
         cell.nameLabel.text = chat.user.name
         cell.messageLabel.text = chat.lastMessageText
@@ -105,10 +101,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    
-        if (segue.identifier == "chatSegue") {
-                var nextViewcontroller = segue.destinationViewController as! ChatViewController
-                //nextViewcontroller.name = self.name
+        if (segue.identifier == "chatSelected") {
+                let path = self.chatTableView.indexPathForSelectedRow()!
+                let nextViewcontroller = segue.destinationViewController as! ChatViewController
+                nextViewcontroller.chat = chats[path.row]
         }
     }
     

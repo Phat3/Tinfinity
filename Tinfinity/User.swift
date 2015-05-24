@@ -9,6 +9,7 @@ import Foundation.NSString
 import UIKit
 
 class User {
+    var userId: String
     var firstName: String
     var lastName: String
     var email: String?
@@ -28,7 +29,8 @@ class User {
         return initials
     }
     
-    init(firstName: String, lastName: String) {
+    init(userId: String, firstName: String, lastName: String) {
+        self.userId = userId
         self.firstName = firstName
         self.lastName = lastName
     }

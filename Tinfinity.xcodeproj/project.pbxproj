@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -73,11 +73,10 @@
 		51A504321B0F7F6A0039E97C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		51A5043A1B11C9D00039E97C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		51A5043C1B11D0E50039E97C /* Blank52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blank52.png; sourceTree = "<group>"; };
-		51A5043F1B11DD980039E97C /* Bridge-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
-		51A504401B11DE4F0039E97C /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "Pods/../build/Debug-iphoneos/Pods/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
 		51AADA981AEE1774007225CD /* ServerAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerAPIController.swift; sourceTree = "<group>"; };
 		51AADA9A1AEE2D6F007225CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinfinity-Bridging-Header.h"; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B9460B71AFFD00B00B00CDE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComunication.swift; sourceTree = "<group>"; };
@@ -127,8 +126,8 @@
 		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
 			isa = PBXGroup;
 			children = (
+				51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
-				51A5043F1B11DD980039E97C /* Bridge-Header.h */,
 				51A5042D1B0F7DB60039E97C /* Chats */,
 				8B1957CE1AFFC003003E2F35 /* Models */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
@@ -213,7 +212,6 @@
 		BC6AF7D4EBC58139FFDAD7FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				51A504401B11DE4F0039E97C /* JSQMessagesViewController.framework */,
 				8918A07EDD7E7ADDAFC70793 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -281,7 +279,7 @@
 				};
 			};
 			buildConfigurationList = 4198ECCC1AD005750048C3A0 /* Build configuration list for PBXProject "Tinfinity" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -522,7 +520,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Tinfinity-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 			};
 			name = Debug;
 		};
@@ -548,7 +547,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Tinfinity-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 			};
 			name = Release;
 		};

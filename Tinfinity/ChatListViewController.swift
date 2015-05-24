@@ -14,24 +14,13 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
     
-    
-    
-    var chats:Array <Chat> = [
-        Chat(name:"Alberto", surname:"Fumagalli", image:"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10940548_10205850224402630_1175390953583471916_n.jpg?oh=c628610b24d82039e95bb70675c7d87f&oe=555E6416&__gda__=1431927296_9b78b4026548545be7872e338a2e88e0"),
-        Chat(name:"Sebastiano  ",surname: "Mariani", image:"https://myapnea.org/assets/default-user-cbd45c51fcd2805b037bc985438f7b6d.jpg"),
-        Chat(name:"Riccardo", surname:"Mastellone", image:"https://pbs.twimg.com/profile_images/1725683917/340366_10150967276105109_758290108_21632905_1767193586_o.jpg"),
-       
-    ]
-    
+    var chats: [Chat] { return account.chats }
+    var imageCache = [String:UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        self.chatTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.chatTableView.dataSource = self
-        
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
     }
 
@@ -63,35 +52,41 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         return 1
     }
     
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //we need to obtain the cell to set his values
         let cell: ChatCustomCell = chatTableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCustomCell
-        let chat = chats[indexPath.row]
-        cell.nameLabel.text = chat.name + " " + chat.surname
-        cell.messageLabel.text = chat.outMessages[0]
+        let chat = chats[indexPath.row]        
         
-        // Immagine già recuperata, usiamola
-        if(chat.image != nil) {
-            cell.chatAvatar.image = chat.image
-        } else {
-            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: chat.imageUrl!)!)
-            let mainQueue = NSOperationQueue.mainQueue()
-            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-                if error == nil {
-                    // Convert the downloaded data in to a UIImage object
-                    let image = UIImage(data: data)
-                    // Update the cell
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
-                            cellToUpdate.imageView?.image = image
-                        }
-                    })
-                }
-                else {
-                    println("Error: \(error.localizedDescription)")
-                }
-            })
+        if (chat.user.imageUrl != nil){
+            // Immagine già recuperata, usiamola
+            if let img = imageCache[chat.user.imageUrl!] {
+                cell.chatAvatar.image = img
+            } else {
+                let request: NSURLRequest = NSURLRequest(URL: NSURL(string: chat.user.imageUrl!)!)
+                let mainQueue = NSOperationQueue.mainQueue()
+                NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: {     (response, data, error) -> Void in
+                    if error == nil {
+                        // Convert the downloaded data in to a UIImage object
+                        let image = UIImage(data: data)
+                        //Store in our cache the image
+                        self.imageCache[chat.user.imageUrl!] = image
+                        // Update the cell
+                        dispatch_async(dispatch_get_main_queue(), {
+                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
+                                cellToUpdate.imageView?.image = image
+                            }
+                        })
+                        tableView.reloadData()
+                    }
+                    else {
+                        println("Error: \(error.localizedDescription)")
+                    }
+                })
+            }
+        }else{
+            cell.imageView?.image = UIImage(named: "Blank52")
         }
         
         //Now we need to make the chatAvatar look round
@@ -103,7 +98,22 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.chatAvatar.layer.cornerRadius = imageSize / 2.0
         cell.chatAvatar.clipsToBounds = true
         
+        cell.nameLabel.text = chat.user.name
+        cell.messageLabel.text = chat.lastMessageText
+        
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+        if (segue.identifier == "chatSegue") {
+                var nextViewcontroller = segue.destinationViewController as! ChatViewController
+                //nextViewcontroller.name = self.name
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
     }
 
 }

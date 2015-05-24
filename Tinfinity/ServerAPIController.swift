@@ -23,9 +23,7 @@ class ServerAPIController{
     }
     
     //Funzione che chiama il server e ritorna un'istanza di UserProfile
-    func retrieveProfileFromServer(completion: (result: UserProfile) -> Void){
-        
-        var profileInfo : UserProfile?
+    func retrieveProfileFromServer(completion: (result: User) -> Void){
         
         Alamofire.request(.POST, baseUrl + authenticationPath, parameters: ["token" : FBToken], encoding : .JSON)
             .responseJSON { (request, response, data, error) in
@@ -39,13 +37,13 @@ class ServerAPIController{
                 
                 let name = json["name"].string;
                 let surname = json["surname"].string;
-                profileInfo = UserProfile(name: name!, surname: surname!)
-                profileInfo!.email = json["email"].string;
+                account.user = User(firstName: name!, lastName: surname!)
+                account.user.email = json["email"].string;
                 
-                let url = NSURL(string: json["image"].string!)
+                //Non necessario siccome l'immagine profilo viene presa dall'apposita view di facebook e per gli altri utenti vengono caricate al momento dell'apertura della chat
+                /*let url = NSURL(string: json["image"].string!)
                 let data = NSData(contentsOfURL: url!)
-                profileInfo!.image = UIImage(data: data!)
-                completion(result: profileInfo!)
+                profileInfo!.image = UIImage(data: data!)*/
         }
     }
     

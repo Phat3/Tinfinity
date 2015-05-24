@@ -19,3 +19,4 @@ pod "SwiftyJSON", ">= 2.2"
 pod 'FBSDKCoreKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'FBSDKShareKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'FBSDKLoginKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
+pod 'JSQMessagesViewController'

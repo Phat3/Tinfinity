@@ -15,11 +15,10 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    var profile: UserProfile?
+    var profile: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
@@ -146,17 +145,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         println("Error while updating location " + error.localizedDescription)
     }
     
-    
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "goToSettings") {
-            var settingsViewcontroller = segue.destinationViewController as! SettingsViewController;
-            settingsViewcontroller.profile = self.profile
-        }
-    }
-    
-    
+       
 }

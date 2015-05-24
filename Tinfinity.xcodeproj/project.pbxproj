@@ -15,10 +15,14 @@
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
-		512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF41ADD5B50004ED28D /* Chat.swift */; };
 		51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */; };
+		51A5042A1B0F7D330039E97C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A504291B0F7D330039E97C /* Message.swift */; };
+		51A5042C1B0F7D670039E97C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A5042B1B0F7D670039E97C /* Chat.swift */; };
+		51A504331B0F7F6A0039E97C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A504321B0F7F6A0039E97C /* Account.swift */; };
+		51A5043B1B11C9D00039E97C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A5043A1B11C9D00039E97C /* ChatViewController.swift */; };
+		51A5043D1B11D0E50039E97C /* Blank52.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A5043C1B11D0E50039E97C /* Blank52.png */; };
 		51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA981AEE1774007225CD /* ServerAPIController.swift */; };
-		51AADA9B1AEE2D6F007225CD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA9A1AEE2D6F007225CD /* UserProfile.swift */; };
+		51AADA9B1AEE2D6F007225CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA9A1AEE2D6F007225CD /* User.swift */; };
 		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
 		8B9460B81AFFD00B00B00CDE /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9460B71AFFD00B00B00CDE /* ChatManager.swift */; };
 		8B9460BA1AFFD03A00B00CDE /* ChatComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */; };
@@ -63,10 +67,16 @@
 		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-		512ABEF41ADD5B50004ED28D /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		51A504291B0F7D330039E97C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		51A5042B1B0F7D670039E97C /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		51A504321B0F7F6A0039E97C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		51A5043A1B11C9D00039E97C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		51A5043C1B11D0E50039E97C /* Blank52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blank52.png; sourceTree = "<group>"; };
+		51A5043F1B11DD980039E97C /* Bridge-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
+		51A504401B11DE4F0039E97C /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "Pods/../build/Debug-iphoneos/Pods/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
 		51AADA981AEE1774007225CD /* ServerAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerAPIController.swift; sourceTree = "<group>"; };
-		51AADA9A1AEE2D6F007225CD /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		51AADA9A1AEE2D6F007225CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B9460B71AFFD00B00B00CDE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
@@ -117,13 +127,15 @@
 		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
 			isa = PBXGroup;
 			children = (
-				8B1957CE1AFFC003003E2F35 /* Models */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
+				51A5043F1B11DD980039E97C /* Bridge-Header.h */,
+				51A5042D1B0F7DB60039E97C /* Chats */,
+				8B1957CE1AFFC003003E2F35 /* Models */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
 				51B1AE3B1AE79178006AE203 /* LoginViewController.swift */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
 				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
-				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
+				51A5043C1B11D0E50039E97C /* Blank52.png */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
@@ -169,11 +181,22 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
+		51A5042D1B0F7DB60039E97C /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */,
+				51A5043A1B11C9D00039E97C /* ChatViewController.swift */,
+			);
+			name = Chats;
+			sourceTree = "<group>";
+		};
 		8B1957CE1AFFC003003E2F35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				512ABEF41ADD5B50004ED28D /* Chat.swift */,
-				51AADA9A1AEE2D6F007225CD /* UserProfile.swift */,
+				51A504321B0F7F6A0039E97C /* Account.swift */,
+				51A504291B0F7D330039E97C /* Message.swift */,
+				51A5042B1B0F7D670039E97C /* Chat.swift */,
+				51AADA9A1AEE2D6F007225CD /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -190,6 +213,7 @@
 		BC6AF7D4EBC58139FFDAD7FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				51A504401B11DE4F0039E97C /* JSQMessagesViewController.framework */,
 				8918A07EDD7E7ADDAFC70793 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -280,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51A5043D1B11D0E50039E97C /* Blank52.png in Resources */,
 				4198ECDC1AD005750048C3A0 /* Main.storyboard in Resources */,
 				4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */,
 			);
@@ -351,14 +376,17 @@
 				512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */,
 				512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */,
 				8B9460B81AFFD00B00B00CDE /* ChatManager.swift in Sources */,
-				512ABEF51ADD5B50004ED28D /* Chat.swift in Sources */,
+				51A504331B0F7F6A0039E97C /* Account.swift in Sources */,
 				4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */,
 				51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */,
-				51AADA9B1AEE2D6F007225CD /* UserProfile.swift in Sources */,
+				51AADA9B1AEE2D6F007225CD /* User.swift in Sources */,
 				51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */,
 				8B9460BA1AFFD03A00B00CDE /* ChatComunication.swift in Sources */,
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
+				51A5042A1B0F7D330039E97C /* Message.swift in Sources */,
 				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,
+				51A5042C1B0F7D670039E97C /* Chat.swift in Sources */,
+				51A5043B1B11C9D00039E97C /* ChatViewController.swift in Sources */,
 				51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,9 +507,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/SmokingRooster/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 				);
 				INFOPLIST_FILE = Tinfinity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -491,8 +521,8 @@
 					/Users/SmokingRooster/Documents/FacebookSDK/FBSDKCoreKit.framework,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
 			};
 			name = Debug;
 		};
@@ -503,9 +533,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/SmokingRooster/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 				);
 				INFOPLIST_FILE = Tinfinity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -515,8 +547,8 @@
 					/Users/SmokingRooster/Documents/FacebookSDK/FBSDKCoreKit.framework,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Bridge-Header.h";
 			};
 			name = Release;
 		};

@@ -13,6 +13,7 @@
 		4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198ECDD1AD005750048C3A0 /* Images.xcassets */; };
 		4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */; };
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
+		5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113C1DE1B19F1F8007B53AA /* Reachability.swift */; };
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
 		51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */; };
@@ -64,6 +65,7 @@
 		4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinfinityTests.swift; sourceTree = "<group>"; };
 		4198ECF91AD0343E0048C3A0 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5113C1DE1B19F1F8007B53AA /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
 				51A5043C1B11D0E50039E97C /* Blank52.png */,
 				512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */,
+				5113C1DE1B19F1F8007B53AA /* Reachability.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
 				4198ECD41AD005750048C3A0 /* Supporting Files */,
@@ -381,6 +384,7 @@
 				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,
 				51A5042C1B0F7D670039E97C /* Chat.swift in Sources */,
 				51A5043B1B11C9D00039E97C /* ChatViewController.swift in Sources */,
+				5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */,
 				51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

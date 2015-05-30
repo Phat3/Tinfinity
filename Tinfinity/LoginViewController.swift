@@ -45,6 +45,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         for user in account.users{
             user.imageUrl = "http://www.mhodi.it/wp-content/uploads/2012/09/no-user1-300x300.jpg"
         }
+        
+        
 
         
     }
@@ -64,6 +66,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             //instatiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
             api?.retrieveProfileFromServer({ (result) -> Void in})
+            //Lets prepare the alert controller in case of error
+            let alertController = UIAlertController(title: "No internet connection", message: "An internet connection is not available. Please, check it and come back again!", preferredStyle: .Alert)
+            let	tryAgainAction = UIAlertAction(title: "Try Again", style: .Default, handler: nil)
+            
+            //If the user is still nil it means the request to the server did not succeded, we present the alert and then execute again the request
+            while(account.user == nil){
+               
+                presentViewController(alertController, animated: true, completion: nil)
+                api?.retrieveProfileFromServer({ (result) -> Void in})
+            
+            }
           
             performSegueWithIdentifier("loginExecuted", sender: self)
         }
@@ -85,12 +98,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             
             //instatiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
-            
             api?.retrieveProfileFromServer({ (result) -> Void in})
-            let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
-            
+            //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
+            if(account.user == nil){
+               self.checkLoginProblem()
+            }
             // User is already logged in, do work such as go to next view controller.
-            performSegueWithIdentifier("loginExecuted", sender: self)
+            else{
+                performSegueWithIdentifier("loginExecuted", sender: self)
+            }
             
         }
         else{            
@@ -98,6 +114,33 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             loginButton.readPermissions = ["public_profile", "email", "user_friends"]
             loginButton.delegate = self
         }
+        
+    }
+    
+    func checkLoginProblem(){
+        
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: .Default){ (_) -> Void in
+            
+            self.api?.retrieveProfileFromServer({ (result) -> Void in })
+            if(account.user == nil){
+                self.checkLoginProblem()
+            }else{
+                self.performSegueWithIdentifier("loginExecuted", sender: self)
+            }
+        }
+        
+        let connectionError = UIAlertController(title: "", message: "", preferredStyle:.Alert)
+        
+        connectionError.addAction(tryAgainAction)
+        
+        if Reachability.isConnectedToNetwork() == false {            
+            connectionError.title = "No Internet Connection"
+            connectionError.message = "Make sure your device is connected to the internet."
+        } else {
+            connectionError.title = "Server offline"
+            connectionError.message = "It seems that our server is offline. Please, try again later."
+        }
+        self.presentViewController(connectionError, animated: true, completion: nil)
         
     }
     

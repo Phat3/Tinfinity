@@ -77,7 +77,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
+        account.user = nil
         performSegueWithIdentifier("logoutExecuted", sender: self)
     }
     

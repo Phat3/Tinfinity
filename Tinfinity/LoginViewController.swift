@@ -65,20 +65,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             println("Funzione 2")
             //instatiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
-            api?.retrieveProfileFromServer({ (result) -> Void in})
-            //Lets prepare the alert controller in case of error
-            let alertController = UIAlertController(title: "No internet connection", message: "An internet connection is not available. Please, check it and come back again!", preferredStyle: .Alert)
-            let	tryAgainAction = UIAlertAction(title: "Try Again", style: .Default, handler: nil)
-            
-            //If the user is still nil it means the request to the server did not succeded, we present the alert and then execute again the request
-            while(account.user == nil){
-               
-                presentViewController(alertController, animated: true, completion: nil)
-                api?.retrieveProfileFromServer({ (result) -> Void in})
-            
-            }
-          
-            performSegueWithIdentifier("loginExecuted", sender: self)
+            api?.retrieveProfileFromServer({ (result) -> Void in
+                //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
+                if(account.user == nil){
+                    self.checkLoginProblem()
+                }
+                else{
+                    return
+                }
+            })
+			performSegueWithIdentifier("loginExecuted", sender: self)
         }
     }
     
@@ -98,18 +94,21 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             
             //instatiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
-            api?.retrieveProfileFromServer({ (result) -> Void in})
-            //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
-            if(account.user == nil){
-               self.checkLoginProblem()
-            }
-            // User is already logged in, do work such as go to next view controller.
-            else{
-                performSegueWithIdentifier("loginExecuted", sender: self)
-            }
+            api?.retrieveProfileFromServer({ (result) -> Void in
+            	
+                 //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
+                if(account.user == nil){
+                self.checkLoginProblem()
+                }
+                else{
+                	return
+                }
+            })
             
+            performSegueWithIdentifier("loginExecuted", sender: self)
+
         }
-        else{            
+        else{
             loginButton.center = self.view.center
             loginButton.readPermissions = ["public_profile", "email", "user_friends"]
             loginButton.delegate = self

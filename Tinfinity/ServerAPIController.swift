@@ -31,7 +31,6 @@ class ServerAPIController{
                     if(error != nil) {
                         // If there is an error in the web request, print it to the console
                         println(error!.localizedDescription)
-                        
                     }else{
                     
                     var json = JSON(data!)

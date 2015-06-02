@@ -52,10 +52,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //we need to obtain the cell to set his values
-        let cell: ChatCustomCell = chatTableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCustomCell
-        let chat = chats[indexPath.row]        
-        
+        let cell = chatTableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCustomCell
+        let chat = chats[indexPath.row]
+    
         if (chat.user.imageUrl != nil){
+            
             // Immagine già recuperata, usiamola
             if let img = imageCache[chat.user.imageUrl!] {
                 cell.chatAvatar.image = img
@@ -70,11 +71,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                         self.imageCache[chat.user.imageUrl!] = image
                         // Update the cell
                         dispatch_async(dispatch_get_main_queue(), {
-                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
-                                cellToUpdate.imageView?.image = image
+                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? ChatCustomCell {
+                                cellToUpdate.chatAvatar.image = image
                             }
-                        })
-                        tableView.reloadData()
+                         })
                     }
                     else {
                         println("Error: \(error.localizedDescription)")
@@ -82,18 +82,16 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 })
             }
         }else{
-            cell.imageView?.image = UIImage(named: "Blank52")
+            cell.chatAvatar?.image = UIImage(named: "Blank52")
         }
-        
-        //Now we need to make the chatAvatar look round
-        /*var frame = cell.chatAvatar.frame
-        let imageSize = 55 as CGFloat
-        frame.size.height = imageSize
-        frame.size.width  = imageSize
-        cell.chatAvatar.frame = frame
-        cell.chatAvatar.layer.cornerRadius = imageSize / 2.0
-        cell.chatAvatar.clipsToBounds = true*/
-        
+    
+    	//Now we need to make the chatAvatar look round
+    	var frame = cell.chatAvatar.frame
+    	let imageSize = frame.size.height
+    	cell.chatAvatar.frame = frame
+    	cell.chatAvatar.layer.cornerRadius = imageSize / 2.0
+    	cell.chatAvatar.clipsToBounds = true
+    
         cell.nameLabel.text = chat.user.name
         cell.messageLabel.text = chat.lastMessageText
         

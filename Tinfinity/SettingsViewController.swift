@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var profilePict: FBSDKProfilePictureView!
+    @IBOutlet weak var profilePict: UIImageView!
     
     //Variabile contenente le informazioni dell'utente
     var profile: User?
@@ -30,23 +30,13 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         loginButton.delegate = self
         
-        var frame = profilePict.frame
-        let imageSize = 80 as CGFloat
-        frame.size.height = imageSize
-        frame.size.width  = imageSize
-        profilePict.frame = frame
-        profilePict.layer.cornerRadius = imageSize / 2.0
+        profilePict.image = account.pictures[0]
+        profilePict.layer.borderWidth = 2
+        profilePict.layer.masksToBounds = false
+        profilePict.layer.borderColor = UIColor.whiteColor().CGColor
+        profilePict.layer.cornerRadius = profilePict.frame.height/2
         profilePict.clipsToBounds = true
         
-        //instatiating the apicontroller with the current access token to authenticate with the server
-        /*api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
-        
-        api?.retrieveProfileFromServer({ (result) -> Void in
-            self.profile = result
-            self.firstName.text = self.profile!.firstName
-            self.lastName.text = self.profile!.lastName
-            self.spinner.stopAnimating()
-        })*/
         if(account.user != nil){
             self.firstName.text = account.user.firstName
             self.lastName.text = account.user.lastName

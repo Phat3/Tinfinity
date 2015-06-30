@@ -13,15 +13,25 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
+    @IBOutlet weak var defaultMessage: UILabel!
     
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //The defualt message is hidden by default
+        defaultMessage.hidden = true
+        defaultMessage.text = "You have no people connected to you. Look in the map to start chatting!"
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
+        
+        //If we have no messages in the list we hide the tableView and show the defaultMessage
+        if(chats.count == 0){
+            chatTableView.hidden = true
+            defaultMessage.hidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {

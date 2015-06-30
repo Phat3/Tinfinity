@@ -7,6 +7,7 @@ class Account: NSObject {
     dynamic var accessToken: String!
     var users = [User]()
     var chats = [Chat]()
+    var pictures = [UIImage]()
 
     func logOut() {
         accessToken = nil

@@ -44,7 +44,6 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
         // Configure the cell...
         let album = albums[indexPath.row]
 		cell.textLabel?.text = album.name
-        cell.
         println("Nome album: " + album.name + "\nCover link: " + album.cover)
         return cell
     }

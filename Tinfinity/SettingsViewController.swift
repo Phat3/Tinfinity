@@ -13,12 +13,11 @@ import FBSDKLoginKit
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var loginButton: FBSDKLoginButton!
-    @IBOutlet weak var firstName: UILabel!
-    @IBOutlet weak var lastName: UILabel!
+    @IBOutlet weak var name: UILabel!
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var profilePict: UIImageView!
+    @IBOutlet weak var profilePict: UIButton!
     
     //Variabile contenente le informazioni dell'utente
     var profile: User?
@@ -30,7 +29,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         loginButton.delegate = self
         
-        profilePict.image = account.pictures[0]
+        profilePict.setImage(account.pictures[0],forState: .Normal)
         profilePict.layer.borderWidth = 2
         profilePict.layer.masksToBounds = false
         profilePict.layer.borderColor = UIColor.whiteColor().CGColor
@@ -38,11 +37,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         profilePict.clipsToBounds = true
         
         if(account.user != nil){
-            self.firstName.text = account.user.firstName
-            self.lastName.text = account.user.lastName
+            self.name.text = account.user.firstName + " " + account.user.lastName
             self.spinner.stopAnimating()
         }
-        
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
     }
@@ -50,6 +47,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
         
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil) {
@@ -65,6 +63,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             
         }
     }
+
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         account.user = nil

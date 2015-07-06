@@ -50,7 +50,7 @@ class ServerAPIController{
                         
                     let url = NSURL(string: json["image"].string!)
                     let data = NSData(contentsOfURL: url!)
-                    account.pictures.append(UIImage(data: data!)!)
+                    account.pictures[0] = UIImage(data: data!)!
                     
                     account.user = User(userId: id!, firstName: name!, lastName: surname!)
                     account.user.email = json["email"].string

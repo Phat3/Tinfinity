@@ -11,12 +11,25 @@ import UIKit
 
 class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,FacebookAPIControllerProtocol {
 	
+    @IBOutlet weak var activityIndicator: UITableView!
 	@IBOutlet var albumTabelView: UITableView!
     let facebookApi = FacebookAPIController()
     var albums = [Album]()
+    var imageCache = [String: UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Let's set the colors for the navigation bar, text and button
+        let red = CGFloat(0.0/255.0)
+        let blue = CGFloat(204.0/255.0)
+        let green = CGFloat(102.0/255.0)
+        let alpha = CGFloat(0.3)
+        navigationController!.navigationBar.barTintColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController!.navigationBar.barStyle = UIBarStyle.Black
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        albumTabelView.hidden = true
         facebookApi.delegate = self
         facebookApi.fetchAlbums()
         
@@ -44,8 +57,46 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
         // Configure the cell...
         let album = albums[indexPath.row]
 		cell.textLabel?.text = album.name
+<<<<<<< Updated upstream
         println("Nome album: " + album.name + "\nCover link: " + album.cover)
+=======
+        let url = album.cover
+        /*let url = NSURL(string: album.cover)
+        let data = NSData(contentsOfURL: url!)
+        cell.imageView!.image = UIImage(data: data!)!
+        //println("Nome album: " + album.name + "\nCover link: " + album.cover)
+        return cell*/
+        
+        //IMPLEMENTAZIONE CON CARICAMENTO ASINCRONO, PIU PERFORMANTE MA IMMAGINI CARICATE IN ORDINE SPARSO
+        if (!url.isEmpty){
+            // Immagine già recuperata, usiamola
+            if let img = imageCache[url] {
+                cell.imageView!.image = img
+            } else {
+                let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
+                let mainQueue = NSOperationQueue.mainQueue()
+                NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: {     (response, data, error) -> Void in
+                    if error == nil {
+                        // Convert the downloaded data in to a UIImage object
+                        let image = UIImage(data: data)
+                        //Store in our cache the image
+                        self.imageCache[url] = image
+                        // Update the cell
+                        dispatch_async(dispatch_get_main_queue(), {
+                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell? {
+                                cellToUpdate.imageView!.image = image
+                            }
+                        })
+                    }
+                    else {
+                        println("Error: \(error.localizedDescription)")
+                    }
+                })
+            }
+        }
+>>>>>>> Stashed changes
         return cell
+
     }
 
     /*
@@ -95,7 +146,8 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
     
     func didReceiveFacebookAPIResults(results: [Album]) {
         dispatch_async(dispatch_get_main_queue(), {
-            println("eseguita")
+            self.activityIndicator.hidden = true
+            self.albumTabelView.hidden = false
             self.albums = results
             self.albumTabelView!.reloadData()
         })

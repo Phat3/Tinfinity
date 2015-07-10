@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
         let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
-        /*account.chats = [
+        account.chats = [
             Chat(user: User(userId:"2", firstName: "Matt", lastName: "Di Pasquale"), lastMessageText: "Thatnks for checking out Chats! :-)", lastMessageSentDate: NSDate()),
             Chat(user: User(userId:"3", firstName: "Angel", lastName: "Rao"), lastMessageText: "6 sounds good :-)", lastMessageSentDate: NSDate(timeIntervalSinceNow: -minute)),
             Chat(user: User(userId:"4", firstName: "Valentine", lastName: "Sanchez"), lastMessageText: "Haha", lastMessageSentDate: NSDate(timeIntervalSinceNow: -minute*12)),
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             Chat(user: User(userId:"10",firstName: "Lauren", lastName: "Cooper"), lastMessageText: "Thinking of you...", lastMessageSentDate: NSDate(timeIntervalSinceNow: -day*3)),
             Chat(user: User(userId:"11",firstName: "Bradley", lastName: "Simpson"), lastMessageText: "👍", lastMessageSentDate: NSDate(timeIntervalSinceNow: -day*4)),
             
-        ]*/
+        ]
         
         for chat in account.chats {
             account.users.append(chat.user)

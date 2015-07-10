@@ -8,8 +8,6 @@
 
 import Foundation
 import FBSDKCoreKit
-import FBSDKShareKit
-import FBSDKLoginKit
 
 protocol FacebookAPIControllerProtocol {
     func didReceiveFacebookAPIResults(results: [Album])
@@ -18,13 +16,15 @@ protocol FacebookAPIControllerProtocol {
 class FacebookAPIController {
     
     var delegate: FacebookAPIControllerProtocol?
-    var albums =  [Album]()
+    var albumsSource =  [Album]()
+    var albumsDestination = [Album]()
     
-    func fetchAlbums(){
+    func fetchAlbums(){        
         
-        let request = FBSDKGraphRequest(graphPath: "me/albums",parameters: nil)
+        let requestAlbumId = FBSDKGraphRequest(graphPath: "me/albums",parameters: nil)
+            
+        requestAlbumId.startWithCompletionHandler(self.fbAlbumRequestHandler)
         
-        request.startWithCompletionHandler(fbAlbumRequestHandler)
     }
     
     func fbAlbumRequestHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
@@ -37,26 +37,49 @@ class FacebookAPIController {
                 for item in graphData{
                     let obj = item as! NSDictionary
                     
-                    let name = obj.valueForKey("name") as! String
-                    println(name)
-                    var cover = ""
-                    if let existsCoverPhoto : AnyObject = obj.valueForKey("cover_photo"){
-                        let coverLink = existsCoverPhoto  as! String
-                        cover = "/\(coverLink)/photos"
-                    }
-                    
-                    //println(coverLink);
-                    let link = obj.valueForKey("link") as! String
-                    
-                    let model = Album(name: name, link: link, cover:cover);
-                    albums.append(model);
+                    let albumName = obj.valueForKey("name") as! String
+                    let albumId = obj.valueForKey("id") as! String
+                    let model = Album(id: albumId, name: albumName)
+                    albumsSource.append(model)
                 }
-                
-                NSNotificationCenter.defaultCenter().postNotificationName("albumNotification", object: nil, userInfo: ["data":albums]);
-                self.delegate?.didReceiveFacebookAPIResults(albums)
-            }
+                self.fbCoverRetrivalHelper()
+        	}
     }
+    
+    func fbCoverRetrival(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
         
+        if let gotError = error{
+            println(gotError.description);
+        }
+        else{
+            let graphData = result.objectForKey("data") as! NSDictionary
+            let coverLink = graphData.valueForKey("url") as! String
+            let model = Album(id: albumsSource[0].id, name: albumsSource[0].name)
+            model.cover = coverLink
+            albumsDestination.append(model)
+            albumsSource.removeAtIndex(0)
+            self.fbCoverRetrivalHelper()
+            
+        }
+    }
+    
+    
+    //This helper function is used to sync the retrival of all album cover with the previous handler(fbAlbumRequestHandler) that fetched the album id(needed for the cover)
+    func fbCoverRetrivalHelper(){
+        
+        if(albumsSource.count != 0){
+            
+            let requestCover = FBSDKGraphRequest(graphPath: "/\(albumsSource[0].id)/picture?redirect=false", parameters: nil)
+            
+            requestCover.startWithCompletionHandler(fbCoverRetrival)
+            
+        }
+        else{
+                delegate?.didReceiveFacebookAPIResults(albumsDestination)
+            }
+        }
+    
+
         /*func fetchPhoto(link:String){
         let fbRequest = FBRequest.requestForMe();
         fbRequest.graphPath = link;

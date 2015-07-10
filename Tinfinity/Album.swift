@@ -9,13 +9,12 @@
 import UIKit
 
 class Album: NSObject {
+    let id: String
     let name: String
-    let link: String
-    let cover: String
+    var cover: String = ""
     
-        init(name:String, link:String, cover:String){
+    init(id:String, name:String){
+        	self.id = id
             self.name = name
-            self.link = link
-            self.cover = cover
     }
 }

@@ -48,9 +48,13 @@ class ServerAPIController{
                     let manager = Alamofire.Manager.sharedInstance
                     manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": self.tinfinityToken!]
                         
-                    let url = NSURL(string: json["image"].string!)
-                    let data = NSData(contentsOfURL: url!)
-                    account.pictures[0] = UIImage(data: data!)!
+                    if let url = NSURL(string: json["image"].string!){
+                        let data = NSData(contentsOfURL: url)
+                        account.pictures[0] = UIImage(data: data!)!
+                    }
+                    else{
+                        account.pictures[0] = nil
+                        }
                     
                     account.user = User(userId: id!, firstName: name!, lastName: surname!)
                     account.user.email = json["email"].string

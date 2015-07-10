@@ -85,6 +85,22 @@
             </objects>
             <point key="canvasLocation" x="90.5" y="483.5"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tHe-Ej-d1u">
+            <objects>
+                <navigationController id="lJh-f3-k0m" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7pY-7Q-jWS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dW8-9x-bnX" kind="relationship" relationship="rootViewController" id="MbD-ji-rhc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h34-kK-2hP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-809" y="622"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="1V5-OE-r49">
             <objects>
@@ -129,7 +145,7 @@
                                 <rect key="frame" x="137" y="87" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <segue destination="dW8-9x-bnX" kind="modal" identifier="editProfile" id="KkZ-Is-v0i"/>
+                                    <segue destination="lJh-f3-k0m" kind="modal" id="ANe-6W-K5h"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -155,19 +171,23 @@
             <objects>
                 <viewController id="HTY-YK-86i" userLabel="Facebook Album View Controller" customClass="FacebookAlbumsViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ifg-UB-6yC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="QAi-uW-oJc">
+                                <rect key="frame" x="0.0" y="324" width="375" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gg8-lz-rfl">
-                                <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                                <rect key="frame" x="-13" y="66" width="388" height="601"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" textLabel="C7X-kP-9KT" style="IBUITableViewCellStyleDefault" id="HRx-Q7-ps8">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="388" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HRx-Q7-ps8" id="rcz-pC-O6Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C7X-kP-9KT">
@@ -188,32 +208,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Facebook" id="IPg-9L-Sql">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="lwm-sb-20W"/>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="gg8-lz-rfl" id="wuG-Na-GLJ"/>
                         <outlet property="albumTabelView" destination="gg8-lz-rfl" id="1mz-Vq-D1M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8d-hZ-Yu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-898" y="1207"/>
+            <point key="canvasLocation" x="-1239.5" y="1408.5"/>
         </scene>
         <!--Edit Profile Controller-->
         <scene sceneID="6dk-lb-RgG">
             <objects>
                 <viewController id="dW8-9x-bnX" userLabel="Edit Profile Controller" customClass="EditProfileViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74k-g6-eUC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YQ0-g9-1M0" userLabel="Back">
-                                <rect key="frame" x="16" y="20" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="T6J-1J-QIG" kind="modal" id="t4x-Bb-2BI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KXt-9D-gD2" userLabel="ImageButton1">
                                 <rect key="frame" x="42" y="110" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -221,7 +236,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="HTY-YK-86i" kind="modal" id="l5W-C9-bPC"/>
+                                    <segue destination="HTY-YK-86i" kind="push" id="l5W-C9-bPC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="exd-UC-Ekb" userLabel="ImageButton2">
@@ -262,7 +277,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oyN-VH-aV7"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Edit Profile Pictures" id="oyN-VH-aV7">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3UY-KI-2Mh">
+                            <connections>
+                                <segue destination="T6J-1J-QIG" kind="modal" id="OP7-UE-IcP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageButton1" destination="KXt-9D-gD2" id="Z1q-Yd-LwX"/>
                         <outlet property="imageButton2" destination="exd-UC-Ekb" id="4m7-3Q-zot"/>
@@ -274,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dAN-4B-dal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-538" y="1304"/>
+            <point key="canvasLocation" x="-365.5" y="1398.5"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="R24-Ou-Ud3">
@@ -363,7 +386,7 @@
                 <exit id="z8O-Ss-nkT" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7G-vm-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1070.5" y="243.5"/>
+            <point key="canvasLocation" x="1314.5" y="303.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7rJ-Se-PER">
@@ -402,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5n-b8-ACG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1520.5" y="243.5"/>
+            <point key="canvasLocation" x="1714.5" y="294.5"/>
         </scene>
     </scenes>
     <resources>
@@ -419,6 +442,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="t4x-Bb-2BI"/>
+        <segue reference="OP7-UE-IcP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,11 +13,18 @@ protocol FacebookAPIControllerProtocol {
     func didReceiveFacebookAPIResults(results: [Album])
 }
 
+protocol FacebookAPIControllerPhotoProtocol{
+    func didReceiveFacebookPhoto(results: [UIImage])
+}
+
 class FacebookAPIController {
     
     var delegate: FacebookAPIControllerProtocol?
+    var photoDelegate: FacebookAPIControllerPhotoProtocol?
     var albumsSource =  [Album]()
     var albumsDestination = [Album]()
+    var photos = [UIImage]()
+    
     
     func fetchAlbums(){        
         
@@ -46,6 +53,8 @@ class FacebookAPIController {
         	}
     }
     
+    //The function processes the informations obtained via the facebook api call, then saves them locally and removes the first element
+    //of the old album array, so that the helper function will call again the api on the next element
     func fbCoverRetrival(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
         
         if let gotError = error{
@@ -64,7 +73,8 @@ class FacebookAPIController {
     }
     
     
-    //This helper function is used to sync the retrival of all album cover with the previous handler(fbAlbumRequestHandler) that fetched the album id(needed for the cover)
+    //This helper function always call the graph API on the first element of the array alcumSource. It is up to the Completion Handler to remove
+    //the already processed element from the array(the first one as said before), so that all the albums can be processed.
     func fbCoverRetrivalHelper(){
         
         if(albumsSource.count != 0){
@@ -80,30 +90,54 @@ class FacebookAPIController {
         }
     
 
-        /*func fetchPhoto(link:String){
-        let fbRequest = FBRequest.requestForMe();
-        fbRequest.graphPath = link;
-        fbRequest.startWithCompletionHandler(fetchPhotosHandler);
+        func fetchPhoto(id:String){
+            
+            let link = "\(id)/photos?fields=picture"
+            let requestPhotoId = FBSDKGraphRequest(graphPath: link,parameters: nil)
+            
+            requestPhotoId.startWithCompletionHandler(self.fetchPhotosHandler)
+            
         }
         
-        func fetchPhotosHandler(connection:FBGraphRequestConnection!, result:AnyObject!, error:NSError!){
-        if let gotError = error{
+        func fetchPhotosHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
+        	if let gotError = error{
+        		println(gotError.description)
+       		 }
+        	else{
+        		let graphData = result.valueForKey("data") as! NSArray
+                let paging = result.valueForKey("paging") as! NSDictionary
+                for obj in graphData{
+        			let pictureURL = obj.valueForKey("picture") as! String
+        			let url = NSURL(string: pictureURL)
+        			let picData = NSData(contentsOfURL: url!)
+        			let img = UIImage(data: picData!)
+        			photos.append(img!)
+        		}
+                if let next = paging.valueForKey("next") as? String
+                	{
+                        let newLink = self.removeFBGraphHeader(next)
+                        
+                        let requestPhotoIdNext = FBSDKGraphRequest(graphPath: newLink,parameters: nil)
+                        
+                        requestPhotoIdNext.startWithCompletionHandler(self.fetchPhotosHandler)
+                }
+                photoDelegate?.didReceiveFacebookPhoto(photos)
+        	}
+    	}
+    
+    //This function is used to remove an unwanted part of the facebook graph api link in order to fetch sequent album's photos
+    func removeFBGraphHeader(link:String)->String{
         
-        }
-        else{
-        var pictures = [UIImage]();
-        let graphData: Array = result.valueForKey("data") as! Array;
-        var albums =  [AlbumModel]();
-        for obj:FBGraphObject in graphData{
-        println(obj.description);
-        let pictureURL = obj.valueForKey("picture") as! String;
-        let url = NSURL(string: pictureURL);
-        let picData = NSData(contentsOfURL: url);
-        let img = UIImage(data: picData);
-        pictures.append(img);
-        }
+        let pattern = "(https://graph.facebook.com/v)[0-9].[0-9]/" //this patterns checks for the presence of the string:
+        //https://graph.facebook.com/v) and two numbers divided by a . (which represent the version of the graph API)
         
-        NSNotificationCenter.defaultCenter().postNotificationName("photoNotification", object: nil, userInfo: ["photos":pictures]);
-        }
-        }*/
+        let range = NSMakeRange(0, count(link))
+        
+        var mutableLink:NSMutableString = ""
+        mutableLink.appendString(link)
+        let regexp = NSRegularExpression(pattern: pattern,options: nil, error: nil)
+        regexp?.replaceMatchesInString(mutableLink, options: .allZeros, range: range, withTemplate: "")
+        let newLink: String = mutableLink as String
+        return newLink
+    }
 }

@@ -166,12 +166,60 @@
             </objects>
             <point key="canvasLocation" x="44.5" y="1263.5"/>
         </scene>
+        <!--Facebook Photo Collection View Controller-->
+        <scene sceneID="hNr-lH-oHI">
+            <objects>
+                <collectionViewController id="0c8-k8-hLB" customClass="FacebookPhotoCollectionViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="s4s-zw-Oeb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="sBi-hD-FUC">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="6" minY="20" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="tdt-bp-iRV" customClass="PictureCollectionViewCell" customModule="Tinfinity" customModuleProvider="target">
+                                <rect key="frame" x="6" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="svj-2v-Okt">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="picture" destination="svj-2v-Okt" id="Req-81-Hy7"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="0c8-k8-hLB" id="muK-vY-9mB"/>
+                            <outlet property="delegate" destination="0c8-k8-hLB" id="5Ik-pr-pP7"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="Lct-uJ-lp9"/>
+                    <connections>
+                        <outlet property="photoCollection" destination="s4s-zw-Oeb" id="J2r-Mo-vRd"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhT-jK-z8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1610" y="1447"/>
+        </scene>
         <!--Facebook Album View Controller-->
         <scene sceneID="Ly1-vH-fdR">
             <objects>
                 <viewController id="HTY-YK-86i" userLabel="Facebook Album View Controller" customClass="FacebookAlbumsViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ifg-UB-6yC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="QAi-uW-oJc">
@@ -179,15 +227,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gg8-lz-rfl">
-                                <rect key="frame" x="-13" y="66" width="388" height="601"/>
+                                <rect key="frame" x="-13" y="66" width="333" height="502"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" textLabel="C7X-kP-9KT" style="IBUITableViewCellStyleDefault" id="HRx-Q7-ps8">
-                                        <rect key="frame" x="0.0" y="22" width="388" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" textLabel="C7X-kP-9KT" style="IBUITableViewCellStyleDefault" id="HRx-Q7-ps8">
+                                        <rect key="frame" x="0.0" y="22" width="333" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HRx-Q7-ps8" id="rcz-pC-O6Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C7X-kP-9KT">
@@ -198,6 +246,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="0c8-k8-hLB" kind="push" id="K0o-EH-q1U"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -219,20 +270,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8d-hZ-Yu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1239.5" y="1408.5"/>
+            <point key="canvasLocation" x="-730" y="1408"/>
         </scene>
         <!--Edit Profile Controller-->
         <scene sceneID="6dk-lb-RgG">
             <objects>
                 <viewController id="dW8-9x-bnX" userLabel="Edit Profile Controller" customClass="EditProfileViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74k-g6-eUC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KXt-9D-gD2" userLabel="ImageButton1">
-                                <rect key="frame" x="42" y="110" width="106" height="121"/>
+                                <rect key="frame" x="42" y="94" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="Plus">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -240,39 +291,54 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="exd-UC-Ekb" userLabel="ImageButton2">
-                                <rect key="frame" x="173" y="110" width="106" height="121"/>
+                                <rect key="frame" x="173" y="94" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="Plus">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HTY-YK-86i" kind="push" id="zt6-5F-iH4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XA2-FJ-FvV" userLabel="ImageButton5">
-                                <rect key="frame" x="42" y="368" width="106" height="121"/>
+                                <rect key="frame" x="42" y="352" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="Plus">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HTY-YK-86i" kind="push" id="Vel-aj-MER"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QLL-ez-WMS" userLabel="ImageButton6">
-                                <rect key="frame" x="173" y="368" width="106" height="121"/>
+                                <rect key="frame" x="173" y="352" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="Plus">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HTY-YK-86i" kind="push" id="fUO-hq-izC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Acp-K9-Sza" userLabel="ImageButton3">
-                                <rect key="frame" x="42" y="239" width="106" height="121"/>
+                                <rect key="frame" x="42" y="223" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="Plus">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HTY-YK-86i" kind="push" id="KSd-8t-Ouc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bKE-I9-ucN" userLabel="ImageButton4">
-                                <rect key="frame" x="173" y="239" width="106" height="121"/>
+                                <rect key="frame" x="173" y="223" width="106" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
+                                <state key="normal" image="Plus">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HTY-YK-86i" kind="push" id="kR8-kK-lGA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -297,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dAN-4B-dal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-365.5" y="1398.5"/>
+            <point key="canvasLocation" x="-184" y="1350"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="R24-Ou-Ud3">
@@ -433,6 +499,7 @@
         <image name="Chat" width="64" height="64"/>
         <image name="Homepage" width="50" height="50"/>
         <image name="Logo" width="221" height="74"/>
+        <image name="Plus" width="50" height="50"/>
         <image name="Settings" width="50" height="50"/>
         <image name="logo2" width="663" height="520"/>
     </resources>
@@ -443,5 +510,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="OP7-UE-IcP"/>
+        <segue reference="kR8-kK-lGA"/>
     </inferredMetricsTieBreakers>
 </document>

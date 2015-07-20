@@ -19,32 +19,17 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let buttons = [imageButton1,imageButton2,imageButton3,imageButton4,imageButton5,imageButton6]
+        for button in buttons{
+            let cornerRadius : CGFloat = 5.0
+            button.layer.borderWidth = 1.0
+            button.layer.borderColor = UIColor.blackColor().CGColor
+            button.layer.cornerRadius = cornerRadius
+        }
         var counter = 0
         for (var i = 0; i < MAX_PHOTOS-1; i++){
             if let picture=account.pictures[i]{
-                switch counter{
-                case 0:
-                    imageButton1.setImage(picture,forState: .Normal)
-                    break
-                case 1:
-					imageButton2.setImage(picture,forState: .Normal)
-                    break
-                case 2:
-                    imageButton3.setImage(picture,forState: .Normal)
-                    break
-                case 3:
-                    imageButton4.setImage(picture,forState: .Normal)
-                    break
-                case 4:
-                    imageButton5.setImage(picture,forState: .Normal)
-                    break
-                case 5:
-                    imageButton6.setImage(picture,forState: .Normal)
-                    break
-                default:
-                    break
-                }
-                counter++
+                buttons[i].setImage(picture,forState: .Normal)
             }
         }
 

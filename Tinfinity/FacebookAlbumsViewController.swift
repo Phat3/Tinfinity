@@ -16,6 +16,7 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
     let facebookApi = FacebookAPIController()
     var albums = [Album]()
     var imageCache = [String: UIImage]()
+    var albumId  = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +58,6 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
         // Configure the cell...
         let album = albums[indexPath.row]
 		cell.textLabel?.text = album.name
-<<<<<<< Updated upstream
-        println("Nome album: " + album.name + "\nCover link: " + album.cover)
-=======
         let url = album.cover
         /*let url = NSURL(string: album.cover)
         let data = NSData(contentsOfURL: url!)
@@ -94,10 +92,10 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
                 })
             }
         }
->>>>>>> Stashed changes
         return cell
 
     }
+   
 
     /*
     // Override to support conditional editing of the table view.
@@ -134,15 +132,18 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        let path = self.albumTabelView.indexPathForSelectedRow()!
+        albumId = albums[path.row].id
+        let photoViewController = segue.destinationViewController as! FacebookPhotoCollectionViewController
+        photoViewController.albumId = self.albumId
+        photoViewController.albumName = albums[path.row].name
     }
-    */
     
     func didReceiveFacebookAPIResults(results: [Album]) {
         dispatch_async(dispatch_get_main_queue(), {

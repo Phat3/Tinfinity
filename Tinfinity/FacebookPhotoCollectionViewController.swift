@@ -16,6 +16,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
     private let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
     
     @IBOutlet var photoCollection: UICollectionView!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
     let facebookApi = FacebookAPIController()
     var albumId: String = ""
@@ -107,11 +108,20 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
     
     func didReceiveFacebookPhoto(results: [UIImage]) {
         dispatch_async(dispatch_get_main_queue(), {
+            self.activitySpinner.hidden = true
             self.pictures = results
             self.photoCollection.reloadData()
         })
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
+        let cell = sender as! PictureCollectionViewCell
+        let indexPaths : NSArray = self.photoCollection.indexPathsForSelectedItems()
+        let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
+        var pictureViewController = segue.destinationViewController as! PictureDetailViewController
+        pictureViewController.supportImage = pictures[indexPath.row]
+    }
 }
 
 	extension FacebookPhotoCollectionViewController : UICollectionViewDelegateFlowLayout {

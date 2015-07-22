@@ -19,20 +19,13 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let buttons = [imageButton1,imageButton2,imageButton3,imageButton4,imageButton5,imageButton6]
+         let buttons = [imageButton1,imageButton2,imageButton3,imageButton4,imageButton5,imageButton6]
         for button in buttons{
             let cornerRadius : CGFloat = 5.0
             button.layer.borderWidth = 1.0
             button.layer.borderColor = UIColor.blackColor().CGColor
             button.layer.cornerRadius = cornerRadius
         }
-        var counter = 0
-        for (var i = 0; i < MAX_PHOTOS-1; i++){
-            if let picture=account.pictures[i]{
-                buttons[i].setImage(picture,forState: .Normal)
-            }
-        }
-
         // Do any additional setup after loading the view.
     }
 
@@ -46,6 +39,30 @@ class EditProfileViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+    }
+    
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+        
+        let pictureDetailViewController = segue.sourceViewController as! PictureDetailViewController
+        let picture = pictureDetailViewController.supportImage
+        var i = 0
+        var flag = false
+        while(i < MAX_PHOTOS && flag == false){
+            if (account.pictures[i] == nil ){
+                account.pictures[i] = picture
+                flag = true
+            }
+            i++
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+         let buttons = [imageButton1,imageButton2,imageButton3,imageButton4,imageButton5,imageButton6]
+        for (var i = 0; i < MAX_PHOTOS; i++){
+            if let picture=account.pictures[i]{
+                buttons[i].setImage(picture,forState: .Normal)
+            }
+        }
     }
 
 }

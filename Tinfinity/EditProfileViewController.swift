@@ -42,27 +42,28 @@ class EditProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     
-    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
-        
+    @IBAction func unwindToEdit(segue: UIStoryboardSegue) {
+       
         let pictureDetailViewController = segue.sourceViewController as! PictureDetailViewController
         let picture = pictureDetailViewController.supportImage
         
         if(editFlag == false){
             
-        	var i = 0
-        	var flag = false
-        	while(i < MAX_PHOTOS && flag == false){
-            	if (account.pictures[i] == nil ){
-                	account.pictures[i] = picture
-                	flag = true
-            	}
+            var i = 0
+            var flag = false
+            while(i < MAX_PHOTOS && flag == false){
+                if (account.pictures[i] == nil ){
+                    account.pictures[i] = picture
+                    flag = true
+                }
             i++
-        	}
+            }
         }else{
             
             account.pictures[editIndex] = picture
             
         }
+        
     }
     
     //Here we add the buttons to our view. We will add one for each photo, and, if the photo are less than 6, we put an additional one to let the user add a photo

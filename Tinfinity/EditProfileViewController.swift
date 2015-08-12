@@ -80,7 +80,8 @@ class EditProfileViewController: UIViewController {
         }
         
         if i < MAX_PHOTOS {
-            addButtonWithImageAtIndex(UIImage(named: "Plus")!,i: i,tag: 1)
+            var image = UIImage(named:"Plus")
+            addButtonWithImageAtIndex(image!,i: i,tag: 1)
         }
         
     }
@@ -138,12 +139,14 @@ class EditProfileViewController: UIViewController {
         }
         
         buttons[i].backgroundColor = UIColor.whiteColor()
-        buttons[i].setBackgroundImage(account.pictures[i], forState: .Normal)
-        buttons[i].imageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        //
+    
+    	//Here we decide which action has to be taken based on the tag attribute
         if(buttons[i].tag == 0){
+            buttons[i].setBackgroundImage(image, forState: .Normal)
         	buttons[i].addTarget(self, action: "editPhotoAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            buttons[i].imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         }else{
+            buttons[i].setImage(image, forState: .Normal)
             buttons[i].addTarget(self, action: "addPhotoAction:", forControlEvents: UIControlEvents.TouchUpInside)
         }
         

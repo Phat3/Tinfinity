@@ -45,7 +45,7 @@ class EditProfileViewController: UIViewController {
     @IBAction func unwindToEdit(segue: UIStoryboardSegue) {
        
         let pictureDetailViewController = segue.sourceViewController as! PictureDetailViewController
-        let picture = pictureDetailViewController.supportImage
+        let picture = pictureDetailViewController.pictureDetail.image
         
         if(editFlag == false){
             

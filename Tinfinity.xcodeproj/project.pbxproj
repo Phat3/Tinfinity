@@ -18,6 +18,7 @@
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
 		5135D9E21B42E9700070A560 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135D9E11B42E9700070A560 /* EditProfileViewController.swift */; };
 		5135D9E41B43E8800070A560 /* FacebookAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135D9E31B43E8800070A560 /* FacebookAlbumsViewController.swift */; };
+		516C3D5C1B90BB8F003C6CCC /* StructIdImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516C3D5B1B90BB8F003C6CCC /* StructIdImage.swift */; };
 		5170F32B1B5EA93000779D64 /* PictureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170F32A1B5EA93000779D64 /* PictureDetailViewController.swift */; };
 		51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */; };
 		51A5042C1B0F7D670039E97C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A5042B1B0F7D670039E97C /* Chat.swift */; };
@@ -77,6 +78,7 @@
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		5135D9E11B42E9700070A560 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		5135D9E31B43E8800070A560 /* FacebookAlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAlbumsViewController.swift; sourceTree = "<group>"; };
+		516C3D5B1B90BB8F003C6CCC /* StructIdImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructIdImage.swift; sourceTree = "<group>"; };
 		5170F32A1B5EA93000779D64 /* PictureDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureDetailViewController.swift; sourceTree = "<group>"; };
 		51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		51A5042B1B0F7D670039E97C /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */,
 				5135D9E31B43E8800070A560 /* FacebookAlbumsViewController.swift */,
 				51ADDC0E1B57D4F100873DDB /* PictureCollectionViewCell.swift */,
+				516C3D5B1B90BB8F003C6CCC /* StructIdImage.swift */,
 				5170F32A1B5EA93000779D64 /* PictureDetailViewController.swift */,
 				51ADDC0A1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift */,
 			);
@@ -410,6 +413,7 @@
 				51A504331B0F7F6A0039E97C /* Account.swift in Sources */,
 				51D96C261B4ABC42001A2D29 /* FacebookAPIController.swift in Sources */,
 				4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */,
+				516C3D5C1B90BB8F003C6CCC /* StructIdImage.swift in Sources */,
 				51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */,
 				51AADA9B1AEE2D6F007225CD /* User.swift in Sources */,
 				51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */,

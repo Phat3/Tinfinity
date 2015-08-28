@@ -14,17 +14,21 @@ protocol FacebookAPIControllerProtocol {
 }
 
 protocol FacebookAPIControllerPhotoProtocol{
-    func didReceiveFacebookPhoto(results: [UIImage])
+    func didReceiveFacebookPhoto(results: [IdAndImage])
+}
+
+protocol FacebookAPIControllerFullPhotoProtocol{
+    func didReceiveFacebookFullPhoto(results: UIImage)
 }
 
 class FacebookAPIController {
     
     var delegate: FacebookAPIControllerProtocol?
     var photoDelegate: FacebookAPIControllerPhotoProtocol?
+    var fullPhotoDelegate: FacebookAPIControllerFullPhotoProtocol?
     var albumsSource =  [Album]()
     var albumsDestination = [Album]()
-    var photos = [UIImage]()
-    
+    var photos = [IdAndImage]()    
     
     func fetchAlbums(){        
         
@@ -90,40 +94,65 @@ class FacebookAPIController {
         }
     
 
-        func fetchPhoto(id:String){
-            
-            let link = "\(id)/photos?fields=picture"
-            let requestPhotoId = FBSDKGraphRequest(graphPath: link,parameters: nil)
-            
-            requestPhotoId.startWithCompletionHandler(self.fetchPhotosHandler)
-            
-        }
+    func fetchPreviewPhoto(id:String){
         
-        func fetchPhotosHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
-        	if let gotError = error{
-        		println(gotError.description)
-       		 }
-        	else{
-        		let graphData = result.valueForKey("data") as! NSArray
-                let paging = result.valueForKey("paging") as! NSDictionary
-                for obj in graphData{
-        			let pictureURL = obj.valueForKey("picture") as! String
-        			let url = NSURL(string: pictureURL)
-        			let picData = NSData(contentsOfURL: url!)
-        			let img = UIImage(data: picData!)
-        			photos.append(img!)
-        		}
-                if let next = paging.valueForKey("next") as? String
-                	{
-                        let newLink = self.removeFBGraphHeader(next)
-                        
-                        let requestPhotoIdNext = FBSDKGraphRequest(graphPath: newLink,parameters: nil)
-                        
-                        requestPhotoIdNext.startWithCompletionHandler(self.fetchPhotosHandler)
-                }
-                photoDelegate?.didReceiveFacebookPhoto(photos)
-        	}
-    	}
+        let link = "\(id)/photos?fields=picture"
+        let requestPhotoId = FBSDKGraphRequest(graphPath: link,parameters: nil)//["fields": "photos{images}"])
+            
+        requestPhotoId.startWithCompletionHandler(self.fetchPreviewPhotosHandler)
+            
+    }
+        
+    func fetchPreviewPhotosHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
+        if let gotError = error{
+            println(gotError.description)
+            }
+        else{
+            let data = result.valueForKey("data") as! NSArray
+            let paging = result.valueForKey("paging") as! NSDictionary
+            for obj in data{//each object in the data array contains the preview and id fields of the foto
+                let pictureURL = obj.valueForKey("picture") as! String
+                let pictureId = obj.valueForKey("id") as! String
+                let url = NSURL(string: pictureURL)
+                let picData = NSData(contentsOfURL: url!)
+                let img = UIImage(data: picData!)
+                let bridgeVar = IdAndImage(id: pictureId, image: img!)
+                photos.append(bridgeVar)
+            }
+            if let next = paging.valueForKey("next") as? String
+                {
+                    let newLink = self.removeFBGraphHeader(next)
+                    
+                    let requestPhotoIdNext = FBSDKGraphRequest(graphPath: newLink,parameters: nil)
+                    
+                    requestPhotoIdNext.startWithCompletionHandler(self.fetchPreviewPhotosHandler)
+            	}
+            photoDelegate?.didReceiveFacebookPhoto(photos)
+        }
+    }
+    
+    func fetchFullPhotos(id:String){
+        let link = "\(id)?fields=images"
+        let requestPhotoUrl = FBSDKGraphRequest(graphPath: link,parameters: nil)
+        
+        requestPhotoUrl.startWithCompletionHandler(self.fetchFullPhotosHandler)
+    }
+    
+    func fetchFullPhotosHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
+        if let gotError = error{
+            println(gotError.description)
+        }
+        else{
+            let images = result.valueForKey("images") as! NSArray
+            //There should be only one object, which contains the multiple format of the image. We will take the bigger one
+            let pictureURL = images[0].valueForKey("source") as! String
+            let url = NSURL(string: pictureURL)
+            let picData = NSData(contentsOfURL: url!)
+            let img = UIImage(data: picData!)
+            
+        fullPhotoDelegate?.didReceiveFacebookFullPhoto(img!)
+        }
+    }
     
     //This function is used to remove an unwanted part of the facebook graph api link in order to fetch sequent album's photos
     func removeFBGraphHeader(link:String)->String{

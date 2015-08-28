@@ -8,17 +8,20 @@
 
 import UIKit
 
-class PictureDetailViewController: UIViewController {
+class PictureDetailViewController: UIViewController, FacebookAPIControllerFullPhotoProtocol {
 
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var pictureDetail: UIImageView!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
-    var supportImage =  UIImage()
+    let facebookApi = FacebookAPIController()
+    var imageId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        facebookApi.fullPhotoDelegate = self
+        facebookApi.fetchFullPhotos(imageId)
         // Do any additional setup after loading the view.
-        pictureDetail.image = supportImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +29,16 @@ class PictureDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func didReceiveFacebookFullPhoto(results: UIImage) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.activitySpinner.hidden = true
+            self.pictureDetail.image = results
+            self.pictureDetail.contentMode = UIViewContentMode.Center
+            //if (pictureDetail.bounds.size.width > ((UIImage*)imagesArray[i]).size.width && pictureDetail.bounds.size.height > ((UIImage*)imagesArray[i]).size.height) {
+            self.pictureDetail.contentMode = UIViewContentMode.ScaleAspectFit
+            //}
+        })
+    }
 
     /*
     // MARK: - Navigation
@@ -36,6 +49,8 @@ class PictureDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
     
     
 }

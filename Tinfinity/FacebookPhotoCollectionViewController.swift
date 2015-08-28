@@ -21,7 +21,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
     let facebookApi = FacebookAPIController()
     var albumId: String = ""
     var albumName: String = ""
-    var pictures = [UIImage]()
+    var pictures = [IdAndImage]()
     
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
         self.title = albumName
         
         facebookApi.photoDelegate = self
-        facebookApi.fetchPhoto(albumId)
+        facebookApi.fetchPreviewPhoto(albumId)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -68,7 +68,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PictureCollectionViewCell
         cell.picture.contentMode = UIViewContentMode.ScaleAspectFit
-        cell.picture.image = pictures[indexPath.row]
+        cell.picture.image = pictures[indexPath.row].image
     
         return cell
     }
@@ -106,7 +106,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
     }
     */
     
-    func didReceiveFacebookPhoto(results: [UIImage]) {
+    func didReceiveFacebookPhoto(results: [IdAndImage]) {
         dispatch_async(dispatch_get_main_queue(), {
             self.activitySpinner.hidden = true
             self.pictures = results
@@ -120,7 +120,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
         let indexPaths : NSArray = self.photoCollection.indexPathsForSelectedItems()
         let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
         var pictureViewController = segue.destinationViewController as! PictureDetailViewController
-        pictureViewController.supportImage = pictures[indexPath.row]
+        pictureViewController.imageId = pictures[indexPath.row].id
     }
 }
 
@@ -138,4 +138,5 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
             //imposta i margini settati nella costante sectionInsets
             return sectionInsets
     }
+        
    }

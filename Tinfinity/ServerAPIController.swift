@@ -80,7 +80,6 @@ class ServerAPIController{
                     
                     var json = JSON(data!)
                     let lenght = json.count
-                    println(json)
                     
                     for(var i=0; i < json.count; i++ ){
                         
@@ -99,8 +98,12 @@ class ServerAPIController{
                         if (user1 == account.user.userId){
                             //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
                             newUser = User(userId: user2!,firstName: "",lastName: "")
+                            // Retrieve user data
+                            newUser.fetch();
                         }else{
                             newUser = User(userId: user1!,firstName: "",lastName: "")
+                            // Retrieve user data
+                            newUser.fetch();
                         }
                         var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                         
@@ -131,7 +134,7 @@ class ServerAPIController{
                                 newChat.lastMessageSentDate = date
                                 newChat.lastMessageText = text!
                             }
-                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
+                            var message = JSQMessage(senderId: user2,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
                             newChat.allMessages.append(message)
                         }
                         account.chats.append(newChat)

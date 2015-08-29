@@ -45,6 +45,7 @@ class ServerAPIController{
                     let name = json["name"].string
                     let surname = json["surname"].string
                     self.tinfinityToken = json["token"].string
+                        println(self.tinfinityToken)
                     //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
                     let manager = Alamofire.Manager.sharedInstance
                     manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": self.tinfinityToken!]
@@ -78,15 +79,16 @@ class ServerAPIController{
                 }else{
                     
                     var json = JSON(data!)
-                    println(json)
                     let lenght = json.count
-                    println(lenght)
-                    println(json[0]["data"]["user1"])
-                    let user1 = json["user1"].string
-                    let user2 = json["user2"].string
+                    println(json)
+                    
                     for(var i=0; i < json.count; i++ ){
                         
-                        let innerData = json[i]["data"]
+                        let innerData = json[i]
+                        let user1 = innerData["_id"]["user1"].string
+                        let user2 = innerData["_id"]["user2"].string
+                        
+                        var maxTimestamp: Double = 0
 
                         var newUser: User
                         let user1MessagesCount = innerData["user1"].count
@@ -94,26 +96,47 @@ class ServerAPIController{
                         let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
                         let date = NSDate(timeIntervalSinceNow: -minute)
                         
-                        /*if (user1 == account.user.userId){
+                        if (user1 == account.user.userId){
                             //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
-                            newUser = User(userId: user2,firstName: "",lastName: "")//da rivedere
+                            newUser = User(userId: user2!,firstName: "",lastName: "")
                         }else{
-                            newUser = User(userId: user1,firstName: "",lastName: "")//da rivedere
-                        }*/
-                        newUser = User(userId: "2",firstName: "",lastName: "")//Fittizio
+                            newUser = User(userId: user1!,firstName: "",lastName: "")
+                        }
                         var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                         
                         for( i=0 ; i < user1MessagesCount; i++){
-                            let newMessage = innerData["user1"][i]["message"].string
-                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: "prova")//)newMessage)
+                            let localMessage = innerData["user1"][i]
+                            let newMessage = localMessage["message"].string
+                            let timestamp = localMessage["timestamp"].double!/1000
+                            let text = localMessage["message"].string
+                            let myDouble = NSNumber(double: timestamp)
+                            let date = NSDate(timeIntervalSince1970: Double(myDouble))
+                            if (timestamp > maxTimestamp){
+                                maxTimestamp = timestamp
+                                newChat.lastMessageSentDate = date
+                                newChat.lastMessageText = text!
+                            }
+                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
                             newChat.allMessages.append(message)
                         }
                         for (i = 0; i < user2MessagesCount; i++){
-                            let newMessage = innerData["user2"][i]["message"].string
-                            var message = JSQMessage(senderId: user2,senderDisplayName: "Sender",date: date,text: "prova")//)newMessage)
+                            let localMessage = innerData["user2"][i]
+                            let newMessage = localMessage["message"].string
+                            let timestamp = localMessage["timestamp"].double!/1000
+                            let text = localMessage["message"].string
+                            let myDouble = NSNumber(double: timestamp)
+                            let date = NSDate(timeIntervalSince1970: Double(myDouble))
+                            if (timestamp > maxTimestamp){
+                                maxTimestamp = timestamp
+                                newChat.lastMessageSentDate = date
+                                newChat.lastMessageText = text!
+                            }
+                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
                             newChat.allMessages.append(message)
                         }
+                        account.chats.append(newChat)
                     }
+                    
                 }
                 
         }

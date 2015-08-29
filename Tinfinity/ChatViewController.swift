@@ -24,12 +24,6 @@ class ChatViewController: JSQMessagesViewController {
         senderId = account.user.userId
         senderDisplayName = "Me"
         
-        //Sample chat
-        chat!.loadedMessages = [
-                JSQMessage(senderId: account.user.userId, senderDisplayName: account.user.name, date: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60), text: "I really enjoyed programming with you! :-)"),
-            JSQMessage(senderId: "2", senderDisplayName:"Ciccio", date: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60), text: "So did I!")
-        ]
-        
     }
 
     override func didReceiveMemoryWarning() {

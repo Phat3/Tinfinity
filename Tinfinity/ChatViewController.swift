@@ -21,8 +21,7 @@ class ChatViewController: JSQMessagesViewController {
     var incomingAvatar: JSQMessagesAvatarImage?
     
     var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.pictures[0]!), diameter: 30)
-    
-    
+
     
     // Socket IO client
     private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
@@ -41,6 +40,9 @@ class ChatViewController: JSQMessagesViewController {
         
         // We need it here as 'chat' before does not exist
         incomingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: chat!.user.image!), diameter: 30)
+        
+        // We don't need the button on the left
+        self.inputToolbar.contentView.leftBarButtonItem = nil;
         
     }
 

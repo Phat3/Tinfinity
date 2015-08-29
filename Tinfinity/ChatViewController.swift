@@ -38,12 +38,12 @@ class ChatViewController: JSQMessagesViewController {
     
     //Metodi necessari per JSQMessagesViewController
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        var data = self.chat!.loadedMessages[indexPath.row]
+        var data = self.chat!.allMessages[indexPath.row]
         return data
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        var data = self.chat!.loadedMessages[indexPath.row]
+        var data = self.chat!.allMessages[indexPath.row]
         if (data.senderId == self.senderId) {
             return self.outgoingBubble
         } else {
@@ -56,12 +56,12 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.chat!.loadedMessages.count
+        return self.chat!.allMessages.count
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         var newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
-        chat!.loadedMessages += [newMessage]
+        chat!.allMessages += [newMessage]
         chatManager.sendMessage(chat!.user.userId, message: text);
         self.finishSendingMessage()
     }

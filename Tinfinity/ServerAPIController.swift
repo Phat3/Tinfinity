@@ -79,9 +79,11 @@ class ServerAPIController{
                 }else{
                     
                     var json = JSON(data!)
-                    let lenght = json.count
+                    let length = json.count
+                    println(json)
+                    println(length)
                     
-                    for(var i=0; i < json.count; i++ ){
+                    for(var i = 0; i < length; i++ ){
                         
                         let innerData = json[i]
                         let user1 = innerData["_id"]["user1"].string
@@ -107,8 +109,8 @@ class ServerAPIController{
                         }
                         var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                         
-                        for( i=0 ; i < user1MessagesCount; i++){
-                            let localMessage = innerData["user1"][i]
+                        for(var k = 0 ; k < user1MessagesCount; k++){
+                            let localMessage = innerData["user1"][k]
                             let newMessage = localMessage["message"].string
                             let timestamp = localMessage["timestamp"].double!/1000
                             let text = localMessage["message"].string
@@ -122,8 +124,8 @@ class ServerAPIController{
                             var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
                             newChat.allMessages.append(message)
                         }
-                        for (i = 0; i < user2MessagesCount; i++){
-                            let localMessage = innerData["user2"][i]
+                        for (var k = 0; k < user2MessagesCount; k++){
+                            let localMessage = innerData["user2"][k]
                             let newMessage = localMessage["message"].string
                             let timestamp = localMessage["timestamp"].double!/1000
                             let text = localMessage["message"].string
@@ -137,7 +139,9 @@ class ServerAPIController{
                             var message = JSQMessage(senderId: user2,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
                             newChat.allMessages.append(message)
                         }
+                        newChat.reorderChat()
                         account.chats.append(newChat)
+                        println(account.chats)
                     }
                     
                 }

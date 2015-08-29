@@ -40,4 +40,23 @@ class Chat {
         }
         return dateFormatter.stringFromDate(date)
     }
+    
+    func reorderChat(){
+        /*Insertion Sort*/
+        /*for i = 2:n,
+        for (k = i; k > 1 and a[k] < a[k-1]; k--)
+        swap a[k,k-1]*/
+        
+        for(var i = 1; i < self.allMessages.count; i++){
+            
+            for(var k = i; k > 0 && self.allMessages[k - 1].date.timeIntervalSinceDate(self.allMessages[k].date) > 0; k--){
+                
+                let temp = allMessages[k-1]
+            	allMessages[k-1] = allMessages[k]
+                allMessages[k] = temp
+            }
+        }
+        println(allMessages)
+        
+    }
 }

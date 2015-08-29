@@ -29,13 +29,17 @@ class ChatManager {
             "token" : account.token,
             "message" : message
         ]
-        println(json)
         self.socket.emit("message", json)
     }
     
     func addHandlers() {
         // Debug
         self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+        
+        socket.on("message-" + account.user.userId) {data, ack in
+            println(data)
+        }
+
         
     }
 

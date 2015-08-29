@@ -75,10 +75,11 @@ class User {
     func fetchImage() {
         if let url = NSURL(string: self.imageUrl!){
             let data = NSData(contentsOfURL: url)
-            self.image = UIImage(data: data!)!
-        } else {
-            self.image = UIImage(named: "Blank")
-        }
+            if (data != nil){
+            	return self.image = UIImage(data: data!)!
+        	}
+    	}
+        return self.image = UIImage(named: "Blank")
     }
     
 

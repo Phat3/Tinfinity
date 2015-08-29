@@ -47,13 +47,16 @@ class Chat {
         for (k = i; k > 1 and a[k] < a[k-1]; k--)
         swap a[k,k-1]*/
         
-        for(var i = 1; i < self.allMessages; i++){
-            for(var k = i; k>1 && self.allMessages[k].date < self.allMessages[k-1].date; k--){
-                var appoggio = allMessages[k]
-                allMessages[k] = allMessages[k-1]
-                allmessages[k-1] = appoggio
+        for(var i = 1; i < self.allMessages.count; i++){
+            
+            for(var k = i; k > 0 && self.allMessages[k - 1].date.timeIntervalSinceDate(self.allMessages[k].date) > 0; k--){
+                
+                let temp = allMessages[k-1]
+            	allMessages[k-1] = allMessages[k]
+                allMessages[k] = temp
             }
         }
+        println(allMessages)
         
     }
 }

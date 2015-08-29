@@ -83,12 +83,7 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
                         dispatch_async(dispatch_get_main_queue(), {
                             if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell? {
                                 cellToUpdate.imageView!.image = image
-                                let itemSize = CGSizeMake(40, 40);
-                                UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale)
-                                let imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
-                                cell.imageView!.image!.drawInRect(imageRect)
-                                cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext()
-                                UIGraphicsEndImageContext()
+                                tableView.reloadData()
                             }
                         })
                     }

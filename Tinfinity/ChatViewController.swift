@@ -15,6 +15,8 @@ class ChatViewController: JSQMessagesViewController {
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
     var chat: Chat?
+    var chatManager = ChatManager();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +25,9 @@ class ChatViewController: JSQMessagesViewController {
         
         senderId = account.user.userId
         senderDisplayName = "Me"
+        
+        chatManager.connectToServer()
+        chatManager.addHandlers()
         
     }
 
@@ -57,6 +62,7 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         var newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
         chat!.loadedMessages += [newMessage]
+        chatManager.sendMessage(chat!.user.userId, message: text);
         self.finishSendingMessage()
     }
     

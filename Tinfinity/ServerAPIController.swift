@@ -17,7 +17,6 @@ class ServerAPIController{
     let authenticationPath: String
     let baseUrl: String
     let chatListPath: String
-    var tinfinityToken: String?
     
     init(FBAccessToken: String){
         FBToken = FBAccessToken
@@ -44,12 +43,12 @@ class ServerAPIController{
                     let id = json["_id"].string
                     let name = json["name"].string
                     let surname = json["surname"].string
-                    self.tinfinityToken = json["token"].string
+                    account.token = json["token"].string
                     
-                    println(self.tinfinityToken)
+                    println(account.token)
                     //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
                     let manager = Alamofire.Manager.sharedInstance
-                    manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": self.tinfinityToken!]
+                    manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
                         
                     if let url = NSURL(string: json["image"].string!){
                         let data = NSData(contentsOfURL: url)

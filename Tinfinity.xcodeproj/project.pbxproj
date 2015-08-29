@@ -34,7 +34,6 @@
 		51D96C241B4A6C91001A2D29 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C231B4A6C91001A2D29 /* Album.swift */; };
 		51D96C261B4ABC42001A2D29 /* FacebookAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */; };
 		8B9460B81AFFD00B00B00CDE /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9460B71AFFD00B00B00CDE /* ChatManager.swift */; };
-		8B9460BA1AFFD03A00B00CDE /* ChatComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */; };
 		8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */; };
 		8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8BA371B9225D800F587EF /* ImageUtil.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -98,7 +97,6 @@
 		51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinfinity-Bridging-Header.h"; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B9460B71AFFD00B00B00CDE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComunication.swift; sourceTree = "<group>"; };
 		8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReqWrapper.swift; sourceTree = "<group>"; };
 		8BE8BA371B9225D800F587EF /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 		4198ECF81AD033CD0048C3A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */,
 				8B9460B71AFFD00B00B00CDE /* ChatManager.swift */,
 				8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */,
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
@@ -425,7 +422,6 @@
 				51AADA9B1AEE2D6F007225CD /* User.swift in Sources */,
 				518474841B91C0DB0045273E /* ChatsModel.xcdatamodeld in Sources */,
 				51930AF91B0C77CC004F4F88 /* SettingsViewController.swift in Sources */,
-				8B9460BA1AFFD03A00B00CDE /* ChatComunication.swift in Sources */,
 				5135D9E21B42E9700070A560 /* EditProfileViewController.swift in Sources */,
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
 				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,

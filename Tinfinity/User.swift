@@ -23,7 +23,6 @@ class User {
     var gender: Gender?
     var email: String?
     var imageUrl : String?
-    var token: String?
     var name: String? {
         return firstName + " " + lastName
     }

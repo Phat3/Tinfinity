@@ -8,6 +8,8 @@
 
 import UIKit
 import JSQMessagesViewController
+import Socket_IO_Client_Swift
+import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController {
 
@@ -15,7 +17,9 @@ class ChatViewController: JSQMessagesViewController {
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
     var chat: Chat?
-    var chatManager = ChatManager();
+    
+    // Socket IO client
+    private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +30,8 @@ class ChatViewController: JSQMessagesViewController {
         senderId = account.user.userId
         senderDisplayName = "Me"
         
-        chatManager.connectToServer()
-        chatManager.addHandlers()
+        self.connectToServer()
+        self.addHandler()
         
     }
 
@@ -60,13 +64,40 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        
         var newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
-        chat!.allMessages += [newMessage]
-        chatManager.sendMessage(chat!.user.userId, message: text);
+        chat!.allMessages.append(newMessage)
+        
+        var json = [
+            "user1" : account.user.userId,
+            "user2" : chat!.user.userId,
+            "token" : account.token,
+            "message" : text
+        ]
+        self.socket.emit("message", json)
+        
+        
         self.finishSendingMessage()
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
+    }
+    
+    // Connect to the server through the websocket
+    func connectToServer(){
+        self.socket.connect()
+    }
+    
+    // Handle websocket event
+    func addHandler() {
+        socket.on("message-" + account.user.userId) {data, ack in
+            let json = JSON(data!)
+            let newMessage = JSQMessage(senderId: self.chat!.user.userId, displayName: self.chat!.user.firstName, text: json[0]["message"].string);
+            self.chat!.allMessages.append(newMessage)
+            self.finishReceivingMessage();
+        }
+        
+        
     }
 
 }

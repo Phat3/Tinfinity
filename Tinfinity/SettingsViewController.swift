@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var loginButton: FBSDKLoginButton!
@@ -28,8 +29,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loginButton.delegate = self
-        
-        profilePict.setImage(account.pictures[0],forState: .Normal)
+        profilePict.setImage(ImageUtil.cropToSquare(image: account.pictures[0]!),forState: .Normal)
         profilePict.layer.borderWidth = 2
         profilePict.layer.masksToBounds = false
         profilePict.layer.borderColor = UIColor.whiteColor().CGColor

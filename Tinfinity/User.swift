@@ -60,6 +60,7 @@ class User {
                     var json = JSON(data!)
                     self.firstName = json["name"].string!
                     self.lastName = json["surname"].string!
+                    self.imageUrl = json["image"].string!
                     if(json["gender"] == "male") {
                         self.gender = Gender.Male
                     } else {
@@ -67,6 +68,7 @@ class User {
                     }
                 }}
     }
+    
 
 }
 

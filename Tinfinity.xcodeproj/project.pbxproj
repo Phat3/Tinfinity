@@ -36,6 +36,7 @@
 		8B9460B81AFFD00B00B00CDE /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9460B71AFFD00B00B00CDE /* ChatManager.swift */; };
 		8B9460BA1AFFD03A00B00CDE /* ChatComunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */; };
 		8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */; };
+		8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8BA371B9225D800F587EF /* ImageUtil.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,7 @@
 		8B9460B71AFFD00B00B00CDE /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		8B9460B91AFFD03A00B00CDE /* ChatComunication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComunication.swift; sourceTree = "<group>"; };
 		8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReqWrapper.swift; sourceTree = "<group>"; };
+		8BE8BA371B9225D800F587EF /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +198,7 @@
 				8B9460B71AFFD00B00B00CDE /* ChatManager.swift */,
 				8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */,
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
+				8BE8BA371B9225D800F587EF /* ImageUtil.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				51ADDC0B1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift in Sources */,
 				512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */,
 				5170F32B1B5EA93000779D64 /* PictureDetailViewController.swift in Sources */,
+				8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */,
 				51D96C241B4A6C91001A2D29 /* Album.swift in Sources */,
 				512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */,
 				8B9460B81AFFD00B00B00CDE /* ChatManager.swift in Sources */,

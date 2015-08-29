@@ -69,7 +69,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             
             // Immagine già recuperata, usiamola
             if let img = imageCache[chat.user.imageUrl!] {
-                cell.chatAvatar.image = img
+                cell.chatAvatar.image = ImageUtil.cropToSquare(image: img)
             } else {
                 let request: NSURLRequest = NSURLRequest(URL: NSURL(string: chat.user.imageUrl!)!)
                 let mainQueue = NSOperationQueue.mainQueue()
@@ -82,7 +82,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                         // Update the cell
                         dispatch_async(dispatch_get_main_queue(), {
                             if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? ChatCustomCell {
-                                cellToUpdate.chatAvatar.image = image
+                                cellToUpdate.chatAvatar.image = ImageUtil.cropToSquare(image: image!)
                             }
                          })
                     }

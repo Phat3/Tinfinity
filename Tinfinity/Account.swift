@@ -14,6 +14,13 @@ class Account: NSObject {
         accessToken = nil
         user = nil
     }
+    
+    /**
+     * Con questo metodo, pushamo le informazioni relative all'utente 'me' in remoto
+     */
+    func sync() {
+        
+    }
 
     func deleteAccount() {
         logOut()

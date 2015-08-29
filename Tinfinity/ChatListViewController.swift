@@ -76,7 +76,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: {     (response, data, error) -> Void in
                     if error == nil {
                         // Convert the downloaded data in to a UIImage object
-                        let image = UIImage(data: data)
+                        var image = UIImage(data: data)
+                        
+                        if(image == nil) {
+                            image = UIImage(named: "Blank")
+                        }
                         //Store in our cache the image
                         self.imageCache[chat.user.imageUrl!] = image
                         // Update the cell

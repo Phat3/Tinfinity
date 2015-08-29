@@ -25,7 +25,6 @@
 		51A5042C1B0F7D670039E97C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A5042B1B0F7D670039E97C /* Chat.swift */; };
 		51A504331B0F7F6A0039E97C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A504321B0F7F6A0039E97C /* Account.swift */; };
 		51A5043B1B11C9D00039E97C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A5043A1B11C9D00039E97C /* ChatViewController.swift */; };
-		51A5043D1B11D0E50039E97C /* Blank52.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A5043C1B11D0E50039E97C /* Blank52.png */; };
 		51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA981AEE1774007225CD /* ServerAPIController.swift */; };
 		51AADA9B1AEE2D6F007225CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AADA9A1AEE2D6F007225CD /* User.swift */; };
 		51ADDC0B1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ADDC0A1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift */; };
@@ -86,7 +85,6 @@
 		51A5042B1B0F7D670039E97C /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		51A504321B0F7F6A0039E97C /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		51A5043A1B11C9D00039E97C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		51A5043C1B11D0E50039E97C /* Blank52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blank52.png; sourceTree = "<group>"; };
 		51AADA981AEE1774007225CD /* ServerAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerAPIController.swift; sourceTree = "<group>"; };
 		51AADA9A1AEE2D6F007225CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		51ADDC0A1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPhotoCollectionViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
 				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
 				5135D9E11B42E9700070A560 /* EditProfileViewController.swift */,
-				51A5043C1B11D0E50039E97C /* Blank52.png */,
 				5113C1DE1B19F1F8007B53AA /* Reachability.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
@@ -337,7 +334,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51A5043D1B11D0E50039E97C /* Blank52.png in Resources */,
 				4198ECDC1AD005750048C3A0 /* Main.storyboard in Resources */,
 				4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */,
 			);

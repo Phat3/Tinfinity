@@ -29,10 +29,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             account.users.append(chat.user)
         }
         
-        for user in account.users{
-            user.imageUrl = "http://www.mhodi.it/wp-content/uploads/2012/09/no-user1-300x300.jpg"
-        }
-        
         
     }
     

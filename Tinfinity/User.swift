@@ -22,6 +22,7 @@ class User {
     var lastName: String
     var gender: Gender?
     var email: String?
+    var image: UIImage?
     var imageUrl : String?
     var name: String? {
         return firstName + " " + lastName
@@ -65,7 +66,19 @@ class User {
                     } else {
                         self.gender = Gender.Female
                     }
+                    
+                    // Lets download the image
+                    self.fetchImage()
                 }}
+    }
+    
+    func fetchImage() {
+        if let url = NSURL(string: self.imageUrl!){
+            let data = NSData(contentsOfURL: url)
+            self.image = UIImage(data: data!)!
+        } else {
+            self.image = UIImage(named: "Blank")
+        }
     }
     
 

@@ -13,10 +13,16 @@ import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController {
 
+    var chat: Chat?
+    
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
-    var chat: Chat?
+    var incomingAvatar: JSQMessagesAvatarImage?
+    
+    var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.pictures[0]!), diameter: 30)
+    
+    
     
     // Socket IO client
     private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
@@ -32,6 +38,9 @@ class ChatViewController: JSQMessagesViewController {
         
         self.connectToServer()
         self.addHandler()
+        
+        // We need it here as 'chat' before does not exist
+        incomingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: chat!.user.image!), diameter: 30)
         
     }
 
@@ -56,7 +65,12 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
+        var data = self.chat!.allMessages[indexPath.row];
+        if (data.senderId == self.senderId) {
+            return self.outgoingAvatar
+        } else {
+            return self.incomingAvatar
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -65,39 +65,12 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = chatTableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCustomCell
         let chat = chats[indexPath.row]
     
-        if (chat.user.imageUrl != nil){
-            
-            // Immagine già recuperata, usiamola
-            if let img = imageCache[chat.user.imageUrl!] {
-                cell.chatAvatar.image = ImageUtil.cropToSquare(image: img)
-            } else {
-                let request: NSURLRequest = NSURLRequest(URL: NSURL(string: chat.user.imageUrl!)!)
-                let mainQueue = NSOperationQueue.mainQueue()
-                NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: {     (response, data, error) -> Void in
-                    if error == nil {
-                        // Convert the downloaded data in to a UIImage object
-                        var image = UIImage(data: data)
-                        
-                        if(image == nil) {
-                            image = UIImage(named: "Blank")
-                        }
-                        //Store in our cache the image
-                        self.imageCache[chat.user.imageUrl!] = image
-                        // Update the cell
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? ChatCustomCell {
-                                cellToUpdate.chatAvatar.image = ImageUtil.cropToSquare(image: image!)
-                            }
-                         })
-                    }
-                    else {
-                        println("Error: \(error.localizedDescription)")
-                    }
-                })
+        // Update the cell with the avatars
+        dispatch_async(dispatch_get_main_queue(), {
+            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? ChatCustomCell {
+                cellToUpdate.chatAvatar.image = ImageUtil.cropToSquare(image: chat.user.image!)
             }
-        }else{
-            cell.chatAvatar?.image = UIImage(named: "Blank52")
-        }
+        })
     
     	//Now we need to make the chatAvatar look round
     	var frame = cell.chatAvatar.frame

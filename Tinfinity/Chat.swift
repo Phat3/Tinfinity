@@ -40,4 +40,20 @@ class Chat {
         }
         return dateFormatter.stringFromDate(date)
     }
+    
+    func reorderChat(){
+        /*Insertion Sort*/
+        /*for i = 2:n,
+        for (k = i; k > 1 and a[k] < a[k-1]; k--)
+        swap a[k,k-1]*/
+        
+        for(var i = 1; i < self.allMessages; i++){
+            for(var k = i; k>1 && self.allMessages[k].date < self.allMessages[k-1].date; k--){
+                var appoggio = allMessages[k]
+                allMessages[k] = allMessages[k-1]
+                allmessages[k-1] = appoggio
+            }
+        }
+        
+    }
 }

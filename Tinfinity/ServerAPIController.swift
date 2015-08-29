@@ -138,6 +138,7 @@ class ServerAPIController{
                             newChat.allMessages.append(message)
                         }
                         account.chats.append(newChat)
+                        println(account.chats)
                     }
                     
                 }

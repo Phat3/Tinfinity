@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import JSQMessagesViewController
 
 class ServerAPIController{
     
@@ -75,11 +76,46 @@ class ServerAPIController{
                     // If there is an error in the web request, print it to the console
                     println(error!.localizedDescription)
                 }else{
-                    var json = JSON(data!)
                     
-                    println(data!)
-                
+                    var json = JSON(data!)
+                    println(json)
+                    let lenght = json.count
+                    println(lenght)
+                    println(json[0]["data"]["user1"])
+                    let user1 = json["user1"].string
+                    let user2 = json["user2"].string
+                    for(var i=0; i < json.count; i++ ){
+                        
+                        let innerData = json[i]["data"]
+
+                        var newUser: User
+                        let user1MessagesCount = innerData["user1"].count
+                        let user2MessagesCount = innerData["user2"].count
+                        let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
+                        let date = NSDate(timeIntervalSinceNow: -minute)
+                        
+                        /*if (user1 == account.user.userId){
+                            //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
+                            newUser = User(userId: user2,firstName: "",lastName: "")//da rivedere
+                        }else{
+                            newUser = User(userId: user1,firstName: "",lastName: "")//da rivedere
+                        }*/
+                        newUser = User(userId: "2",firstName: "",lastName: "")//Fittizio
+                        var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
+                        
+                        for( i=0 ; i < user1MessagesCount; i++){
+                            let newMessage = innerData["user1"][i]["message"].string
+                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: "prova")//)newMessage)
+                            newChat.allMessages.append(message)
+                        }
+                        for (i = 0; i < user2MessagesCount; i++){
+                            let newMessage = innerData["user2"][i]["message"].string
+                            var message = JSQMessage(senderId: user2,senderDisplayName: "Sender",date: date,text: "prova")//)newMessage)
+                            newChat.allMessages.append(message)
+                        }
+                    }
                 }
+                
         }
     }
     

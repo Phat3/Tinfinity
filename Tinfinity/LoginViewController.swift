@@ -91,7 +91,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         //Controlliamo se è già presente un token facebook
         if (FBSDKAccessToken.currentAccessToken() != nil){
             
-            //instatiating the apicontroller with the current access token to authenticate with the server
+            //instantiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
             api?.retrieveProfileFromServer({ (result) -> Void in
                  //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             	if(result == false){
             	    self.checkLoginProblem()
             	}else{
-                    self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in })
+                    self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in})
             	    self.performSegueWithIdentifier("loginExecuted", sender: self)
             	}
         	})

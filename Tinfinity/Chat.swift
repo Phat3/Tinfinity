@@ -11,6 +11,7 @@ class Chat {
     return formatDate(lastMessageSentDate)
     }
     var loadedMessages = [JSQMessage]()
+    var allMessages = [JSQMessage]()
     var unreadMessageCount: Int = 0 // subtacted from total when read
     var hasUnloadedMessages = false
     var draft = ""

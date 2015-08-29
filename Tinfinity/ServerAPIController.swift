@@ -80,16 +80,12 @@ class ServerAPIController{
                     
                     var json = JSON(data!)
                     let length = json.count
-                    println(json)
-                    println(length)
                     
                     for(var i = 0; i < length; i++ ){
                         
                         let innerData = json[i]
                         let user1 = innerData["_id"]["user1"].string
                         let user2 = innerData["_id"]["user2"].string
-                        
-                        var maxTimestamp: Double = 0
 
                         var newUser: User
                         let user1MessagesCount = innerData["user1"].count
@@ -110,43 +106,34 @@ class ServerAPIController{
                         var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                         
                         for(var k = 0 ; k < user1MessagesCount; k++){
-                            let localMessage = innerData["user1"][k]
-                            let newMessage = localMessage["message"].string
-                            let timestamp = localMessage["timestamp"].double!/1000
-                            let text = localMessage["message"].string
-                            let myDouble = NSNumber(double: timestamp)
-                            let date = NSDate(timeIntervalSince1970: Double(myDouble))
-                            if (timestamp > maxTimestamp){
-                                maxTimestamp = timestamp
-                                newChat.lastMessageSentDate = date
-                                newChat.lastMessageText = text!
-                            }
-                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
-                            newChat.allMessages.append(message)
+                            
+                            newChat.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                            
                         }
                         for (var k = 0; k < user2MessagesCount; k++){
-                            let localMessage = innerData["user2"][k]
-                            let newMessage = localMessage["message"].string
-                            let timestamp = localMessage["timestamp"].double!/1000
-                            let text = localMessage["message"].string
-                            let myDouble = NSNumber(double: timestamp)
-                            let date = NSDate(timeIntervalSince1970: Double(myDouble))
-                            if (timestamp > maxTimestamp){
-                                maxTimestamp = timestamp
-                                newChat.lastMessageSentDate = date
-                                newChat.lastMessageText = text!
-                            }
-                            var message = JSQMessage(senderId: user2,senderDisplayName: "Sender",date: date,text: text)//)newMessage)
-                            newChat.allMessages.append(message)
+                            
+                            newChat.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                            
                         }
                         newChat.reorderChat()
                         account.chats.append(newChat)
-                        println(account.chats)
                     }
                     
                 }
                 
         }
+    }
+    
+    func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
+        
+        let newMessage = localMessage["message"].string
+        let timestamp = localMessage["timestamp"].double!/1000
+        let text = localMessage["message"].string
+        let myDouble = NSNumber(double: timestamp)
+        let date = NSDate(timeIntervalSince1970: Double(myDouble))
+        let message = JSQMessage(senderId: user,senderDisplayName: "Sender",date: date,text: text)
+        return message
+        
     }
     
 }

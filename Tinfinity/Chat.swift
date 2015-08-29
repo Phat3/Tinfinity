@@ -56,7 +56,8 @@ class Chat {
                 allMessages[k] = temp
             }
         }
-        println(allMessages)
+        lastMessageText = allMessages[allMessages.count-1].text
+        lastMessageSentDate = allMessages[allMessages.count-1].date
         
     }
 }

@@ -99,6 +99,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         println("Error while updating location " + error.localizedDescription)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        refreshLocation()
+    }
+    
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
     }

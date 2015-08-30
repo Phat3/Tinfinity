@@ -60,4 +60,10 @@ class Chat {
         lastMessageSentDate = allMessages[allMessages.count-1].date
         
     }
+    
+    func updateLastMessage(){
+        lastMessageSentDate = allMessages[allMessages.count-1].date
+        lastMessageText = allMessages[allMessages.count-1].text
+        println(lastMessageText)
+    }
 }

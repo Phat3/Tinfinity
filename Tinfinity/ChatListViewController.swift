@@ -32,6 +32,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             chatTableView.hidden = true
             defaultMessage.hidden = false
         }
+        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +97,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+     
+        for(var i = 0; i < chats.count; i++){
+            chats[i].updateLastMessage()
+        }
+        chatTableView.reloadData()
     }
 
 }

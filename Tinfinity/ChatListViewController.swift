@@ -91,9 +91,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
         cell.nameLabel.text = chat.user.name
         cell.messageLabel.text = chat.lastMessageText
+    	cell.unreadMessagesNumber.layer.cornerRadius = 8
     	if(chat.unreadMessageCount != 0){
         	cell.unreadMessagesNumber.hidden = false
-            cell.unreadMessagesNumber.setTitle(chat.unreadMessageCount, forState: .Normal)
+            cell.unreadMessagesNumber.setTitle(String(chat.unreadMessageCount), forState: .Normal)
             cell.messageTime.textColor = UIColor.blueColor()
         }else{
         	cell.unreadMessagesNumber.hidden = true

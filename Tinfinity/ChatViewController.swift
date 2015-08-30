@@ -28,7 +28,10 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Until Websockets are connected, we have to prevent messages being sent
+        disableSend()
+        
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = false
         
@@ -44,6 +47,20 @@ class ChatViewController: JSQMessagesViewController {
         // We don't need the button on the left
         self.inputToolbar.contentView.leftBarButtonItem = nil;
         
+    }
+    
+    /*
+     * Disables send button
+     */
+    func disableSend() {
+        self.inputToolbar.contentView.textView.editable = false
+    }
+    
+    /*
+     * Enables send button
+     */
+    func enableSend() {
+        self.inputToolbar.contentView.textView.editable = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,6 +130,9 @@ class ChatViewController: JSQMessagesViewController {
             self.finishReceivingMessage();
         }
         
+        socket.on("connect") {data, ack in
+            self.enableSend()
+        }
         
     }
 

@@ -150,7 +150,6 @@
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
 				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
 				5135D9E11B42E9700070A560 /* EditProfileViewController.swift */,
-				5113C1DE1B19F1F8007B53AA /* Reachability.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
 				4198ECD41AD005750048C3A0 /* Supporting Files */,
@@ -187,6 +186,7 @@
 		4198ECF81AD033CD0048C3A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				5113C1DE1B19F1F8007B53AA /* Reachability.swift */,
 				8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */,
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
 				8BE8BA371B9225D800F587EF /* ImageUtil.swift */,

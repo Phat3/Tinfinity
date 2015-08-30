@@ -60,7 +60,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
         // Lets first update our Model
-        account.user.position = locations.last as? CLLocation
+        account.setLocation(locations.last as! CLLocation)
         
         if let location = account.user.position {
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)

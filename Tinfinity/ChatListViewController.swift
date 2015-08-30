@@ -18,6 +18,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
     
+    var refreshControl: UIRefreshControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,12 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             chatTableView.hidden = true
             defaultMessage.hidden = false
         }
+        
+        //Implement the pull to refresh
+		self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: Selector("updateData"), forControlEvents: UIControlEvents.ValueChanged)
+        self.chatTableView.addSubview(refreshControl)
         
     
     }
@@ -102,6 +110,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             chats[i].updateLastMessage()
         }
         chatTableView.reloadData()
+    }
+    
+    func updateData(){
+        chatTableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
 
 }

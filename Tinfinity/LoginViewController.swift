@@ -25,10 +25,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         
         let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
         
-        for chat in account.chats {
-            account.users.append(chat.user)
-        }
-        
         
     }
     

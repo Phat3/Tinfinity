@@ -16,6 +16,7 @@ import CoreLocation
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var profile: User?
+    var timer: NSTimer?
     
     //Metodi per la posizione sulla mappa
     
@@ -38,7 +39,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+            
+            // Set the timer every 2 minutes
+            timer =  NSTimer.scheduledTimerWithTimeInterval(60*2, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
+            
+            // Get first location
+            refreshLocation()
+            
         } else {
             //@TODO Block App
         }
@@ -69,27 +76,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
             // Until we add our nicely designer marker, lets use Apple one
             self.mapView.showsUserLocation = true
+            
+            // Stop tracking until next call
+            locationManager.stopUpdatingLocation()
         }
-        
- 
     }
     
-    func displayLocationInfo(placemark: CLPlacemark?) {
-        if let containsPlacemark = placemark {
-            //stop updating location to save battery life
-            //locationManager.stopUpdatingLocation()
-            
-            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
-            let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
-            let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : ""
-            let country = (containsPlacemark.country != nil) ? containsPlacemark.country : ""
-            println(locality)
-            println(postalCode)
-            println(administrativeArea)
-            println(country)
-        }
-        
+    /*
+     * We don't need to keep refreshing the location all the time, hence we 
+     * use 2 minute timer.
+     */
+    func refreshLocation(){
+        println("Refreshing Location...");
+        locationManager.startUpdatingLocation()
     }
+    
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         let alertController = UIAlertController(title: "TinFinity", message:

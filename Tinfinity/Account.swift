@@ -7,9 +7,17 @@ let baseUrl = NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as!
 
 
 class Account: NSObject {
+    
+    // Me
     var user: User!
+    
+    // API Token
     dynamic var token: String!
+    
+    // Visible users
     var users = [User]()
+    
+    // Stored chats
     var chats = [Chat]()
 
     func logOut() {
@@ -44,20 +52,22 @@ class Account: NSObject {
                 	}else{
                     
                 	    var json = JSON(data!)
-                        println(json)
-                        let userData = json[0]["user"]
-                        let position = json[0]["position"]
-                        var newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
-                        let userPosition = CLLocation(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
-                        newUser.position = userPosition
                         
-                        self.users.append(newUser)
-                        
-                        println(json)
+                        for(var i = 0; i < json.count; i++){
+                            let userData = json[i]["user"]
+                            let position = json[i]["position"]
+                            var newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
+                            
+                            let userPosition = CLLocation(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
+                            
+                            newUser.position = userPosition
+                            newUser.imageUrl = NSURL(string: json[i]["image"].string!)
+                            self.users.append(newUser)
+                        }
             	    }
         	}
         }
-        
+        println(self.users)
     }
     
     func setLocation(location: CLLocation){

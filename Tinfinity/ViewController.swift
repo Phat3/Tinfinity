@@ -42,6 +42,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         } else {
             //@TODO Block App
         }
+        
+        // We don't want our user to mess with the map
+        self.mapView.zoomEnabled = false;
+        self.mapView.scrollEnabled = false;
+        self.mapView.userInteractionEnabled = false;
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,28 +59,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
-            
-            if (error != nil) {
-                println("Reverse geocoder failed with error" + error.localizedDescription)
-                return
-            }
-            
-            if placemarks.count > 0 {
-                let pm = placemarks[0] as! CLPlacemark
-                var location:CLLocationCoordinate2D = manager.location.coordinate
-                
-                let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-                
-                self.mapView.setRegion(region, animated: true)
-                
-                self.displayLocationInfo(pm)
-                self.mapView.showsUserLocation = true
-            } else {
-                println("Problem with the data received from geocoder")
-            }
-        })
+        // Lets first update our Model
+        account.user.position = locations.last as? CLLocation
+        
+        if let location = account.user.position {
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            self.mapView.setRegion(region, animated: true)
+        
+            // Until we add our nicely designer marker, lets use Apple one
+            self.mapView.showsUserLocation = true
+        }
+        
+ 
     }
     
     func displayLocationInfo(placemark: CLPlacemark?) {

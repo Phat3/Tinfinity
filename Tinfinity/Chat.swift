@@ -85,20 +85,16 @@ class Chat {
         	let stringTime = NSString(format: "%.f",timeinterval) as! String
             
             
-            manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + "1440935239065"/*stringTime*/ , encoding : .JSON)
+            manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON)
                 .responseJSON { (request, response, data, error) in
                     
                     if(error != nil) {
                         // If there is an error in the web request, print it to the console
                         println(error!.localizedDescription)
                     }else if(response != false){
-                        var json = JSON(data!)
-                        println(json)
-                        let length = json.count
+                        var innerData = JSON(data!)
+                        println(innerData)
                         
-                        for(var i = 0; i < length; i++ ){
-                            
-                            let innerData = json[i]
                             let user1 = innerData["_id"]["user1"].string
                             let user2 = innerData["_id"]["user2"].string
                             
@@ -119,7 +115,6 @@ class Chat {
                                 
                             }
                             self.reorderChat()
-                        }
                         
                     }
                     

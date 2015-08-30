@@ -91,6 +91,14 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
         cell.nameLabel.text = chat.user.name
         cell.messageLabel.text = chat.lastMessageText
+    	if(chat.unreadMessageCount != 0){
+        	cell.unreadMessagesNumber.hidden = false
+            cell.unreadMessagesNumber.setTitle(chat.unreadMessageCount, forState: .Normal)
+            cell.messageTime.textColor = UIColor.blueColor()
+        }else{
+        	cell.unreadMessagesNumber.hidden = true
+            cell.messageTime.textColor = UIColor.blackColor()
+    	}
         
         return cell
     }
@@ -100,6 +108,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 let path = self.chatTableView.indexPathForSelectedRow()!
                 let nextViewcontroller = segue.destinationViewController as! ChatViewController
                 nextViewcontroller.chat = chats[path.row]
+            	chats[path.row].unreadMessageCount = 0
         }
     }
     

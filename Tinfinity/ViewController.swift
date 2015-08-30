@@ -17,32 +17,38 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var profile: User?
     
+    //Metodi per la posizione sulla mappa
+    
+    @IBOutlet weak var titleItem: UIBarButtonItem!
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet weak var chatButton: UIBarButtonItem!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
-        //inizializzazione mappa
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        // Require Location Permissions
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        // Check if permissions are given
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        } else {
+            //@TODO Block App
         }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    //Metodi per la posizione sulla mappa
-    
-    @IBOutlet weak var titleItem: UIBarButtonItem!
-    
-    @IBOutlet var mapView: MKMapView!
-    @IBOutlet weak var chatButton: UIBarButtonItem!
-    @IBOutlet weak var settingsButton: UIBarButtonItem!
-    
-    let locationManager = CLLocationManager()
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         

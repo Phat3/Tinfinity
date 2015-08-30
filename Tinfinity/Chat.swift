@@ -62,20 +62,18 @@ class Chat {
                 allMessages[k] = temp
             }
         }
-        lastMessageText = allMessages[allMessages.count-1].text
-        lastMessageSentDate = allMessages[allMessages.count-1].date
+        updateLastMessage()
         
     }
     
     func updateLastMessage(){
         lastMessageSentDate = allMessages[allMessages.count-1].date
         lastMessageText = allMessages[allMessages.count-1].text
-        println(lastMessageText)
     }
     
     
     
-    func fetchNewMessages(){
+    func fetchNewMessages(completion: (result: Bool) -> Void){
         
         let manager = Alamofire.Manager.sharedInstance
             
@@ -93,7 +91,6 @@ class Chat {
                         println(error!.localizedDescription)
                     }else if(response != false){
                         var innerData = JSON(data!)
-                        println(innerData)
                         
                             let user1 = innerData["_id"]["user1"].string
                             let user2 = innerData["_id"]["user2"].string
@@ -107,15 +104,17 @@ class Chat {
                             for(var k = 0 ; k < user1MessagesCount; k++){
                                 
                                 self.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                                self.unreadMessageCount++
                                 
                             }
                             for (var k = 0; k < user2MessagesCount; k++){
                                 
                                 self.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                                self.unreadMessageCount++
                                 
                             }
                             self.reorderChat()
-                        
+                            completion(result: true)
                     }
                     
             }

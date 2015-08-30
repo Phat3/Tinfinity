@@ -52,7 +52,6 @@ class Account: NSObject {
                 	}else{
                     
                 	    var json = JSON(data!)
-                        
                         for(var i = 0; i < json.count; i++){
                             let userData = json[i]["user"]
                             let position = json[i]["position"]
@@ -61,7 +60,6 @@ class Account: NSObject {
                             let userPosition = CLLocation(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
                             
                             newUser.position = userPosition
-                            newUser.imageUrl = NSURL(string: json[i]["image"].string!)
                             self.users.append(newUser)
                         }
             	    }

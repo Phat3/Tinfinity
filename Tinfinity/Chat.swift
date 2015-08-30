@@ -1,5 +1,7 @@
 import Foundation.NSDate
 import JSQMessagesViewController
+import Alamofire
+import SwiftyJSON
 
 var dateFormatter = NSDateFormatter()
 
@@ -15,6 +17,10 @@ class Chat {
     var unreadMessageCount: Int = 0 // subtacted from total when read
     var hasUnloadedMessages = false
     var draft = ""
+    
+    let baseUrl = NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String
+    let chatListPath = NSBundle.mainBundle().objectForInfoDictionaryKey("Chat List Path") as! String
+
 
     init(user: User, lastMessageText: String, lastMessageSentDate: NSDate) {
         self.user = user
@@ -67,65 +73,71 @@ class Chat {
         println(lastMessageText)
     }
     
-   /*func fetchNewMessages(){
     
-    let manager = Alamofire.Manager.sharedInstance
     
-    for(var i = 0; i < account.chats ;i++)
+    func fetchNewMessages(){
         
-        manager.request(.GET, baseUrl + "/api/chat/" +  , encoding : .JSON)
-            .responseJSON { (request, response, data, error) in
-                
-                if(error != nil) {
-                    // If there is an error in the web request, print it to the console
-                    println(error!.localizedDescription)
-                }else{
+        let manager = Alamofire.Manager.sharedInstance
+            
+            //We need the timeinterval to speak with the server, but in milliseconds
+            let timeinterval: Double = round(self.lastMessageSentDate.timeIntervalSince1970 * 1000)
+        
+        	let stringTime = NSString(format: "%.f",timeinterval) as! String
+            
+            
+            manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + "1440935239065"/*stringTime*/ , encoding : .JSON)
+                .responseJSON { (request, response, data, error) in
                     
-                    var json = JSON(data!)
-                    let length = json.count
-                    
-                    for(var i = 0; i < length; i++ ){
+                    if(error != nil) {
+                        // If there is an error in the web request, print it to the console
+                        println(error!.localizedDescription)
+                    }else if(response != false){
+                        var json = JSON(data!)
+                        println(json)
+                        let length = json.count
                         
-                        let innerData = json[i]
-                        let user1 = innerData["_id"]["user1"].string
-                        let user2 = innerData["_id"]["user2"].string
-                        
-                        var newUser: User
-                        let user1MessagesCount = innerData["user1"].count
-                        let user2MessagesCount = innerData["user2"].count
-                        let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
-                        let date = NSDate(timeIntervalSinceNow: -minute)
-                        
-                        if (user1 == account.user.userId){
-                            //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
-                            newUser = User(userId: user2!,firstName: "",lastName: "")
-                            // Retrieve user data
-                            newUser.fetch();
-                        }else{
-                            newUser = User(userId: user1!,firstName: "",lastName: "")
-                            // Retrieve user data
-                            newUser.fetch();
+                        for(var i = 0; i < length; i++ ){
+                            
+                            let innerData = json[i]
+                            let user1 = innerData["_id"]["user1"].string
+                            let user2 = innerData["_id"]["user2"].string
+                            
+                            var newUser: User
+                            let user1MessagesCount = innerData["user1"].count
+                            let user2MessagesCount = innerData["user2"].count
+                            let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
+                            let date = NSDate(timeIntervalSinceNow: -minute)
+                            
+                            for(var k = 0 ; k < user1MessagesCount; k++){
+                                
+                                self.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                                
+                            }
+                            for (var k = 0; k < user2MessagesCount; k++){
+                                
+                                self.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                                
+                            }
+                            self.reorderChat()
                         }
-                        var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                         
-                        for(var k = 0 ; k < user1MessagesCount; k++){
-                            
-                            newChat.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
-                            
-                        }
-                        for (var k = 0; k < user2MessagesCount; k++){
-                            
-                            newChat.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
-                            
-                        }
-                        newChat.reorderChat()
-                        account.chats.append(newChat)
                     }
                     
-                }
-                
-        }
-
-    }*/
+            }
+        
+    }
     
+    func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
+        
+        let newMessage = localMessage["message"].string
+        let timestamp = localMessage["timestamp"].double!/1000
+        let text = localMessage["message"].string
+        let myDouble = NSNumber(double: timestamp)
+        let date = NSDate(timeIntervalSince1970: Double(myDouble))
+        let message = JSQMessage(senderId: user,senderDisplayName: "Sender",date: date,text: text)
+        return message
+        
+    }
+    
+  
 }

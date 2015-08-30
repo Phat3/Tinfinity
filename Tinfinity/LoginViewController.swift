@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     self.checkLoginProblem()
                 }
                 else{
-                    //self.api?.retriveChatHistory()
+                    self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in })
                     self.performSegueWithIdentifier("loginExecuted", sender: self)
                     return
                 }

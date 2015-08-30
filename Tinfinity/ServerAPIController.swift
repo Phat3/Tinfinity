@@ -60,7 +60,7 @@ class ServerAPIController{
             		}
        			 }
     }
-
+    
     func retriveChatHistory(id: String, completion: (result: [(Chat)] ) -> Void){
         
         let manager = Alamofire.Manager.sharedInstance
@@ -81,12 +81,13 @@ class ServerAPIController{
                         let innerData = json[i]
                         let user1 = innerData["_id"]["user1"].string
                         let user2 = innerData["_id"]["user2"].string
-
+                        
                         var newUser: User
                         let user1MessagesCount = innerData["user1"].count
                         let user2MessagesCount = innerData["user2"].count
-                        let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
-                        let date = NSDate(timeIntervalSinceNow: -minute)
+                        
+                        //This date is only needed to initialize the chat. It will be updated after
+                        let date = NSDate()
                         
                         if (user1 == account.user.userId){
                             //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
@@ -130,7 +131,7 @@ class ServerAPIController{
         return message
         
     }
-    
+
     
     
 }

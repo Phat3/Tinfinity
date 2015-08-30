@@ -79,17 +79,28 @@ class User {
                     println(error!.localizedDescription)
                 } else {
                     var json = JSON(data!)
-                    self.firstName = json["name"].string!
-                    self.lastName = json["surname"].string!
-                    self.imageUrl = NSURL(string: json["image"].string!)
-                    if(json["gender"] == "male") {
-                        self.gender = Gender.Male
-                    } else {
-                        self.gender = Gender.Female
-                    }
+                    if let errore = json["error"].string{
+                        
+                        for(var i=0; i < account.chats.count; i++){
+                            if (account.chats[i].user.userId == self.userId){
+                                account.chats.removeAtIndex(i)
+                                println("Deleted user during fetch")
+                            }
+                        }
+                        
+                    }else{
+                    	self.firstName = json["name"].string!
+                    	self.lastName = json["surname"].string!
+                    	self.imageUrl = NSURL(string: json["image"].string!)
+                    	if(json["gender"] == "male") {
+                        	self.gender = Gender.Male
+                    	} else {
+                    	    self.gender = Gender.Female
+                   	 	}
                     
-                    // Lets download the image
-                    self.fetchImage()
+                    	// Lets download the image
+                    	self.fetchImage()
+                    }
                 }}
     }
     

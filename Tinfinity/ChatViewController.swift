@@ -159,5 +159,6 @@ class ChatViewController: JSQMessagesViewController {
         }
         
     }
+    
 
 }

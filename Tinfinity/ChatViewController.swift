@@ -20,7 +20,7 @@ class ChatViewController: JSQMessagesViewController {
     
     var incomingAvatar: JSQMessagesAvatarImage?
     
-    var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.pictures[0]!), diameter: 30)
+    var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.user.image!), diameter: 30)
 
     
     // Socket IO client

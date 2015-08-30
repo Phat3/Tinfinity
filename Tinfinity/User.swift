@@ -10,6 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+// Maximum number of photos a user can have
+let MAX_PHOTOS = 6
+
 class User {
     
     enum Gender {
@@ -22,11 +25,29 @@ class User {
     var lastName: String
     var gender: Gender?
     var email: String?
-    var image: UIImage?
-    var imageUrl : String?
+    
+    // Main image
+    var image: UIImage? {
+        return images[0]
+    }
+    
+    // Main image URL
+    var imageUrl : NSURL?
+    
+    // Images array
+    var images = [UIImage?](count: MAX_PHOTOS, repeatedValue:nil)
+    
+    // User position
+    var position: CLLocation?
+    
+    /* Utilities */
+    
+    // Fullname
     var name: String? {
         return firstName + " " + lastName
     }
+    
+    // User initials
     var initials: String? {
         var initials: String?
         for name in [firstName, lastName] {
@@ -60,7 +81,7 @@ class User {
                     var json = JSON(data!)
                     self.firstName = json["name"].string!
                     self.lastName = json["surname"].string!
-                    self.imageUrl = json["image"].string!
+                    self.imageUrl = NSURL(string: json["image"].string!)
                     if(json["gender"] == "male") {
                         self.gender = Gender.Male
                     } else {
@@ -72,14 +93,18 @@ class User {
                 }}
     }
     
+    /**
+     * Downloads the remote image into a UIImage with
+     * a default image fallback
+     */
     func fetchImage() {
-        if let url = NSURL(string: self.imageUrl!){
+        if let url = self.imageUrl {
             let data = NSData(contentsOfURL: url)
             if (data != nil){
-            	return self.image = UIImage(data: data!)!
+            	return self.images[0] = UIImage(data: data!)!
         	}
     	}
-        return self.image = UIImage(named: "Blank")
+        return self.images[0] = UIImage(named: "Blank")
     }
     
 

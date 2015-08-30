@@ -52,15 +52,15 @@ class EditProfileViewController: UIViewController {
             var i = 0
             var flag = false
             while(i < MAX_PHOTOS && flag == false){
-                if (account.pictures[i] == nil ){
-                    account.pictures[i] = picture
+                if (account.user.images[i] == nil ){
+                    account.user.images[i] = picture
                     flag = true
                 }
             i++
             }
         }else{
             
-            account.pictures[editIndex] = picture
+            account.user.images[editIndex] = picture
             
         }
         
@@ -71,9 +71,9 @@ class EditProfileViewController: UIViewController {
         
         var i = 0
         
-        while let picture = account.pictures[i]{
+        while let picture = account.user.images[i]{
             if(i < MAX_PHOTOS){
-            	addButtonWithImageAtIndex(account.pictures[i]!, i: i, tag: 0)
+            	addButtonWithImageAtIndex(account.user.images[i]!, i: i, tag: 0)
             }
                 
             i++

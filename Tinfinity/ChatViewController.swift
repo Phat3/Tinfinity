@@ -21,8 +21,9 @@ class ChatViewController: JSQMessagesViewController {
     var incomingAvatar: JSQMessagesAvatarImage?
     
     var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.user.image!), diameter: 30)
-
     
+    var isConnected = false;
+
     // Socket IO client
     private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
     
@@ -30,7 +31,7 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         
         // Until Websockets are connected, we have to prevent messages being sent
-        disableSend()
+        toggleSend()
         
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = false
@@ -50,18 +51,12 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     /*
-     * Disables send button
+     * Enables and disables send button
      */
-    func disableSend() {
-        self.inputToolbar.contentView.textView.editable = false
+    func toggleSend() {
+        self.inputToolbar.contentView.textView.editable = self.isConnected
     }
     
-    /*
-     * Enables send button
-     */
-    func enableSend() {
-        self.inputToolbar.contentView.textView.editable = true
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,7 +113,10 @@ class ChatViewController: JSQMessagesViewController {
     
     // Connect to the server through the websocket
     func connectToServer(){
-        self.socket.connect()
+        // Avoid multiple connections
+        if(!self.isConnected) {
+            self.socket.connect()
+        }
     }
     
     // Handle websocket event
@@ -131,7 +129,14 @@ class ChatViewController: JSQMessagesViewController {
         }
         
         socket.on("connect") {data, ack in
-            self.enableSend()
+            self.isConnected = true;
+            self.toggleSend()
+        }
+        
+        socket.on("disconnect") {data, ack in
+            self.isConnected = false;
+            self.toggleSend()
+            self.connectToServer()
         }
         
     }

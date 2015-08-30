@@ -22,7 +22,8 @@ class ChatViewController: JSQMessagesViewController {
     
     var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.user.image!), diameter: 30)
     
-    var isConnected = false;
+    var isConnected = false
+    var registerdHandlers = false
 
     // Socket IO client
     private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
@@ -121,22 +122,40 @@ class ChatViewController: JSQMessagesViewController {
     
     // Handle websocket event
     func addHandler() {
-        socket.on("message-" + account.user.userId) {data, ack in
+        socket.on("message-" + account.user.userId) {[weak self] data, ack in
             let json = JSON(data!)
-            let newMessage = JSQMessage(senderId: self.chat!.user.userId, displayName: self.chat!.user.firstName, text: json[0]["message"].string);
-            self.chat!.allMessages.append(newMessage)
-            self.finishReceivingMessage();
+            var user_id = json[0]["user_id"].string
+            
+            // Message received for this conversation
+            if(self!.chat!.user.userId == user_id) {
+                let newMessage = JSQMessage(senderId: user_id, displayName: self!.chat!.user.name, text: json[0]["message"].string);
+                self!.chat!.allMessages.append(newMessage)
+                self!.finishReceivingMessage();
+            }
+            // Message received for other conversation
+            else {
+                // Get other chat data
+                if let otherChat = Chat.getChatByUserId(user_id!) {
+                    // Get other user data
+                    let otherUser = User.getUserById(user_id!)
+                    let newMessage = JSQMessage(senderId: user_id, displayName: otherUser?.name, text: json[0]["message"].string);
+                    otherChat.allMessages.append(newMessage);
+                    otherChat.updateLastMessage()
+                    otherChat.unreadMessageCount++;
+                }
+            }    
+            
         }
         
-        socket.on("connect") {data, ack in
-            self.isConnected = true;
-            self.toggleSend()
+        socket.on("connect") {[weak self] data, ack in
+            self!.isConnected = true;
+            self!.toggleSend()
         }
         
-        socket.on("disconnect") {data, ack in
-            self.isConnected = false;
-            self.toggleSend()
-            self.connectToServer()
+        socket.on("disconnect") {[weak self] data, ack in
+            self!.isConnected = false;
+            self!.toggleSend()
+            self!.connectToServer()
         }
         
     }

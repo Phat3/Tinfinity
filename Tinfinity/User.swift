@@ -65,6 +65,15 @@ class User {
         self.lastName = lastName
     }
     
+    static func getUserById(user_id: String) -> User? {
+        for(var i=0; i < account.users.count; i++){
+            if (account.users[i].userId == user_id){
+                return account.users[i]
+            }
+        }
+        return nil
+    }
+    
     /**
      * Recuperiamo dal server le informazioni legate all'utente
      */

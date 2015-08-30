@@ -27,6 +27,15 @@ class Chat {
         self.lastMessageText = lastMessageText
         self.lastMessageSentDate = lastMessageSentDate
     }
+    
+    static func getChatByUserId(user_id: String) -> Chat? {
+        for(var i=0; i < account.chats.count; i++){
+            if (account.chats[i].user.userId == user_id){
+                return account.chats[i]
+            }
+        }
+        return nil
+    }
 
     func formatDate(date: NSDate) -> String {
         let calendar = NSCalendar.currentCalendar()
@@ -70,10 +79,7 @@ class Chat {
     func updateLastMessage(){
         lastMessageSentDate = allMessages[allMessages.count-1].date
         lastMessageText = allMessages[allMessages.count-1].text
-        println(lastMessageText)
     }
-    
-    
     
     func fetchNewMessages(){
         

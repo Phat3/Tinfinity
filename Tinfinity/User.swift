@@ -38,7 +38,7 @@ class User {
     var images = [UIImage?](count: MAX_PHOTOS, repeatedValue:nil)
     
     // User position
-    var position: CLLocation?
+    var position: CLLocationCoordinate2D?
     
     /* Utilities */
     

@@ -41,7 +41,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             
             // Set the timer every 2 minutes
-            timer =  NSTimer.scheduledTimerWithTimeInterval(60*2, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
+            timer =  NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
             
             // Get first location
             refreshLocation()
@@ -51,9 +51,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         // We don't want our user to mess with the map
-        self.mapView.zoomEnabled = false;
-        self.mapView.scrollEnabled = false;
-        self.mapView.userInteractionEnabled = false;
+        //self.mapView.zoomEnabled = false;
+        //self.mapView.scrollEnabled = false;
+        //self.mapView.userInteractionEnabled = false;
+        
+        
+        for(var i = 0; i < account.users.count; i++){
+         	let dropPin = UserAnnotation(user: account.users[i])
+            mapView.addAnnotation(dropPin)
+        }
         
         
     }
@@ -67,11 +73,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
         // Lets first update our Model
-        account.setLocation(locations.last as! CLLocation)
+        let location = locations.last as? CLLocation
+        account.setLocation(CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude ))
         
         if let location = account.user.position {
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
             self.mapView.setRegion(region, animated: true)
         
             // Until we add our nicely designer marker, lets use Apple one
@@ -79,6 +85,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             // Stop tracking until next call
             locationManager.stopUpdatingLocation()
+            self.plotUsersToMap()
+        }
+    }
+    
+    func plotUsersToMap(){
+        for(var i = 0; i < account.users.count; i++){
+            let dropPin = UserAnnotation(user: account.users[i])
+            mapView.addAnnotation(dropPin)
         }
     }
     
@@ -97,6 +111,47 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         println("Error while updating location " + error.localizedDescription)
+    }
+    
+   func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+    	if (annotation is MKUserLocation) {
+        	return nil
+    	}
+        
+    	let reuseId = "Annotation"
+    	if annotation.isKindOfClass(UserAnnotation.self){
+    		var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+			if annotationView == nil{
+                println("è nil")
+            	annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            	annotationView.image = UIImage(contentsOfFile: "AppIcon")
+            	annotationView.canShowCallout = true
+            
+            	let btn = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
+            	annotationView.rightCalloutAccessoryView = btn
+    		}
+        	else{
+                println("riutilizzo")
+        		annotationView.annotation = annotation
+    		}
+    
+    	return annotationView
+    }
+    	println("Non era del tipo cercato")
+    	return nil
+    
+	}
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        let custom = view.annotation as! UserAnnotation
+        let name = custom.user.name
+        
+        println("bottone cliccato")
+        
+        let ac = UIAlertController(title: "User found", message: name, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -42,7 +42,7 @@ class Account: NSObject {
         
         if let userPosition = self.user.position{
         
-        	Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.coordinate.latitude, "lon": userPosition.coordinate.longitude], encoding : .JSON)
+        	Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.latitude, "lon": userPosition.longitude], encoding : .JSON)
             	.responseJSON { (request, response, data, error) in
                 
                 	if(error != nil) {
@@ -57,9 +57,10 @@ class Account: NSObject {
                             let position = json[i]["position"]
                             var newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
                             
-                            let userPosition = CLLocation(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
+                            let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
                             
                             newUser.position = userPosition
+                            self.users.removeAll(keepCapacity: false)
                             self.users.append(newUser)
                         }
             	    }
@@ -68,7 +69,7 @@ class Account: NSObject {
         println(self.users)
     }
     
-    func setLocation(location: CLLocation){
+    func setLocation(location: CLLocationCoordinate2D){
         //Passando oggetto CLLocation, setta account.user.location e poi fa chiamata di ping al server
         account.user.position = location
         

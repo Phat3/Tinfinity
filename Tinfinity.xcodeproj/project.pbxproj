@@ -30,6 +30,7 @@
 		51ADDC0B1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ADDC0A1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift */; };
 		51ADDC0F1B57D4F100873DDB /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ADDC0E1B57D4F100873DDB /* PictureCollectionViewCell.swift */; };
 		51B1AE3C1AE79178006AE203 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1AE3B1AE79178006AE203 /* LoginViewController.swift */; };
+		51B1C0821B936A6E00116882 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B1C0811B936A6E00116882 /* UserAnnotation.swift */; };
 		51D96C241B4A6C91001A2D29 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C231B4A6C91001A2D29 /* Album.swift */; };
 		51D96C261B4ABC42001A2D29 /* FacebookAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */; };
 		8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */; };
@@ -89,6 +90,7 @@
 		51ADDC0A1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		51ADDC0E1B57D4F100873DDB /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		51B1AE3B1AE79178006AE203 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		51B1C0811B936A6E00116882 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		51D96C231B4A6C91001A2D29 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPIController.swift; sourceTree = "<group>"; };
 		51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinfinity-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				51ADDC091B57AF1800873DDB /* Facebook */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
 				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
+				51B1C0811B936A6E00116882 /* UserAnnotation.swift */,
 				5135D9E11B42E9700070A560 /* EditProfileViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
@@ -420,6 +423,7 @@
 				51A5042C1B0F7D670039E97C /* Chat.swift in Sources */,
 				51A5043B1B11C9D00039E97C /* ChatViewController.swift in Sources */,
 				5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */,
+				51B1C0821B936A6E00116882 /* UserAnnotation.swift in Sources */,
 				51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */,
 				5135D9E41B43E8800070A560 /* FacebookAlbumsViewController.swift in Sources */,
 			);

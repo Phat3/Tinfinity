@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var loginButton: FBSDKLoginButton!
@@ -28,8 +29,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loginButton.delegate = self
-        
-        profilePict.setImage(account.pictures[0],forState: .Normal)
+        profilePict.setImage(ImageUtil.cropToSquare(image: account.user.image!),forState: .Normal)
         profilePict.layer.borderWidth = 2
         profilePict.layer.masksToBounds = false
         profilePict.layer.borderColor = UIColor.whiteColor().CGColor
@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         profilePict.clipsToBounds = true
         
         if(account.user != nil){
-            self.name.text = account.user.firstName + " " + account.user.lastName
+            self.name.text = account.user.name
             self.spinner.stopAnimating()
         }
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)

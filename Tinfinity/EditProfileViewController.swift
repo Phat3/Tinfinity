@@ -13,7 +13,7 @@ class EditProfileViewController: UIViewController {
     var buttons = [UIButton]()
     let buttonX: CGFloat = 40
     let buttonY: CGFloat = 110
-    let buttonWidth: CGFloat = 105
+    let buttonWidth: CGFloat = 120
     let buttonHeight: CGFloat = 120
     let buttonHorizontalDistance: CGFloat = 180
     let buttonVerticalDistance: CGFloat = 165
@@ -52,15 +52,15 @@ class EditProfileViewController: UIViewController {
             var i = 0
             var flag = false
             while(i < MAX_PHOTOS && flag == false){
-                if (account.pictures[i] == nil ){
-                    account.pictures[i] = picture
+                if (account.user.images[i] == nil ){
+                    account.user.images[i] = picture
                     flag = true
                 }
             i++
             }
         }else{
             
-            account.pictures[editIndex] = picture
+            account.user.images[editIndex] = picture
             
         }
         
@@ -71,9 +71,9 @@ class EditProfileViewController: UIViewController {
         
         var i = 0
         
-        while let picture = account.pictures[i]{
+        while let picture = account.user.images[i]{
             if(i < MAX_PHOTOS){
-            	addButtonWithImageAtIndex(account.pictures[i]!, i: i, tag: 0)
+            	addButtonWithImageAtIndex(account.user.images[i]!, i: i, tag: 0)
             }
                 
             i++
@@ -142,11 +142,11 @@ class EditProfileViewController: UIViewController {
     
     	//Here we decide which action has to be taken based on the tag attribute
         if(buttons[i].tag == 0){
-            buttons[i].setBackgroundImage(image, forState: .Normal)
+            buttons[i].setBackgroundImage(ImageUtil.cropToSquare(image: image), forState: .Normal)
         	buttons[i].addTarget(self, action: "editPhotoAction:", forControlEvents: UIControlEvents.TouchUpInside)
             buttons[i].imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         }else{
-            buttons[i].setImage(image, forState: .Normal)
+            buttons[i].setImage(ImageUtil.cropToSquare(image: image), forState: .Normal)
             buttons[i].addTarget(self, action: "addPhotoAction:", forControlEvents: UIControlEvents.TouchUpInside)
         }
         

@@ -18,6 +18,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
     
+    var refreshControl: UIRefreshControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,14 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             chatTableView.hidden = true
             defaultMessage.hidden = false
         }
+        
+        //Implement the pull to refresh
+		self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: Selector("updateData"), forControlEvents: UIControlEvents.ValueChanged)
+        self.chatTableView.addSubview(refreshControl)
+        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,35 +75,12 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = chatTableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCustomCell
         let chat = chats[indexPath.row]
     
-        if (chat.user.imageUrl != nil){
-            
-            // Immagine già recuperata, usiamola
-            if let img = imageCache[chat.user.imageUrl!] {
-                cell.chatAvatar.image = img
-            } else {
-                let request: NSURLRequest = NSURLRequest(URL: NSURL(string: chat.user.imageUrl!)!)
-                let mainQueue = NSOperationQueue.mainQueue()
-                NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: {     (response, data, error) -> Void in
-                    if error == nil {
-                        // Convert the downloaded data in to a UIImage object
-                        let image = UIImage(data: data)
-                        //Store in our cache the image
-                        self.imageCache[chat.user.imageUrl!] = image
-                        // Update the cell
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? ChatCustomCell {
-                                cellToUpdate.chatAvatar.image = image
-                            }
-                         })
-                    }
-                    else {
-                        println("Error: \(error.localizedDescription)")
-                    }
-                })
+        // Update the cell with the avatars
+        dispatch_async(dispatch_get_main_queue(), {
+            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? ChatCustomCell {
+                cellToUpdate.chatAvatar.image = ImageUtil.cropToSquare(image: chat.user.image!)
             }
-        }else{
-            cell.chatAvatar?.image = UIImage(named: "Blank52")
-        }
+        })
     
     	//Now we need to make the chatAvatar look round
     	var frame = cell.chatAvatar.frame
@@ -104,6 +91,16 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
         cell.nameLabel.text = chat.user.name
         cell.messageLabel.text = chat.lastMessageText
+    	cell.messageTime.text = chat.lastMessageSentDateString
+    	cell.unreadMessagesNumber.layer.cornerRadius = 8
+    	if(chat.unreadMessageCount != 0){
+        	cell.unreadMessagesNumber.hidden = false
+            cell.unreadMessagesNumber.setTitle(String(chat.unreadMessageCount), forState: .Normal)
+            cell.messageTime.textColor = UIColor.blueColor()
+        }else{
+        	cell.unreadMessagesNumber.hidden = true
+            cell.messageTime.textColor = UIColor.blackColor()
+    	}
         
         return cell
     }
@@ -113,11 +110,28 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 let path = self.chatTableView.indexPathForSelectedRow()!
                 let nextViewcontroller = segue.destinationViewController as! ChatViewController
                 nextViewcontroller.chat = chats[path.row]
+            	chats[path.row].unreadMessageCount = 0
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+     
+        for(var i = 0; i < chats.count; i++){
+            chats[i].updateLastMessage()
+        }
+        chatTableView.reloadData()
+    }
+    
+    func updateData(){
+        for (var i = 0; i < chats.count; i++){
+            chats[i].fetchNewMessages({ (result) -> Void in
+                if (i == self.chats.count){
+                    self.refreshControl.endRefreshing()
+                    self.chatTableView.reloadData()
+                }
+            })
+        }
     }
 
 }

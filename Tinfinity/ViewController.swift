@@ -16,67 +16,51 @@ import CoreLocation
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var profile: User?
+    var timer: NSTimer?
+    
+    //Metodi per la posizione sulla mappa
+    
+    @IBOutlet weak var titleItem: UIBarButtonItem!
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet weak var chatButton: UIBarButtonItem!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
-        //inizializzazione mappa
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        // Require Location Permissions
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
         
-        //DEBUG
-        
-        var chat = ChatComunicaction()
-        
-        chat.connectToServer();
-        
-        
-        /*
-        var testo = "ciao come va?"
-        
-        println("Testo in chiaro : \(testo)")
-        
-        var cryptoAPI = Crypto()
-        
-        var cipher: [UInt8] = cryptoAPI.RSAEncrypt(testo)
-        
-        
-        //creiamo un oggetto data con i byte del chipher e encodiamolo in base64 cosi da poter essere mandato come stringa
-        var base64 = NSData(bytes: cipher, length: cipher.count).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        //creaimo un oggetto data partendo da una stringa encodata in base64 (ricaviamo i byte del cipher originale)
-        let base64dec = NSData(base64EncodedString: base64, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
-        //prepariamo il buffer da riempire
-        var buffer = [UInt8]()
-        //referenza ai byte del cipher
-        let bytes = UnsafePointer<UInt8>(base64dec.bytes)
-        //riempiamo il buffer
-        for i in 0 ..< base64dec.length
-        {
-        buffer.append(bytes[i])
-        }
-        println(buffer)
-        
-        //decrypt del cipher
-        var plain: String = cryptoAPI.RSADecrypt(buffer)
-        
-        println("Testo decriptato : \(plain)")
-        */
-        
-        /*
-        
-        Alamofire.request(.POST, "http://local.tinfinity.com/prova", parameters: ["foo": base64])
-        .responseString { (_, _, string, _) in
-        println(string!)
-        }
-        .responseJSON { (_, _, JSON, _) in
-        println(JSON!)
+        // Check if permissions are given
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            
+            // Set the timer every 2 minutes
+            timer =  NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
+            
+            // Get first location
+            refreshLocation()
+            
+        } else {
+            //@TODO Block App
         }
         
-        */
+        // We don't want our user to mess with the map
+        //self.mapView.zoomEnabled = false;
+        //self.mapView.scrollEnabled = false;
+        //self.mapView.userInteractionEnabled = false;
+        
+        
+        for(var i = 0; i < account.users.count; i++){
+         	let dropPin = UserAnnotation(user: account.users[i])
+            mapView.addAnnotation(dropPin)
+        }
+        
         
     }
     
@@ -85,64 +69,93 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
     
-    //Metodi per la posizione sulla mappa
-    
-    @IBOutlet weak var titleItem: UIBarButtonItem!
-    
-    @IBOutlet var mapView: MKMapView!
-    @IBOutlet weak var chatButton: UIBarButtonItem!
-    @IBOutlet weak var settingsButton: UIBarButtonItem!
-    
-    let locationManager = CLLocationManager()
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+        // Lets first update our Model
+        let location = locations.last as? CLLocation
+        account.setLocation(CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude ))
+        
+        if let location = account.user.position {
+            let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+            self.mapView.setRegion(region, animated: true)
+        
+            // Until we add our nicely designer marker, lets use Apple one
+            self.mapView.showsUserLocation = true
             
-            if (error != nil) {
-                println("Reverse geocoder failed with error" + error.localizedDescription)
-                return
-            }
-            
-            if placemarks.count > 0 {
-                let pm = placemarks[0] as! CLPlacemark
-                var location:CLLocationCoordinate2D = manager.location.coordinate
-                
-                let center = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-                
-                self.mapView.setRegion(region, animated: true)
-                
-                self.displayLocationInfo(pm)
-                self.mapView.showsUserLocation = true
-            } else {
-                println("Problem with the data received from geocoder")
-            }
-        })
+            // Stop tracking until next call
+            locationManager.stopUpdatingLocation()
+            self.plotUsersToMap()
+        }
     }
     
-    func displayLocationInfo(placemark: CLPlacemark?) {
-        if let containsPlacemark = placemark {
-            //stop updating location to save battery life
-            //locationManager.stopUpdatingLocation()
-            
-            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
-            let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
-            let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : ""
-            let country = (containsPlacemark.country != nil) ? containsPlacemark.country : ""
-            println(locality)
-            println(postalCode)
-            println(administrativeArea)
-            println(country)
+    func plotUsersToMap(){
+        for(var i = 0; i < account.users.count; i++){
+            let dropPin = UserAnnotation(user: account.users[i])
+            mapView.addAnnotation(dropPin)
         }
-        
     }
+    
+    /*
+     * We don't need to keep refreshing the location all the time, hence we 
+     * use 2 minute timer.
+     */
+    func refreshLocation(){
+        println("Refreshing Location...");
+        locationManager.startUpdatingLocation()
+    }
+    
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         let alertController = UIAlertController(title: "TinFinity", message:
             "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         println("Error while updating location " + error.localizedDescription)
+    }
+    
+   func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+    	if (annotation is MKUserLocation) {
+        	return nil
+    	}
+        
+    	let reuseId = "Annotation"
+    	if annotation.isKindOfClass(UserAnnotation.self){
+    		var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+			if annotationView == nil{
+                println("è nil")
+            	annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            	annotationView.image = UIImage(contentsOfFile: "AppIcon")
+            	annotationView.canShowCallout = true
+            
+            	let btn = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
+            	annotationView.rightCalloutAccessoryView = btn
+    		}
+        	else{
+                println("riutilizzo")
+        		annotationView.annotation = annotation
+    		}
+    
+    	return annotationView
+    }
+    	println("Non era del tipo cercato")
+    	return nil
+    
+	}
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        let custom = view.annotation as! UserAnnotation
+        let name = custom.user.name
+        
+        println("bottone cliccato")
+        
+        let ac = UIAlertController(title: "User found", message: name, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        refreshLocation()
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {

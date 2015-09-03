@@ -17,7 +17,6 @@ class ServerAPIController{
     let authenticationPath: String
     let baseUrl: String
     let chatListPath: String
-    var tinfinityToken: String?
     
     init(FBAccessToken: String){
         FBToken = FBAccessToken
@@ -44,27 +43,24 @@ class ServerAPIController{
                     let id = json["_id"].string
                     let name = json["name"].string
                     let surname = json["surname"].string
-                    self.tinfinityToken = json["token"].string
+                    account.token = json["token"].string
+                    
+                    
                     //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
                     let manager = Alamofire.Manager.sharedInstance
-                    manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": self.tinfinityToken!]
+                    manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
                         
-                    if let url = NSURL(string: json["image"].string!){
-                        let data = NSData(contentsOfURL: url)
-                        account.pictures[0] = UIImage(data: data!)!
-                    }
-                    else{
-                        account.pictures[0] = nil
-                        }
-                    
                     account.user = User(userId: id!, firstName: name!, lastName: surname!)
                     account.user.email = json["email"].string
-                    
+                    account.user.imageUrl = NSURL(string: json["image"].string!)
+                    account.user.fetchImage()
+                        
+                    println("User Token: " + account.token)
                     completion(result: true)
             		}
        			 }
     }
-
+    
     func retriveChatHistory(id: String, completion: (result: [(Chat)] ) -> Void){
         
         let manager = Alamofire.Manager.sharedInstance
@@ -78,45 +74,64 @@ class ServerAPIController{
                 }else{
                     
                     var json = JSON(data!)
-                    println(json)
-                    let lenght = json.count
-                    println(lenght)
-                    println(json[0]["data"]["user1"])
-                    let user1 = json["user1"].string
-                    let user2 = json["user2"].string
-                    for(var i=0; i < json.count; i++ ){
+                    let length = json.count
+                    
+                    for(var i = 0; i < length; i++ ){
                         
-                        let innerData = json[i]["data"]
-
+                        let innerData = json[i]
+                        let user1 = innerData["_id"]["user1"].string
+                        let user2 = innerData["_id"]["user2"].string
+                        
                         var newUser: User
                         let user1MessagesCount = innerData["user1"].count
                         let user2MessagesCount = innerData["user2"].count
-                        let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
-                        let date = NSDate(timeIntervalSinceNow: -minute)
                         
-                        /*if (user1 == account.user.userId){
+                        //This date is only needed to initialize the chat. It will be updated after
+                        let date = NSDate()
+                        
+                        if (user1 == account.user.userId){
                             //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
-                            newUser = User(userId: user2,firstName: "",lastName: "")//da rivedere
+                            newUser = User(userId: user2!,firstName: "",lastName: "")
+                            // Retrieve user data
+                            newUser.fetch();
                         }else{
-                            newUser = User(userId: user1,firstName: "",lastName: "")//da rivedere
-                        }*/
-                        newUser = User(userId: "2",firstName: "",lastName: "")//Fittizio
+                            newUser = User(userId: user1!,firstName: "",lastName: "")
+                            // Retrieve user data
+                            newUser.fetch();
+                        }
                         var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                         
-                        for( i=0 ; i < user1MessagesCount; i++){
-                            let newMessage = innerData["user1"][i]["message"].string
-                            var message = JSQMessage(senderId: user1,senderDisplayName: "Sender",date: date,text: "prova")//)newMessage)
-                            newChat.allMessages.append(message)
+                        for(var k = 0 ; k < user1MessagesCount; k++){
+                            
+                            newChat.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                            
                         }
-                        for (i = 0; i < user2MessagesCount; i++){
-                            let newMessage = innerData["user2"][i]["message"].string
-                            var message = JSQMessage(senderId: user2,senderDisplayName: "Sender",date: date,text: "prova")//)newMessage)
-                            newChat.allMessages.append(message)
+                        for (var k = 0; k < user2MessagesCount; k++){
+                            
+                            newChat.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                            
                         }
+                        newChat.reorderChat()
+                        account.chats.append(newChat)
                     }
+                    
                 }
                 
         }
     }
+    
+    func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
+        
+        let newMessage = localMessage["message"].string
+        let timestamp = localMessage["timestamp"].double!/1000
+        let text = localMessage["message"].string
+        let myDouble = NSNumber(double: timestamp)
+        let date = NSDate(timeIntervalSince1970: Double(myDouble))
+        let message = JSQMessage(senderId: user,senderDisplayName: "Sender",date: date,text: text)
+        return message
+        
+    }
+
+    
     
 }

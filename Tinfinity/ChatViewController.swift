@@ -8,29 +8,56 @@
 
 import UIKit
 import JSQMessagesViewController
+import Socket_IO_Client_Swift
+import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController {
 
+    var chat: Chat?
+    
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
-    var chat: Chat?
+    var incomingAvatar: JSQMessagesAvatarImage?
+    
+    var outgoingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: account.user.image!), diameter: 30)
+    
+    var isConnected = false
+    var registerdHandlers = false
+
+    // Socket IO client
+    private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Until Websockets are connected, we have to prevent messages being sent
+        toggleSend()
+        
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = false
         
         senderId = account.user.userId
         senderDisplayName = "Me"
         
-        //Sample chat
-        chat!.loadedMessages = [
-                JSQMessage(senderId: account.user.userId, senderDisplayName: account.user.name, date: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60), text: "I really enjoyed programming with you! :-)"),
-            JSQMessage(senderId: "2", senderDisplayName:"Ciccio", date: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60), text: "So did I!")
-        ]
+        self.connectToServer()
+        self.addHandler()
+        
+        // We need it here as 'chat' before does not exist
+        incomingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: chat!.user.image!), diameter: 30)
+        
+        // We don't need the button on the left
+        self.inputToolbar.contentView.leftBarButtonItem = nil;
         
     }
+    
+    /*
+     * Enables and disables send button
+     */
+    func toggleSend() {
+        self.inputToolbar.contentView.textView.editable = self.isConnected
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,12 +66,12 @@ class ChatViewController: JSQMessagesViewController {
     
     //Metodi necessari per JSQMessagesViewController
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        var data = self.chat!.loadedMessages[indexPath.row]
+        var data = self.chat!.allMessages[indexPath.row]
         return data
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        var data = self.chat!.loadedMessages[indexPath.row]
+        var data = self.chat!.allMessages[indexPath.row]
         if (data.senderId == self.senderId) {
             return self.outgoingBubble
         } else {
@@ -53,20 +80,85 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
+        var data = self.chat!.allMessages[indexPath.row];
+        if (data.senderId == self.senderId) {
+            return self.outgoingAvatar
+        } else {
+            return self.incomingAvatar
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.chat!.loadedMessages.count
+        return self.chat!.allMessages.count
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        
         var newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
-        chat!.loadedMessages += [newMessage]
+        chat!.allMessages.append(newMessage)
+        
+        var json = [
+            "user1" : account.user.userId,
+            "user2" : chat!.user.userId,
+            "token" : account.token,
+            "message" : text
+        ]
+        self.socket.emit("message", json)
+        
+        
         self.finishSendingMessage()
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
     }
+    
+    // Connect to the server through the websocket
+    func connectToServer(){
+        // Avoid multiple connections
+        if(!self.isConnected) {
+            self.socket.connect()
+        }
+    }
+    
+    // Handle websocket event
+    func addHandler() {
+        socket.on("message-" + account.user.userId) {[weak self] data, ack in
+            let json = JSON(data!)
+            var user_id = json[0]["user_id"].string
+            
+            // Message received for this conversation
+            if(self!.chat!.user.userId == user_id) {
+                let newMessage = JSQMessage(senderId: user_id, displayName: self!.chat!.user.name, text: json[0]["message"].string);
+                self!.chat!.allMessages.append(newMessage)
+                self!.finishReceivingMessage();
+            }
+            // Message received for other conversation
+            else {
+                // Get other chat data
+                if let otherChat = Chat.getChatByUserId(user_id!) {
+                    // Get other user data
+                    let otherUser = User.getUserById(user_id!)
+                    let newMessage = JSQMessage(senderId: user_id, displayName: otherUser?.name, text: json[0]["message"].string);
+                    otherChat.allMessages.append(newMessage);
+                    otherChat.updateLastMessage()
+                    otherChat.unreadMessageCount++;
+                }
+            }    
+            
+        }
+        
+        socket.on("connect") {[weak self] data, ack in
+            self!.isConnected = true;
+            self!.toggleSend()
+        }
+        
+        socket.on("disconnect") {[weak self] data, ack in
+            self!.isConnected = false;
+            self!.toggleSend()
+            self!.connectToServer()
+        }
+        
+    }
+    
 
 }

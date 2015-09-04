@@ -104,7 +104,7 @@ class ChatViewController: JSQMessagesViewController {
             "message" : text
         ]
         self.socket.emit("message", json)
-        
+        chat!.updateLastMessage()
         
         self.finishSendingMessage()
     }
@@ -130,7 +130,8 @@ class ChatViewController: JSQMessagesViewController {
             if(self!.chat!.user.userId == user_id) {
                 let newMessage = JSQMessage(senderId: user_id, displayName: self!.chat!.user.name, text: json[0]["message"].string);
                 self!.chat!.allMessages.append(newMessage)
-                self!.finishReceivingMessage();
+                self!.chat!.updateLastMessage()
+                self!.finishReceivingMessage()
             }
             // Message received for other conversation
             else {
@@ -141,7 +142,7 @@ class ChatViewController: JSQMessagesViewController {
                     let newMessage = JSQMessage(senderId: user_id, displayName: otherUser?.name, text: json[0]["message"].string);
                     otherChat.allMessages.append(newMessage);
                     otherChat.updateLastMessage()
-                    otherChat.unreadMessageCount++;
+                    otherChat.unreadMessageCount++
                 }
             }    
             

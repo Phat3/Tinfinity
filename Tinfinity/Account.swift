@@ -73,8 +73,10 @@ class Account: NSObject {
     
     func setLocation(location: CLLocationCoordinate2D){
         //Passando oggetto CLLocation, setta account.user.location e poi fa chiamata di ping al server
-        account.user.position = location
+        if user != nil{
+            account.user.position = location
+            self.fetchNearbyUsers()
+        }        
         
-        self.fetchNearbyUsers()
     }
 }

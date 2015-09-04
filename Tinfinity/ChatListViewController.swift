@@ -17,12 +17,20 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
+    //Need to initialize a newchat from the map
+    var newChat: Bool?
+    //The id passed by the map that tells us which is the chat we need to open
+    var clickedUserId: String?
     
     var refreshControl: UIRefreshControl!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //If we come from vewiCOntroller(The map controller) it mean we have to directly create a detailVIewController
+        if(newChat != nil){
+            performSegueWithIdentifier("chatSelected", sender: self)
+        }
         //The defualt message is hidden by default
         defaultMessage.hidden = true
         defaultMessage.text = "You have no people connected to you. Look in the map to start chatting!"
@@ -93,7 +101,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.messageLabel.text = chat.lastMessageText
     	cell.messageTime.text = chat.lastMessageSentDateString
     	cell.unreadMessagesNumber.layer.cornerRadius = 8
-    	if(chat.unreadMessageCount != 0){
+    	if(chat.hasUnloadedMessages){
         	cell.unreadMessagesNumber.hidden = false
             cell.unreadMessagesNumber.setTitle(String(chat.unreadMessageCount), forState: .Normal)
             cell.messageTime.textColor = UIColor.blueColor()
@@ -107,20 +115,28 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "chatSelected") {
+            let nextViewcontroller = segue.destinationViewController as! ChatViewController
+            if(newChat == nil){
                 let path = self.chatTableView.indexPathForSelectedRow()!
-                let nextViewcontroller = segue.destinationViewController as! ChatViewController
                 nextViewcontroller.chat = chats[path.row]
             	chats[path.row].unreadMessageCount = 0
+            }else if(newChat == true){
+                nextViewcontroller.chat = chats[0]
+                chats[0].unreadMessageCount = 0
+            }else{
+                nextViewcontroller.chat = Chat.getChatByUserId(clickedUserId!)
+            }
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
-     
-        for(var i = 0; i < chats.count; i++){
-            chats[i].updateLastMessage()
+    	if(newChat == nil){
+        	for(var i = 0; i < chats.count; i++){
+            	chats[i].updateLastMessage()
+        	}
+        	chatTableView.reloadData()
         }
-        chatTableView.reloadData()
     }
     
     func updateData(){

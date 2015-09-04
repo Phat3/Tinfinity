@@ -12,6 +12,7 @@ import Alamofire
 import Socket_IO_Client_Swift
 import MapKit
 import CoreLocation
+import Foundation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -51,10 +52,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         // We don't want our user to mess with the map
-        //self.mapView.zoomEnabled = false;
-        //self.mapView.scrollEnabled = false;
-        //self.mapView.userInteractionEnabled = false;
-        
+        self.mapView.zoomEnabled = false;
+        self.mapView.scrollEnabled = false;
         
         for(var i = 0; i < account.users.count; i++){
          	let dropPin = UserAnnotation(user: account.users[i])
@@ -114,44 +113,44 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        
+    
     	if (annotation is MKUserLocation) {
         	return nil
     	}
         
     	let reuseId = "Annotation"
-    	if annotation.isKindOfClass(UserAnnotation.self){
+    	if annotation is UserAnnotation{
+            
     		var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
 			if annotationView == nil{
-                println("è nil")
+                //If annotationView is nil a new one is created
             	annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            	annotationView.image = UIImage(contentsOfFile: "AppIcon")
             	annotationView.canShowCallout = true
+                
+                var calloutButton = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
+                
+                annotationView!.rightCalloutAccessoryView = calloutButton
             
-            	let btn = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
-            	annotationView.rightCalloutAccessoryView = btn
     		}
         	else{
-                println("riutilizzo")
+                //Else we use this annotationView to show the new annotation
         		annotationView.annotation = annotation
     		}
-    
+            
+        let customAnnotation = annotation as! UserAnnotation
+        annotationView.image = customAnnotation.image
+            
     	return annotationView
     }
-    	println("Non era del tipo cercato")
-    	return nil
     
-	}
+    	return nil
+    }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        let custom = view.annotation as! UserAnnotation
-        let name = custom.user.name
-        
         println("bottone cliccato")
-        
-        let ac = UIAlertController(title: "User found", message: name, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(ac, animated: true, completion: nil)
+        if let annotation = view.annotation as? UserAnnotation {
+            performSegueWithIdentifier("newChat", sender: view)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -161,5 +160,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
     }
-       
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "newChat") {
+            if let senderObject = sender as? MKAnnotationView{
+                let navViewController = segue.destinationViewController as! UINavigationController
+                let chatListController = navViewController.topViewController as! ChatListViewController
+                let userAnn = sender!.annotation as! UserAnnotation
+                if let senderAnnotation = senderObject.annotation as? UserAnnotation{
+                    if let chat = Chat.getChatByUserId(senderAnnotation.user.userId){
+                        chatListController.newChat = false
+                        chatListController.clickedUserId = senderAnnotation.user.userId
+                    }else{
+                		chatListController.newChat = true
+                		account.chats.insert(Chat(user: senderAnnotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
+                    }
+            	}
+        	}
+    	}
+    }
+    
 }

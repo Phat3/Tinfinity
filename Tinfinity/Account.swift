@@ -1,6 +1,7 @@
 import ObjectiveC.NSObject
 import Alamofire
 import SwiftyJSON
+import CoreData
 
 let account = Account()
 let baseUrl = NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String
@@ -56,6 +57,7 @@ class Account: NSObject {
                             let userData = json[i]["user"]
                             let position = json[i]["position"]
                             var newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
+                            newUser.fetch()
                             
                             let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
                             

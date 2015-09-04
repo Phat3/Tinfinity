@@ -23,6 +23,8 @@ class ServerAPIController{
         baseUrl = NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String
         authenticationPath = NSBundle.mainBundle().objectForInfoDictionaryKey("Authentication Path") as! String
         chatListPath = NSBundle.mainBundle().objectForInfoDictionaryKey("Chat List Path") as! String
+        // Retreive the managedObjectContext from AppDelegate
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     }
     
     //Funzione che chiama il server e setta i parametri dell'utente. Ritorna true se la richiesta è andata a buon fine,altrimenti false

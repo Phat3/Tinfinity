@@ -2,6 +2,7 @@ import Foundation.NSDate
 import JSQMessagesViewController
 import Alamofire
 import SwiftyJSON
+import CoreData
 
 var dateFormatter = NSDateFormatter()
 
@@ -143,6 +144,64 @@ class Chat {
         return message
         
     }
+    
+    /*func saveChat(newChat: Chat) {
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let entityChat =  NSEntityDescription.entityForName("Chat",inManagedObjectContext:managedContext)
+        let chat = NSManagedObject(entity: entityChat!,insertIntoManagedObjectContext:managedContext)
+        
+        chat.setValue(newChat.user.userId, forKey: "userId")
+        chat.setValue(newChat.unreadMessageCount, forKey: "unreadMessagesCount")
+        chat.setValue(newChat.lastMessageText, forKey: "lastMessageText")
+        chat.setValue(newChat.lastMessageSentDate, forKey: "lastMessageSentDate")
+        chat.setValue(newChat.hasUnloadedMessages, forKey: "hasUnloaddedMessages")
+        
+        //Bisogna salvare i messaggi
+        for(var i = 0; i < newChat.allMessages.count; i++){
+            
+            let entityMessage =  NSEntityDescription.entityForName("Message",inManagedObjectContext:managedContext)
+            let message = NSManagedObject(entity: entityMessage!,insertIntoManagedObjectContext:managedContext)
+            chat.setValue(chat.valueForKey("id"), forKey: "chatId")
+            chat.setValue(newChat.allMessages[i].text, forKey: "text")
+            chat.setValue(newChat.allMessages[i].date, forKey: "date")
+
+        }
+
+        
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+        
+        //5
+        account.chats.append(chat)
+    }
+    
+    func loadChatsFromCore(){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName:"Chat")
+        
+    	var error: NSError?
+        
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest,error: &error) as? [NSManagedObject]
+        
+        if let results = fetchedResults {
+            for (var i = 0; i < results.count; i++){
+                let chat = results[i]
+                let userId =chat.valueForKey("userId")
+                let userFetchRequest = NSFetc
+				let user = User(userId: chat.valueForKey("userId"), firstName: , lastName: <#String#>)
+            }
+        } else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
+    }*/
     
   
 }

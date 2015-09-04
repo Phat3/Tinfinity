@@ -93,7 +93,6 @@ class User {
                         for(var i=0; i < account.chats.count; i++){
                             if (account.chats[i].user.userId == self.userId){
                                 account.chats.removeAtIndex(i)
-                                println("Deleted user during fetch")
                             }
                         }
                         

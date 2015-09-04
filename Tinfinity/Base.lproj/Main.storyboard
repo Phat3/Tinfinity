@@ -46,6 +46,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="IKh-9u-SQJ">
                                 <rect key="frame" x="0.0" y="71" width="400" height="729"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="t2p-yY-B75"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qxj-Bp-rmS" userLabel="settingsButton">
                                 <rect key="frame" x="16" y="32" width="28" height="27"/>
@@ -79,6 +82,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="IKh-9u-SQJ" id="ah3-aW-w9c"/>
+                        <segue destination="4j3-Fc-tGh" kind="modal" identifier="newChat" id="0b6-wF-U64"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -484,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5n-b8-ACG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1714.5" y="294.5"/>
+            <point key="canvasLocation" x="1954.5" y="294.5"/>
         </scene>
     </scenes>
     <resources>
@@ -502,5 +506,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="JAS-DA-kTv"/>
+        <segue reference="0b6-wF-U64"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -151,7 +151,6 @@
 				51ADDC091B57AF1800873DDB /* Facebook */,
 				51AADA981AEE1774007225CD /* ServerAPIController.swift */,
 				51930AF81B0C77CC004F4F88 /* SettingsViewController.swift */,
-				51B1C0811B936A6E00116882 /* UserAnnotation.swift */,
 				5135D9E11B42E9700070A560 /* EditProfileViewController.swift */,
 				4198ECDA1AD005750048C3A0 /* Main.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
@@ -228,6 +227,7 @@
 				51A5042B1B0F7D670039E97C /* Chat.swift */,
 				51AADA9A1AEE2D6F007225CD /* User.swift */,
 				51D96C231B4A6C91001A2D29 /* Album.swift */,
+				51B1C0811B936A6E00116882 /* UserAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";

@@ -55,11 +55,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.zoomEnabled = false;
         self.mapView.scrollEnabled = false;
         
-        for(var i = 0; i < account.users.count; i++){
-         	let dropPin = UserAnnotation(user: account.users[i])
-            mapView.addAnnotation(dropPin)
-        }
-        
         
     }
     

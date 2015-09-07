@@ -114,16 +114,7 @@ class ServerAPIController{
                             }
                             newChat.reorderChat()
                             newChat.saveChat()
-                            var i = 0
-                            while(i < account.chats.count && newChat.lastMessageSentDate.compare(account.chats[i].lastMessageSentDate) == NSComparisonResult.OrderedAscending){
-                                i++
-                            }
-                            if(i == account.chats.count){
-                                account.chats.append(newChat)
-                            }else{
-                                account.chats.insert(newChat, atIndex: i+1)
-                            }
-                            
+                            newChat.insertChat()
                             completion(result: account.chats)
                         })
                        

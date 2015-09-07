@@ -133,7 +133,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     		}
             
         let customAnnotation = annotation as! UserAnnotation
-        annotationView.image = customAnnotation.image
+        annotationView.image = ImageUtil.cropToSquare(image: customAnnotation.image)
             
     	return annotationView
     }

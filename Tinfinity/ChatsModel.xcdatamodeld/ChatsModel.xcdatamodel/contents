@@ -5,11 +5,13 @@
         <attribute name="lastMessageDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastMessageText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unreadMessagesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hasMessages" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="belongsTo" inverseEntity="Message" syncable="YES"/>
         <relationship name="withUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hasChat" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Message" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="senderId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="hasMessages" inverseEntity="Chat" syncable="YES"/>
     </entity>
@@ -23,8 +25,8 @@
         <relationship name="hasChat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="withUser" inverseEntity="Chat" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="-234" positionY="-108" width="128" height="133"/>
-        <element name="Message" positionX="-450" positionY="62" width="128" height="28"/>
+        <element name="Chat" positionX="-234" positionY="-108" width="128" height="150"/>
+        <element name="Message" positionX="-450" positionY="62" width="128" height="105"/>
         <element name="User" positionX="-54" positionY="27" width="128" height="150"/>
     </elements>
 </model>

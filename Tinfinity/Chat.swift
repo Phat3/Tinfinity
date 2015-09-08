@@ -59,13 +59,13 @@ class Chat {
     
     func reorderChat(){
         /*Insertion Sort*/
-        /*for i = 2:n,
-        for (k = i; k > 1 and a[k] < a[k-1]; k--)
+        /*for i = 1:n,
+        for (k = i; k > 0 and a[k] < a[k-1]; k--)
         swap a[k,k-1]*/
         
         for(var i = 1; i < self.allMessages.count; i++){
             
-            for(var k = i; k > 0 && self.allMessages[k - 1].date.timeIntervalSinceDate(self.allMessages[k].date) > 0; k--){
+            for(var k = i; k > 0 && self.allMessages[k - 1].date.compare(self.allMessages[k].date) == NSComparisonResult.OrderedDescending; k--){
                 
                 let temp = allMessages[k-1]
             	allMessages[k-1] = allMessages[k]
@@ -174,6 +174,7 @@ class Chat {
         // Setting entities properties
         
         // Chat
+        chat.setValue(self.user.userId, forKey: "userId")
         chat.setValue(self.unreadMessageCount, forKey: "unreadMessagesCount")
         chat.setValue(self.lastMessageText, forKey: "lastMessageText")
         chat.setValue(self.lastMessageSentDate, forKey: "lastMessageDate")
@@ -201,6 +202,7 @@ class Chat {
             let message = NSManagedObject(entity: entityMessage!,insertIntoManagedObjectContext:managedContext)
             message.setValue(messageObject.text, forKey: "text")
             message.setValue(messageObject.date, forKey: "date")
+            message.setValue(messageObject.senderId, forKey: "senderId")
             
             // Settiamo le relazioni tra i messaggi e la relativa chat
             message.setValue(chat, forKey: "belongsTo")
@@ -216,6 +218,20 @@ class Chat {
             println("Could not save \(error), \(error?.userInfo)")
         }
         
+    }
+    
+    func saveMessage(newMessage: JSQMessage){
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let entityMessage =  NSEntityDescription.entityForName("Message",inManagedObjectContext:managedContext)
+        let message = NSManagedObject(entity: entityMessage!,insertIntoManagedObjectContext:managedContext)
+        
+        message.setValue(newMessage.text, forKey: "text")
+        message.setValue(newMessage.date, forKey: "date")
+        
+        // Settiamo le relazioni tra i messaggi e la relativa chat
+        //message.setValue(chat, forKey: "belongsTo")
     }
     
     static func loadChatsFromCore(){
@@ -245,7 +261,8 @@ class Chat {
                 
                 let messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
                 for message in messages{
-                    let newMessage = JSQMessage(senderId: newUser.userId, displayName: newUser.name, text: message.valueForKey("text") as! String)
+                    let messageDate = message.valueForKey("date") as! NSDate
+                    let newMessage = JSQMessage(senderId: message.valueForKey("senderId") as! String, senderDisplayName: newUser.name, date: messageDate, text: message.valueForKey("text") as! String)
                     newChat.allMessages.append(newMessage)
                 }
                 newChat.reorderChat()

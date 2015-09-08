@@ -169,6 +169,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     }else{
                 		chatListController.newChat = true
                 		account.chats.insert(Chat(user: senderAnnotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
+                        account.chats[0].saveNewChat()
                     }
             	}
         	}

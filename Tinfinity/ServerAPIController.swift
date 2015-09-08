@@ -113,7 +113,7 @@ class ServerAPIController{
                                 
                             }
                             newChat.reorderChat()
-                            newChat.saveChat()
+                            newChat.saveNewChat()
                             newChat.insertChat()
                             completion(result: account.chats)
                         })

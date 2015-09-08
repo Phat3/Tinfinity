@@ -76,7 +76,7 @@ class Chat {
         
     }
     /*
-	*The function inserts the given chat in the right order, comparing it's date to the ones of already existing chats
+	*Inserts the chat in the right order, comparing it's date to the ones of already existing chats
 	*/
     func insertChat(){
         var i = 0
@@ -160,7 +160,12 @@ class Chat {
         
     }
     
-    func saveChat() {
+    /*
+	* Create a new record in the core data with the informations of the chat. Note that the function does not check if the record
+    * already exists, since in the application flow it is called only when the application is launched for the first time or when a 
+    * chat with a new user is created.
+	*/
+    func saveNewChat() {
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -174,7 +179,7 @@ class Chat {
         // Setting entities properties
         
         // Chat
-        chat.setValue(self.user.userId, forKey: "userId")
+        chat.setValue(account.user.userId, forKey: "myUserId")
         chat.setValue(self.unreadMessageCount, forKey: "unreadMessagesCount")
         chat.setValue(self.lastMessageText, forKey: "lastMessageText")
         chat.setValue(self.lastMessageSentDate, forKey: "lastMessageDate")
@@ -217,21 +222,43 @@ class Chat {
         if !managedContext.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")
         }
-        
     }
     
-    func saveMessage(newMessage: JSQMessage){
+    func saveNewMessage(newMessage: JSQMessage, userId: String){
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let entityMessage =  NSEntityDescription.entityForName("Message",inManagedObjectContext:managedContext)
         let message = NSManagedObject(entity: entityMessage!,insertIntoManagedObjectContext:managedContext)
         
+        message.setValue(newMessage.senderId, forKey: "senderId")
         message.setValue(newMessage.text, forKey: "text")
         message.setValue(newMessage.date, forKey: "date")
         
-        // Settiamo le relazioni tra i messaggi e la relativa chat
-        //message.setValue(chat, forKey: "belongsTo")
+        //Let's look for the chat record
+        let entity = "Chat"
+        var request = NSFetchRequest(entityName: entity)
+        var error: NSError?
+        if let entities = managedContext.executeFetchRequest(
+            request,
+            error: &error
+            ) as? [NSManagedObject] {
+                for chat in entities {
+                    let user = chat.valueForKey("withUser") as! NSManagedObject
+                    if(chat.valueForKey("myUserId") as! String == account.user.userId && user.valueForKey("id") as! String == userId){
+                        message.setValue(chat, forKey: "belongsTo")
+                        
+                        var messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
+                        messages.append(message)
+                        let messagesSet = NSSet(array: messages)
+                        chat.setValue(messagesSet, forKey: "hasMessages")
+                    }
+                }
+            var error: NSError?
+            if !managedContext.save(&error) {
+                println("Could not save \(error), \(error?.userInfo)")
+            }
+        }
     }
     
     static func loadChatsFromCore(){
@@ -248,14 +275,11 @@ class Chat {
         if let results = fetchedResults {
             // For every chat we have found we need to load the relative user and the messages
             for chat in results{
-            	let user = chat.valueForKey("withUser") as! NSManagedObject
+                let user = chat.valueForKey("withUser") as! NSManagedObject
                 let newUser = User(userId: user.valueForKey("id") as! String, firstName: user.valueForKey("firstName") as! String, lastName: user.valueForKey("lastName") as! String)
                 let url = NSURL(fileURLWithPath: user.valueForKey("imageUrl") as! String)
-                newUser.imageUrl = url
-                println(url)
                 let image = user.valueForKey("image") as! NSData
                 newUser.images[0] = UIImage(data: image)
-                println(newUser.image)
                 let date = chat.valueForKey("lastMessageDate") as! NSDate
                 let newChat = Chat(user: newUser, lastMessageText: chat.valueForKey("lastMessageText") as! String, lastMessageSentDate: date)
                 

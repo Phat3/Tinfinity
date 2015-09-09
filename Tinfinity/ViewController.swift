@@ -13,6 +13,7 @@ import Socket_IO_Client_Swift
 import MapKit
 import CoreLocation
 import Foundation
+import AVFoundation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -133,7 +134,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     		}
             
         let customAnnotation = annotation as! UserAnnotation
-        annotationView.image = ImageUtil.cropToSquare(image: customAnnotation.image)
+        
+        let img = ImageUtil.cropToSquare(image: customAnnotation.image)
+        let rect = AVMakeRectWithAspectRatioInsideRect(img.size, CGRect(x: 0, y: 0, width: 35, height: 35))
+        UIGraphicsBeginImageContext(rect.size)
+        img.drawInRect(rect) //[image drawInRect:rect];
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        let imageData = UIImagePNGRepresentation(image)
+        UIGraphicsEndImageContext()
+        let finalImage = UIImage(data: imageData)
+        annotationView.image = finalImage
             
     	return annotationView
     }

@@ -19,7 +19,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-       return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        var result = UIScreen.mainScreen().nativeBounds.size
+    	let scale = UIScreen.mainScreen().scale
+        result = CGSizeMake(result.width*scale, result.height*scale)
+        if (result.height == 960) {//iPh4/4S
+        	let storyboard = UIStoryboard(name:"Main4", bundle: nil)
+            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
+        	self.window?.rootViewController = initViewController
+    	}else if (result.height == 1136) { //iPh5/5C/5S
+            let storyboard = UIStoryboard(name:"Main5", bundle: nil)
+            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
+            self.window?.rootViewController = initViewController
+        }else if (result.height == 1334) { //iPh6
+            let storyboard = UIStoryboard(name:"Main6", bundle: nil)
+            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
+            self.window?.rootViewController = initViewController
+        }else if (result.height == 2208) { //iPh6+
+            let storyboard = UIStoryboard(name:"Main6", bundle: nil)
+            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
+            self.window?.rootViewController = initViewController
+        }
+               return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication,

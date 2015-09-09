@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Chat List Path</key>
-	<string>/api/chat/</string>
 	<key>Authentication Path</key>
 	<string>/api/auth/fb</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -33,16 +31,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Chat List Path</key>
+	<string>/api/chat/</string>
 	<key>FacebookAppID</key>
 	<string>439360779551762</string>
 	<key>FacebookDisplayName</key>
 	<string>TinFinity</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Tinfinity to show you people around you</string>
 	<key>Server URL</key>
 	<string>http://tinfinity.eu</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>Main6</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -53,8 +55,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow Tinfinity to show you people around you</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

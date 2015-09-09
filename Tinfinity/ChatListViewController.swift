@@ -18,7 +18,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
     
-    /*This can assume 3 values:
+    /*newChat can assume 3 values:
 	* - nil: means the user got in this controller by simply clicking the regoular button
 	* - false: means the user got in this controller by selecting a nearby user on the map, so we have to open the
 	*			relative chat, which already exists
@@ -109,7 +109,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.messageLabel.text = chat.lastMessageText
     	cell.messageTime.text = chat.lastMessageSentDateString
     	cell.unreadMessagesNumber.layer.cornerRadius = 8
-    	if(chat.hasUnloadedMessages){
+    	if(chat.unreadMessageCount != 0){
         	cell.unreadMessagesNumber.hidden = false
             cell.unreadMessagesNumber.setTitle(String(chat.unreadMessageCount), forState: .Normal)
             cell.messageTime.textColor = UIColor.blueColor()
@@ -139,7 +139,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
-    	if(newChat == nil){
+    	if(newChat == nil || newChat == false){
         	for(var i = 0; i < chats.count; i++){
             	chats[i].updateLastMessage()
         	}
@@ -150,6 +150,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     func updateData(){
         for (var i = 0; i < chats.count; i++){
             chats[i].fetchNewMessages({ (result) -> Void in
+                //If it's the last call we reload the data in the table
                 if (i == self.chats.count){
                     self.refreshControl.endRefreshing()
                     self.chatTableView.reloadData()

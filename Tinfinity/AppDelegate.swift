@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        var result = UIScreen.mainScreen().nativeBounds.size
+        var result = UIScreen.mainScreen().bounds.size
     	let scale = UIScreen.mainScreen().scale
         result = CGSizeMake(result.width*scale, result.height*scale)
         if (result.height == 960) {//iPh4/4S

@@ -84,6 +84,10 @@ class EditProfileViewController: UIViewController {
             addButtonWithImageAtIndex(image!,i: i,tag: 1)
         }
         
+        // Pushing the images online. 
+        // E' gisuto che sia qui?
+        account.syncImages()
+        
     }
     
     func editPhotoAction(sender:UIButton!)

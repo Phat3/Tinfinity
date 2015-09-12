@@ -27,10 +27,22 @@ class Account: NSObject {
     }
     
     /**
-     * Con questo metodo, pushamo le informazioni relative all'utente 'me' in remoto
+     * Con questo metodo, pushamo le informazioni relative alle immagini
+     * dell'utente 'me' in remoto
+     * Effettuiamo una richiesta HTTP per ogni immagine per non avere body
+     * troppo grossi che possono generare dei 413 lato server.
      */
-    func sync() {
+    func syncImages() {
         
+        for( var i = 0; i < self.user.images.count ; i++ ) {
+            if let imgProfile:NSData = UIImagePNGRepresentation(self.user.images[i]) {
+                Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [
+                    "image" : i,
+                    "imageData" : imgProfile.base64EncodedStringWithOptions(.allZeros)
+                ])
+            }
+        }
+    
     }
 
     func deleteAccount() {

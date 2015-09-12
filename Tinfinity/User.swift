@@ -66,6 +66,10 @@ class User {
         self.lastName = lastName
     }
     
+    /**
+     * Recuperiamo uno specifico utente a partire dal suo userId
+     * @returns User
+     */
     static func getUserById(user_id: String) -> User? {
         for(var i=0; i < account.users.count; i++){
             if (account.users[i].userId == user_id){

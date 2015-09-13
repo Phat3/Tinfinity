@@ -44,15 +44,6 @@ class Account: NSObject {
         }
     }
     
-    /**
-     * Con questo metodo, recuperiamo le informazioni relative alle immagini
-     * dell'utente 'me' dal server remoto
-     */
-    func fetchImages() {
-        // let base64String = prefs.valueForKey("imgDefault") as? String
-        // let decodedData = NSData(base64EncodedString: base64String!, options: NSDataBase64DecodingOptions(rawValue: 0) )
-        // var decodedimage = UIImage(data: decodedData!)
-    }
 
     func deleteAccount() {
         logOut()

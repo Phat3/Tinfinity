@@ -135,6 +135,17 @@ class User {
         return self.images[0] = UIImage(named: "Blank")
     }
     
+    
+    /**
+     * Con questo metodo, recuperiamo le informazioni relative alle immagini
+     * dell'utente 'me' dal server remoto
+     */
+    func fetchImages() {
+        // let base64String = prefs.valueForKey("imgDefault") as? String
+        // let decodedData = NSData(base64EncodedString: base64String!, options: NSDataBase64DecodingOptions(rawValue: 0) )
+        // var decodedimage = UIImage(data: decodedData!)
+    }
+    
 
 }
 

@@ -187,8 +187,6 @@ class Chat {
         
         // User
         user.setValue(self.user.userId, forKey: "id")
-        let stringURL = "\(self.user.imageUrl)"
-        user.setValue(stringURL, forKey: "imageUrl")
         let imageData = UIImagePNGRepresentation(self.user.image)
         user.setValue(imageData, forKey: "image")
         user.setValue(self.user.firstName, forKey: "firstName")

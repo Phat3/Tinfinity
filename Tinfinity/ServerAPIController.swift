@@ -54,11 +54,7 @@ class ServerAPIController{
                         
                         account.user = User(userId: id!, firstName: name!, lastName: surname!)
                         account.user.email = json["email"].string
-                        account.user.imageUrl = NSURL(string: json["image"].string!)
-                        account.user.fetchImage()
-                        
-                        // Considerando che non è sincrono, va bene mettere qui il fetch di tutte le immagini
-                        account.user.fetchImages()
+                        account.user.decodeImages(json["images"])
                         
                         println("User Token: " + account.token)
                         completion(result: true)

@@ -31,9 +31,6 @@ class User {
         return images[0]
     }
     
-    // Main image URL
-    var imageUrl : NSURL?
-    
     // Images array
     var images = [UIImage?](count: MAX_PHOTOS, repeatedValue:nil)
     
@@ -106,7 +103,7 @@ class User {
                     }else{
                     	self.firstName = json["name"].string!
                     	self.lastName = json["surname"].string!
-                    	self.imageUrl = NSURL(string: json["image"].string!)
+                        
                     	if(json["gender"] == "male") {
                         	self.gender = Gender.Male
                     	} else {
@@ -114,7 +111,8 @@ class User {
                    	 	}
                     
                     	// Lets download the image
-                    	self.fetchImage()
+                    	self.decodeImages(json["images"])
+                        
                         completion(result: self)
                     }
                 }
@@ -122,28 +120,21 @@ class User {
     }
     
     /**
-     * Downloads the remote image into a UIImage with
+     * Decodes the base64 images data into a UIImage with
      * a default image fallback
      */
-    func fetchImage() {
-        if let url = self.imageUrl {
-            let data = NSData(contentsOfURL: url)
-            if (data != nil){
-            	return self.images[0] = UIImage(data: data!)!
-        	}
-    	}
-        return self.images[0] = UIImage(named: "Blank")
-    }
-    
-    
-    /**
-     * Con questo metodo, recuperiamo le informazioni relative alle immagini
-     * dell'utente 'me' dal server remoto
-     */
-    func fetchImages() {
-        // let base64String = prefs.valueForKey("imgDefault") as? String
-        // let decodedData = NSData(base64EncodedString: base64String!, options: NSDataBase64DecodingOptions(rawValue: 0) )
-        // var decodedimage = UIImage(data: decodedData!)
+    func decodeImages(images: JSON) {
+        for(var i = 0; i < images.count; i++) {
+            if let base64String = images[String(i)].string {
+                let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions(rawValue: 0) )
+                self.images[i] = UIImage(data: decodedData!)
+            }
+        }
+        
+        // Fallback for main image
+        if(self.image == nil) {
+            self.images[0] = UIImage(named: "Blank")
+        }
     }
     
 

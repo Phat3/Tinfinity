@@ -86,7 +86,7 @@ class EditProfileViewController: UIViewController {
         
         // Pushing the images online. 
         // E' gisuto che sia qui?
-        account.syncImages()
+        account.pushImages()
         
     }
     

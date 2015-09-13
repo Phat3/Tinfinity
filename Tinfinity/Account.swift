@@ -32,7 +32,7 @@ class Account: NSObject {
      * Effettuiamo una richiesta HTTP per ogni immagine per non avere body
      * troppo grossi che possono generare dei 413 lato server.
      */
-    func syncImages() {
+    func pushImages() {
         
         for( var i = 0; i < self.user.images.count ; i++ ) {
             if let imgProfile:NSData = UIImagePNGRepresentation(self.user.images[i]) {
@@ -42,7 +42,16 @@ class Account: NSObject {
                 ])
             }
         }
+    }
     
+    /**
+     * Con questo metodo, recuperiamo le informazioni relative alle immagini
+     * dell'utente 'me' dal server remoto
+     */
+    func fetchImages() {
+        // let base64String = prefs.valueForKey("imgDefault") as? String
+        // let decodedData = NSData(base64EncodedString: base64String!, options: NSDataBase64DecodingOptions(rawValue: 0) )
+        // var decodedimage = UIImage(data: decodedData!)
     }
 
     func deleteAccount() {

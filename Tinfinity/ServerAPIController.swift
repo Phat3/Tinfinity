@@ -40,25 +40,28 @@ class ServerAPIController{
                         completion(result: false)
                     }else{
                     
-                    var json = JSON(data!)
+                        var json = JSON(data!)
                     
-                    let id = json["_id"].string
-                    let name = json["name"].string
-                    let surname = json["surname"].string
-                    account.token = json["token"].string
+                        let id = json["_id"].string
+                        let name = json["name"].string
+                        let surname = json["surname"].string
+                        account.token = json["token"].string
                     
-                    
-                    //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
-                    let manager = Alamofire.Manager.sharedInstance
-                    manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
                         
-                    account.user = User(userId: id!, firstName: name!, lastName: surname!)
-                    account.user.email = json["email"].string
-                    account.user.imageUrl = NSURL(string: json["image"].string!)
-                    account.user.fetchImage()
+                        //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
+                        let manager = Alamofire.Manager.sharedInstance
+                        manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
                         
-                    println("User Token: " + account.token)
-                    completion(result: true)
+                        account.user = User(userId: id!, firstName: name!, lastName: surname!)
+                        account.user.email = json["email"].string
+                        account.user.imageUrl = NSURL(string: json["image"].string!)
+                        account.user.fetchImage()
+                        
+                        // Considerando che non è sincrono, va bene mettere qui il fetch di tutte le immagini
+                        account.user.fetchImages()
+                        
+                        println("User Token: " + account.token)
+                        completion(result: true)
             		}
        			 }
     }

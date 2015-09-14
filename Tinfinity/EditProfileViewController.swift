@@ -87,7 +87,7 @@ class EditProfileViewController: UIViewController {
         }
         
         // Pushing the images online.
-        // Se non ho capito male, intendi che vada qui. 
+        // Se non ho capito male, intendi che vada qui. Questa funzione è chiamata una volta che si ritorna dall'image picker,sia in caso di edit di una foto sia in caso di aggiunta. 
         account.pushImages()
         
     }

@@ -27,6 +27,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     *  The check on this is made in the preparefore segue with id: chatSelected
 	*/
     var newChat: Bool?
+    
     //The id passed by the map that tells us which is the chat we need to open
     var clickedUserId: String?
     
@@ -125,13 +126,17 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         if (segue.identifier == "chatSelected") {
             let nextViewcontroller = segue.destinationViewController as! ChatViewController
             if(newChat == nil){
+                //Normal segue after chat selection in list
                 let path = self.chatTableView.indexPathForSelectedRow()!
                 nextViewcontroller.chat = chats[path.row]
             	chats[path.row].unreadMessageCount = 0
             }else if(newChat == true){
+                //Segue after new user selection on map
                 nextViewcontroller.chat = chats[0]
                 chats[0].unreadMessageCount = 0
+                self.newChat = false
             }else{
+                //Segue after selection on map of user with an already existing chat
                 nextViewcontroller.chat = Chat.getChatByUserId(clickedUserId!)
             }
         }

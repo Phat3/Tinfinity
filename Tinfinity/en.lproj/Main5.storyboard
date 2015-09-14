@@ -25,7 +25,6 @@
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="k0a-W5-zfZ"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="loginButton" destination="eGj-X7-prb" id="6kQ-cB-adc"/>
                         <segue destination="yIM-X2-ymU" kind="modal" identifier="loginExecuted" id="4KW-bE-gKq"/>
@@ -122,16 +121,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yu7-6d-VOs" userLabel="Home">
-                                <rect key="frame" x="334" y="32" width="25" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="Homepage">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="W45-6M-GaE" kind="unwind" unwindAction="unwindToHome:" id="WSf-DV-BSh"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" id="rd0-6U-DYZ" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="58" y="412" width="204" height="34"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ON3-0i-BgS" userLabel="Name">
                                 <rect key="frame" x="30" y="195" width="261" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -147,11 +141,16 @@
                                     <segue destination="kdn-lW-eTW" kind="modal" id="pQe-Cq-oMX"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="rd0-6U-DYZ" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="58" y="412" width="204" height="34"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yu7-6d-VOs" userLabel="Home">
+                                <rect key="frame" x="279" y="32" width="25" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="Homepage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="W45-6M-GaE" kind="unwind" unwindAction="unwindToHome:" id="WSf-DV-BSh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -506,7 +505,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AUx-sQ-xMi"/>
         <segue reference="nXN-qd-rlF"/>
+        <segue reference="OSV-V8-qMD"/>
     </inferredMetricsTieBreakers>
 </document>

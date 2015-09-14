@@ -11,12 +11,12 @@ import UIKit
 class EditProfileViewController: UIViewController {
     
     var buttons = [UIButton]()
-    let buttonX: CGFloat = 40
-    let buttonY: CGFloat = 110
-    let buttonWidth: CGFloat = 120
-    let buttonHeight: CGFloat = 120
-    let buttonHorizontalDistance: CGFloat = 180
-    let buttonVerticalDistance: CGFloat = 165
+    var buttonX: CGFloat = 0//= 40
+    var buttonY: CGFloat = 0//= 110
+    var buttonWidth: CGFloat = 120
+    var buttonHeight: CGFloat = 120
+    var buttonHorizontalDistance: CGFloat = 0//= 180
+    var buttonVerticalDistance: CGFloat = 0//= 165
     
     var addButton = UIButton()
     
@@ -27,7 +27,29 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        // Do any additional setup after loading the view.
+        
+        let screenWidth = self.view.frame.size.width
+        println("Width: " + String(stringInterpolationSegment: screenWidth))
+        let screenHeight = self.view.frame.size.height
+        println("Height: " + String(stringInterpolationSegment: screenHeight))
+        
+        buttonX = screenWidth/16.0
+        println("Button x:" + String(stringInterpolationSegment: buttonX))
+        buttonY = screenHeight/6.0
+        println("Button y:" + String(stringInterpolationSegment: buttonY))
+        
+        buttonHeight = ((screenHeight - buttonY)  * 2 / CGFloat(MAX_PHOTOS))
+        println("Button height: " + String(stringInterpolationSegment: buttonHeight))
+        buttonWidth = (screenWidth - buttonX * 2) / CGFloat(2)
+        println("Button width: " + String(stringInterpolationSegment: buttonWidth))
+        
+        buttonHorizontalDistance = buttonX + buttonWidth
+        println("Horizontal distance:" + String(stringInterpolationSegment: buttonHorizontalDistance))
+        buttonVerticalDistance = buttonY + buttonHeight
+        println("Vertical distance:" + String(stringInterpolationSegment: buttonVerticalDistance))
+
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,13 +86,17 @@ class EditProfileViewController: UIViewController {
             
         }
         
+        // Pushing the images online.
+        // Se non ho capito male, intendi che vada qui. 
+        account.pushImages()
+        
     }
     
     //Here we add the buttons to our view. We will add one for each photo, and, if the photo are less than 6, we put an additional one to let the user add a photo
     override func viewDidAppear(animated: Bool) {
         
         var i = 0
-        
+
         while let picture = account.user.images[i]{
             if(i < MAX_PHOTOS){
             	addButtonWithImageAtIndex(account.user.images[i]!, i: i, tag: 0)
@@ -83,10 +109,6 @@ class EditProfileViewController: UIViewController {
             var image = UIImage(named:"Plus")
             addButtonWithImageAtIndex(image!,i: i,tag: 1)
         }
-        
-        // Pushing the images online. 
-        // E' gisuto che sia qui?
-        account.pushImages()
         
     }
     

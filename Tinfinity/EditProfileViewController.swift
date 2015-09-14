@@ -35,12 +35,14 @@ class EditProfileViewController: UIViewController {
         
         buttonX = screenWidth/16.0
         println("Button x:" + String(stringInterpolationSegment: buttonX))
-        buttonY = screenHeight/6.0
+        buttonY = screenHeight/8.0
         println("Button y:" + String(stringInterpolationSegment: buttonY))
         
-        buttonHeight = ((screenHeight - buttonY)  * 2 / CGFloat(MAX_PHOTOS))
+        let floatConst = CGFloat(MAX_PHOTOS)
+        
+        buttonHeight = ((screenHeight - (buttonY  * ((floatConst / 2.0)))) / ( floatConst / 2 ))
         println("Button height: " + String(stringInterpolationSegment: buttonHeight))
-        buttonWidth = (screenWidth - buttonX * 2) / CGFloat(2)
+        buttonWidth = ((screenWidth - (buttonX * 3)) / CGFloat(2))
         println("Button width: " + String(stringInterpolationSegment: buttonWidth))
         
         buttonHorizontalDistance = buttonX + buttonWidth
@@ -62,6 +64,8 @@ class EditProfileViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        buttons.removeAll(keepCapacity: false)
     }
     
     @IBAction func unwindToEdit(segue: UIStoryboardSegue) {
@@ -97,19 +101,20 @@ class EditProfileViewController: UIViewController {
         
         var i = 0
 
-        while let picture = account.user.images[i]{
+        while ( i < account.user.images.count && account.user.images[i] != nil){
             if(i < MAX_PHOTOS){
             	addButtonWithImageAtIndex(account.user.images[i]!, i: i, tag: 0)
+                
+				i++
             }
                 
-            i++
         }
         
         if i < MAX_PHOTOS {
             var image = UIImage(named:"Plus")
             addButtonWithImageAtIndex(image!,i: i,tag: 1)
         }
-        
+
     }
     
     func editPhotoAction(sender:UIButton!)
@@ -124,13 +129,13 @@ class EditProfileViewController: UIViewController {
     {
         editFlag = false
         //We need to remove the last button that is the old button to add photo. The new one will be added once the view is loaded
-        buttons.removeLast()
         performSegueWithIdentifier("editPhoto", sender: sender)
     }
 
     
     //We use this function to create a button and place it into the UI. The tag is needed to decide if it's an edit photo or an add photo button: 1 means it's add photo, 0 edit
     func addButtonWithImageAtIndex(image: UIImage,i: Int,tag: Int){
+        
         
         buttons.append(UIButton.buttonWithType(UIButtonType.Custom) as! UIButton)
         buttons[i].tag = tag
@@ -159,13 +164,14 @@ class EditProfileViewController: UIViewController {
         }else{
             
             var yMultiplier:CGFloat = CGFloat((i-1) / 2)
-            
+
             buttons[i].frame = CGRectMake(buttonX + buttonHorizontalDistance, buttonY + yMultiplier * buttonVerticalDistance, buttonWidth, buttonHeight)
             
         }
         
         buttons[i].backgroundColor = UIColor.whiteColor()
     
+        println(buttons[i])
     	//Here we decide which action has to be taken based on the tag attribute
         if(buttons[i].tag == 0){
             buttons[i].setBackgroundImage(ImageUtil.cropToSquare(image: image), forState: .Normal)
@@ -183,6 +189,7 @@ class EditProfileViewController: UIViewController {
         buttons[i].layer.cornerRadius = cornerRadius
         
         self.view.addSubview(buttons[i])
+        
 
         
     }

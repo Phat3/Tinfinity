@@ -53,11 +53,11 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("albumCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("albumCell", forIndexPath: indexPath) as! AlbumCustomCell
 
         // Configure the cell...
         let album = albums[indexPath.row]
-		cell.textLabel?.text = album.name
+		cell.albumName.text = album.name
         let url = album.cover
         /*let url = NSURL(string: album.cover)
         let data = NSData(contentsOfURL: url!)
@@ -69,7 +69,7 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
         if (!url.isEmpty){
             // Immagine già recuperata, usiamola
             if let img = imageCache[url] {
-                cell.imageView!.image = img
+                cell.albumPicture!.image = img
             } else {
                 let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
                 let mainQueue = NSOperationQueue.mainQueue()
@@ -81,8 +81,8 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
                         self.imageCache[url] = image
                         // Update the cell
                         dispatch_async(dispatch_get_main_queue(), {
-                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell? {
-                                cellToUpdate.imageView!.image = image
+                            if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as! AlbumCustomCell? {
+                                cellToUpdate.albumPicture!.image = ImageUtil.cropToSquare(image: image!)
                                 tableView.reloadData()
                             }
                         })

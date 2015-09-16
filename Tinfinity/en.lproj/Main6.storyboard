@@ -174,11 +174,11 @@
             <objects>
                 <viewController id="lQ0-iB-vuT" userLabel="Picture Detail View Controller" customClass="PictureDetailViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IDe-v4-e4f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cOt-SI-PmB" userLabel="Picture Detail">
-                                <rect key="frame" x="10" y="103" width="355" height="461"/>
+                                <rect key="frame" x="10" y="103" width="300" height="362"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="LyJ-bM-5gf">
@@ -211,7 +211,7 @@
             <objects>
                 <collectionViewController id="0c8-k8-hLB" customClass="FacebookPhotoCollectionViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="s4s-zw-Oeb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="sBi-hD-FUC">
@@ -265,7 +265,7 @@
             <objects>
                 <viewController id="HTY-YK-86i" userLabel="Facebook Album View Controller" customClass="FacebookAlbumsViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ifg-UB-6yC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="QAi-uW-oJc">
@@ -273,26 +273,33 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gg8-lz-rfl">
-                                <rect key="frame" x="-13" y="66" width="388" height="601"/>
+                                <rect key="frame" x="-13" y="66" width="333" height="502"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" textLabel="C7X-kP-9KT" style="IBUITableViewCellStyleDefault" id="HRx-Q7-ps8">
-                                        <rect key="frame" x="0.0" y="22" width="388" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" id="HRx-Q7-ps8" customClass="AlbumCustomCell" customModule="Tinfinity" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="333" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HRx-Q7-ps8" id="rcz-pC-O6Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C7X-kP-9KT">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="POa-pz-Oam" userLabel="Album Picture">
+                                                    <rect key="frame" x="25" y="0.0" width="46" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="N4m-7Z-QaS" userLabel="AlbumName">
+                                                    <rect key="frame" x="90" y="8" width="171" height="27.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="albumName" destination="N4m-7Z-QaS" id="OBK-hg-n0f"/>
+                                            <outlet property="albumPicture" destination="POa-pz-Oam" id="CX5-bc-KqV"/>
                                             <segue destination="0c8-k8-hLB" kind="push" id="K0o-EH-q1U"/>
                                         </connections>
                                     </tableViewCell>
@@ -316,14 +323,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8d-hZ-Yu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184.5" y="2283.5"/>
+            <point key="canvasLocation" x="-185" y="2283"/>
         </scene>
         <!--Edit Profile Controller-->
         <scene sceneID="6dk-lb-RgG">
             <objects>
                 <viewController id="dW8-9x-bnX" userLabel="Edit Profile Controller" customClass="EditProfileViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74k-g6-eUC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

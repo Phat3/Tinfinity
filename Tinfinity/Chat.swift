@@ -126,18 +126,22 @@ class Chat {
                             
                             for(var k = 0 ; k < user1MessagesCount; k++){
                                 
-                                self.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                                let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
+                                self.allMessages.append(newMessage)
                                 if (user1 != account.user.userId){
                                 	self.unreadMessageCount++
                                 }
+                                self.saveNewMessage(newMessage, userId: user1!)
                                 
                             }
                             for (var k = 0; k < user2MessagesCount; k++){
                                 
-                                self.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                                let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
+                                self.allMessages.append(newMessage)
                                 if (user2 != account.user.userId){
                                     self.unreadMessageCount++
                                 }
+                                self.saveNewMessage(newMessage, userId: user2!)
                                 
                             }
                             self.reorderChat()

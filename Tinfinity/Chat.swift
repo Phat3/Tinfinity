@@ -83,10 +83,10 @@ class Chat {
         while(i < account.chats.count && self.lastMessageSentDate.compare(account.chats[i].lastMessageSentDate) == NSComparisonResult.OrderedAscending){
             i++
         }
-        if(i == account.chats.count){
+        if(account.chats.count == 0){
             account.chats.append(self)
         }else{
-            account.chats.insert(self, atIndex: i+1)
+            account.chats.insert(self, atIndex: i)
         }
 
     }

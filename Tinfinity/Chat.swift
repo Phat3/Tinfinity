@@ -43,7 +43,7 @@ class Chat {
 
         let last18hours = (-18*60*60 < date.timeIntervalSinceNow)
         let isToday = calendar.isDateInToday(date)
-        let isLast7Days = (calendar.compareDate(NSDate(timeIntervalSinceNow: -7*24*60*60), toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedAscending)
+        let isLast7Days = (calendar.compareDate(NSDate(timeIntervalSinceNow: -7*24*60*60), toDate: date, toUnitGranularity: .Day) == NSComparisonResult.OrderedAscending)
 
         if last18hours || isToday {
             dateFormatter.dateStyle = .NoStyle
@@ -103,17 +103,15 @@ class Chat {
             //We need the timeinterval to speak with the server, but in milliseconds
             let timeinterval: Double = round(self.lastMessageSentDate.timeIntervalSince1970 * 1000)
         
-        	let stringTime = NSString(format: "%.f",timeinterval) as! String
+        	let stringTime = NSString(format: "%.f",timeinterval) as String
             
             
-            manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON)
-                .responseJSON { (request, response, data, error) in
+            manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON, headers: ["X-Api-Token": account.token!])
+                .responseJSON { _,_,result in
                     
-                    if(error != nil) {
-                        // If there is an error in the web request, print it to the console
-                        println(error!.localizedDescription)
-                    }else if(response != false){
-                        var innerData = JSON(data!)
+                    switch result {
+                    case .Success(let data):
+                        var innerData = JSON(data)
                         
                             let user1 = innerData["_id"]["user1"].string
                             let user2 = innerData["_id"]["user2"].string
@@ -146,6 +144,9 @@ class Chat {
                             }
                             self.reorderChat()
                             completion(result: true)
+                    case .Failure(_, let error):
+                        print("Request failed with error: \(error)")
+                    
                     }
                     
             }
@@ -191,7 +192,7 @@ class Chat {
         
         // User
         user.setValue(self.user.userId, forKey: "id")
-        let imageData = UIImagePNGRepresentation(self.user.image)
+        let imageData = UIImagePNGRepresentation(self.user.image!)
         user.setValue(imageData, forKey: "image")
         user.setValue(self.user.firstName, forKey: "firstName")
         user.setValue(self.user.lastName, forKey: "lastName")
@@ -221,8 +222,11 @@ class Chat {
         
         
         var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+        do {
+            try managedContext.save()
+        } catch var error1 as NSError {
+            error = error1
+            print("Could not save \(error), \(error?.userInfo)", terminator: "")
         }
     }
     
@@ -239,27 +243,31 @@ class Chat {
         
         //Let's look for the chat record
         let entity = "Chat"
-        var request = NSFetchRequest(entityName: entity)
+        let request = NSFetchRequest(entityName: entity)
         var error: NSError?
-        if let entities = managedContext.executeFetchRequest(
-            request,
-            error: &error
-            ) as? [NSManagedObject] {
-                for chat in entities {
-                    let user = chat.valueForKey("withUser") as! NSManagedObject
-                    if(chat.valueForKey("myUserId") as! String == account.user.userId && user.valueForKey("id") as! String == userId){
-                        message.setValue(chat, forKey: "belongsTo")
+        do{
+        	if let entities = try managedContext.executeFetchRequest(request) as? [NSManagedObject] {
+            	    for chat in entities {
+                	    let user = chat.valueForKey("withUser") as! NSManagedObject
+                	    if(chat.valueForKey("myUserId") as! String == account.user.userId && user.valueForKey("id") as! String == userId){
+                	        message.setValue(chat, forKey: "belongsTo")
                         
-                        var messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
-                        messages.append(message)
-                        let messagesSet = NSSet(array: messages)
-                        chat.setValue(messagesSet, forKey: "hasMessages")
-                    }
-                }
-            var error: NSError?
-            if !managedContext.save(&error) {
-                println("Could not save \(error), \(error?.userInfo)")
-            }
+                	        var messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
+                	        messages.append(message)
+                            let messagesSet = NSSet(array: messages)
+                        	chat.setValue(messagesSet, forKey: "hasMessages")
+                    	}
+                	}
+            	do {
+            	    try managedContext.save()
+            	} catch let error1 as NSError {
+            	    error = error1
+            	    print("Could not save \(error), \(error?.userInfo)", terminator: "")
+            	}
+        	}
+        }catch let error2 as NSError{
+            error = error2
+            print("Could not fetch \(error), \(error?.userInfo)", terminator: "")
         }
     }
     
@@ -269,34 +277,32 @@ class Chat {
         let managedContext = appDelegate.managedObjectContext!
         
         let fetchRequest = NSFetchRequest(entityName:"Chat")
+       
+        do{
+        	let fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as? [NSManagedObject]
         
-    	var error: NSError?
-        
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest,error: &error) as? [NSManagedObject]
-        
-        if let results = fetchedResults {
-            // For every chat we have found we need to load the relative user and the messages
-            for chat in results{
-                let user = chat.valueForKey("withUser") as! NSManagedObject
-                let newUser = User(userId: user.valueForKey("id") as! String, firstName: user.valueForKey("firstName") as! String, lastName: user.valueForKey("lastName") as! String)
-                let url = NSURL(fileURLWithPath: user.valueForKey("imageUrl") as! String)
-                let image = user.valueForKey("image") as! NSData
-                newUser.images[0] = UIImage(data: image)
-                let date = chat.valueForKey("lastMessageDate") as! NSDate
-                let newChat = Chat(user: newUser, lastMessageText: chat.valueForKey("lastMessageText") as! String, lastMessageSentDate: date)
+        	if let results = fetchedResults {
+            	// For every chat we have found we need to load the relative user and the messages
+            	for chat in results{
+                	let user = chat.valueForKey("withUser") as! NSManagedObject
+                	let newUser = User(userId: user.valueForKey("id") as! String, firstName: user.valueForKey("firstName") as! String, lastName: user.valueForKey("lastName") as! String)
+                	let image = user.valueForKey("image") as! NSData
+                	newUser.images[0] = UIImage(data: image)
+                	let date = chat.valueForKey("lastMessageDate") as! NSDate
+                	let newChat = Chat(user: newUser, lastMessageText: chat.valueForKey("lastMessageText") as! String, lastMessageSentDate: date)
                 
-                let messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
-                for message in messages{
-                    let messageDate = message.valueForKey("date") as! NSDate
-                    let newMessage = JSQMessage(senderId: message.valueForKey("senderId") as! String, senderDisplayName: newUser.name, date: messageDate, text: message.valueForKey("text") as! String)
-                    newChat.allMessages.append(newMessage)
-                }
-                newChat.reorderChat()
-                newChat.insertChat()
-            }
-        } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
-        }
+                	let messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
+                	for message in messages{
+                	    let messageDate = message.valueForKey("date") as! NSDate
+                	    let newMessage = JSQMessage(senderId: message.valueForKey("senderId") as! String, senderDisplayName: newUser.name, date: messageDate, text: 	message.valueForKey("text") as! String)
+                    	newChat.allMessages.append(newMessage)
+                	}
+                	newChat.reorderChat()
+                	newChat.insertChat()
+            	}
+        	}
+        }catch let error as NSError{
+			print("Could not fetch \(error), \(error.userInfo)", terminator: "")        }
     }
     
   

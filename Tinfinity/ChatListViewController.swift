@@ -100,7 +100,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         })
     
     	//Now we need to make the chatAvatar look round
-    	var frame = cell.chatAvatar.frame
+    	let frame = cell.chatAvatar.frame
     	let imageSize = frame.size.height
     	cell.chatAvatar.frame = frame
     	cell.chatAvatar.layer.cornerRadius = imageSize / 2.0
@@ -127,14 +127,13 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             let nextViewcontroller = segue.destinationViewController as! ChatViewController
             if(newChat == nil){
                 //Normal segue after chat selection in list
-                let path = self.chatTableView.indexPathForSelectedRow()!
+                let path = self.chatTableView.indexPathForSelectedRow!
                 nextViewcontroller.chat = chats[path.row]
             	chats[path.row].unreadMessageCount = 0
             }else if(newChat == true){
                 //Segue after new user selection on map
                 nextViewcontroller.chat = chats[0]
                 chats[0].unreadMessageCount = 0
-                self.newChat = false
             }else{
                 //Segue after selection on map of user with an already existing chat
                 nextViewcontroller.chat = Chat.getChatByUserId(clickedUserId!)
@@ -142,6 +141,9 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        self.newChat = nil
+    }
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
     	if(newChat == nil || newChat == false){

@@ -14,7 +14,7 @@ class UserAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D{
         return user.position!
     }
-    var title: String{
+    var title: String?{
         return user.name!
     }
     
@@ -22,8 +22,8 @@ class UserAnnotation: NSObject, MKAnnotation {
         return user.image!
     }
     
-    var subtitle: String{
-        return "Click here to chat with " + self.title
+    var subtitle: String?{
+        return "Click here to chat with " + self.title!
     }
     
     init(user: User) {

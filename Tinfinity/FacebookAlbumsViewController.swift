@@ -76,7 +76,7 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
                 NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: {     (response, data, error) -> Void in
                     if error == nil {
                         // Convert the downloaded data in to a UIImage object
-                        let image = UIImage(data: data)
+                        let image = UIImage(data: data!)
                         //Store in our cache the image
                         self.imageCache[url] = image
                         // Update the cell
@@ -88,7 +88,7 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
                         })
                     }
                     else {
-                        println("Error: \(error.localizedDescription)")
+                        print("Error: \(error!.localizedDescription)", terminator: "")
                     }
                 })
             }
@@ -140,7 +140,7 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        let path = self.albumTabelView.indexPathForSelectedRow()!
+        let path = self.albumTabelView.indexPathForSelectedRow!
         albumId = albums[path.row].id
         let photoViewController = segue.destinationViewController as! FacebookPhotoCollectionViewController
         photoViewController.albumId = self.albumId

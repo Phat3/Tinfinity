@@ -10,7 +10,7 @@ import UIKit
 
 let reuseIdentifier = "photoCell"
 
-class FacebookPhotoCollectionViewController: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, FacebookAPIControllerPhotoProtocol {
+class FacebookPhotoCollectionViewController: UICollectionViewController, FacebookAPIControllerPhotoProtocol {
 	
     //Costante utilizzata per settare i margini di ogni elemento rispetto agli altri
     private let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
@@ -116,10 +116,10 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        let cell = sender as! PictureCollectionViewCell
-        let indexPaths : NSArray = self.photoCollection.indexPathsForSelectedItems()
+        //let cell = sender as! PictureCollectionViewCell
+        let indexPaths : NSArray = self.photoCollection.indexPathsForSelectedItems()!
         let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
-        var pictureViewController = segue.destinationViewController as! PictureDetailViewController
+        let pictureViewController = segue.destinationViewController as! PictureDetailViewController
         pictureViewController.imageId = pictures[indexPath.row].id
     }
 }
@@ -128,7 +128,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, UIColle
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,  sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             
-            let picture =  pictures[indexPath.row]
+            //let picture =  pictures[indexPath.row]
             return CGSize(width: 60, height: 60)
     }
     

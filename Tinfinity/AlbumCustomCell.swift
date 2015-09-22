@@ -12,6 +12,7 @@ class AlbumCustomCell: UITableViewCell {
     
     @IBOutlet weak var albumName: UILabel!
     @IBOutlet weak var albumPicture: UIImageView!
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,8 +23,7 @@ class AlbumCustomCell: UITableViewCell {
         // Initialization code
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 }

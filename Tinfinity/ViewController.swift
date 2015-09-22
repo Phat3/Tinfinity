@@ -65,11 +65,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // Lets first update our Model
-        let location = locations.last as? CLLocation
-        account.setLocation(CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude ))
+        let location: CLLocation = locations.last!
+        account.setLocation(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude ))
         
         if let location = account.user.position {
             let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
@@ -96,19 +96,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
      * use 2 minute timer.
      */
     func refreshLocation(){
-        println("Refreshing Location...");
+        print("Refreshing Location...", terminator: "");
         locationManager.startUpdatingLocation()
     }
     
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         let alertController = UIAlertController(title: "TinFinity", message:
             "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
-        println("Error while updating location " + error.localizedDescription)
+        print("Error while updating location " + error.localizedDescription, terminator: "")
     }
     
-   func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     
     	if (annotation is MKUserLocation) {
         	return nil
@@ -121,16 +121,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 			if annotationView == nil{
                 //If annotationView is nil a new one is created
             	annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            	annotationView.canShowCallout = true
+            	annotationView!.canShowCallout = true
                 
-                var calloutButton = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
+                let calloutButton = UIButton(type: .DetailDisclosure)
                 
                 annotationView!.rightCalloutAccessoryView = calloutButton
             
     		}
         	else{
                 //Else we use this annotationView to show the new annotation
-        		annotationView.annotation = annotation
+        		annotationView!.annotation = annotation
     		}
             
         let customAnnotation = annotation as! UserAnnotation
@@ -142,8 +142,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let image = UIGraphicsGetImageFromCurrentImageContext()
         let imageData = UIImagePNGRepresentation(image)
         UIGraphicsEndImageContext()
-        let finalImage = UIImage(data: imageData)
-        annotationView.image = finalImage
+        let finalImage = UIImage(data: imageData!)
+        annotationView!.image = finalImage
             
     	return annotationView
     }
@@ -151,9 +151,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     	return nil
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        println("bottone cliccato")
-        if let annotation = view.annotation as? UserAnnotation {
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("bottone cliccato", terminator: "")
+        if let _ = view.annotation as? UserAnnotation {
             performSegueWithIdentifier("newChat", sender: view)
         }
     }
@@ -171,9 +171,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if let senderObject = sender as? MKAnnotationView{
                 let navViewController = segue.destinationViewController as! UINavigationController
                 let chatListController = navViewController.topViewController as! ChatListViewController
-                let userAnn = sender!.annotation as! UserAnnotation
+                _ = sender!.annotation as! UserAnnotation
                 if let senderAnnotation = senderObject.annotation as? UserAnnotation{
-                    if let chat = Chat.getChatByUserId(senderAnnotation.user.userId){
+                    if let _ = Chat.getChatByUserId(senderAnnotation.user.userId){
                         chatListController.newChat = false
                         chatListController.clickedUserId = senderAnnotation.user.userId
                     }else{

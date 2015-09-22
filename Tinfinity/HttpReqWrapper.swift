@@ -33,26 +33,26 @@ class HttpReqWraper {
     }
 */
     
-    func post(path : String, params : NSDictionary){
+    /*func post(path : String, params : NSDictionary){
         let baseUrl = NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String;
         Alamofire.request(.POST, baseUrl + path, parameters: params as? [String : AnyObject], encoding : .JSON)
             .responseString {  (request, response, data, error) in
-                println("IN METODO STRING")
-                println("RESPONSE")
-                println(response)
-                println("DATA")
-                println(data)
-                println("ERROR")
-                println(error)
+                print("IN METODO STRING")
+                print("RESPONSE")
+                print(response)
+                print("DATA")
+                print(data)
+                print("ERROR")
+                print(error)
             }
             .responseJSON { (request, response, data, error) in
-                println("IN METODO JSON")
-                println("RESPONSE")
-                println(response)
-                println("DATA")
-                println(data)
-                println("ERROR")
-                println(error)
+                print("IN METODO JSON")
+                print("RESPONSE")
+                print(response)
+                print("DATA")
+                print(data)
+                print("ERROR")
+                print(error)
             }
             /*
             .response { (request, response, data, error) in
@@ -67,5 +67,5 @@ class HttpReqWraper {
 
         
     }
-    
+*/    
 }

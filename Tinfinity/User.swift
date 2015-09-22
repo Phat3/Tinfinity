@@ -49,7 +49,7 @@ class User {
     var initials: String? {
         var initials: String?
         for name in [firstName, lastName] {
-            var initial = name.substringToIndex(advance(name.startIndex, 1))
+            let initial = name.substringToIndex(name.startIndex.advancedBy(1))
             if initial.lengthOfBytesUsingEncoding(NSNEXTSTEPStringEncoding) > 0 {
                 initials = (initials == nil ? initial : initials! + initial)
             }
@@ -80,43 +80,41 @@ class User {
      * Recuperiamo dal server le informazioni legate all'utente
      */
     func fetch(completion: (result: User? ) -> Void) {
-        let manager = Alamofire.Manager.sharedInstance
         
-        manager.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + userId, encoding : .JSON)
-            .responseJSON { (request, response, data, error) in
+       Alamofire.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
+            .responseJSON { _,_,result in
                 
-                if(error != nil) {
-                    // If there is an error in the web request, print it to the console
-                    println(error!.localizedDescription)
-                } else {
-                    var json = JSON(data!)
-                    if let errore = json["error"].string{
-                        
-                        for(var i=0; i < account.chats.count; i++){
-                            if (account.chats[i].user.userId == self.userId){
-                                account.chats.removeAtIndex(i)
-                                println("An user has been removed from the array")
-                                completion(result: nil)
+                switch result {
+                    case .Success(let data):
+                        let json = JSON(data)
+                        if let _ = json["error"].string{
+                            
+                            for(var i=0; i < account.chats.count; i++){
+                                if (account.chats[i].user.userId == self.userId){
+                                    account.chats.removeAtIndex(i)
+                                    print("An user has been removed from the array")
+                                    completion(result: nil)
+                                }
                             }
+                        }else{
+                            self.firstName = json["name"].string!
+                            self.lastName = json["surname"].string!
+                            
+                            if(json["gender"] == "male") {
+                                self.gender = Gender.Male
+                            } else {
+                                self.gender = Gender.Female
+                            }
+                        
+                            // Lets download the image
+                            self.decodeImages(json["images"])
+                            
+                            completion(result: self)
                         }
-                        
-                    }else{
-                    	self.firstName = json["name"].string!
-                    	self.lastName = json["surname"].string!
-                        
-                    	if(json["gender"] == "male") {
-                        	self.gender = Gender.Male
-                    	} else {
-                    	    self.gender = Gender.Female
-                   	 	}
-                    
-                    	// Lets download the image
-                    	self.decodeImages(json["images"])
-                        
-                        completion(result: self)
-                    }
-                }
-        }
+                	case .Failure(_, let error):
+                    	print("Request failed with error: \(error)")
+        	}
+    	}
     }
     
     /**

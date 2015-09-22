@@ -35,10 +35,10 @@ class Account: NSObject {
     func pushImages() {
         
         for( var i = 0; i < self.user.images.count ; i++ ) {
-            if let imgProfile:NSData = UIImagePNGRepresentation(self.user.images[i]) {
+            if let imgProfile:NSData = UIImagePNGRepresentation(self.user.images[i]!) {
                 Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [
                     "image" : i,
-                    "imageData" : imgProfile.base64EncodedStringWithOptions(.allZeros)
+                    "imageData" : imgProfile.base64EncodedStringWithOptions([])
                 ])
             }
         }
@@ -49,39 +49,33 @@ class Account: NSObject {
         logOut()
     }
     
-    func fetchNearbyUsers(){
-        
-        let manager = Alamofire.Manager.sharedInstance
+    func fetchNearbyUsers(){        
         
         if let userPosition = self.user.position{
-        
-        	Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.latitude, "lon": userPosition.longitude], encoding : .JSON)
-            	.responseJSON { (request, response, data, error) in
-                
-                	if(error != nil) {
-                    	// If there is an error in the web request, print it to the console
-                    	println(error!.localizedDescription)
-                    
-                	}else{
-                    
-                	    var json = JSON(data!)
-                        for(var i = 0; i < json.count; i++){
-                            let userData = json[i]["user"]
-                            let position = json[i]["position"]
-                            var newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
-                            newUser.fetch({ (result) -> Void in
-                                let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
+            Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.latitude, "lon": userPosition.longitude], encoding : .JSON, headers: ["X-Api-Token": account.token!])
+                .responseJSON { _,_,result in
+                    switch result {
+                    	case .Success(let data):
+                        	var json = JSON(data)
+                            for(var i = 0; i < json.count; i++){
+                                let userData = json[i]["user"]
+                                let position = json[i]["position"]
+                                let newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
+                                newUser.fetch({ (result) -> Void in
+                                    let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
+                                    
+                                    newUser.position = userPosition
+                                    self.users.removeAll(keepCapacity: false)
+                                    self.users.append(newUser)
+                                })                           
                                 
-                                newUser.position = userPosition
-                                self.users.removeAll(keepCapacity: false)
-                                self.users.append(newUser)
-                            })                           
-                            
-                        }
-            	    }
+                            }
+                        case .Failure(_, let error):
+                            print("Request failed with error: \(error)")
+                    }
+                }
         	}
-        }
-        println(self.users)
+        print(self.users, terminator: "")
     }
     
     func setLocation(location: CLLocationCoordinate2D){

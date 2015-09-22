@@ -47,7 +47,7 @@ class ChatViewController: JSQMessagesViewController {
         incomingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: chat!.user.image!), diameter: 30)
         
         // We don't need the button on the left
-        self.inputToolbar.contentView.leftBarButtonItem = nil;
+        self.inputToolbar!.contentView!.leftBarButtonItem = nil;
         
     }
     
@@ -55,7 +55,7 @@ class ChatViewController: JSQMessagesViewController {
      * Enables and disables send button
      */
     func toggleSend() {
-        self.inputToolbar.contentView.textView.editable = self.isConnected
+        self.inputToolbar!.contentView!.textView!.editable = self.isConnected
     }
     
 
@@ -66,12 +66,12 @@ class ChatViewController: JSQMessagesViewController {
     
     //Metodi necessari per JSQMessagesViewController
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        var data = self.chat!.allMessages[indexPath.row]
+        let data = self.chat!.allMessages[indexPath.row]
         return data
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        var data = self.chat!.allMessages[indexPath.row]
+        let data = self.chat!.allMessages[indexPath.row]
         if (data.senderId == self.senderId) {
             return self.outgoingBubble
         } else {
@@ -80,7 +80,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        var data = self.chat!.allMessages[indexPath.row];
+        let data = self.chat!.allMessages[indexPath.row];
         if (data.senderId == self.senderId) {
             return self.outgoingAvatar
         } else {

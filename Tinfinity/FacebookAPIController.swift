@@ -41,7 +41,7 @@ class FacebookAPIController {
     func fbAlbumRequestHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
             
             if let gotError = error{
-                println(gotError.description);
+                print(gotError.description);
             }
             else{
                 let graphData = result.objectForKey("data") as! NSArray
@@ -62,7 +62,7 @@ class FacebookAPIController {
     func fbCoverRetrival(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
         
         if let gotError = error{
-            println(gotError.description);
+            print(gotError.description);
         }
         else{
             let graphData = result.objectForKey("data") as! NSDictionary
@@ -105,7 +105,7 @@ class FacebookAPIController {
         
     func fetchPreviewPhotosHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
         if let gotError = error{
-            println(gotError.description)
+            print(gotError.description)
             }
         else{
             let data = result.valueForKey("data") as! NSArray
@@ -140,7 +140,7 @@ class FacebookAPIController {
     
     func fetchFullPhotosHandler(connection:FBSDKGraphRequestConnection!, result:AnyObject!, error:NSError!){
         if let gotError = error{
-            println(gotError.description)
+            print(gotError.description)
         }
         else{
             let images = result.valueForKey("images") as! NSArray
@@ -160,12 +160,12 @@ class FacebookAPIController {
         let pattern = "(https://graph.facebook.com/v)[0-9].[0-9]/" //this patterns checks for the presence of the string:
         //https://graph.facebook.com/v) and two numbers divided by a . (which represent the version of the graph API)
         
-        let range = NSMakeRange(0, count(link))
+        let range = NSMakeRange(0, link.characters.count)
         
-        var mutableLink:NSMutableString = ""
+        let mutableLink:NSMutableString = ""
         mutableLink.appendString(link)
-        let regexp = NSRegularExpression(pattern: pattern,options: nil, error: nil)
-        regexp?.replaceMatchesInString(mutableLink, options: .allZeros, range: range, withTemplate: "")
+        let regexp = try? NSRegularExpression(pattern: pattern,options: [])
+        regexp?.replaceMatchesInString(mutableLink, options: [], range: range, withTemplate: "")
         let newLink: String = mutableLink as String
         return newLink
     }

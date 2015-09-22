@@ -9,7 +9,7 @@ import Foundation
 
 ///  Class that manages all the cryptographic functionalities of the application
 class Crypto{
-    
+    /*
     
     //Workaround to implement class static attributes
     //(they are not implemented yet in Swift)
@@ -25,11 +25,11 @@ class Crypto{
     
     //option for the public key
     //we want that the key is permanently stored in our keychain with the specified ID
-    private let publicKeyParameters: [String : AnyObject] = [kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.publicKey]
+    private let publicKeyParameters: [String : AnyObject] = [kSecAttrIsPermanent as String : true as Bool, kSecAttrApplicationTag as String : KeychainLabel.publicKey]
     
     //option for the public key
     //we want that the key is permanently stored in our keychain with the specified ID
-    private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent as! String : true as Bool, kSecAttrApplicationTag as! String : KeychainLabel.privateKey]
+    private let privateKeyParameters: [String: AnyObject] = [ kSecAttrIsPermanent as String : true as Bool, kSecAttrApplicationTag as String : KeychainLabel.privateKey]
     
     //reference to the public key
     var publicKey : SecKeyRef?
@@ -52,7 +52,7 @@ class Crypto{
             self.generateRSAKeys()
         }
         //get the blocksize respect to the key size
-        self.blockSize = SecKeyGetBlockSize(publicKey)
+        self.blockSize = SecKeyGetBlockSize(publicKey!)
     }
     
     /// Returns the value of the key if its present
@@ -61,10 +61,10 @@ class Crypto{
         
         //query paramenters
         let query: [String: AnyObject] = [
-            kSecClass as! String : kSecClassKey as! String,
-            kSecAttrKeyType as! String : kSecAttrKeyTypeRSA,
-            kSecAttrApplicationTag as! String: tag,
-            kSecReturnRef as! String : true as Bool
+            kSecClass as String : kSecClassKey as String,
+            kSecAttrKeyType as String : kSecAttrKeyTypeRSA,
+            kSecAttrApplicationTag as String: tag,
+            kSecReturnRef as String : true as Bool
         ]
         
         var keyPtr: Unmanaged<AnyObject>?
@@ -78,7 +78,7 @@ class Crypto{
         case errSecItemNotFound:
             return nil
         default:
-            println("Error occurred: \(result)`")
+            print("Error occurred: \(result)`", terminator: "")
             return nil
         }
     }
@@ -117,8 +117,8 @@ class Crypto{
         //step3 : creare il buffer per il testo criptato
         var encryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)
         //step4 : criptare
-        SecKeyEncrypt(self.publicKey as SecKey!, SecPadding(kSecPaddingPKCS1) as SecPadding,  plainTextData, Int(plainTextDataLength), &encryptedData, &self.blockSize)
-        var base64 = NSData(bytes: encryptedData, length: encryptedData.count).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        SecKeyEncrypt(self.publicKey as SecKey!, SecPadding.PKCS1 as SecPadding,  plainTextData, Int(plainTextDataLength), &encryptedData, &self.blockSize)
+        let base64 = NSData(bytes: encryptedData, length: encryptedData.count).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         //ritorniamo il cipher
         return base64
         
@@ -141,7 +141,7 @@ class Crypto{
         var decryptedData = [UInt8](count: self.blockSize, repeatedValue: 0)
         
         //decriptare
-        SecKeyDecrypt(privateKey, SecPadding(kSecPaddingPKCS1), buffer, self.blockSize, &decryptedData, &self.blockSize)
+        SecKeyDecrypt(privateKey!, SecPadding.PKCS1, buffer, self.blockSize, &decryptedData, &self.blockSize)
         
         let decryptedText = String(bytes: decryptedData, encoding:NSUTF8StringEncoding)
         //ritorniamo il plain
@@ -155,10 +155,10 @@ class Crypto{
         
         //query paramenters
         let query: [String: AnyObject] = [
-            kSecClass as! String : kSecClassKey as! String,
-            kSecAttrKeyType as! String : kSecAttrKeyTypeRSA,
-            kSecAttrApplicationTag as! String: "com.tinfinity.crypto.publickey",
-            kSecReturnRef as! String : true as Bool
+            kSecClass as String : kSecClassKey as String,
+            kSecAttrKeyType as String : kSecAttrKeyTypeRSA,
+            kSecAttrApplicationTag as String: "com.tinfinity.crypto.publickey",
+            kSecReturnRef as String : true as Bool
         ]
         //get the reference to the publickey
         var keyPtr: Unmanaged<AnyObject>?
@@ -167,14 +167,14 @@ class Crypto{
         //create a data object
         var publickeyData = NSData(bytes: &keyPtr!, length: self.blockSize)
         //encode it with base64
-        var base64PublicKey = publickeyData.base64EncodedStringWithOptions(nil)
+        var base64PublicKey = publickeyData.base64EncodedStringWithOptions([])
         
-        println(base64PublicKey)
+        print(base64PublicKey)
                     
         //http.post("http://localhost:3000/auth/register-step1", params: ["key" : self.publicKey!])
         
         
     }
-    
+    */
     
 }

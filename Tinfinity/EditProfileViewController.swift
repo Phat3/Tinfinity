@@ -29,26 +29,26 @@ class EditProfileViewController: UIViewController {
        
         
         let screenWidth = self.view.frame.size.width
-        println("Width: " + String(stringInterpolationSegment: screenWidth))
+        print("Width: " + String(stringInterpolationSegment: screenWidth), terminator: "")
         let screenHeight = self.view.frame.size.height
-        println("Height: " + String(stringInterpolationSegment: screenHeight))
+        print("Height: " + String(stringInterpolationSegment: screenHeight), terminator: "")
         
         buttonX = screenWidth/16.0
-        println("Button x:" + String(stringInterpolationSegment: buttonX))
+        print("Button x:" + String(stringInterpolationSegment: buttonX), terminator: "")
         buttonY = screenHeight/8.0
-        println("Button y:" + String(stringInterpolationSegment: buttonY))
+        print("Button y:" + String(stringInterpolationSegment: buttonY), terminator: "")
         
         let floatConst = CGFloat(MAX_PHOTOS)
         
         buttonHeight = ((screenHeight - (buttonY  * ((floatConst / 2.0)))) / ( floatConst / 2 ))
-        println("Button height: " + String(stringInterpolationSegment: buttonHeight))
+        print("Button height: " + String(stringInterpolationSegment: buttonHeight), terminator: "")
         buttonWidth = ((screenWidth - (buttonX * 3)) / CGFloat(2))
-        println("Button width: " + String(stringInterpolationSegment: buttonWidth))
+        print("Button width: " + String(stringInterpolationSegment: buttonWidth), terminator: "")
         
         buttonHorizontalDistance = buttonX + buttonWidth
-        println("Horizontal distance:" + String(stringInterpolationSegment: buttonHorizontalDistance))
+        print("Horizontal distance:" + String(stringInterpolationSegment: buttonHorizontalDistance), terminator: "")
         buttonVerticalDistance = buttonY + buttonHeight
-        println("Vertical distance:" + String(stringInterpolationSegment: buttonVerticalDistance))
+        print("Vertical distance:" + String(stringInterpolationSegment: buttonVerticalDistance), terminator: "")
 
         
 
@@ -111,7 +111,7 @@ class EditProfileViewController: UIViewController {
         }
         
         if i < MAX_PHOTOS {
-            var image = UIImage(named:"Plus")
+            let image = UIImage(named:"Plus")
             addButtonWithImageAtIndex(image!,i: i,tag: 1)
         }
 
@@ -119,7 +119,7 @@ class EditProfileViewController: UIViewController {
     
     func editPhotoAction(sender:UIButton!)
     {
-        editIndex = find(buttons, sender)!
+        editIndex = buttons.indexOf(sender)!
         editFlag = true
         performSegueWithIdentifier("editPhoto", sender: sender)
     }
@@ -137,7 +137,7 @@ class EditProfileViewController: UIViewController {
     func addButtonWithImageAtIndex(image: UIImage,i: Int,tag: Int){
         
         
-        buttons.append(UIButton.buttonWithType(UIButtonType.Custom) as! UIButton)
+        buttons.append(UIButton(type: UIButtonType.Custom))
         buttons[i].tag = tag
         
         /* The following table represent our interface,with a number that represent each cell
@@ -157,13 +157,13 @@ class EditProfileViewController: UIViewController {
         */
         if(i%2 == 0){
             
-            var yMultiplier:CGFloat = CGFloat(i / 2)
+            let yMultiplier:CGFloat = CGFloat(i / 2)
             
             buttons[i].frame = CGRectMake(buttonX, buttonY + yMultiplier * buttonVerticalDistance, buttonWidth, buttonHeight)
             
         }else{
             
-            var yMultiplier:CGFloat = CGFloat((i-1) / 2)
+            let yMultiplier:CGFloat = CGFloat((i-1) / 2)
 
             buttons[i].frame = CGRectMake(buttonX + buttonHorizontalDistance, buttonY + yMultiplier * buttonVerticalDistance, buttonWidth, buttonHeight)
             
@@ -171,7 +171,7 @@ class EditProfileViewController: UIViewController {
         
         buttons[i].backgroundColor = UIColor.whiteColor()
     
-        println(buttons[i])
+        print(buttons[i], terminator: "")
     	//Here we decide which action has to be taken based on the tag attribute
         if(buttons[i].tag == 0){
             buttons[i].setBackgroundImage(ImageUtil.cropToSquare(image: image), forState: .Normal)

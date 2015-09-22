@@ -31,11 +31,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil) {
             // Process error
-            println("Errore")
+            print("Errore", terminator: "")
         }
         else if result.isCancelled {
             // Handle cancellations
-            println("cancelled")
+            print("cancelled", terminator: "")
         }
         else {
             //instatiating the apicontroller with the current access token to authenticate with the server
@@ -76,7 +76,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     self.checkLoginProblem(false)
                 }
                 else{
+                    /*self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in
+                    	print(account.chats)
+                   	})*/
                     //If there is already a fb token, we already got the chat history from the server, so we only check if there are chats in local db
+                    
                     Chat.loadChatsFromCore()
                     for chat in account.chats{
                         chat.fetchNewMessages({ (result) -> Void in

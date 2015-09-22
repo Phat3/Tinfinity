@@ -52,11 +52,11 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil) {
             // Process error
-            println("Errore")
+            print("Errore", terminator: "")
         }
         else if result.isCancelled {
             // Handle cancellations
-            println("cancelled")
+            print("cancelled", terminator: "")
         }
         else {
             // Navigate to other view

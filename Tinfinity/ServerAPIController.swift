@@ -92,7 +92,7 @@ class ServerAPIController{
                             // Retrieve user data
                             newUser.fetch({ (result) -> Void in
                                 
-                                var newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
+                                let newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                                 
                                 for(var k = 0 ; k < user1MessagesCount; k++){
                                     

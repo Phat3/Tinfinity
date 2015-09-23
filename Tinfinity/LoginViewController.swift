@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         loginButton.delegate = self
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
-        let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
+        let minute: NSTimeInterval = 60, hour = minute * 60, _ = hour * 24
         
         
     }
@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     self.checkLoginProblem(true)
                 }
                 else{
-                    self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in })
+                    //self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in })
                     self.performSegueWithIdentifier("loginExecuted", sender: self)
                     return
                 }
@@ -76,9 +76,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     self.checkLoginProblem(false)
                 }
                 else{
-                    /*self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in
-                    	print(account.chats)
-                   	})*/
                     //If there is already a fb token, we already got the chat history from the server, so we only check if there are chats in local db
                     
                     Chat.loadChatsFromCore()

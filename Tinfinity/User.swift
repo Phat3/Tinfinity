@@ -116,6 +116,7 @@ class User {
         	}
     	}
     }
+
     
     /**
      * Decodes the base64 images data into a UIImage with

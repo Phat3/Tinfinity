@@ -127,7 +127,7 @@ class ChatViewController: JSQMessagesViewController {
     func addHandler() {
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
             let json = JSON(data!)
-            var user_id = json[0]["user_id"].string
+            let user_id = json[0]["user_id"].string
             
             // Message received for this conversation
             if(self!.chat!.user.userId == user_id) {

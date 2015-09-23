@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Socket_IO_Client_Swift
+import SwiftyJSON
+import JSQMessagesViewController
 
 class ChatListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -33,6 +36,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var refreshControl: UIRefreshControl!
     
+    // Socket IO client
+    private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
+    
+    var isConnected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +47,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         if(newChat != nil){
             performSegueWithIdentifier("chatSelected", sender: self)
         }
+        
+        self.connectToServer()
+        self.addHandler()
+        
         //The defualt message is hidden by default
         defaultMessage.hidden = true
         defaultMessage.text = "You have no people connected to you. Look in the map to start chatting!"
@@ -165,5 +176,50 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             })
         }
     }
+    
+    // Connect to the server through the websocket
+    func connectToServer(){
+        // Avoid multiple connections
+        if(!self.isConnected) {
+            self.socket.connect()
+        }
+    }
+    
+    func addHandler() {
+        socket.on("message-" + account.user.userId) {[weak self] data, ack in
+            let json = JSON(data!)
+            let user_id = json[0]["user_id"].string
+            
+            // Message received for a conversation
+            if let chat = Chat.getChatByUserId(user_id!) {
+            	// Get other user data
+            	let newMessage = JSQMessage(senderId: user_id, displayName: chat.user.name, text: json[0]["message"].string)
+           		chat.allMessages.append(newMessage);
+            	chat.updateLastMessage()
+            	chat.unreadMessageCount++
+                    
+            	//Let's save the message in core data
+            	chat.saveNewMessage(newMessage, userId: user_id!)
+                
+				self!.chatTableView.reloadData()
+            }else{
+                account.fetchUserByID(user_id!, completion: { (result) -> Void in
+                	let newUser = result
+                    let newMessage = JSQMessage(senderId: user_id, displayName: newUser?.name, text: json[0]["message"].string)
+                    let chat = Chat(user: newUser!, lastMessageText: newMessage.text, lastMessageSentDate: NSDate())
+                    chat.allMessages.append(newMessage)
+                    chat.updateLastMessage()
+                    chat.unreadMessageCount++
+                    
+                    //Lets save the new chat with the message added
+                    chat.saveNewChat()
+                    self!.chatTableView.reloadData()
+                })
+            }
+            
+        }
+                
+    }
+
 
 }

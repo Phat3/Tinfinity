@@ -35,7 +35,8 @@ class Account: NSObject {
     func pushImages() {
         
         for( var i = 0; i < self.user.images.count ; i++ ) {
-            if let imgProfile:NSData = UIImagePNGRepresentation(self.user.images[i]!) {
+            
+            if let img = self.user.images[i], imgProfile:NSData = UIImagePNGRepresentation(img) {
                 Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [
                     "image" : i,
                     "imageData" : imgProfile.base64EncodedStringWithOptions([])

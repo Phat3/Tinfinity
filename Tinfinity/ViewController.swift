@@ -133,19 +133,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         		annotationView!.annotation = annotation
     		}
             
-        let customAnnotation = annotation as! UserAnnotation
-        
-        let img = ImageUtil.cropToSquare(image: customAnnotation.image)
-        let rect = AVMakeRectWithAspectRatioInsideRect(img.size, CGRect(x: 0, y: 0, width: 35, height: 35))
-        UIGraphicsBeginImageContext(rect.size)
-        img.drawInRect(rect) //[image drawInRect:rect];
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        let imageData = UIImagePNGRepresentation(image)
-        UIGraphicsEndImageContext()
-        let finalImage = UIImage(data: imageData!)
-        annotationView!.image = finalImage
-            
-    	return annotationView
+        	let customAnnotation = annotation as! UserAnnotation
+        	
+        	let img = ImageUtil.cropToSquare(image: customAnnotation.image)
+        	let rect = AVMakeRectWithAspectRatioInsideRect(img.size, CGRect(x: 0, y: 0, width: 35, height: 35))
+        	UIGraphicsBeginImageContext(rect.size)
+        	img.drawInRect(rect) //[image drawInRect:rect];
+        	let image = UIGraphicsGetImageFromCurrentImageContext()
+            let imageData = UIImagePNGRepresentation(image)
+            UIGraphicsEndImageContext()
+            let finalImage = UIImage(data: imageData!)
+            let imageView = UIImageView(frame: CGRectMake(0, 0, 35, 35))
+            imageView.image = finalImage
+            imageView.layer.cornerRadius = imageView.layer.frame.size.width / 2
+            imageView.layer.masksToBounds = true
+            annotationView!.addSubview(imageView)
+        	annotationView!.frame = CGRect(origin: CGPointZero, size: imageView.frame.size)
+    		return annotationView
     }
     
     	return nil
@@ -156,6 +160,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if let _ = view.annotation as? UserAnnotation {
             performSegueWithIdentifier("newChat", sender: view)
         }
+       
     }
     
     override func viewWillAppear(animated: Bool) {

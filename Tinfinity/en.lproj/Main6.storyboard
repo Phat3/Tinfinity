@@ -83,7 +83,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="IKh-9u-SQJ" id="ah3-aW-w9c"/>
-                        <segue destination="4j3-Fc-tGh" kind="modal" identifier="newChat" id="0b6-wF-U64"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -93,7 +92,7 @@
         <!--Page View Controller-->
         <scene sceneID="wLD-Kc-D6N">
             <objects>
-                <pageViewController storyboardIdentifier="pageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vxQ-CJ-ktZ" customClass="PageViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="pageController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vxQ-CJ-ktZ" customClass="PageViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTs-tv-8ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="966.5" y="2935.5"/>
@@ -367,7 +366,7 @@
             <objects>
                 <viewController storyboardIdentifier="chatListViewController" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hka-sT-wlW" customClass="ChatListViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iMX-TX-haw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qN2-sW-LTt" userLabel="homeButton">
@@ -378,7 +377,6 @@
                                 </state>
                                 <connections>
                                     <action selector="homeButtonClicked:" destination="hka-sT-wlW" eventType="touchUpInside" id="oP2-aI-Ilt"/>
-                                    <segue destination="z8O-Ss-nkT" kind="unwind" unwindAction="unwindToHome:" id="A5e-xk-i80"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chat" id="hUZ-D0-Xfg">
@@ -464,7 +462,6 @@
                         <outlet property="homeButton" destination="qN2-sW-LTt" id="m9U-Wr-sN6"/>
                     </connections>
                 </viewController>
-                <exit id="z8O-Ss-nkT" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7G-vm-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1314.5" y="303.5"/>
@@ -518,6 +515,6 @@
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="su9-vE-gRA"/>
+        <segue reference="qRU-h4-Ebo"/>
     </inferredMetricsTieBreakers>
 </document>

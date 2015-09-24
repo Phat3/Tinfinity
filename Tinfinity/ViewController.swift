@@ -160,8 +160,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("bottone cliccato", terminator: "")
-        if let _ = view.annotation as? UserAnnotation {
-            performSegueWithIdentifier("newChat", sender: view)
+        if let annotation = view.annotation as? UserAnnotation {
+            annotationClicked(annotation)
         }
        
     }
@@ -184,25 +184,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "newChat") {
-            if let senderObject = sender as? MKAnnotationView{
-                let navViewController = segue.destinationViewController as! UINavigationController
-                let chatListController = navViewController.topViewController as! ChatListViewController
-                _ = sender!.annotation as! UserAnnotation
-                if let senderAnnotation = senderObject.annotation as? UserAnnotation{
-                    if let _ = Chat.getChatByUserId(senderAnnotation.user.userId){
-                        chatListController.newChat = false
-                        chatListController.clickedUserId = senderAnnotation.user.userId
-                    }else{
-                		chatListController.newChat = true
-                		account.chats.insert(Chat(user: senderAnnotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
-                        account.chats[0].saveNewChat()
-                    }
-            	}
-        	}
-    	}
+    func annotationClicked(annotation: UserAnnotation){
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(2) as! UINavigationController
+        
+        let chatListController = newViewController.topViewController as! ChatListViewController
+        
+        if let _ = Chat.getChatByUserId(annotation.user.userId){
+                chatListController.newChat = false
+                chatListController.clickedUserId = annotation.user.userId
+            }else{
+                chatListController.newChat = true
+                account.chats.insert(Chat(user: annotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
+        }
+        
+        self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
+
     }
+    
     
 }

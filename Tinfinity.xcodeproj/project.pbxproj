@@ -13,6 +13,7 @@
 		4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */; };
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
 		5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113C1DE1B19F1F8007B53AA /* Reachability.swift */; };
+		5122F9E11BB3ED0D008E73EB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122F9E01BB3ED0D008E73EB /* PageViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
 		5135D9E21B42E9700070A560 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135D9E11B42E9700070A560 /* EditProfileViewController.swift */; };
@@ -75,6 +76,7 @@
 		4198ECF91AD0343E0048C3A0 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5113C1DE1B19F1F8007B53AA /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		5122F9E01BB3ED0D008E73EB /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		5135D9E11B42E9700070A560 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
+				5122F9E01BB3ED0D008E73EB /* PageViewController.swift */,
 				51A5042D1B0F7DB60039E97C /* Chats */,
 				8B1957CE1AFFC003003E2F35 /* Models */,
 				4198ECD81AD005750048C3A0 /* ViewController.swift */,
@@ -415,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5122F9E11BB3ED0D008E73EB /* PageViewController.swift in Sources */,
 				8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */,
 				51ADDC0F1B57D4F100873DDB /* PictureCollectionViewCell.swift in Sources */,
 				516594971BA964FB00C186F0 /* AlbumCustomCell.swift in Sources */,

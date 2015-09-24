@@ -66,6 +66,11 @@ class EditProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         buttons.removeAll(keepCapacity: false)
+        
+        if(segue.identifier == "cancel"){
+            let pageViewController = segue.destinationViewController as! PageViewController
+            pageViewController.index = 0
+        }
     }
     
     @IBAction func unwindToEdit(segue: UIStoryboardSegue) {

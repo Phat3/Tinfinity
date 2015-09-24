@@ -20,6 +20,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var profile: User?
     var timer: NSTimer?
     
+    //Weak reference to parent pageViewController needed for buttons action
+    weak var pageViewController: PageViewController?
+    
     //Metodi per la posizione sulla mappa
     
     @IBOutlet weak var titleItem: UIBarButtonItem!
@@ -167,9 +170,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         refreshLocation()
     }
     
-    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+    @IBAction func chatButtonClicked(sender: AnyObject) {
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(2)
+        self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
+    }
+    
+    @IBAction func settingsButtonClicked(sender: AnyObject) {
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(0)
+        self.pageViewController!.setViewControllers([newViewController], direction: .Reverse, animated: true,completion: nil)
+
         
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "newChat") {

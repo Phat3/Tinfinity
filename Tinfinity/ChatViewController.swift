@@ -64,6 +64,12 @@ class ChatViewController: JSQMessagesViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        if self.chat!.allMessages.count == 0{
+            account.chats.removeFirst()
+        }
+    }
+    
     //Metodi necessari per JSQMessagesViewController
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         let data = self.chat!.allMessages[indexPath.row]
@@ -94,10 +100,14 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         
-        var newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
+        if (self.chat?.allMessages.count == 0){
+            account.chats[0].saveNewChat()
+        }
+        
+        let newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
         chat!.allMessages.append(newMessage)
         
-        var json = [
+        let json = [
             "user1" : account.user.userId,
             "user2" : chat!.user.userId,
             "token" : account.token,
@@ -131,6 +141,11 @@ class ChatViewController: JSQMessagesViewController {
             
             // Message received for this conversation
             if(self!.chat!.user.userId == user_id) {
+                
+                if (self!.chat!.allMessages.count == 0){
+                    account.chats[0].saveNewChat()
+                }
+                
                 let newMessage = JSQMessage(senderId: user_id, displayName: self!.chat!.user.name, text: json[0]["message"].string);
                 self!.chat!.allMessages.append(newMessage)
                 self!.chat!.updateLastMessage()

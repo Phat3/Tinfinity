@@ -18,6 +18,9 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var defaultMessage: UILabel!
     
+    //Weak reference to parent pageViewController
+    weak var pageViewController: PageViewController?
+    
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
     
@@ -131,6 +134,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     	}
         
         return cell
+    }
+    
+    @IBAction func homeButtonClicked(sender: AnyObject){
+        let newViewController = self.pageViewController!.viewControllerAtIndex(1)
+        self.pageViewController!.setViewControllers([newViewController], direction: .Reverse, animated: true,completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

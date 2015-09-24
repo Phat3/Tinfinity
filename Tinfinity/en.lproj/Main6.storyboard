@@ -29,7 +29,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="loginButton" destination="RTV-jp-9vd" id="IgW-83-5tb"/>
-                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="loginExecuted" id="w4y-Zf-EyG"/>
+                        <segue destination="vxQ-CJ-ktZ" kind="modal" identifier="loginExecuted" id="qRU-h4-Ebo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbo-6h-wIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,7 +39,7 @@
         <!--Map View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="mainViewController" modalTransitionStyle="flipHorizontal" id="vXZ-lx-hvc" userLabel="Map View Controller" customClass="ViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" userLabel="Map View Controller" customClass="ViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,7 +58,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="T6J-1J-QIG" kind="modal" identifier="settingsSegue" id="JAS-DA-kTv"/>
+                                    <action selector="settingsButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cOF-c7-nBb"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" id="UnK-FN-Nkw">
@@ -66,13 +66,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p9o-97-BgG" userLabel="chatButton">
-                                <rect key="frame" x="334" y="32" width="25" height="27"/>
+                                <rect key="frame" x="330" y="32" width="25" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Chat">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4j3-Fc-tGh" kind="modal" identifier="chatSegue" id="L4A-cI-3PR"/>
+                                    <action selector="chatButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="j2c-1X-IZi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -80,14 +80,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="bHk-z0-QFK"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="IKh-9u-SQJ" id="ah3-aW-w9c"/>
-                        <segue destination="4j3-Fc-tGh" kind="modal" identifier="newChat" id="0b6-wF-U64"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1242.5" y="2455.5"/>
+            <point key="canvasLocation" x="1434.5" y="2455.5"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="wLD-Kc-D6N">
+            <objects>
+                <pageViewController storyboardIdentifier="pageController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vxQ-CJ-ktZ" customClass="PageViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BTs-tv-8ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="966.5" y="2935.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tHe-Ej-d1u">
@@ -108,7 +116,7 @@
         <!--Settings View Controller-->
         <scene sceneID="1V5-OE-r49">
             <objects>
-                <viewController id="T6J-1J-QIG" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leftViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T6J-1J-QIG" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8mt-kY-6e6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,6 +137,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="homeButtonClicked:" destination="T6J-1J-QIG" eventType="touchUpInside" id="q3e-P4-Pus"/>
                                     <segue destination="OM0-ra-vrr" kind="unwind" unwindAction="unwindToHome:" id="a3M-KO-1u3"/>
                                 </connections>
                             </button>
@@ -175,11 +184,11 @@
             <objects>
                 <viewController id="lQ0-iB-vuT" userLabel="Picture Detail View Controller" customClass="PictureDetailViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IDe-v4-e4f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cOt-SI-PmB" userLabel="Picture Detail">
-                                <rect key="frame" x="10" y="103" width="300" height="362"/>
+                                <rect key="frame" x="10" y="103" width="355" height="461"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="LyJ-bM-5gf">
@@ -212,7 +221,7 @@
             <objects>
                 <collectionViewController id="0c8-k8-hLB" customClass="FacebookPhotoCollectionViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="s4s-zw-Oeb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="sBi-hD-FUC">
@@ -222,12 +231,12 @@
                             <inset key="sectionInset" minX="6" minY="20" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="oq5-sl-Zkd">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="-64" width="375" height="667"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="tdt-bp-iRV" customClass="PictureCollectionViewCell" customModule="Tinfinity" customModuleProvider="target">
-                                <rect key="frame" x="6" y="20" width="50" height="50"/>
+                                <rect key="frame" x="6" y="84" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -266,7 +275,7 @@
             <objects>
                 <viewController id="HTY-YK-86i" userLabel="Facebook Album View Controller" customClass="FacebookAlbumsViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ifg-UB-6yC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="QAi-uW-oJc">
@@ -274,15 +283,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gg8-lz-rfl">
-                                <rect key="frame" x="-13" y="66" width="333" height="502"/>
+                                <rect key="frame" x="-13" y="66" width="388" height="601"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" id="HRx-Q7-ps8" customClass="AlbumCustomCell" customModule="Tinfinity" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="333" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="388" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HRx-Q7-ps8" id="rcz-pC-O6Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="POa-pz-Oam" userLabel="Album Picture">
@@ -331,7 +340,7 @@
             <objects>
                 <viewController id="dW8-9x-bnX" userLabel="Edit Profile Controller" customClass="EditProfileViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74k-g6-eUC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -339,7 +348,7 @@
                     <navigationItem key="navigationItem" title="Edit Profile Pictures" id="oyN-VH-aV7">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="3UY-KI-2Mh">
                             <connections>
-                                <segue destination="T6J-1J-QIG" kind="modal" id="OP7-UE-IcP"/>
+                                <segue destination="vxQ-CJ-ktZ" kind="modal" identifier="cancel" id="su9-vE-gRA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -355,9 +364,9 @@
         <!--Chat List View Controller-->
         <scene sceneID="R24-Ou-Ud3">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" id="hka-sT-wlW" customClass="ChatListViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatListViewController" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hka-sT-wlW" customClass="ChatListViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iMX-TX-haw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qN2-sW-LTt" userLabel="homeButton">
@@ -367,7 +376,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="z8O-Ss-nkT" kind="unwind" unwindAction="unwindToHome:" id="A5e-xk-i80"/>
+                                    <action selector="homeButtonClicked:" destination="hka-sT-wlW" eventType="touchUpInside" id="oP2-aI-Ilt"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chat" id="hUZ-D0-Xfg">
@@ -453,7 +462,6 @@
                         <outlet property="homeButton" destination="qN2-sW-LTt" id="m9U-Wr-sN6"/>
                     </connections>
                 </viewController>
-                <exit id="z8O-Ss-nkT" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7G-vm-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1314.5" y="303.5"/>
@@ -461,7 +469,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7rJ-Se-PER">
             <objects>
-                <navigationController id="4j3-Fc-tGh" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="rightViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4j3-Fc-tGh" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="xNx-Sk-sfX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rb0-4c-tyo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -476,7 +484,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dc0-DS-6wC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616.5" y="1240.5"/>
+            <point key="canvasLocation" x="2140.5" y="1488.5"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="aNl-04-kiq">
@@ -507,7 +515,6 @@
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OP7-UE-IcP"/>
-        <segue reference="L4A-cI-3PR"/>
+        <segue reference="qRU-h4-Ebo"/>
     </inferredMetricsTieBreakers>
 </document>

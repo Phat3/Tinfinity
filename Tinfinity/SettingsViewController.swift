@@ -20,6 +20,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var profilePict: UIButton!
     
+    //Weak reference to parent pageViewController
+    weak var pageViewController: PageViewController?
+    
     //Variabile contenente le informazioni dell'utente
     var profile: User?
     
@@ -68,6 +71,13 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         account.user = nil
         performSegueWithIdentifier("logoutExecuted", sender: self)
+    }
+    
+    @IBAction func homeButtonClicked(sender: AnyObject){
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(1)
+        self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
+        
     }
     
 }

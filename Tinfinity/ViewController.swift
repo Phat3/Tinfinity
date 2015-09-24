@@ -20,6 +20,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var profile: User?
     var timer: NSTimer?
     
+    //Weak reference to parent pageViewController needed for buttons action
+    weak var pageViewController: PageViewController?
+    
     //Metodi per la posizione sulla mappa
     
     @IBOutlet weak var titleItem: UIBarButtonItem!
@@ -157,8 +160,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("bottone cliccato", terminator: "")
-        if let _ = view.annotation as? UserAnnotation {
-            performSegueWithIdentifier("newChat", sender: view)
+        if let annotation = view.annotation as? UserAnnotation {
+            annotationClicked(annotation)
         }
        
     }
@@ -167,28 +170,37 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         refreshLocation()
     }
     
-    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+    @IBAction func chatButtonClicked(sender: AnyObject) {
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(2)
+        self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
+    }
+    
+    @IBAction func settingsButtonClicked(sender: AnyObject) {
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(0)
+        self.pageViewController!.setViewControllers([newViewController], direction: .Reverse, animated: true,completion: nil)
+
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "newChat") {
-            if let senderObject = sender as? MKAnnotationView{
-                let navViewController = segue.destinationViewController as! UINavigationController
-                let chatListController = navViewController.topViewController as! ChatListViewController
-                _ = sender!.annotation as! UserAnnotation
-                if let senderAnnotation = senderObject.annotation as? UserAnnotation{
-                    if let _ = Chat.getChatByUserId(senderAnnotation.user.userId){
-                        chatListController.newChat = false
-                        chatListController.clickedUserId = senderAnnotation.user.userId
-                    }else{
-                		chatListController.newChat = true
-                		account.chats.insert(Chat(user: senderAnnotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
-                        account.chats[0].saveNewChat()
-                    }
-            	}
-        	}
-    	}
+    func annotationClicked(annotation: UserAnnotation){
+        
+        let newViewController = self.pageViewController!.viewControllerAtIndex(2) as! UINavigationController
+        
+        let chatListController = newViewController.topViewController as! ChatListViewController
+        
+        if let _ = Chat.getChatByUserId(annotation.user.userId){
+                chatListController.newChat = false
+                chatListController.clickedUserId = annotation.user.userId
+            }else{
+                chatListController.newChat = true
+                account.chats.insert(Chat(user: annotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
+        }
+        
+        self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
+
     }
+    
     
 }

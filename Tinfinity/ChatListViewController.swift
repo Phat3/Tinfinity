@@ -195,7 +195,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func addHandler() {
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
-            let json = JSON(data!)
+            let json = JSON(data)
             let user_id = json[0]["user_id"].string
             
             // Message received for a conversation

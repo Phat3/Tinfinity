@@ -254,6 +254,8 @@ class Chat {
                 	        messages.append(message)
                             let messagesSet = NSSet(array: messages)
                         	chat.setValue(messagesSet, forKey: "hasMessages")
+                            let unreadCounter = chat.valueForKey("unreadMessagesCount") as! Int + 1
+                            chat.setValue(unreadCounter, forKey: "unreadMessagesCount")
                     	}
                 	}
             	do {
@@ -267,6 +269,33 @@ class Chat {
             error = error2
             print("Could not fetch \(error), \(error?.userInfo)", terminator: "")
         }
+    }
+    
+    func resetCoreUnreadCounter(){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+    	
+        //Let's look for the chat record
+        let entity = "Chat"
+        let request = NSFetchRequest(entityName: entity)
+        var error: NSError?
+        do{
+            if let entities = try managedContext.executeFetchRequest(request) as? [NSManagedObject] {
+                for chat in entities {
+                        chat.setValue(0, forKey: "unreadMessagesCount")
+                }
+                do {
+                    try managedContext.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    print("Could not save \(error), \(error?.userInfo)", terminator: "")
+                }
+            }
+        }catch let error2 as NSError{
+            error = error2
+            print("Could not fetch \(error), \(error?.userInfo)", terminator: "")
+        }
+
     }
     
     static func loadChatsFromCore(){
@@ -287,7 +316,9 @@ class Chat {
                 	let image = user.valueForKey("image") as! NSData
                 	newUser.images[0] = UIImage(data: image)
                 	let date = chat.valueForKey("lastMessageDate") as! NSDate
+                    let unreadCounter = chat.valueForKey("unreadMessagesCount") as! Int
                 	let newChat = Chat(user: newUser, lastMessageText: chat.valueForKey("lastMessageText") as! String, lastMessageSentDate: date)
+                    newChat.unreadMessageCount = unreadCounter
                 
                 	let messages = chat.valueForKey("hasMessages")!.allObjects as! [NSManagedObject]
                 	for message in messages{

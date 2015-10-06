@@ -149,13 +149,18 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 let path = self.chatTableView.indexPathForSelectedRow!
                 nextViewcontroller.chat = chats[path.row]
             	chats[path.row].unreadMessageCount = 0
+                chats[path.row].resetCoreUnreadCounter()
             }else if(newChat == true){
                 //Segue after new user selection on map
                 nextViewcontroller.chat = chats[0]
                 chats[0].unreadMessageCount = 0
+                chats[0].resetCoreUnreadCounter()
             }else{
                 //Segue after selection on map of user with an already existing chat
-                nextViewcontroller.chat = Chat.getChatByUserId(clickedUserId!).0
+                let chatAndIndex = Chat.getChatByUserId(clickedUserId!)
+                nextViewcontroller.chat = chatAndIndex.0
+                chatAndIndex.0?.resetCoreUnreadCounter()
+                
             }
         }
     }

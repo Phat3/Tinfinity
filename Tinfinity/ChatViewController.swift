@@ -159,8 +159,8 @@ class ChatViewController: JSQMessagesViewController {
                 // Get other chat data
                 if let otherChat = Chat.getChatByUserId(user_id!).0 {
                     // Get other user data
-                    let otherUser = User.getUserById(user_id!)
-                    let newMessage = JSQMessage(senderId: user_id, displayName: otherUser?.name, text: json[0]["message"].string);
+                    let otherUser = otherChat.user
+                    let newMessage = JSQMessage(senderId: user_id, displayName: otherUser.name, text: json[0]["message"].string);
                     otherChat.allMessages.append(newMessage);
                     otherChat.updateLastMessage()
                     otherChat.unreadMessageCount++

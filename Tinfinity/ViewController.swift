@@ -190,7 +190,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let chatListController = newViewController.topViewController as! ChatListViewController
         
-        if let _ = Chat.getChatByUserId(annotation.user.userId){
+        if let _ = Chat.getChatByUserId(annotation.user.userId).0{
                 chatListController.newChat = false
                 chatListController.clickedUserId = annotation.user.userId
             }else{

@@ -136,7 +136,7 @@ class ChatViewController: JSQMessagesViewController {
     // Handle websocket event
     func addHandler() {
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
-            let json = JSON(data)
+            let json = JSON(data!)
             let user_id = json[0]["user_id"].string
             
             // Message received for this conversation
@@ -157,7 +157,7 @@ class ChatViewController: JSQMessagesViewController {
             // Message received for other conversation
             else {
                 // Get other chat data
-                if let otherChat = Chat.getChatByUserId(user_id!) {
+                if let otherChat = Chat.getChatByUserId(user_id!).0 {
                     // Get other user data
                     let otherUser = User.getUserById(user_id!)
                     let newMessage = JSQMessage(senderId: user_id, displayName: otherUser?.name, text: json[0]["message"].string);

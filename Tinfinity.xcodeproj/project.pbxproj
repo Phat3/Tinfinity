@@ -36,7 +36,6 @@
 		51D96C241B4A6C91001A2D29 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C231B4A6C91001A2D29 /* Album.swift */; };
 		51D96C261B4ABC42001A2D29 /* FacebookAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */; };
 		51F69F861BA05F8900BF842C /* Main6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F69F7E1BA05D2F00BF842C /* Main6.storyboard */; };
-		8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */; };
 		8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8BA371B9225D800F587EF /* ImageUtil.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -101,7 +100,6 @@
 		51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinfinity-Bridging-Header.h"; sourceTree = "<group>"; };
 		51F69F841BA05DA900BF842C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main6.storyboard; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReqWrapper.swift; sourceTree = "<group>"; };
 		8BE8BA371B9225D800F587EF /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				5113C1DE1B19F1F8007B53AA /* Reachability.swift */,
-				8BD6D7A31AFF9F04000F7B7D /* HttpReqWrapper.swift */,
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
 				8BE8BA371B9225D800F587EF /* ImageUtil.swift */,
 			);
@@ -419,7 +416,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5122F9E11BB3ED0D008E73EB /* PageViewController.swift in Sources */,
-				8BD6D7A41AFF9F04000F7B7D /* HttpReqWrapper.swift in Sources */,
 				51ADDC0F1B57D4F100873DDB /* PictureCollectionViewCell.swift in Sources */,
 				516594971BA964FB00C186F0 /* AlbumCustomCell.swift in Sources */,
 				51ADDC0B1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift in Sources */,

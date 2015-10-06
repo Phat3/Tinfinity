@@ -29,13 +29,13 @@ class Chat {
         self.lastMessageSentDate = lastMessageSentDate
     }
     
-    static func getChatByUserId(user_id: String) -> Chat? {
+    static func getChatByUserId(user_id: String) -> (Chat?, Int?){
         for(var i=0; i < account.chats.count; i++){
             if (account.chats[i].user.userId == user_id){
-                return account.chats[i]
+                return (account.chats[i],i)
             }
         }
-        return nil
+        return (nil,nil)
     }
 
     func formatDate(date: NSDate) -> String {
@@ -75,6 +75,7 @@ class Chat {
         updateLastMessage()
         
     }
+    
     /*
 	*Inserts the chat in the right order, comparing it's date to the ones of already existing chats
 	*/

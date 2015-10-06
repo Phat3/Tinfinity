@@ -155,7 +155,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 chats[0].unreadMessageCount = 0
             }else{
                 //Segue after selection on map of user with an already existing chat
-                nextViewcontroller.chat = Chat.getChatByUserId(clickedUserId!)
+                nextViewcontroller.chat = Chat.getChatByUserId(clickedUserId!).0
             }
         }
     }
@@ -195,11 +195,13 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func addHandler() {
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
-            let json = JSON(data)
+            let json = JSON(data!)
             let user_id = json[0]["user_id"].string
             
+            let chatAndIndex = Chat.getChatByUserId(user_id!)
+            
             // Message received for a conversation
-            if let chat = Chat.getChatByUserId(user_id!) {
+            if let chat = Chat.getChatByUserId(user_id!).0 {
             	// Get other user data
             	let newMessage = JSQMessage(senderId: user_id, displayName: chat.user.name, text: json[0]["message"].string)
            		chat.allMessages.append(newMessage);
@@ -208,6 +210,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                     
             	//Let's save the message in core data
             	chat.saveNewMessage(newMessage, userId: user_id!)
+                
+                //We need to put the chat on the top of the list
+                account.chats.removeAtIndex(chatAndIndex.1!)
+                account.chats.insert(chat, atIndex: 0)
                 
 				self!.chatTableView.reloadData()
             }else{

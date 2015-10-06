@@ -219,9 +219,16 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                     chat.updateLastMessage()
                     chat.unreadMessageCount++
                     
+                    //we need to insert the new chat in the chat list 
+                    account.chats.insert(chat, atIndex: 0)
+                    
+                    self!.chatTableView.hidden = false
+                    self!.defaultMessage.hidden = true
+                    
                     //Lets save the new chat with the message added
                     chat.saveNewChat()
                     self!.chatTableView.reloadData()
+                    print(chat.allMessages)
                 })
             }
             

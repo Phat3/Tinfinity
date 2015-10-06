@@ -115,12 +115,9 @@ class Chat {
                         
                             let user1 = innerData["_id"]["user1"].string
                             let user2 = innerData["_id"]["user2"].string
-                            
-                            var newUser: User
+                        
                             let user1MessagesCount = innerData["user1"].count
                             let user2MessagesCount = innerData["user2"].count
-                            let minute: NSTimeInterval = 60, hour = minute * 60, day = hour * 24
-                            let date = NSDate(timeIntervalSinceNow: -minute)
                             
                             for(var k = 0 ; k < user1MessagesCount; k++){
                                 

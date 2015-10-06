@@ -80,17 +80,17 @@ class Account: NSObject {
     }
     
     func fetchUserByID(userId: String, completion: (result: User? ) -> Void){
-        Alamofire.request(.GET, baseUrl + "/api/users" + userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
+        Alamofire.request(.GET, baseUrl + "/api/users/" + userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
             .responseJSON { _,_,result in
                 switch result {
-                case .Success(let data):
-                    var json = JSON(data)
-                    print(json)
-                    let userData = json["user"]
-                    let newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
-                    completion(result: newUser)
-                case .Failure(_, let error):
-                    print("Request failed with error: \(error)")
+                    case .Success(let data):
+                        var json = JSON(data)
+                        print(json)
+                        let newUser = User(userId: json["_id"].string!, firstName: json["name"].string!, lastName: json["surname"].string!)
+                        newUser.decodeImages(json["images"])
+                        completion(result: newUser)
+                    case .Failure(_, let error):
+                        print("Request failed with error: \(error)")
                 }
         }
 

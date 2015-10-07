@@ -222,7 +222,7 @@ class Chat {
         var error: NSError?
         do {
             try managedContext.save()
-        } catch var error1 as NSError {
+        } catch let error1 as NSError {
             error = error1
             print("Could not save \(error), \(error?.userInfo)", terminator: "")
         }
@@ -332,6 +332,38 @@ class Chat {
         	}
         }catch let error as NSError{
 			print("Could not fetch \(error), \(error.userInfo)", terminator: "")        }
+    }
+    
+    func deleteChat(){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "Chat")
+        
+        do{
+            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as? [NSManagedObject]
+            
+            if let results = fetchedResults {
+                // For every chat we have found we need check which is the right one to delete
+                for chat in results{
+                    let user = chat.valueForKey("withUser") as! NSManagedObject
+                    let userId = user.valueForKey("id") as! String
+                    if (self.user.userId == userId){
+                        managedContext.deleteObject(chat)
+                    }
+                }
+                do {
+                    try managedContext.save()
+                } catch let error1 as NSError {
+                    print("Could not save \(error1)", terminator: "")
+                }
+
+            }
+        }catch let error as NSError{
+            print("Could not fetch \(error), \(error.userInfo)", terminator: "")        }
+
+        
+        
     }
     
   

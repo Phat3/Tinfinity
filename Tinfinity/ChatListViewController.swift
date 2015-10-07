@@ -17,12 +17,15 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var defaultMessage: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    
     
     //Weak reference to parent pageViewController
     weak var pageViewController: PageViewController?
     
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
+    
     
     /*newChat can assume 3 values:
 	* - nil: means the user got in this controller by simply clicking the regoular button
@@ -44,12 +47,20 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var isConnected = false
     
+    /*
+    ##################   START-UP AND APPEAR/DISAPPEAR BEHAVIOUR   ##################
+	*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //If we come from vewiCOntroller(The map controller) it mean we have to directly create a detailVIewController
+        
+        //If we come from vewiController(The map controller) it mean we have to directly create a detailVIewController
         if(newChat != nil){
             performSegueWithIdentifier("chatSelected", sender: self)
         }
+        
+        //Setting editButton's title
+        editButton.setTitle("Edit", forState: .Normal)
         
         self.connectToServer()
         self.addHandler()
@@ -79,16 +90,24 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.newChat = nil
+    }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
+        if(newChat == nil || newChat == false){
+            for(var i = 0; i < chats.count; i++){
+                chats[i].updateLastMessage()
+            }
+            chatTableView.reloadData()
+        }
+    }
 
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    ##################   TABLE-VIEW SETUP   ##################
     */
+
     
    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chats.count
@@ -99,7 +118,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         return nil
     }
     
-    
+    //Life cycle
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //we need to obtain the cell to set his values
@@ -136,6 +155,40 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    //Edit button touch function
+    @IBAction func editTable(sender: AnyObject){
+        if(editButton.titleLabel?.text == "Edit"){
+        	setEditing(true, animated: true)
+        }else{
+            setEditing(false, animated: true)
+        }
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.chatTableView.setEditing(editing, animated: animated)
+        if(editing == true){
+        	editButton.setTitle("Done", forState: .Normal)
+        }else{
+            editButton.setTitle("Edit", forState: .Normal)
+        }
+    }
+    
+    // Override to support editing the table view.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            account.chats[indexPath.row].deleteChat()
+            account.chats.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+        
+    
+    /*
+    ##################   BUTTONS AND SEGUE PREPARATION   ##################
+    */
+    
     @IBAction func homeButtonClicked(sender: AnyObject){
         let newViewController = self.pageViewController!.viewControllerAtIndex(1)
         self.pageViewController!.setViewControllers([newViewController], direction: .Reverse, animated: true,completion: nil)
@@ -165,18 +218,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        self.newChat = nil
-    }
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
-    	if(newChat == nil || newChat == false){
-        	for(var i = 0; i < chats.count; i++){
-            	chats[i].updateLastMessage()
-        	}
-        	chatTableView.reloadData()
-        }
-    }
+    
     
     func updateData(){
         for (var i = 0; i < chats.count; i++){
@@ -189,6 +231,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             })
         }
     }
+    
+    
+    /*
+    ##################   WEB SOCKET   ##################
+    */
     
     // Connect to the server through the websocket
     func connectToServer(){
@@ -246,6 +293,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
                 
     }
+
 
 
 }

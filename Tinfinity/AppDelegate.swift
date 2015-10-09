@@ -20,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        //registerting for the notification.
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
+        //Register to pushbot
+        Pushbots.sharedInstanceWithAppId("56179eb117795989018b4567")
+        //Handle notification when the user click it, while app is closed.
+        
+        //This method will show an alert to the user.
+        Pushbots.sharedInstance().receivedPush(launchOptions)
+        
         var result = UIScreen.mainScreen().bounds.size
     	let scale = UIScreen.mainScreen().scale
         result = CGSizeMake(result.width*scale, result.height*scale)
@@ -151,7 +161,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-
+    
+    //PUSHBOT
+    
+    //Function used to register for remote notifications
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // This method will be called everytime you open the app
+        // Register the deviceToken on Pushbots
+        Pushbots.sharedInstance().registerOnPushbots(deviceToken);
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Notification Registration Error.");
+    }
+	
 }
 

@@ -10,7 +10,7 @@ target 'TinfinityTests' do
 end
 
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.2'
+#platform :ios, '8.4'
 use_frameworks!
 
 pod 'Alamofire', '~> 2.0'
@@ -20,4 +20,4 @@ pod 'FBSDKCoreKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', 
 pod 'FBSDKShareKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'FBSDKLoginKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'JSQMessagesViewController'
-
+pod ‘Pushbots', '~> 1.1.0’

@@ -24,6 +24,7 @@ class ChatViewController: JSQMessagesViewController {
     
     var isConnected = false
     var registerdHandlers = false
+    
 
     // Socket IO client
     private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
@@ -43,6 +44,10 @@ class ChatViewController: JSQMessagesViewController {
         self.connectToServer()
         self.addHandler()
         
+        if let name = chat!.user.name {
+            self.title = name
+        }
+                
         // We need it here as 'chat' before does not exist
         incomingAvatar = JSQMessagesAvatarImageFactory.avatarImageWithImage(ImageUtil.cropToSquare(image: chat!.user.image!), diameter: 30)
         

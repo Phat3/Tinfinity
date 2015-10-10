@@ -8,6 +8,9 @@ var dateFormatter = NSDateFormatter()
 
 class Chat {
     let user: User
+    
+    
+    var lastMessageId: String = "0"
     var lastMessageText: String
     var lastMessageSentDate: NSDate
     var lastMessageSentDateString: String {
@@ -77,8 +80,8 @@ class Chat {
     }
     
     /*
-	*Inserts the chat in the right order, comparing it's date to the ones of already existing chats
-	*/
+	 * Inserts the chat in the right order, comparing it's date to the ones of already existing chats
+	 */
     func insertChat(){
         var i = 0
         while(i < account.chats.count && self.lastMessageSentDate.compare(account.chats[i].lastMessageSentDate) == NSComparisonResult.OrderedAscending){
@@ -153,7 +156,6 @@ class Chat {
     
     func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
         
-        let newMessage = localMessage["message"].string
         let timestamp = localMessage["timestamp"].double!/1000
         let text = localMessage["message"].string
         let myDouble = NSNumber(double: timestamp)

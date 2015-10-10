@@ -26,6 +26,9 @@ class User {
     var gender: Gender?
     var email: String?
     
+    // We keep here the info wether we're friends or not
+    var isFriend: Bool = false;
+    
     // Main image
     var image: UIImage? {
         return images[0]

@@ -61,16 +61,20 @@ class Account: NSObject {
                     	case .Success(let data):
                         	var json = JSON(data)
                             for(var i = 0; i < json.count; i++){
-                                let userData = json[i]["user"]
-                                let position = json[i]["position"]
-                                let newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
-                                newUser.fetch({ (result) -> Void in
-                                    let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
-                                    
-                                    newUser.position = userPosition
-                                    self.users.removeAll(keepCapacity: false)
-                                    self.users.append(newUser)
-                                })                           
+                                
+                                if(json[i]["user"].count > 0) {
+                                    let userData = json[i]["user"]
+                                    let position = json[i]["position"]
+                                    let newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
+                                    newUser.fetch({ (result) -> Void in
+                                        let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
+                                        
+                                        newUser.position = userPosition
+                                        self.users.removeAll(keepCapacity: false)
+                                        self.users.append(newUser)
+                                    })
+                                }
+                                
                                 
                             }
                         case .Failure(_, let error):

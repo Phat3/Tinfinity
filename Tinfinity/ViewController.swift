@@ -56,7 +56,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         // We don't want our user to mess with the map
-        self.mapView.zoomEnabled = false;
+        self.mapView.zoomEnabled = true;
         self.mapView.scrollEnabled = false;
         
         

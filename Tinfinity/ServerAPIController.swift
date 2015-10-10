@@ -27,47 +27,44 @@ class ServerAPIController{
     
     //Funzione che chiama il server e setta i parametri dell'utente. Ritorna true se la richiesta è andata a buon fine,altrimenti false
     func retrieveProfileFromServer(completion: (result: Bool) -> Void){
-            
-            Alamofire.request(.POST, baseUrl + authenticationPath, parameters: ["token" : FBToken], encoding : .JSON)
-                .responseJSON { _,_,result in
+        Alamofire.request(.POST, baseUrl + authenticationPath, parameters: ["token" : FBToken], encoding : .JSON)
+            .responseJSON { _,_,result in
+                
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                
+                    let id = json["_id"].string
+                    let name = json["name"].string
+                    let surname = json["surname"].string
+                    account.token = json["token"].string
+                
                     
-                    switch result {
-                    case .Success(let data):
-                        let json = JSON(data)
+                    //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
+                    let manager = Alamofire.Manager.sharedInstance
+                    manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
                     
-                        let id = json["_id"].string
-                        let name = json["name"].string
-                        let surname = json["surname"].string
-                        account.token = json["token"].string
+                    account.user = User(userId: id!, firstName: name!, lastName: surname!)
+                    account.user.email = json["email"].string
+                    account.user.decodeImages(json["images"])
                     
-                        
-                        //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
-                        let manager = Alamofire.Manager.sharedInstance
-                        manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
-                        
-                        account.user = User(userId: id!, firstName: name!, lastName: surname!)
-                        account.user.email = json["email"].string
-                        print(json["images"])
-                        account.user.decodeImages(json["images"])
-                        
-                        print("User Token: " + account.token)
-                        
-                        //Register this device with a tag that is the user id received from the server
-                        Pushbots.sharedInstance().setAlias(account.user.userId)
+                    print("User Token: " + account.token)
+                    
+                    //Register this device with a tag that is the user id received from the server
+                    Pushbots.sharedInstance().setAlias(account.user.userId)
 
-                        completion(result: true)
-                        
-                    case .Failure(_, let error):
-                        print("Request failed with error: \(error)")
-                    }
-
+                    completion(result: true)
+                    
+                case .Failure(_, let error):
+                    print("Request failed with error: \(error)")
                 }
+
+            }
     }
     
     func retriveChatHistory(id: String, completion: (result: [(Chat)] ) -> Void){
         
-        
-        Alamofire.request(.GET, baseUrl + "/api/chat", encoding : .JSON, headers: ["X-Api-Token": account.token!])
+        Alamofire.request(.GET, baseUrl + "/api/chat", encoding : .JSON, headers: ["X-Api-Token": account.token])
             .responseJSON { _,_,result in
                 
                 switch result {
@@ -100,14 +97,10 @@ class ServerAPIController{
                                 let newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                                 
                                 for(var k = 0 ; k < user1MessagesCount; k++){
-                                    
                                     newChat.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
-                                    
                                 }
                                 for (var k = 0; k < user2MessagesCount; k++){
-                                    
                                     newChat.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
-                                    
                                 }
                                 newChat.reorderChat()
                                 newChat.saveNewChat()

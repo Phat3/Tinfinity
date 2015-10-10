@@ -56,8 +56,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         // We don't want our user to mess with the map
-        self.mapView.zoomEnabled = true;
-        self.mapView.scrollEnabled = false;
+        //self.mapView.zoomEnabled = true;
+        //self.mapView.scrollEnabled = false;
         
         
     }
@@ -139,17 +139,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         	let customAnnotation = annotation as! UserAnnotation
         	
         	let img = ImageUtil.cropToSquare(image: customAnnotation.image)
-        	let rect = AVMakeRectWithAspectRatioInsideRect(img.size, CGRect(x: 0, y: 0, width: 35, height: 35))
+        	let rect = AVMakeRectWithAspectRatioInsideRect(img.size, CGRect(x: 0, y: 0, width: 90, height: 90))
         	UIGraphicsBeginImageContext(rect.size)
         	img.drawInRect(rect) //[image drawInRect:rect];
         	let image = UIGraphicsGetImageFromCurrentImageContext()
             let imageData = UIImagePNGRepresentation(image)
             UIGraphicsEndImageContext()
             let finalImage = UIImage(data: imageData!)
-            let imageView = UIImageView(frame: CGRectMake(0, 0, 35, 35))
+            let imageView = UIImageView(frame: CGRectMake(0, 0, 45, 45))
             imageView.image = finalImage
             imageView.layer.cornerRadius = imageView.layer.frame.size.width / 2
             imageView.layer.masksToBounds = true
+            imageView.layer.borderWidth = CGFloat(4)
+            imageView.layer.borderColor = UIColor.whiteColor().CGColor
             annotationView!.addSubview(imageView)
         	annotationView!.frame = CGRect(origin: CGPointZero, size: imageView.frame.size)
     		return annotationView
@@ -157,6 +159,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     	return nil
     }
+    
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("bottone cliccato", terminator: "")

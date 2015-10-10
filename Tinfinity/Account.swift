@@ -24,6 +24,8 @@ class Account: NSObject {
     func logOut() {
         token = nil
         user = nil
+        chats = [Chat]()
+        users = [User]()
     }
     
     /**

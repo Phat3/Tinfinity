@@ -69,7 +69,10 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        account.user = nil
+        for(var i = 0; i < account.chats.count; i++){
+            account.chats[i].deleteChat()
+        }
+        account.logOut()
         performSegueWithIdentifier("logoutExecuted", sender: self)
     }
     

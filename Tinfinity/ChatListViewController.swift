@@ -245,55 +245,67 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // Disconnect from the server through the websocket
+    func disconnectFromServer(){
+        // Avoid multiple connections
+        if(self.isConnected) {
+            self.socket.close()
+        }
+    }
+    
     func addHandler() {
+        socket.on("connect") {[weak self] data, ack in
+            self!.isConnected = true;
+            //self!.toggleSend()
+        }
+        
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
             let json = JSON(data)
+            print(data)
             let user_id = json[0]["user_id"].string
             
             let chatAndIndex = Chat.getChatByUserId(user_id!)
             
-            // Message received for a conversation
-            if let chat = Chat.getChatByUserId(user_id!).0 {
-            	// Get other user data
-            	let newMessage = JSQMessage(senderId: user_id, displayName: chat.user.name, text: json[0]["message"].string)
-           		chat.allMessages.append(newMessage);
-            	chat.updateLastMessage()
-            	chat.unreadMessageCount++
-                    
-            	//Let's save the message in core data
-            	chat.saveNewMessage(newMessage, userId: user_id!)
-                
-                //We need to put the chat on the top of the list
-                account.chats.removeAtIndex(chatAndIndex.1!)
-                account.chats.insert(chat, atIndex: 0)
-                
-				self!.chatTableView.reloadData()
-            }else{
-                account.fetchUserByID(user_id!, completion: { (result) -> Void in
-                	let newUser = result
-                    let newMessage = JSQMessage(senderId: user_id, displayName: newUser?.name, text: json[0]["message"].string)
-                    let chat = Chat(user: newUser!, lastMessageText: newMessage.text, lastMessageSentDate: NSDate())
-                    chat.allMessages.append(newMessage)
+                // Message received for a conversation
+                if let chat = Chat.getChatByUserId(user_id!).0 {
+                    // Get other user data
+                    let newMessage = JSQMessage(senderId: user_id, displayName: chat.user.name, text: json[0]["message"].string)
+                    chat.allMessages.append(newMessage);
                     chat.updateLastMessage()
                     chat.unreadMessageCount++
                     
-                    //we need to insert the new chat in the chat list 
+                    //Let's save the message in core data
+                    chat.saveNewMessage(newMessage, userId: user_id!)
+                    
+                    //We need to put the chat on the top of the list
+                    account.chats.removeAtIndex(chatAndIndex.1!)
                     account.chats.insert(chat, atIndex: 0)
                     
-                    self!.chatTableView.hidden = false
-                    self!.defaultMessage.hidden = true
-                    
-                    //Lets save the new chat with the message added
-                    chat.saveNewChat()
-                    self!.chatTableView.reloadData()
-                    print(chat.allMessages)
-                })
+                    if(self!.chatTableView != nil){
+                     self!.chatTableView.reloadData()
+                    }
+                }else{
+                    account.fetchUserByID(user_id!, completion: { (result) -> Void in
+                        let newUser = result
+                        let newMessage = JSQMessage(senderId: user_id, displayName: newUser?.name, text: json[0]["message"].string)
+                        let chat = Chat(user: newUser!, lastMessageText: newMessage.text, lastMessageSentDate: NSDate())
+                        chat.allMessages.append(newMessage)
+                        chat.updateLastMessage()
+                        chat.unreadMessageCount++
+                        
+                        //we need to insert the new chat in the chat list
+                        account.chats.insert(chat, atIndex: 0)
+                        
+                        self!.chatTableView.hidden = false
+                        self!.defaultMessage.hidden = true
+                        
+                        //Lets save the new chat with the message added
+                        chat.saveNewChat()
+                        if(self!.chatTableView != nil){
+                            self!.chatTableView.reloadData()
+                        }
+                    })
+                }
             }
-            
         }
-                
-    }
-
-
-
 }

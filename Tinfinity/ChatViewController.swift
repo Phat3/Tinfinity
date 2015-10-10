@@ -39,7 +39,7 @@ class ChatViewController: JSQMessagesViewController {
         self.navigationController?.navigationBarHidden = false
         
         senderId = account.user.userId
-        senderDisplayName = "Me"
+        senderDisplayName = chat?.user.name
         
         self.connectToServer()
         self.addHandler()
@@ -141,39 +141,15 @@ class ChatViewController: JSQMessagesViewController {
     // Handle websocket event
     func addHandler() {
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
+            
             let json = JSON(data)
+            print(data)
             let user_id = json[0]["user_id"].string
             
             // Message received for this conversation
             if(self!.chat!.user.userId == user_id) {
-                
-                if (self!.chat!.allMessages.count == 0){
-                    account.chats[0].saveNewChat()
-                }
-                
-                let newMessage = JSQMessage(senderId: user_id, displayName: self!.chat!.user.name, text: json[0]["message"].string);
-                self!.chat!.allMessages.append(newMessage)
-                self!.chat!.updateLastMessage()
                 self!.finishReceivingMessage()
-                
-                //Let's save the message in core data
-                self!.chat!.saveNewMessage(newMessage, userId: user_id!)
             }
-            // Message received for other conversation
-            else {
-                // Get other chat data
-                if let otherChat = Chat.getChatByUserId(user_id!).0 {
-                    // Get other user data
-                    let otherUser = otherChat.user
-                    let newMessage = JSQMessage(senderId: user_id, displayName: otherUser.name, text: json[0]["message"].string);
-                    otherChat.allMessages.append(newMessage);
-                    otherChat.updateLastMessage()
-                    otherChat.unreadMessageCount++
-                    
-                    //Let's save the message in core data
-                    self!.chat!.saveNewMessage(newMessage, userId: user_id!)
-                }
-            }    
             
         }
         

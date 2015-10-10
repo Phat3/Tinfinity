@@ -44,7 +44,7 @@ class ImageUtil: NSObject {
         return image
     }
     
-    func resize(image: UIImage, targetSize: CGSize) -> UIImage {
+    static func resize(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
     
         let widthRatio  = targetSize.width  / image.size.width

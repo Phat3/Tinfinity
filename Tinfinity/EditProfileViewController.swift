@@ -29,26 +29,18 @@ class EditProfileViewController: UIViewController {
        
         
         let screenWidth = self.view.frame.size.width
-        print("Width: " + String(stringInterpolationSegment: screenWidth), terminator: "")
         let screenHeight = self.view.frame.size.height
-        print("Height: " + String(stringInterpolationSegment: screenHeight), terminator: "")
         
         buttonX = screenWidth/16.0
-        print("Button x:" + String(stringInterpolationSegment: buttonX), terminator: "")
         buttonY = screenHeight/8.0
-        print("Button y:" + String(stringInterpolationSegment: buttonY), terminator: "")
         
         let floatConst = CGFloat(MAX_PHOTOS)
         
         buttonHeight = ((screenHeight - (buttonY  * ((floatConst / 2.0)))) / ( floatConst / 2 ))
-        print("Button height: " + String(stringInterpolationSegment: buttonHeight), terminator: "")
         buttonWidth = ((screenWidth - (buttonX * 3)) / CGFloat(2))
-        print("Button width: " + String(stringInterpolationSegment: buttonWidth), terminator: "")
         
         buttonHorizontalDistance = buttonX + buttonWidth
-        print("Horizontal distance:" + String(stringInterpolationSegment: buttonHorizontalDistance), terminator: "")
         buttonVerticalDistance = buttonY + buttonHeight
-        print("Vertical distance:" + String(stringInterpolationSegment: buttonVerticalDistance), terminator: "")
 
         
 
@@ -176,7 +168,6 @@ class EditProfileViewController: UIViewController {
         
         buttons[i].backgroundColor = UIColor.whiteColor()
     
-        print(buttons[i], terminator: "")
     	//Here we decide which action has to be taken based on the tag attribute
         if(buttons[i].tag == 0){
             buttons[i].setBackgroundImage(ImageUtil.cropToSquare(image: image), forState: .Normal)

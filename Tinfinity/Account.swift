@@ -35,12 +35,14 @@ class Account: NSObject {
     func pushImages() {
         
         for( var i = 0; i < self.user.images.count ; i++ ) {
-            
-            if let img = self.user.images[i], imgProfile:NSData = UIImagePNGRepresentation(img) {
+            if let img = self.user.images[i] {
+                print("Immagine \(i) inviata")
+                let resizedImg = ImageUtil.resize(ImageUtil.cropToSquare(image: img), targetSize: CGSize(width: 200, height: 200))
+                let imgProfile: NSData = UIImagePNGRepresentation(resizedImg)!
                 Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [
                     "image" : i,
                     "imageData" : imgProfile.base64EncodedStringWithOptions([])
-                ])
+                ],headers: ["X-Api-Token": account.token!,"Content-Type": "application/x-www-form-urlencoded"])
             }
         }
     }

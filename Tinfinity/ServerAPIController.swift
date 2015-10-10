@@ -47,9 +47,14 @@ class ServerAPIController{
                         
                         account.user = User(userId: id!, firstName: name!, lastName: surname!)
                         account.user.email = json["email"].string
+                        print(json["images"])
                         account.user.decodeImages(json["images"])
                         
                         print("User Token: " + account.token)
+                        
+                        //Register this device with a tag that is the user id received from the server
+                        Pushbots.sharedInstance().setAlias(account.user.userId)
+
                         completion(result: true)
                         
                     case .Failure(_, let error):
@@ -129,7 +134,5 @@ class ServerAPIController{
         return message
         
     }
-
-    
     
 }

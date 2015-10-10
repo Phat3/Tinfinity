@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //registerting for the notification.
         UIApplication.sharedApplication().registerForRemoteNotifications()
         
+        // Reset badge on the server and in the app.
+        Pushbots.sharedInstance().clearBadgeCount()
+        
         //Register to pushbot
         Pushbots.sharedInstanceWithAppId("56179eb117795989018b4567")
         //Handle notification when the user click it, while app is closed.

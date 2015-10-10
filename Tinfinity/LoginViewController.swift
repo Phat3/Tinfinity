@@ -68,8 +68,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     override func viewDidAppear(animated: Bool) {
         
         //Controlliamo se è già presente un token facebook
-        if (FBSDKAccessToken.currentAccessToken() != nil){
-            
+        if (FBSDKAccessToken.currentAccessToken() != nil && account.token == nil){
+
             //instantiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
             api?.retrieveProfileFromServer({ (result) -> Void in

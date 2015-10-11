@@ -107,7 +107,7 @@ class Chat {
         let manager = Alamofire.Manager.sharedInstance
             
             //We need the timeinterval to speak with the server, but in milliseconds
-            let timeinterval: Double = round(self.lastMessageSentDate.timeIntervalSince1970 * 1000)
+            let timeinterval: Double = round(self.lastMessageSentDate.timeIntervalSince1970 * 1000) + 2000
         
         	let stringTime = NSString(format: "%.f",timeinterval) as String
             
@@ -117,38 +117,45 @@ class Chat {
                     
                     switch result {
                     case .Success(let data):
+                        print("Refresho chat con ")
+                        print(self.user.name)
+                        print("e timestamp ")
+                        print(stringTime)
                         var innerData = JSON(data)
-                        let user1 = innerData["_id"]["user1"].string
-                        let user2 = innerData["_id"]["user2"].string
-                    
-                        let user1MessagesCount = innerData["user1"].count
-                        let user2MessagesCount = innerData["user2"].count
+                        print(innerData)
+                            let user1 = innerData["_id"]["user1"].string
+                            let user2 = innerData["_id"]["user2"].string
                         
-                        for(var k = 0 ; k < user1MessagesCount; k++){
+                            let user1MessagesCount = innerData["user1"].count
+                            let user2MessagesCount = innerData["user2"].count
                             
-                            let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
-                            self.allMessages.append(newMessage)
-                            if (user1 != account.user.userId){
-                                self.unreadMessageCount++
+                            for(var k = 0 ; k < user1MessagesCount; k++){
+                                
+                                let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
+                                self.allMessages.append(newMessage)
+                                if (user1 != account.user.userId){
+                                	self.unreadMessageCount++
+                                }
+                                self.saveNewMessage(newMessage, userId: user1!)
+                                
                             }
-                            self.saveNewMessage(newMessage, userId: user1!)
-                            
-                        }
-                        for (var k = 0; k < user2MessagesCount; k++){
-                            
-                            let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
-                            self.allMessages.append(newMessage)
-                            if (user2 != account.user.userId){
-                                self.unreadMessageCount++
+                            for (var k = 0; k < user2MessagesCount; k++){
+                                
+                                let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
+                                self.allMessages.append(newMessage)
+                                if (user2 != account.user.userId){
+                                    self.unreadMessageCount++
+                                }
+                                self.saveNewMessage(newMessage, userId: user2!)
+                                
                             }
-                            self.saveNewMessage(newMessage, userId: user2!)
-                            
-                        }
-                        self.reorderChat()
-                        completion(result: true)
+                            self.reorderChat()
+                            completion(result: true)
                     case .Failure(_, let error):
                         print("Request failed with error: \(error)")
+                    
                     }
+                    
             }
         
     }

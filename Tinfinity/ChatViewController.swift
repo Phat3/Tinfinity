@@ -109,7 +109,7 @@ class ChatViewController: JSQMessagesViewController {
             account.chats[0].saveNewChat()
         }
         
-        let newMessage = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text);
+        let newMessage = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text);
         chat!.allMessages.append(newMessage)
         
         let json = [

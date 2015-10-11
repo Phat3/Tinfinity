@@ -153,13 +153,14 @@ class User {
                                 self.gender = Gender.Female
                             }
                             
+                            self.age = String(json["age"])
+                            
                             if(json["relationship"] == "requested") {
                                 self.hasSentRequest = true
                             } else if(json["relationship"] == "received") {
                                 self.hasReceivedRequest = true
                             } else if(json["relationship"] == "accepted") {
                                 self.isFriend = true
-                                self.age = json["age"].string
                             }
                         
                             // Lets download the image

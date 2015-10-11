@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -22,9 +23,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     //Weak reference to parent pageViewController
     weak var pageViewController: PageViewController?
-    
-    //Variabile contenente le informazioni dell'utente
-    var profile: User?
     
     var api: ServerAPIController?
     
@@ -41,10 +39,15 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         if(account.user != nil){
             self.name.text = account.user.name
+            if let age = account.user.age {
+                self.ageLabel.text = age + " years old"
+            } else {
+                self.ageLabel.text = "No birthday provided"
+            }
+            
             self.spinner.stopAnimating()
         }
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

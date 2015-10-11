@@ -241,7 +241,7 @@
                                 <animations/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="mf0-0l-War">
-                                <rect key="frame" x="177" y="387" width="20" height="20"/>
+                                <rect key="frame" x="177" y="423" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -259,13 +259,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="ZRt-UA-POS" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="95" y="593" width="184" height="30"/>
+                                <rect key="frame" x="95" y="591" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sLm-lg-0HD" userLabel="Name">
-                                <rect key="frame" x="57" y="357" width="261" height="28"/>
+                                <rect key="frame" x="57" y="367" width="261" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <accessibility key="accessibilityConfiguration" label=""/>
@@ -281,6 +281,14 @@
                                     <segue destination="lJh-f3-k0m" kind="modal" id="ANe-6W-K5h"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZRy-0P-ieg">
+                                <rect key="frame" x="129" y="403" width="116" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -288,6 +296,7 @@
                     <navigationItem key="navigationItem" id="g6c-TL-EjN"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="ageLabel" destination="ZRy-0P-ieg" id="hhk-DN-EfL"/>
                         <outlet property="loginButton" destination="ZRt-UA-POS" id="ruy-S2-PsD"/>
                         <outlet property="name" destination="sLm-lg-0HD" id="MeN-g0-Bif"/>
                         <outlet property="profilePict" destination="7hH-Qf-3kM" id="MWX-ng-fZC"/>

@@ -38,14 +38,15 @@ class ServerAPIController{
                     let name = json["name"].string
                     let surname = json["surname"].string
                     account.token = json["token"].string
-                
                     
-                    //Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per l'autenticazione in tutte le chiamate al server
+                    // Settiamo per tutta la sessione il manger alamofire affinche abbia il token nell'header per 
+                    // l'autenticazione in tutte le chiamate al server
                     let manager = Alamofire.Manager.sharedInstance
                     manager.session.configuration.HTTPAdditionalHeaders = ["X-Api-Token": account.token!]
                     
                     account.user = User(userId: id!, firstName: name!, lastName: surname!)
                     account.user.email = json["email"].string
+                    account.user.age = String(json["age"])
                     account.user.decodeImages(json["images"])
                     
                     print("User Token: " + account.token)

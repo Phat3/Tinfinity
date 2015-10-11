@@ -177,11 +177,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
                 print("acc button tapped")
             }
-            accept.backgroundColor = UIColor.greenColor()
+            accept.backgroundColor = UIColor(red: 46/255.0, green: 206/255.0, blue:113/255.0, alpha: 1)
             let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
                 print("Declien button tapped")
             }
-            decline.backgroundColor = UIColor.yellowColor()
+            decline.backgroundColor = UIColor(red: 52/255.0, green: 73/255.0, blue:94/255.0, alpha: 1)
             return [delete, decline, accept]
         } else if (account.chats[indexPath.row].user.isFriend == false) {
             let request = UITableViewRowAction(style: .Normal, title: "Send\nrequest") { action, index in

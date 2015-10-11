@@ -38,7 +38,6 @@ class Account: NSObject {
         
         for( var i = 0; i < self.user.images.count ; i++ ) {
             if let img = self.user.images[i] {
-                print("Immagine \(i) inviata")
                 let resizedImg = ImageUtil.resize(ImageUtil.cropToSquare(image: img), targetSize: CGSize(width: 200, height: 200))
                 let imgProfile: NSData = UIImagePNGRepresentation(resizedImg)!
                 Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [

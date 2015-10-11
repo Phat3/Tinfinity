@@ -17,7 +17,6 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var defaultMessage: UILabel!
-    @IBOutlet weak var editButton: UIButton!
     
     
     //Weak reference to parent pageViewController
@@ -58,9 +57,6 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         if(newChat != nil){
             performSegueWithIdentifier("chatSelected", sender: self)
         }
-        
-        //Setting editButton's title
-        editButton.setTitle("Edit", forState: .Normal)
         
         self.connectToServer()
         self.addHandler()
@@ -155,25 +151,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    //Edit button touch function
-    @IBAction func editTable(sender: AnyObject){
-        if(editButton.titleLabel?.text == "Edit"){
-        	setEditing(true, animated: true)
-        }else{
-            setEditing(false, animated: true)
-        }
-    }
-    
-    override func setEditing(editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        self.chatTableView.setEditing(editing, animated: animated)
-        if(editing == true){
-        	editButton.setTitle("Done", forState: .Normal)
-        }else{
-            editButton.setTitle("Edit", forState: .Normal)
-        }
-    }
-    
+
     // Override to support editing the table view.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {

@@ -16,7 +16,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     
     override func viewDidLoad() {
         
-        self.dataSource = self
+        //DATA SOURCE IS NOT SETTED TO PREVENT SWIPE GESTURE ON PAGE VIEW CONTROLLER
+        //self.dataSource = self
         self.delegate = self
         
         let startingViewController = self.storyboard!.instantiateViewControllerWithIdentifier("mainViewController") as! ViewController

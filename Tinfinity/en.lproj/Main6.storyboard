@@ -495,14 +495,6 @@
                                     <outlet property="delegate" destination="hka-sT-wlW" id="pQD-AK-hpC"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eEi-0P-2Df">
-                                <rect key="frame" x="302" y="32" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <connections>
-                                    <action selector="editTable:" destination="hka-sT-wlW" eventType="touchUpInside" id="d1Z-do-4Tz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -512,7 +504,6 @@
                     <connections>
                         <outlet property="chatTableView" destination="pbS-n9-sLu" id="o0i-eY-81m"/>
                         <outlet property="defaultMessage" destination="A7f-eX-UJa" id="fQe-iU-TRZ"/>
-                        <outlet property="editButton" destination="eEi-0P-2Df" id="Xki-m7-LQg"/>
                         <outlet property="homeButton" destination="qN2-sW-LTt" id="m9U-Wr-sN6"/>
                     </connections>
                 </viewController>

@@ -297,7 +297,6 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
             let json = JSON(data)
-            print(data)
             let user_id = json[0]["user_id"].string
             
             let chatAndIndex = Chat.getChatByUserId(user_id!)

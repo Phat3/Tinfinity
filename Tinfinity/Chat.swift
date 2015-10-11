@@ -117,45 +117,38 @@ class Chat {
                     
                     switch result {
                     case .Success(let data):
-                        print("Refresho chat con ")
-                        print(self.user.name)
-                        print("e timestamp ")
-                        print(stringTime)
                         var innerData = JSON(data)
-                        print(innerData)
-                            let user1 = innerData["_id"]["user1"].string
-                            let user2 = innerData["_id"]["user2"].string
+                        let user1 = innerData["_id"]["user1"].string
+                        let user2 = innerData["_id"]["user2"].string
+                    
+                        let user1MessagesCount = innerData["user1"].count
+                        let user2MessagesCount = innerData["user2"].count
                         
-                            let user1MessagesCount = innerData["user1"].count
-                            let user2MessagesCount = innerData["user2"].count
+                        for(var k = 0 ; k < user1MessagesCount; k++){
                             
-                            for(var k = 0 ; k < user1MessagesCount; k++){
-                                
-                                let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
-                                self.allMessages.append(newMessage)
-                                if (user1 != account.user.userId){
-                                	self.unreadMessageCount++
-                                }
-                                self.saveNewMessage(newMessage, userId: user1!)
-                                
+                            let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
+                            self.allMessages.append(newMessage)
+                            if (user1 != account.user.userId){
+                                self.unreadMessageCount++
                             }
-                            for (var k = 0; k < user2MessagesCount; k++){
-                                
-                                let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
-                                self.allMessages.append(newMessage)
-                                if (user2 != account.user.userId){
-                                    self.unreadMessageCount++
-                                }
-                                self.saveNewMessage(newMessage, userId: user2!)
-                                
+                            self.saveNewMessage(newMessage, userId: user1!)
+                            
+                        }
+                        for (var k = 0; k < user2MessagesCount; k++){
+                            
+                            let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
+                            self.allMessages.append(newMessage)
+                            if (user2 != account.user.userId){
+                                self.unreadMessageCount++
                             }
-                            self.reorderChat()
-                            completion(result: true)
+                            self.saveNewMessage(newMessage, userId: user2!)
+                            
+                        }
+                        self.reorderChat()
+                        completion(result: true)
                     case .Failure(_, let error):
                         print("Request failed with error: \(error)")
-                    
                     }
-                    
             }
         
     }

@@ -56,7 +56,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qxj-Bp-rmS" userLabel="settingsButton">
-                                <rect key="frame" x="16" y="32" width="28" height="27"/>
+                                <rect key="frame" x="16" y="32" width="29" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Button" image="Settings">
@@ -66,13 +66,8 @@
                                     <action selector="settingsButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cOF-c7-nBb"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" id="UnK-FN-Nkw">
-                                <rect key="frame" x="132" y="28" width="110" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p9o-97-BgG" userLabel="chatButton">
-                                <rect key="frame" x="330" y="32" width="25" height="27"/>
+                                <rect key="frame" x="330" y="32" width="29" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="Chat">
@@ -82,6 +77,11 @@
                                     <action selector="chatButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="j2c-1X-IZi"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" id="UnK-FN-Nkw">
+                                <rect key="frame" x="132" y="32" width="110" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -149,15 +149,6 @@
                                     <action selector="acceptClick" destination="L8o-9I-U3L" eventType="touchUpInside" id="WmO-y3-CPT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpa-s7-PfE">
-                                <rect key="frame" x="20" y="33" width="25" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" title="Close Button" image="close"/>
-                                <connections>
-                                    <action selector="closeProfile" destination="L8o-9I-U3L" eventType="touchUpInside" id="rLI-NG-Clr"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VX-YF-qHQ" userLabel="Name and Age">
                                 <rect key="frame" x="20" y="430" width="292" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -174,6 +165,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpa-s7-PfE">
+                                <rect key="frame" x="20" y="34" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" title="Close Button" image="close"/>
+                                <connections>
+                                    <action selector="closeProfile" destination="L8o-9I-U3L" eventType="touchUpInside" id="rLI-NG-Clr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
@@ -235,11 +235,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" id="hxV-5j-ekY">
-                                <rect key="frame" x="171" y="31" width="33" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="mf0-0l-War">
                                 <rect key="frame" x="177" y="225" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -281,6 +276,11 @@
                                     <segue destination="lJh-f3-k0m" kind="modal" id="ANe-6W-K5h"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" id="hxV-5j-ekY">
+                                <rect key="frame" x="171" y="29" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -483,7 +483,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Profile Pictures" id="oyN-VH-aV7">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3UY-KI-2Mh">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="3UY-KI-2Mh">
                             <connections>
                                 <segue destination="vxQ-CJ-ktZ" kind="modal" identifier="cancel" id="su9-vE-gRA"/>
                             </connections>
@@ -701,6 +701,6 @@
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qRU-h4-Ebo"/>
+        <segue reference="su9-vE-gRA"/>
     </inferredMetricsTieBreakers>
 </document>

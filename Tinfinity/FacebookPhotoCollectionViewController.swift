@@ -30,6 +30,7 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, Faceboo
         
         facebookApi.photoDelegate = self
         facebookApi.fetchPreviewPhoto(albumId)
+        self.view.userInteractionEnabled = false
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -106,17 +107,21 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, Faceboo
     }
     */
     
-    func didReceiveFacebookPhoto(results: [IdAndImage]) {
+    func didReceiveSomeFacebookPhoto(results: [IdAndImage]) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.activitySpinner.hidden = true
             self.pictures = results
             self.photoCollection.reloadData()
+        })
+    }
+    func didReceiveAllFacebookPhoto() {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.activitySpinner.hidden = true
+            self.view.userInteractionEnabled = true
         })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        //let cell = sender as! PictureCollectionViewCell
         let indexPaths : NSArray = self.photoCollection.indexPathsForSelectedItems()!
         let indexPath : NSIndexPath = indexPaths[0] as! NSIndexPath
         let pictureViewController = segue.destinationViewController as! PictureDetailViewController
@@ -127,8 +132,6 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, Faceboo
 	extension FacebookPhotoCollectionViewController : UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,  sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            
-            //let picture =  pictures[indexPath.row]
             return CGSize(width: 60, height: 60)
     }
     

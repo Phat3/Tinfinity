@@ -70,20 +70,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        // Lets first update our Model
-        let location: CLLocation = locations.last!
-        account.setLocation(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude ))
-        
-        if let location = account.user.position {
-            let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-            self.mapView.setRegion(region, animated: true)
-        
-            // Until we add our nicely designer marker, lets use Apple one
-            self.mapView.showsUserLocation = true
+        if(account.token != nil) {
+            // Lets first update our Model
+            let location: CLLocation = locations.last!
+            account.setLocation(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude ))
             
-            // Stop tracking until next call
-            locationManager.stopUpdatingLocation()
-            self.plotUsersToMap()
+            if let location = account.user.position {
+                let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+                self.mapView.setRegion(region, animated: true)
+            
+                // Until we add our nicely designer marker, lets use Apple one
+                self.mapView.showsUserLocation = true
+                
+                // Stop tracking until next call
+                locationManager.stopUpdatingLocation()
+                self.plotUsersToMap()
+            }
         }
     }
     

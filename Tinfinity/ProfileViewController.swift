@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         if user?.images.count > 0 {
             let firstController = getItemController(0)!
             let startingViewControllers: NSArray = [firstController]
-            pageController.setViewControllers(startingViewControllers as! [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         }
         
         pageViewController = pageController
@@ -76,7 +76,7 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         
         let itemController = viewController as! PhotoItemViewController
         
-        if itemController.itemIndex+1 < user?.images.count {
+        if itemController.itemIndex+1 < user?.images.count && user?.images[itemController.itemIndex+1] != nil  {
             return getItemController(itemController.itemIndex+1)
         }
         
@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     
     private func getItemController(itemIndex: Int) -> PhotoItemViewController? {
         
-        if itemIndex < user?.images.count {
+        if itemIndex < user?.images.count{
             let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier("itemController") as! PhotoItemViewController
             pageItemController.itemIndex = itemIndex
             pageItemController.image = user?.images[itemIndex]
@@ -98,7 +98,12 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     // MARK: - Page Indicator
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return (user?.images.count)!
+        //The images array is always at fixed length 6, so we nee to cycle it and check how many images there are inside
+        var i = 0
+        while let _ = user?.images[i]{
+            i++
+        }
+        return i
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -121,6 +126,11 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         self.navigationPageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
         self.dismissViewControllerAnimated(true, completion: nil)
 
+    }
+    
+    //Function called after the close button is clicked, which dismiss the profile view Controller and goes back to the last controller(map view controller)
+    @IBAction func closeProfile(){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }

@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" id="WV9-cm-BK0">
-                                <rect key="frame" x="0.0" y="65" width="375" height="192"/>
+                                <rect key="frame" x="0.0" y="79" width="375" height="375"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <connections>
@@ -114,7 +114,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zax-WY-4Wj">
-                                <rect key="frame" x="154" y="462" width="61" height="57"/>
+                                <rect key="frame" x="154" y="515" width="61" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Chat"/>
@@ -123,36 +123,45 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hjH-ws-6CQ">
-                                <rect key="frame" x="129" y="583" width="116" height="24"/>
+                                <rect key="frame" x="129" y="595" width="116" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Send Request"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NLL-QF-BRL">
-                                <rect key="frame" x="278" y="477" width="52" height="30"/>
+                                <rect key="frame" x="278" y="528" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Decline"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yuN-GP-lVQ">
+                                <rect key="frame" x="44" y="528" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" title="Accept"/>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VX-YF-qHQ" userLabel="Name and Age">
-                                <rect key="frame" x="38" y="282" width="292" height="28"/>
+                                <rect key="frame" x="38" y="479" width="292" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yuN-GP-lVQ">
-                                <rect key="frame" x="45" y="477" width="58" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpa-s7-PfE">
+                                <rect key="frame" x="20" y="33" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" title="Accept"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeProfile" destination="L8o-9I-U3L" eventType="touchUpInside" id="rLI-NG-Clr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="acceptButton" destination="yuN-GP-lVQ" id="yis-zO-arZ"/>
@@ -173,7 +182,7 @@
                 <pageViewController storyboardIdentifier="photoPageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="8U2-J6-pvk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="147-sT-KHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499.5" y="2552"/>
+            <point key="canvasLocation" x="2499.5" y="2734.5"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="wLD-Kc-D6N">
@@ -637,11 +646,11 @@
             <objects>
                 <viewController storyboardIdentifier="itemController" id="ba5-wk-UzP" customClass="PhotoItemViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yb0-rU-0Rp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="h08-Gk-kcd">
-                                <rect key="frame" x="0.0" y="41" width="375" height="176"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
@@ -649,8 +658,9 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="210"/>
+                    <size key="freeformSize" width="375" height="375"/>
                     <connections>
                         <outlet property="contentImageView" destination="h08-Gk-kcd" id="us7-pw-MgY"/>
                     </connections>
@@ -666,6 +676,7 @@
         <image name="Homepage" width="50" height="50"/>
         <image name="Logo" width="221" height="74"/>
         <image name="Settings" width="50" height="50"/>
+        <image name="close" width="65" height="65"/>
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>

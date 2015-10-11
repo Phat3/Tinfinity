@@ -150,11 +150,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VX-YF-qHQ" userLabel="Name and Age">
-                                <rect key="frame" x="20" y="441" width="292" height="28"/>
+                                <rect key="frame" x="20" y="430" width="292" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="csB-zL-3wC">
+                                <rect key="frame" x="20" y="466" width="335" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -167,6 +175,7 @@
                         <outlet property="acceptButton" destination="yuN-GP-lVQ" id="yis-zO-arZ"/>
                         <outlet property="chatButton" destination="Zax-WY-4Wj" id="LOo-Na-vKM"/>
                         <outlet property="declineButton" destination="NLL-QF-BRL" id="Flk-z2-LNz"/>
+                        <outlet property="disanceLabel" destination="csB-zL-3wC" id="gof-tW-de7"/>
                         <outlet property="nameAndAgeLabel" destination="7VX-YF-qHQ" id="HVQ-Bj-ijB"/>
                         <outlet property="pageViewControllerFrame" destination="WV9-cm-BK0" id="eqi-P2-JzX"/>
                         <outlet property="sendRequestButton" destination="hjH-ws-6CQ" id="8UO-82-RkO"/>
@@ -344,7 +353,7 @@
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="tdt-bp-iRV" customClass="PictureCollectionViewCell" customModule="Tinfinity" customModuleProvider="target">
-                                <rect key="frame" x="6" y="84" width="50" height="50"/>
+                                <rect key="frame" x="6" y="20" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>

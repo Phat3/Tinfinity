@@ -25,6 +25,7 @@ class User {
     var lastName: String
     var gender: Gender?
     var email: String?
+    var age: String?
     
     // We keep here the info wether we're friends or not
     var isFriend: Bool = false;
@@ -158,6 +159,7 @@ class User {
                                 self.hasReceivedRequest = true
                             } else if(json["relationship"] == "accepted") {
                                 self.isFriend = true
+                                self.age = json["age"].string
                             }
                         
                             // Lets download the image

@@ -25,13 +25,36 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     @IBOutlet weak var sendRequestButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var disanceLabel: UILabel!
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameAndAgeLabel.text = self.user!.name
+        
         createPageViewController()
         setupPageControl()
+        distance()
+    }
+    
+    /*
+     * Calcoliamo la distanza dell'utente rispetto a noi e mostriamola
+     * nella sua label
+     */
+    private func distance() {
+        if let position = self.user!.position {
+            let start = CLLocation(latitude: position.latitude, longitude: position.longitude)
+            let end = CLLocation(latitude: account.user.position!.latitude, longitude: account.user.position!.longitude)
+            let distance = start.distanceFromLocation(end)
+            
+            if(distance >= 1000) {
+                self.disanceLabel.text = "\(round(distance/1000)) kilometers away"
+            } else {
+                self.disanceLabel.text = "\(round(distance)) meters away"
+            }
+        } else {
+            self.disanceLabel.text = "Location unknown"
+        }
     }
     
     private func createPageViewController() {

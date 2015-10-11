@@ -153,18 +153,6 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-
-    // Override to support editing the table view.
-    /*func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            account.chats[indexPath.row].deleteChat()
-            account.chats.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        }
-    }
-    */
-    
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             account.chats[indexPath.row].deleteChat()
@@ -173,7 +161,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         delete.backgroundColor = UIColor(red: 231/255.0, green: 76/255.0, blue:60/255.0, alpha: 1)
         
-        if(account.chats[indexPath.row].user.isPendingRequest == true) {
+        // Non sono amici ed è stata ricevuta una richiesta
+        if(account.chats[indexPath.row].user.hasReceivedRequest == true) {
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
                 print("acc button tapped")
             }
@@ -183,7 +172,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             decline.backgroundColor = UIColor(red: 52/255.0, green: 73/255.0, blue:94/255.0, alpha: 1)
             return [delete, decline, accept]
-        } else if (account.chats[indexPath.row].user.isFriend == false) {
+        }
+        // Non sono amici ed e non è stata inviata una richiesta
+        else if (account.chats[indexPath.row].user.isFriend == false &&
+                   account.chats[indexPath.row].user.hasSentRequest == false) {
             let request = UITableViewRowAction(style: .Normal, title: "Send\nrequest") { action, index in
                 
                 self.sendRequestUserIndexPath = indexPath
@@ -212,7 +204,9 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     func handleSendRequest(alertAction: UIAlertAction!) -> Void {
         if let indexPath = sendRequestUserIndexPath {
             sendRequestUserIndexPath = nil
-            account.chats[indexPath.row].user.sendFriendRequest()
+            account.chats[indexPath.row].user.sendFriendRequest({ (result) -> Void in
+                
+            })
         }
     }
     

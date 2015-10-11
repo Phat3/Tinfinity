@@ -28,7 +28,12 @@ class User {
     
     // We keep here the info wether we're friends or not
     var isFriend: Bool = false;
-    var isPendingRequest: Bool = false
+    
+    // The actual user sent a friend request
+    var hasSentRequest: Bool = false
+    
+    // This user has sent to the actual user a request
+    var hasReceivedRequest: Bool = false
     
     // Main image
     var image: UIImage? {
@@ -80,17 +85,32 @@ class User {
         return nil
     }
     
-    func sendFriendRequest() {
-        self.isFriend = true
-        self.isPendingRequest = true
+    func sendFriendRequest(completion: (result: Bool) -> Void) {
+        
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(.GET, baseUrl + "/api/users/" + userId + "/add" , encoding : .JSON, headers: ["X-Api-Token": account.token!])
+            .responseJSON { _,_,result in
+                
+                switch result {
+                    case .Success(let data):
+                        // We don't use for the moment the returned data
+                        // JSON(data)
+                        print(data)
+                        self.hasSentRequest = true;
+                        completion(result: true)
+                    case .Failure(_, let error):
+                        print("Request failed with error: \(error)")
+                }
+        }
     }
     
     /**
      * Recuperiamo dal server le informazioni legate all'utente
      */
     func fetch(completion: (result: User? ) -> Void) {
-        
-       Alamofire.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
+        if(account.token != nil) { // Check
+       Alamofire.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + self.userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
             .responseJSON { _,_,result in
                 
                 switch result {
@@ -114,6 +134,14 @@ class User {
                             } else {
                                 self.gender = Gender.Female
                             }
+                            
+                            if(json["relationship"] == "requested") {
+                                self.hasSentRequest = true
+                            } else if(json["relationship"] == "received") {
+                                self.hasReceivedRequest = true
+                            } else if(json["relationship"] == "accepted") {
+                                self.isFriend = true
+                            }
                         
                             // Lets download the image
                             self.decodeImages(json["images"])
@@ -122,8 +150,9 @@ class User {
                         }
                 	case .Failure(_, let error):
                     	print("Request failed with error: \(error)")
-        	}
-    	}
+                }
+            }
+        }
     }
 
     

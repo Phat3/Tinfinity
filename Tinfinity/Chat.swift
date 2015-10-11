@@ -106,53 +106,51 @@ class Chat {
         
         let manager = Alamofire.Manager.sharedInstance
             
-            //We need the timeinterval to speak with the server, but in milliseconds
-            let timeinterval: Double = round(self.lastMessageSentDate.timeIntervalSince1970 * 1000) + 2000
+        //We need the timeinterval to speak with the server, but in milliseconds
+        let timeinterval: Double = round(self.lastMessageSentDate.timeIntervalSince1970 * 1000) + 2000
+    
+        let stringTime = NSString(format: "%.f",timeinterval) as String
         
-        	let stringTime = NSString(format: "%.f",timeinterval) as String
-            
-        
-            manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON, headers: ["X-Api-Token": account.token!])
-                .responseJSON { _,_,result in
+    
+        manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON, headers: ["X-Api-Token": account.token!])
+            .responseJSON { _,_,result in
+                
+                switch result {
+                case .Success(let data):
+                    var innerData = JSON(data)
+                    let user1 = innerData["_id"]["user1"].string
+                    let user2 = innerData["_id"]["user2"].string
+                
+                    let user1MessagesCount = innerData["user1"].count
+                    let user2MessagesCount = innerData["user2"].count
                     
-                    switch result {
-                    case .Success(let data):
-                        var innerData = JSON(data)
-                        let user1 = innerData["_id"]["user1"].string
-                        let user2 = innerData["_id"]["user2"].string
-                    
-                        let user1MessagesCount = innerData["user1"].count
-                        let user2MessagesCount = innerData["user2"].count
+                    for(var k = 0 ; k < user1MessagesCount; k++){
                         
-                        for(var k = 0 ; k < user1MessagesCount; k++){
-                            
-                            let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
-                            self.allMessages.append(newMessage)
-                            if (user1 != account.user.userId){
-                                self.unreadMessageCount++
-                            }
-                            self.saveNewMessage(newMessage, userId: user1!)
-                            
+                        let newMessage = self.createJSQMessage(user1!, localMessage: innerData["user1"][k])
+                        self.allMessages.append(newMessage)
+                        if (user1 != account.user.userId){
+                            self.unreadMessageCount++
                         }
-                        for (var k = 0; k < user2MessagesCount; k++){
-                            
-                            let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
-                            self.allMessages.append(newMessage)
-                            if (user2 != account.user.userId){
-                                self.unreadMessageCount++
-                            }
-                            self.saveNewMessage(newMessage, userId: user2!)
-                            
-                        }
-                        self.reorderChat()
-                        completion(result: true)
-                    case .Failure(_, let error):
-                        print("Request failed with error: \(error)")
-                    
+                        self.saveNewMessage(newMessage, userId: user1!)
+                        
                     }
-                    
+                    for (var k = 0; k < user2MessagesCount; k++){
+                        
+                        let newMessage = self.createJSQMessage(user2!, localMessage: innerData["user2"][k])
+                        self.allMessages.append(newMessage)
+                        if (user2 != account.user.userId){
+                            self.unreadMessageCount++
+                        }
+                        self.saveNewMessage(newMessage, userId: user2!)
+                        
+                    }
+                    self.reorderChat()
+                    completion(result: true)
+                case .Failure(_, let error):
+                    print("Request failed with error: \(error)")
+                
+                }
             }
-        
     }
     
     func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{

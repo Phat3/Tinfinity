@@ -35,6 +35,23 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         createPageViewController()
         setupPageControl()
         distance()
+        buttons()
+    }
+    
+    /*
+     * In base alla relazione con l'utente, decidiamo quali buttons mostrare
+     */
+    private func buttons() {
+        if(self.user!.isFriend == true || self.user!.hasSentRequest == true) {
+            self.declineButton.hidden = true
+            self.acceptButton.hidden = true
+            self.sendRequestButton.hidden = true
+        } else if(self.user!.hasSentRequest == false && self.user!.hasReceivedRequest == false) {
+            self.declineButton.hidden = true
+            self.acceptButton.hidden = true
+        } else if(self.user!.hasReceivedRequest == true) {
+            self.sendRequestButton.hidden = true
+        } 
     }
     
     /*

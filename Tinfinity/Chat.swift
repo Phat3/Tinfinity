@@ -40,15 +40,17 @@ class Chat {
         }
         return (nil,nil)
     }
-
+    
+    /**
+     * Visualizzazione dell'orario nella Chat List
+     */
     func formatDate(date: NSDate) -> String {
         let calendar = NSCalendar.currentCalendar()
 
-        let last18hours = (-18*60*60 < date.timeIntervalSinceNow)
         let isToday = calendar.isDateInToday(date)
         let isLast7Days = (calendar.compareDate(NSDate(timeIntervalSinceNow: -7*24*60*60), toDate: date, toUnitGranularity: .Day) == NSComparisonResult.OrderedAscending)
 
-        if last18hours || isToday {
+        if isToday {
             dateFormatter.dateStyle = .NoStyle
             dateFormatter.timeStyle = .ShortStyle
         } else if isLast7Days {

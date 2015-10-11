@@ -61,11 +61,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil) {
             // Process error
-            print("Errore", terminator: "")
+            print("Errore FB: ")
+            print(error)
         }
         else if result.isCancelled {
             // Handle cancellations
-            print("cancelled", terminator: "")
+            print("cancelled")
         }
         else {
             //instatiating the apicontroller with the current access token to authenticate with the server

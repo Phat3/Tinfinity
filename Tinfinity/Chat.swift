@@ -14,7 +14,7 @@ class Chat {
     var lastMessageText: String
     var lastMessageSentDate: NSDate
     var lastMessageSentDateString: String {
-    return formatDate(lastMessageSentDate)
+        return formatDate(lastMessageSentDate)
     }
     var loadedMessages = [JSQMessage]()
     var allMessages = [JSQMessage]()

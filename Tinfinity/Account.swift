@@ -20,6 +20,8 @@ class Account: NSObject {
     
     // Stored chats
     var chats = [Chat]()
+    
+    var relationships: JSON?
 
     func logOut() {
         token = nil
@@ -48,7 +50,31 @@ class Account: NSObject {
         }
     }
     
-    func fetchNearbyUsers(){        
+    /**
+     * Prendiamo i dati che ci siamo salvati al momento dell'accesso e ora che 
+     * abbiamo ricaricato le chat, li utilizziamo per aggiornare le relazioni 
+     * dei vari utenti
+     */
+    func updateRelationships() {
+        for (key, value) in self.relationships! {
+            if let user = Chat.getChatByUserId(key).0?.user {
+                if(value == "requested") {
+                    user.hasSentRequest = true
+                    user.hasReceivedRequest = false
+                } else if(value == "received") {
+                    user.hasReceivedRequest = true
+                    user.hasSentRequest = false
+                } else if(value == "accepted") {
+                    user.isFriend = true
+                    user.hasReceivedRequest = false
+                    user.hasSentRequest = false
+                }
+            }
+        }
+    }
+
+    
+    func fetchNearbyUsers(){
         
         if let userPosition = self.user.position{
             Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.latitude, "lon": userPosition.longitude], encoding : .JSON, headers: ["X-Api-Token": account.token!])

@@ -37,12 +37,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                 }
                 else{
                     //If there is already a fb token, we already got the chat history from the server, so we only check if there are chats in local db
-                    
                     Chat.loadChatsFromCore()
                     for chat in account.chats{
                         chat.fetchNewMessages({ (result) -> Void in
                         })
                     }
+                    account.updateRelationships()
                     self.performSegueWithIdentifier("loginExecuted", sender: self)
                     return
                 }
@@ -109,7 +109,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             	    self.checkLoginProblem(newLogin)
             	}else{
                     if(newLogin == true){
-                    self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in})
+                        self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in})
 					}else{
 						Chat.loadChatsFromCore()
                         for chat in account.chats{

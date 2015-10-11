@@ -52,7 +52,12 @@ class ServerAPIController{
                     
                     //Register this device with a tag that is the user id received from the server
                     Pushbots.sharedInstance().setAlias(account.user.userId)
-
+                    
+                    // Salviamo le relazioni con i vari utenti che abbiamo già in locale
+                    // Lo utilizziamo piu avanti, dopo aver caricato i dati da DB, per assegnarli
+                    // ai vari utenti
+                    account.relationships = json["relationships"]
+                    
                     completion(result: true)
                     
                 case .Failure(_, let error):

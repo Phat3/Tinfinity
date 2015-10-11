@@ -164,7 +164,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("bottone cliccato", terminator: "")
         if let annotation = view.annotation as? UserAnnotation {
             annotationClicked(annotation)
         }

@@ -93,14 +93,31 @@ class User {
             .responseJSON { _,_,result in
                 
                 switch result {
-                    case .Success(let data):
-                        // We don't use for the moment the returned data
-                        // JSON(data)
-                        print(data)
-                        self.hasSentRequest = true;
-                        completion(result: true)
-                    case .Failure(_, let error):
-                        print("Request failed with error: \(error)")
+                case .Success(_):
+                    self.hasSentRequest = true
+                    completion(result: true)
+                case .Failure(_, let error):
+                    print("Request failed with error: \(error)")
+                }
+        }
+    }
+    
+    func acceptFriendRequest(completion: (result: Bool) -> Void) {
+        
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(.GET, baseUrl + "/api/users/" + userId + "/accept" , encoding : .JSON, headers: ["X-Api-Token": account.token!])
+            .responseJSON { _,_,result in
+                
+                switch result {
+                case .Success(let data):
+                    self.hasSentRequest = false
+                    self.hasReceivedRequest = false
+                    self.isFriend = true
+                    print(data)
+                    completion(result: true)
+                case .Failure(_, let error):
+                    print("Request failed with error: \(error)")
                 }
         }
     }

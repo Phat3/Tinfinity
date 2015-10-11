@@ -164,7 +164,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         // Non sono amici ed è stata ricevuta una richiesta
         if(account.chats[indexPath.row].user.hasReceivedRequest == true) {
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
-                print("acc button tapped")
+                account.chats[indexPath.row].user.acceptFriendRequest({ (result) -> Void in
+                    
+                })
+                tableView.setEditing(false, animated: true)
             }
             accept.backgroundColor = UIColor(red: 46/255.0, green: 206/255.0, blue:113/255.0, alpha: 1)
             let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
@@ -284,10 +287,6 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func addHandler() {
-        socket.on("connect") {[weak self] data, ack in
-            self!.isConnected = true;
-            //self!.toggleSend()
-        }
         
         socket.on("message-" + account.user.userId) {[weak self] data, ack in
             let json = JSON(data)

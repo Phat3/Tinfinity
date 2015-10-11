@@ -14,7 +14,7 @@ class EditProfileViewController: UIViewController {
     var buttonX: CGFloat = 0//= 40
     var buttonY: CGFloat = 0//= 110
     var buttonWidth: CGFloat = 120
-    var buttonHeight: CGFloat = 120
+    var buttonHeight: CGFloat = 250
     var buttonHorizontalDistance: CGFloat = 0//= 180
     var buttonVerticalDistance: CGFloat = 0//= 165
     
@@ -31,16 +31,17 @@ class EditProfileViewController: UIViewController {
         let screenWidth = self.view.frame.size.width
         let screenHeight = self.view.frame.size.height
         
-        buttonX = screenWidth/16.0
+        buttonX = screenWidth/24.0
         buttonY = screenHeight/8.0
         
-        let floatConst = CGFloat(MAX_PHOTOS)
+        //let floatConst = CGFloat(MAX_PHOTOS)
         
-        buttonHeight = ((screenHeight - (buttonY  * ((floatConst / 2.0)))) / ( floatConst / 2 ))
         buttonWidth = ((screenWidth - (buttonX * 3)) / CGFloat(2))
+        //buttonHeight = ((screenHeight - (buttonY  * ((floatConst / 2.0)))) / ( floatConst / 2 ))
+        buttonHeight = buttonWidth
         
         buttonHorizontalDistance = buttonX + buttonWidth
-        buttonVerticalDistance = buttonY + buttonHeight
+        buttonVerticalDistance = 20 + buttonHeight
 
         
 
@@ -179,10 +180,8 @@ class EditProfileViewController: UIViewController {
         }
         
         //Let's give aborder to the buttons
-        let cornerRadius : CGFloat = 5.0
         buttons[i].layer.borderWidth = 1.0
-        buttons[i].layer.borderColor = UIColor.blackColor().CGColor
-        buttons[i].layer.cornerRadius = cornerRadius
+        buttons[i].layer.borderColor = UIColor.lightGrayColor().CGColor
         
         self.view.addSubview(buttons[i])
         

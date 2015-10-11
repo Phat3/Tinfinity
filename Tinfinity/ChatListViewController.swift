@@ -171,7 +171,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             account.chats.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
-        delete.backgroundColor = UIColor.redColor()
+        delete.backgroundColor = UIColor(red: 231/255.0, green: 76/255.0, blue:60/255.0, alpha: 1)
         
         if(account.chats[indexPath.row].user.isPendingRequest == true) {
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
@@ -190,7 +190,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.confirmRequest(account.chats[indexPath.row].user.name!)
                 tableView.setEditing(false, animated: true)
             }
-            request.backgroundColor = UIColor.blueColor()
+            request.backgroundColor = UIColor(red: 52/255.0, green: 152/255.0, blue:219/255.0, alpha: 1)
             return [delete, request]
         }
         

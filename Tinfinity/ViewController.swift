@@ -15,10 +15,11 @@ import CoreLocation
 import Foundation
 import AVFoundation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
     var profile: User?
     var timer: NSTimer?
+    var popover: UIPopoverController? = nil
     
     //Weak reference to parent pageViewController needed for buttons action
     weak var pageViewController: PageViewController?
@@ -190,19 +191,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func annotationClicked(annotation: UserAnnotation){
         
-        let newViewController = self.pageViewController!.viewControllerAtIndex(2) as! UINavigationController
-        
-        let chatListController = newViewController.topViewController as! ChatListViewController
-        
-        if let _ = Chat.getChatByUserId(annotation.user.userId).0{
-                chatListController.newChat = false
-                chatListController.clickedUserId = annotation.user.userId
-            }else{
-                chatListController.newChat = true
-                account.chats.insert(Chat(user: annotation.user, lastMessageText: "", lastMessageSentDate: NSDate()), atIndex: 0)
-        }
-        
-        self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
+        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
+        profileViewController.user = annotation.user
+        profileViewController.navigationPageViewController = self.pageViewController
+        self.presentViewController(profileViewController, animated: true, completion: nil)
 
     }
     

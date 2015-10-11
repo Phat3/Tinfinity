@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
             self.acceptButton.hidden = true
         } else if(self.user!.hasReceivedRequest == true) {
             self.sendRequestButton.hidden = true
-        } 
+        }
     }
     
     /*
@@ -166,6 +166,18 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         self.navigationPageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
         self.dismissViewControllerAnimated(true, completion: nil)
 
+    }
+    
+    @IBAction func sendRequestClick() {
+        print("TODO")
+    }
+    
+    @IBAction func acceptClick() {
+        print("TODO")
+    }
+    
+    @IBAction func declineClick() {
+        print("TODO")
     }
     
     //Function called after the close button is clicked, which dismiss the profile view Controller and goes back to the last controller(map view controller)

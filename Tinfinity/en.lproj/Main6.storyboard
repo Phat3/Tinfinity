@@ -127,24 +127,33 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Send Request" image="heart"/>
+                                <connections>
+                                    <action selector="sendRequestClick" destination="L8o-9I-U3L" eventType="touchUpInside" id="HQQ-nh-1fY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NLL-QF-BRL">
                                 <rect key="frame" x="202" y="557" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Decline" image="decline"/>
+                                <connections>
+                                    <action selector="declineClick" destination="L8o-9I-U3L" eventType="touchUpInside" id="bTf-Jo-KQ0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yuN-GP-lVQ">
                                 <rect key="frame" x="62" y="557" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Accept" image="accept"/>
+                                <connections>
+                                    <action selector="acceptClick" destination="L8o-9I-U3L" eventType="touchUpInside" id="WmO-y3-CPT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpa-s7-PfE">
                                 <rect key="frame" x="20" y="33" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" image="close"/>
+                                <state key="normal" title="Close Button" image="close"/>
                                 <connections>
                                     <action selector="closeProfile" destination="L8o-9I-U3L" eventType="touchUpInside" id="rLI-NG-Clr"/>
                                 </connections>

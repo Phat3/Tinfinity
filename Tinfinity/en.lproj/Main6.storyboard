@@ -122,17 +122,11 @@
                                     <action selector="chatClick" destination="L8o-9I-U3L" eventType="touchUpInside" id="Acc-lR-uAF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hjH-ws-6CQ">
-                                <rect key="frame" x="129" y="583" width="116" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NLL-QF-BRL">
+                                <rect key="frame" x="225" y="545" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" title="Send Request"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NLL-QF-BRL">
-                                <rect key="frame" x="278" y="477" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" title="Decline"/>
+                                <state key="normal" title="Decline" image="decline"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VX-YF-qHQ" userLabel="Name and Age">
                                 <rect key="frame" x="38" y="282" width="292" height="28"/>
@@ -142,11 +136,17 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yuN-GP-lVQ">
-                                <rect key="frame" x="45" y="477" width="58" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yuN-GP-lVQ">
+                                <rect key="frame" x="52" y="545" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" title="Accept"/>
+                                <state key="normal" title="Accept" image="accept"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hjH-ws-6CQ">
+                                <rect key="frame" x="124" y="527" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" title="Send Request" image="heart"/>
                             </button>
                         </subviews>
                         <animations/>
@@ -666,6 +666,9 @@
         <image name="Homepage" width="50" height="50"/>
         <image name="Logo" width="221" height="74"/>
         <image name="Settings" width="50" height="50"/>
+        <image name="accept" width="300" height="300"/>
+        <image name="decline" width="300" height="300"/>
+        <image name="heart" width="300" height="300"/>
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>

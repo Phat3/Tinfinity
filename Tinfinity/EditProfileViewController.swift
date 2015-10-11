@@ -173,7 +173,7 @@ class EditProfileViewController: UIViewController {
         if(buttons[i].tag == 0){
             buttons[i].setBackgroundImage(ImageUtil.cropToSquare(image: image), forState: .Normal)
         	buttons[i].addTarget(self, action: "editPhotoAction:", forControlEvents: UIControlEvents.TouchUpInside)
-            buttons[i].imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+            buttons[i].imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         }else{
             buttons[i].setImage(ImageUtil.cropToSquare(image: image), forState: .Normal)
             buttons[i].addTarget(self, action: "addPhotoAction:", forControlEvents: UIControlEvents.TouchUpInside)

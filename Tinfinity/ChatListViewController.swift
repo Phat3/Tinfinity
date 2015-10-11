@@ -22,6 +22,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     //Weak reference to parent pageViewController
     weak var pageViewController: PageViewController?
     
+    var sendRequestUserIndexPath: NSIndexPath? = nil
+    
     var chats: [Chat] { return account.chats }
     var imageCache = [String:UIImage]()
     
@@ -153,13 +155,73 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
 
     // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    /*func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
             account.chats[indexPath.row].deleteChat()
             account.chats.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
+    }
+    */
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            account.chats[indexPath.row].deleteChat()
+            account.chats.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        delete.backgroundColor = UIColor.redColor()
+        
+        if(account.chats[indexPath.row].user.isPendingRequest == true) {
+            let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
+                print("acc button tapped")
+            }
+            accept.backgroundColor = UIColor.greenColor()
+            let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
+                print("Declien button tapped")
+            }
+            decline.backgroundColor = UIColor.yellowColor()
+            return [delete, decline, accept]
+        } else if (account.chats[indexPath.row].user.isFriend == false) {
+            let request = UITableViewRowAction(style: .Normal, title: "Send\nrequest") { action, index in
+                
+                self.sendRequestUserIndexPath = indexPath
+                self.confirmRequest(account.chats[indexPath.row].user.name!)
+                tableView.setEditing(false, animated: true)
+            }
+            request.backgroundColor = UIColor.blueColor()
+            return [delete, request]
+        }
+        
+        return [delete]
+    }
+    
+    func confirmRequest(username: String) {
+        let alert = UIAlertController(title: "Send Friend Request", message: "Do you want to add \(username)?", preferredStyle: .ActionSheet)
+        
+        let confirmAction = UIAlertAction(title: "Send", style: .Default, handler: handleSendRequest)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelSendRequest)
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func handleSendRequest(alertAction: UIAlertAction!) -> Void {
+        print("fucm you mama")
+        if let indexPath = sendRequestUserIndexPath {
+            sendRequestUserIndexPath = nil
+            account.chats[indexPath.row].user.sendFriendRequest()
+            
+        }
+    }
+    
+    
+    
+    func cancelSendRequest(alertAction: UIAlertAction!) {
+        sendRequestUserIndexPath = nil
     }
         
     

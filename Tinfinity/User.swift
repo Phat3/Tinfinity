@@ -80,6 +80,11 @@ class User {
         return nil
     }
     
+    func sendFriendRequest() {
+        self.isFriend = true
+        self.isPendingRequest = true
+    }
+    
     /**
      * Recuperiamo dal server le informazioni legate all'utente
      */

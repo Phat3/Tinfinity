@@ -28,6 +28,7 @@ class User {
     
     // We keep here the info wether we're friends or not
     var isFriend: Bool = false;
+    var isPendingRequest: Bool = false
     
     // Main image
     var image: UIImage? {

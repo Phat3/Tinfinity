@@ -73,9 +73,11 @@ class Account: NSObject {
         }
     }
 
-    
+    /** 
+     * Chiamata al server in cui vengono inviati i dati sulla posizioni attuale e
+     * indietro otteniamo i dati degli utenti intorno che plottiamo sulla mappa
+     */
     func fetchNearbyUsers(){
-        
         if let userPosition = self.user.position{
             Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.latitude, "lon": userPosition.longitude], encoding : .JSON, headers: ["X-Api-Token": account.token!])
                 .responseJSON { _,_,result in
@@ -104,6 +106,10 @@ class Account: NSObject {
         	}
     }
     
+    /*
+     * Chiamata API per recuperare le informazioni di uno specifico utente
+     * dal sever
+     */
     func fetchUserByID(userId: String, completion: (result: User? ) -> Void){
         Alamofire.request(.GET, baseUrl + "/api/users/" + userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
             .responseJSON { _,_,result in

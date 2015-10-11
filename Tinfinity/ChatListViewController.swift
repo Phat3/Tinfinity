@@ -210,15 +210,11 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func handleSendRequest(alertAction: UIAlertAction!) -> Void {
-        print("fucm you mama")
         if let indexPath = sendRequestUserIndexPath {
             sendRequestUserIndexPath = nil
             account.chats[indexPath.row].user.sendFriendRequest()
-            
         }
     }
-    
-    
     
     func cancelSendRequest(alertAction: UIAlertAction!) {
         sendRequestUserIndexPath = nil
@@ -309,7 +305,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 // Message received for a conversation
                 if let chat = Chat.getChatByUserId(user_id!).0 {
                     // Get other user data
-                    let newMessage = JSQMessage(senderId: user_id, displayName: chat.user.name, text: json[0]["message"].string)
+                    let newMessage = ServerAPIController.createJSQMessage(user_id!, localMessage: json[0])
                     chat.allMessages.append(newMessage);
                     chat.updateLastMessage()
                     chat.unreadMessageCount++
@@ -327,7 +323,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
                 }else{
                     account.fetchUserByID(user_id!, completion: { (result) -> Void in
                         let newUser = result
-                        let newMessage = JSQMessage(senderId: user_id, displayName: newUser?.name, text: json[0]["message"].string)
+                        let newMessage = ServerAPIController.createJSQMessage(user_id!, localMessage: json[0])
                         let chat = Chat(user: newUser!, lastMessageText: newMessage.text, lastMessageSentDate: NSDate())
                         chat.allMessages.append(newMessage)
                         chat.updateLastMessage()

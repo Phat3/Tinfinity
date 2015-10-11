@@ -97,10 +97,10 @@ class ServerAPIController{
                                 let newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
                                 
                                 for(var k = 0 ; k < user1MessagesCount; k++){
-                                    newChat.allMessages.append(self.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                                    newChat.allMessages.append(ServerAPIController.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
                                 }
                                 for (var k = 0; k < user2MessagesCount; k++){
-                                    newChat.allMessages.append(self.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                                    newChat.allMessages.append(ServerAPIController.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
                                 }
                                 newChat.reorderChat()
                                 newChat.saveNewChat()
@@ -117,15 +117,13 @@ class ServerAPIController{
         }
     }
     
-    func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
-        
+    static func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
         let timestamp = localMessage["timestamp"].double!/1000
         let text = localMessage["message"].string
         let myDouble = NSNumber(double: timestamp)
         let date = NSDate(timeIntervalSince1970: Double(myDouble))
         let message = JSQMessage(senderId: user,senderDisplayName: "Sender",date: date,text: text)
         return message
-        
     }
     
 }

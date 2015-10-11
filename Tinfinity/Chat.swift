@@ -111,14 +111,18 @@ class Chat {
         
         	let stringTime = NSString(format: "%.f",timeinterval) as String
             
-            
+        
             manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON, headers: ["X-Api-Token": account.token!])
                 .responseJSON { _,_,result in
                     
                     switch result {
                     case .Success(let data):
+                        print("Refresho chat con ")
+                        print(self.user.name)
+                        print("e timestamp ")
+                        print(stringTime)
                         var innerData = JSON(data)
-                        
+                        print(innerData)
                             let user1 = innerData["_id"]["user1"].string
                             let user2 = innerData["_id"]["user2"].string
                         

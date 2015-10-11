@@ -23,7 +23,7 @@ class UserAnnotation: NSObject, MKAnnotation {
     }
     
     var subtitle: String?{
-        return "Click here to chat with " + self.title!
+        return "View profile"
     }
     
     init(user: User) {

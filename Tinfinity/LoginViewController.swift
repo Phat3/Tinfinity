@@ -25,6 +25,36 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         
         let minute: NSTimeInterval = 60, hour = minute * 60, _ = hour * 24
         
+        //Controlliamo se è già presente un token facebook
+        if (FBSDKAccessToken.currentAccessToken() != nil && account.token == nil){
+            
+            //instantiating the apicontroller with the current access token to authenticate with the server
+            api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
+            api?.retrieveProfileFromServer({ (result) -> Void in
+                //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
+                if(result == false){
+                    self.checkLoginProblem(false)
+                }
+                else{
+                    //If there is already a fb token, we already got the chat history from the server, so we only check if there are chats in local db
+                    
+                    Chat.loadChatsFromCore()
+                    for chat in account.chats{
+                        chat.fetchNewMessages({ (result) -> Void in
+                        })
+                    }
+                    self.performSegueWithIdentifier("loginExecuted", sender: self)
+                    return
+                }
+            })
+        }
+        else{
+            loginButton.center = self.view.center
+            loginButton.readPermissions = ["public_profile", "email", "user_friends","user_photos"]
+            loginButton.delegate = self
+        }
+
+        
         
     }
     
@@ -66,35 +96,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-        //Controlliamo se è già presente un token facebook
-        if (FBSDKAccessToken.currentAccessToken() != nil && account.token == nil){
-
-            //instantiating the apicontroller with the current access token to authenticate with the server
-            api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
-            api?.retrieveProfileFromServer({ (result) -> Void in
-                 //If the user is still nil it means the request to the server did not succeded, we need to understand if it's an internet issue or server issue
-                if(result == false){
-                    self.checkLoginProblem(false)
-                }
-                else{
-                    //If there is already a fb token, we already got the chat history from the server, so we only check if there are chats in local db
-                    
-                    Chat.loadChatsFromCore()
-                    for chat in account.chats{
-                        chat.fetchNewMessages({ (result) -> Void in
-                        })
-                    }
-                    self.performSegueWithIdentifier("loginExecuted", sender: self)
-                    return
-                }
-            })
-        }
-        else{
-            loginButton.center = self.view.center
-            loginButton.readPermissions = ["public_profile", "email", "user_friends","user_photos"]
-            loginButton.delegate = self
-        }
         
     }
     

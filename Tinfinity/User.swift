@@ -130,7 +130,6 @@ class User {
             if let base64String = images[String(i)].string {
                 let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions(rawValue: 0) )
                 self.images[i] = UIImage(data: decodedData!)
-                print("Immagine \(i): \(images[i])")
             }
         }
         

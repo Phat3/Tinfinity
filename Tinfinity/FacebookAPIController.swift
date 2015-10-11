@@ -14,7 +14,8 @@ protocol FacebookAPIControllerProtocol {
 }
 
 protocol FacebookAPIControllerPhotoProtocol{
-    func didReceiveFacebookPhoto(results: [IdAndImage])
+    func didReceiveSomeFacebookPhoto(results: [IdAndImage])
+    func didReceiveAllFacebookPhoto()
 }
 
 protocol FacebookAPIControllerFullPhotoProtocol{
@@ -126,8 +127,10 @@ class FacebookAPIController {
                     let requestPhotoIdNext = FBSDKGraphRequest(graphPath: newLink,parameters: nil)
                     
                     requestPhotoIdNext.startWithCompletionHandler(self.fetchPreviewPhotosHandler)
+            	}else{
+                	photoDelegate?.didReceiveAllFacebookPhoto()
             	}
-            photoDelegate?.didReceiveFacebookPhoto(photos)
+            photoDelegate?.didReceiveSomeFacebookPhoto(photos)
         }
     }
     

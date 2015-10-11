@@ -48,11 +48,6 @@ class Account: NSObject {
         }
     }
     
-
-    func deleteAccount() {
-        logOut()
-    }
-    
     func fetchNearbyUsers(){        
         
         if let userPosition = self.user.position{
@@ -75,15 +70,12 @@ class Account: NSObject {
                                         self.users.append(newUser)
                                     })
                                 }
-                                
-                                
                             }
                         case .Failure(_, let error):
                             print("Request failed with error: \(error)")
                     }
                 }
         	}
-        print(self.users, terminator: "")
     }
     
     func fetchUserByID(userId: String, completion: (result: User? ) -> Void){

@@ -25,6 +25,8 @@ class ChatViewController: JSQMessagesViewController {
     var isConnected = false
     var registerdHandlers = false
     
+    //Weak reference to parent pageViewController needed by profileViewController, and we need to assign it
+    weak var pageViewController: PageViewController?
 
     // Socket IO client
     private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
@@ -54,6 +56,10 @@ class ChatViewController: JSQMessagesViewController {
         // We don't need the button on the left
         self.inputToolbar!.contentView!.leftBarButtonItem = nil;
         
+        //We want to show last messages
+        self.scrollToBottomAnimated(false)
+        
+        
     }
     
     /*
@@ -72,6 +78,13 @@ class ChatViewController: JSQMessagesViewController {
     override func viewWillDisappear(animated: Bool) {
         if self.chat!.allMessages.count == 0{
             account.chats.removeFirst()
+        }
+    }
+    
+    //If the app became active n this view, we need to execute a finishReceiving message in the case there are new messages to display
+    override func viewWillAppear(animated: Bool) {
+        if(chat?.unreadMessageCount != 0) {
+            self.finishReceivingMessage()
         }
     }
     
@@ -164,6 +177,14 @@ class ChatViewController: JSQMessagesViewController {
             self!.connectToServer()
         }
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "viewProfile"){
+            let profileController = segue.destinationViewController as! ProfileViewController
+            profileController.user = self.chat?.user            
+            profileController.navigationPageViewController = self.pageViewController
+        }
     }
     
 

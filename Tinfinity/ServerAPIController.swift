@@ -78,6 +78,10 @@ class ServerAPIController{
                         var json = JSON(data)
                         let length = json.count
                         
+                        if(length == 0){
+                            completion(result: account.chats)
+                        }
+                        
                         for(var i = 0; i < length; i++ ){
                             
                             let innerData = json[i]
@@ -122,6 +126,7 @@ class ServerAPIController{
                 
         }
     }
+    
     
     static func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
         let timestamp = localMessage["timestamp"].double!/1000

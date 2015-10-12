@@ -42,8 +42,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                         chat.fetchNewMessages({ (result) -> Void in
                         })
                     }
-                    account.updateRelationships()
-                    self.performSegueWithIdentifier("loginExecuted", sender: self)
+                    account.checkNewChat({ (result) -> Void in
+                        account.updateRelationships()
+                        self.performSegueWithIdentifier("loginExecuted", sender: self)
+                    })
+                    
                     return
                 }
             })

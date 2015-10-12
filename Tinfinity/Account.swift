@@ -135,4 +135,78 @@ class Account: NSObject {
         }        
         
     }
+    
+    func checkNewChat( completion: (Void) -> Void){
+        Alamofire.request(.GET, baseUrl + "/api/chat", encoding : .JSON, headers: ["X-Api-Token": account.token])
+            .responseJSON { _,_,result in
+                
+                switch result {
+                case .Success(let data):
+                    var json = JSON(data)
+                    let length = json.count
+                    
+                    if(length == 0){
+                        completion()
+                    }
+                    
+                    var atLeastOneNew = false
+                    
+                    for(var i = 0; i < length; i++ ){
+                        
+                        let innerData = json[i]
+                        let user1 = innerData["_id"]["user1"].string
+                        let user2 = innerData["_id"]["user2"].string
+                        
+                        var newUser: User
+                        let user1MessagesCount = innerData["user1"].count
+                        let user2MessagesCount = innerData["user2"].count
+                        
+                        //This date is only needed to initialize the chat. It will be updated after
+                        let date = NSDate()
+                        if(Chat.getChatByUserId(user1!).0 == nil && Chat.getChatByUserId(user2!).0 == nil ){
+                            
+                            atLeastOneNew = true
+                            
+                            if (user1 == account.user.userId){
+                                //Creiamo un nuovo oggetto user che ha come utente l'id di user2, poichè entrati in questo if user1 coincide con l'id utente dell'accunt in uso. Altrimenti inizializziamo l'user con id user1
+                                newUser = User(userId: user2!,firstName: "",lastName: "")
+                            }else{
+                                newUser = User(userId: user1!,firstName: "",lastName: "")
+                            }
+                            // Retrieve user data
+                            newUser.fetch({ (result) -> Void in
+                                
+                                let newChat = Chat(user: newUser,lastMessageText: "",lastMessageSentDate: date)
+                                
+                                for(var k = 0 ; k < user1MessagesCount; k++){
+                                    newChat.allMessages.append(ServerAPIController.createJSQMessage(user1!, localMessage: innerData["user1"][k]))
+                                    if(user1 != account.user.userId){
+                                    	newChat.unreadMessageCount++
+                                    }
+                                }
+                                for (var k = 0; k < user2MessagesCount; k++){
+                                    newChat.allMessages.append(ServerAPIController.createJSQMessage(user2!, localMessage: innerData["user2"][k]))
+                                    if(user2 != account.user.userId){
+                                    	newChat.unreadMessageCount++
+                                    }
+                                }
+                                newChat.reorderChat()
+                                newChat.saveNewChat()
+                                newChat.insertChat()
+                                completion()
+                            })
+                        }
+                        
+                    }
+                    
+                    if(atLeastOneNew == false){
+                        completion()
+                    }
+                case .Failure(_, let error):
+                    print("Request failed with error: \(error)")
+                }
+                
+        }
+	
+    }
 }

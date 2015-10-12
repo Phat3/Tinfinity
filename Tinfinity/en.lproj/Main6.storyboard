@@ -660,8 +660,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="FfT-ra-Ccd">
                         <barButtonItem key="backBarButtonItem" image="Back Arrow" width="12" id="2Xd-oE-ZtM" userLabel="Back"/>
+                        <barButtonItem key="rightBarButtonItem" title="Profile" id="XNX-fU-Y9B">
+                            <connections>
+                                <segue destination="L8o-9I-U3L" kind="modal" identifier="viewProfile" id="zDb-52-Axv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5n-b8-ACG" userLabel="First Responder" sceneMemberID="firstResponder"/>

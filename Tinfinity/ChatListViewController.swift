@@ -230,6 +230,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "chatSelected") {
             let nextViewcontroller = segue.destinationViewController as! ChatViewController
+            nextViewcontroller.pageViewController = self.pageViewController
             if(newChat == nil){
                 //Normal segue after chat selection in list
                 let path = self.chatTableView.indexPathForSelectedRow!

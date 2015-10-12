@@ -2,42 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>akamaihd.net</key>
-			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<string>false</string>
-				<key>NSIncludesSubdomains</key>
-				<string>true</string>
-			</dict>
-			<key>fbcdn.net</key>
-			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<string>false</string>
-				<key>NSIncludesSubdomains</key>
-				<string>true</string>
-			</dict>
-			<key>facebook.com</key>
-			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<string>false</string>
-				<key>NSIncludesSubdomains</key>
-				<string>true</string>
-			</dict>
-		</dict>
-	</dict>
 	<key>Authentication Path</key>
 	<string>/api/auth/fb</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -73,8 +37,44 @@
 	<string>439360779551762</string>
 	<key>FacebookDisplayName</key>
 	<string>TinFinity</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<string>false</string>
+				<key>NSIncludesSubdomains</key>
+				<string>true</string>
+			</dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<string>false</string>
+				<key>NSIncludesSubdomains</key>
+				<string>true</string>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<string>false</string>
+				<key>NSIncludesSubdomains</key>
+				<string>true</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow Tinfinity to show you people around you</string>
 	<key>Server URL</key>
@@ -85,11 +85,11 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

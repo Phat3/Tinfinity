@@ -171,7 +171,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             accept.backgroundColor = UIColor(red: 46/255.0, green: 206/255.0, blue:113/255.0, alpha: 1)
             let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
-                print("Declien button tapped")
+                print("Decline button tapped") // @TODO
             }
             decline.backgroundColor = UIColor(red: 52/255.0, green: 73/255.0, blue:94/255.0, alpha: 1)
             return [delete, decline, accept]

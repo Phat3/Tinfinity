@@ -169,15 +169,35 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     }
     
     @IBAction func sendRequestClick() {
-        print("TODO")
+        let alert = UIAlertController(title: "Send Friend Request", message: "Do you want to add \(user!.name)?", preferredStyle: .ActionSheet)
+        
+        let confirmAction = UIAlertAction(title: "Send", style: .Default, handler: handleSendRequest)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelSendRequest)
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+
     }
     
+    func handleSendRequest(alertAction: UIAlertAction!) -> Void {
+        user?.sendFriendRequest({ (result) -> Void in
+            
+        })
+    }
+    
+    func cancelSendRequest(alertAction: UIAlertAction!) {}
+    
+    
     @IBAction func acceptClick() {
-        print("TODO")
+        user?.acceptFriendRequest({ (result) -> Void in
+            
+        })
     }
     
     @IBAction func declineClick() {
-        print("TODO")
+        print("Deline request") // @TODO
     }
     
     //Function called after the close button is clicked, which dismiss the profile view Controller and goes back to the last controller(map view controller)

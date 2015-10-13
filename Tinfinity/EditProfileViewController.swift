@@ -117,9 +117,33 @@ class EditProfileViewController: UIViewController {
     
     func editPhotoAction(sender:UIButton!)
     {
-        editIndex = buttons.indexOf(sender)!
-        editFlag = true
-        performSegueWithIdentifier("editPhoto", sender: sender)
+        let alert = UIAlertController(title: "Select an action", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.addAction(UIAlertAction(title: "Edit", style: UIAlertActionStyle.Default, handler:{ action in
+            self.editIndex = self.buttons.indexOf(sender)!
+            self.editFlag = true
+            self.performSegueWithIdentifier("editPhoto", sender: sender)
+        }))
+        alert.addAction(UIAlertAction(title: "Remove", style: UIAlertActionStyle.Destructive, handler: { action in
+            if(account.user.images[1] == nil){
+                alert.dismissViewControllerAnimated(true, completion: nil)
+                let warningAlert = UIAlertController(title: "Uh.Oh", message: "You need at least one profile image!", preferredStyle: .Alert)
+                warningAlert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                self.presentViewController(warningAlert, animated: true, completion: nil)
+            }else{
+                //If there are at least two images, the user can delete the selected one
+                account.user.images.removeAtIndex(self.buttons.indexOf(sender)!)
+                self.buttons.removeAll(keepCapacity: false)
+                account.pushImages()
+                //We need to remove all the buttons in order to generate them back
+                for view in self.view.subviews{
+                    view.removeFromSuperview()
+                }
+                self.viewDidAppear(true)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     

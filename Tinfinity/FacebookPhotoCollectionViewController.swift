@@ -30,8 +30,6 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, Faceboo
         
         facebookApi.photoDelegate = self
         facebookApi.fetchPreviewPhoto(albumId)
-        self.view.userInteractionEnabled = false
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -116,7 +114,6 @@ class FacebookPhotoCollectionViewController: UICollectionViewController, Faceboo
     func didReceiveAllFacebookPhoto() {
         dispatch_async(dispatch_get_main_queue(), {
             self.activitySpinner.hidden = true
-            self.view.userInteractionEnabled = true
         })
     }
     

@@ -38,15 +38,22 @@ class Account: NSObject {
      */
     func pushImages() {
         
-        for( var i = 0; i < self.user.images.count ; i++ ) {
-            if let img = self.user.images[i] {
-                let resizedImg = ImageUtil.resize(ImageUtil.cropToSquare(image: img), targetSize: CGSize(width: 500, height: 500))
-                let imgProfile: NSData = UIImagePNGRepresentation(resizedImg)!
-                Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [
-                    "image" : i,
-                    "imageData" : imgProfile.base64EncodedStringWithOptions([])
-                ],headers: ["X-Api-Token": account.token!,"Content-Type": "application/x-www-form-urlencoded"])
+        for( var i = 0; i < MAX_PHOTOS ; i++ ) {
+            // Di base, abbiamo un'immagine vuota
+            var imageData = ""
+            // Controlliamo se siamo sempre dentro l'array
+            if(self.user.images.count > i) {
+                // Check se l'immagine esiste (non si sa mai!)
+                if let img = self.user.images[i] {
+                    let resizedImg = ImageUtil.resize(ImageUtil.cropToSquare(image: img), targetSize: CGSize(width: 500, height: 500))
+                    let imgProfile: NSData = UIImagePNGRepresentation(resizedImg)!
+                    imageData = imgProfile.base64EncodedStringWithOptions([])
+                }
             }
+            Alamofire.request(.POST, baseUrl + "/api/users/me/images", parameters: [
+                "image" : i,
+                "imageData" : imageData
+            ],headers: ["X-Api-Token": account.token!,"Content-Type": "application/x-www-form-urlencoded"])
         }
     }
     

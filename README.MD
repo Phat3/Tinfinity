@@ -5,7 +5,7 @@ Tinfinity is an IOS application that provide an encrypted point-to-point proximi
 
 ## Requirements
 
-- iOS 8.2+ / Mac OS X 10.10+
+- iOS 8.3+ / Mac OS X 10.10+
 - Xcode 6.3
 
 

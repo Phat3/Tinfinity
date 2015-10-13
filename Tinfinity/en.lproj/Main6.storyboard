@@ -25,26 +25,34 @@
                                 <animations/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="QNC-59-NwF">
-                                <rect key="frame" x="169" y="386" width="37" height="37"/>
+                                <rect key="frame" x="169" y="394" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preparing some magic..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wTu-hf-AtI">
+                                <rect key="frame" x="45" y="439" width="285" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Woh-s1-oJt"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activityIndicator" destination="QNC-59-NwF" id="Jxz-Rl-RE8"/>
+                        <outlet property="loadingMessage" destination="wTu-hf-AtI" id="0Zq-kd-rUn"/>
                         <outlet property="loginButton" destination="RTV-jp-9vd" id="IgW-83-5tb"/>
                         <segue destination="vxQ-CJ-ktZ" kind="modal" identifier="loginExecuted" id="qRU-h4-Ebo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbo-6h-wIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="483.5" y="2455.5"/>
+            <point key="canvasLocation" x="-80.5" y="1336.5"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -62,21 +70,11 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="t2p-yY-B75"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qxj-Bp-rmS" userLabel="settingsButton">
-                                <rect key="frame" x="16" y="32" width="29" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" title="Button" image="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="settingsButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cOF-c7-nBb"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p9o-97-BgG" userLabel="chatButton">
-                                <rect key="frame" x="330" y="32" width="29" height="29"/>
+                                <rect key="frame" x="321" y="22" width="49" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="Chat">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -89,6 +87,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qxj-Bp-rmS" userLabel="settingsButton">
+                                <rect key="frame" x="5" y="22" width="49" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Button" image="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cOF-c7-nBb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -121,9 +131,10 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zax-WY-4Wj">
-                                <rect key="frame" x="325" y="31" width="30" height="30"/>
+                                <rect key="frame" x="321" y="17" width="49" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Chat" image="Chat"/>
                                 <connections>
                                     <action selector="chatClick" destination="L8o-9I-U3L" eventType="touchUpInside" id="Acc-lR-uAF"/>
@@ -173,9 +184,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpa-s7-PfE">
-                                <rect key="frame" x="20" y="34" width="24" height="24"/>
+                                <rect key="frame" x="5" y="22" width="45" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Close Button" image="close"/>
                                 <connections>
                                     <action selector="closeProfile" destination="L8o-9I-U3L" eventType="touchUpInside" id="rLI-NG-Clr"/>
@@ -215,7 +227,7 @@
                 <pageViewController storyboardIdentifier="pageController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vxQ-CJ-ktZ" customClass="PageViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTs-tv-8ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966.5" y="2935.5"/>
+            <point key="canvasLocation" x="-80.5" y="2327.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tHe-Ej-d1u">
@@ -232,7 +244,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h34-kK-2hP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184.5" y="481.5"/>
+            <point key="canvasLocation" x="751.5" y="489.5"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="1V5-OE-r49">
@@ -243,22 +255,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" id="hxV-5j-ekY">
-                                <rect key="frame" x="171" y="29" width="33" height="33"/>
+                                <rect key="frame" x="165" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NPo-co-G5O" userLabel="Home">
-                                <rect key="frame" x="334" y="32" width="25" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" title="Button" image="Homepage">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="homeButtonClicked:" destination="T6J-1J-QIG" eventType="touchUpInside" id="q3e-P4-Pus"/>
-                                    <segue destination="OM0-ra-vrr" kind="unwind" unwindAction="unwindToHome:" id="a3M-KO-1u3"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" id="ZRt-UA-POS" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="95" y="591" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -296,6 +296,19 @@
                                 <animations/>
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NPo-co-G5O" userLabel="Home">
+                                <rect key="frame" x="321" y="25" width="49" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Button" image="Homepage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonClicked:" destination="T6J-1J-QIG" eventType="touchUpInside" id="q3e-P4-Pus"/>
+                                    <segue destination="OM0-ra-vrr" kind="unwind" unwindAction="unwindToHome:" id="a3M-KO-1u3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -314,7 +327,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBZ-M7-A5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="OM0-ra-vrr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="483.5" y="1349.5"/>
+            <point key="canvasLocation" x="-80.5" y="489.5"/>
         </scene>
         <!--Picture Detail View Controller-->
         <scene sceneID="sG0-oN-lQn">
@@ -354,7 +367,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcw-0W-yZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="O0Y-uY-zVV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-185" y="4114"/>
+            <point key="canvasLocation" x="751.5" y="4129.5"/>
         </scene>
         <!--Facebook Photo Collection View Controller-->
         <scene sceneID="hNr-lH-oHI">
@@ -372,7 +385,7 @@
                             <inset key="sectionInset" minX="6" minY="20" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="oq5-sl-Zkd">
-                            <rect key="frame" x="169" y="251" width="37" height="37"/>
+                            <rect key="frame" x="0.0" y="-64" width="375" height="667"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -414,7 +427,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhT-jK-z8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184.5" y="3234.5"/>
+            <point key="canvasLocation" x="751.5" y="3238.5"/>
         </scene>
         <!--Facebook Album View Controller-->
         <scene sceneID="Ly1-vH-fdR">
@@ -487,7 +500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8d-hZ-Yu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-185" y="2283"/>
+            <point key="canvasLocation" x="751.5" y="2350.5"/>
         </scene>
         <!--Edit Profile Controller-->
         <scene sceneID="6dk-lb-RgG">
@@ -514,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dAN-4B-dal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184" y="1350"/>
+            <point key="canvasLocation" x="751.5" y="1369.5"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="R24-Ou-Ud3">
@@ -524,19 +537,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qN2-sW-LTt" userLabel="homeButton">
-                                <rect key="frame" x="16" y="33" width="25" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" image="Homepage">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="homeButtonClicked:" destination="hka-sT-wlW" eventType="touchUpInside" id="oP2-aI-Ilt"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chat" id="hUZ-D0-Xfg">
-                                <rect key="frame" x="170" y="30" width="34" height="33"/>
+                                <rect key="frame" x="165" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
@@ -618,6 +620,19 @@
                                     <outlet property="delegate" destination="hka-sT-wlW" id="pQD-AK-hpC"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qN2-sW-LTt" userLabel="homeButton">
+                                <rect key="frame" x="5" y="25" width="49" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <inset key="insetFor6xAndEarlier" minX="-10" minY="-10" maxX="20" maxY="20"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="Homepage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonClicked:" destination="hka-sT-wlW" eventType="touchUpInside" id="oP2-aI-Ilt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -713,10 +728,10 @@
     </scenes>
     <resources>
         <image name="Back Arrow" width="50" height="50"/>
-        <image name="Chat" width="64" height="64"/>
-        <image name="Homepage" width="50" height="50"/>
+        <image name="Chat" width="44" height="44"/>
+        <image name="Homepage" width="44" height="44"/>
         <image name="Logo" width="221" height="74"/>
-        <image name="Settings" width="50" height="50"/>
+        <image name="Settings" width="44" height="44"/>
         <image name="accept" width="300" height="300"/>
         <image name="close" width="65" height="65"/>
         <image name="decline" width="300" height="300"/>

@@ -211,12 +211,9 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.identifier)
         if (segue.identifier == "viewProfile"){
             let profileController = segue.destinationViewController as! ProfileViewController
             profileController.user = self.chat?.user
-            print(segue.identifier)
-            print(self.chat!.user.name)
             profileController.navigationPageViewController = self.pageViewController
         }
     }

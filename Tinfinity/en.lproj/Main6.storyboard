@@ -156,7 +156,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VX-YF-qHQ" userLabel="Name and Age">
-                                <rect key="frame" x="20" y="430" width="292" height="28"/>
+                                <rect key="frame" x="20" y="430" width="292" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>

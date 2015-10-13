@@ -30,7 +30,12 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nameAndAgeLabel.text = self.user!.name
+        if let age = self.user!.age {
+            self.nameAndAgeLabel.text = self.user!.name! + String(", ") + age
+        } else {
+            self.nameAndAgeLabel.text = self.user!.name
+        }
+        
         
         createPageViewController()
         setupPageControl()

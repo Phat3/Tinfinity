@@ -38,6 +38,7 @@
 		51D96C241B4A6C91001A2D29 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C231B4A6C91001A2D29 /* Album.swift */; };
 		51D96C261B4ABC42001A2D29 /* FacebookAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */; };
 		51F69F861BA05F8900BF842C /* Main6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F69F7E1BA05D2F00BF842C /* Main6.storyboard */; };
+		8B5F6B751BCAC361008524BD /* DistanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F6B741BCAC361008524BD /* DistanceUtil.swift */; settings = {ASSET_TAGS = (); }; };
 		8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8BA371B9225D800F587EF /* ImageUtil.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,19 @@
 		51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinfinity-Bridging-Header.h"; sourceTree = "<group>"; };
 		51F69F841BA05DA900BF842C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main6.storyboard; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B560C411BCBED2800222729 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Release-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		8B560C421BCBED2800222729 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
+		8B560C431BCBED2800222729 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Release-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		8B560C441BCBED2800222729 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Release-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		8B560C451BCBED2800222729 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "Pods/../build/Release-iphoneos/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		8B560C461BCBED2800222729 /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "Pods/../build/Release-iphoneos/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
+		8B560C471BCBED2800222729 /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQSystemSoundPlayer.framework; path = "Pods/../build/Release-iphoneos/JSQSystemSoundPlayer.framework"; sourceTree = "<group>"; };
+		8B560C481BCBED2800222729 /* Pods_Tinfinity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Tinfinity.framework; path = "Pods/../build/Debug-iphoneos/Pods_Tinfinity.framework"; sourceTree = "<group>"; };
+		8B560C491BCBED2800222729 /* Pods_TinfinityTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_TinfinityTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_TinfinityTests.framework"; sourceTree = "<group>"; };
+		8B560C4A1BCBED2800222729 /* Socket_IO_Client_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Socket_IO_Client_Swift.framework; path = "Pods/../build/Release-iphoneos/Socket_IO_Client_Swift.framework"; sourceTree = "<group>"; };
+		8B560C4B1BCBED2800222729 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Release-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		8B5F6B741BCAC361008524BD /* DistanceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceUtil.swift; sourceTree = "<group>"; };
+		8B8865B01BCBB14F00733C38 /* Tinfinity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Tinfinity.entitlements; sourceTree = "<group>"; };
 		8BE8BA371B9225D800F587EF /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		B71F8283A76D325EC18F1E33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +164,7 @@
 		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
 			isa = PBXGroup;
 			children = (
+				8B8865B01BCBB14F00733C38 /* Tinfinity.entitlements */,
 				51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
 				5122F9E01BB3ED0D008E73EB /* PageViewController.swift */,
@@ -203,6 +218,7 @@
 				5113C1DE1B19F1F8007B53AA /* Reachability.swift */,
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
 				8BE8BA371B9225D800F587EF /* ImageUtil.swift */,
+				8B5F6B741BCAC361008524BD /* DistanceUtil.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -256,6 +272,17 @@
 		BC6AF7D4EBC58139FFDAD7FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B560C411BCBED2800222729 /* Alamofire.framework */,
+				8B560C421BCBED2800222729 /* Bolts.framework */,
+				8B560C431BCBED2800222729 /* FBSDKCoreKit.framework */,
+				8B560C441BCBED2800222729 /* FBSDKLoginKit.framework */,
+				8B560C451BCBED2800222729 /* FBSDKShareKit.framework */,
+				8B560C461BCBED2800222729 /* JSQMessagesViewController.framework */,
+				8B560C471BCBED2800222729 /* JSQSystemSoundPlayer.framework */,
+				8B560C481BCBED2800222729 /* Pods_Tinfinity.framework */,
+				8B560C491BCBED2800222729 /* Pods_TinfinityTests.framework */,
+				8B560C4A1BCBED2800222729 /* Socket_IO_Client_Swift.framework */,
+				8B560C4B1BCBED2800222729 /* SwiftyJSON.framework */,
 				8918A07EDD7E7ADDAFC70793 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -319,6 +346,12 @@
 						DevelopmentTeam = 56Z6WHJ65V;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 0;
 							};
 						};
@@ -443,6 +476,7 @@
 				4198ECD91AD005750048C3A0 /* ViewController.swift in Sources */,
 				4198ECD71AD005750048C3A0 /* AppDelegate.swift in Sources */,
 				51A5042C1B0F7D670039E97C /* Chat.swift in Sources */,
+				8B5F6B751BCAC361008524BD /* DistanceUtil.swift in Sources */,
 				51A5043B1B11C9D00039E97C /* ChatViewController.swift in Sources */,
 				5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */,
 				51B1C0821B936A6E00116882 /* UserAnnotation.swift in Sources */,
@@ -577,13 +611,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Tinfinity/Tinfinity.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/SmokingRooster/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Tinfinity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -594,7 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Politecnico.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5b8b8bd8-aad0-440e-900d-80f5474871e4";
+				PROVISIONING_PROFILE = "844cb6d8-faa4-48d0-8a0b-08c67d4efa8d";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Tinfinity-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -607,13 +645,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Tinfinity/Tinfinity.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/SmokingRooster/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Tinfinity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -624,7 +666,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Politecnico.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5b8b8bd8-aad0-440e-900d-80f5474871e4";
+				PROVISIONING_PROFILE = "844cb6d8-faa4-48d0-8a0b-08c67d4efa8d";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Tinfinity-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

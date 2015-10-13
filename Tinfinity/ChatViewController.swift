@@ -59,7 +59,6 @@ class ChatViewController: JSQMessagesViewController {
         //We want to show last messages
         self.scrollToBottomAnimated(false)
         
-        
     }
     
     /*
@@ -100,6 +99,35 @@ class ChatViewController: JSQMessagesViewController {
             return self.outgoingBubble
         } else {
             return self.incomingBubble
+        }
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        if self.shouldShowTimestampForIndexPath(indexPath.row) {
+            return CGFloat(20)
+        }
+        return CGFloat(2)
+        
+    }
+    
+    let timestampFormatter = JSQMessagesTimestampFormatter()
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        let message = self.chat?.allMessages[indexPath.item]
+        if self.shouldShowTimestampForIndexPath(indexPath.row) {
+            return self.timestampFormatter.attributedTimestampForDate(message?.date)
+        }
+        return nil
+    }
+    
+    func shouldShowTimestampForIndexPath(indexPath: Int) -> Bool{
+        if(indexPath != 0){
+            if(NSCalendar.currentCalendar().compareDate((chat?.allMessages[indexPath-1].date)!, toDate: (chat?.allMessages[indexPath].date)!, toUnitGranularity: .Minute) == NSComparisonResult.OrderedAscending ){
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return true
         }
     }
     

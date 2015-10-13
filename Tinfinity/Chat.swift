@@ -148,6 +148,7 @@ class Chat {
                     completion(result: true)
                 case .Failure(_, let error):
                     print("Request failed with error: \(error)")
+                    completion(result: false)
                 
                 }
             }

@@ -63,6 +63,7 @@ class ServerAPIController{
                     
                 case .Failure(_, let error):
                     print("Request failed with error: \(error)")
+                    completion(result: false)
                 }
 
             }

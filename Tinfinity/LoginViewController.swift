@@ -122,15 +122,26 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             	    self.checkLoginProblem(newLogin)
             	}else{
                     if(newLogin == true){
-                        self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in})
+                        self.activityIndicator.hidden = false
+                        self.view.userInteractionEnabled = false
+                        self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in
+                            self.activityIndicator.hidden = true
+                            self.performSegueWithIdentifier("loginExecuted", sender: self)
+                        })
+
 					}else{
-						Chat.loadChatsFromCore()
+                        Chat.loadChatsFromCore()
                         for chat in account.chats{
                             chat.fetchNewMessages({ (result) -> Void in
                             })
                         }
+                        account.checkNewChat({ (result) -> Void in
+                            account.updateRelationships()
+                            self.activityIndicator.hidden = true
+                            self.performSegueWithIdentifier("loginExecuted", sender: self)
+                        })
+
 					}
-					self.performSegueWithIdentifier("loginExecuted", sender: self)
             	}
         	})
         }

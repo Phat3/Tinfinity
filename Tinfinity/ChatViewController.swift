@@ -78,6 +78,9 @@ class ChatViewController: JSQMessagesViewController {
         if self.chat!.allMessages.count == 0{
             account.chats.removeFirst()
         }
+        
+        self.chat?.unreadMessageCount = 0
+        self.chat?.resetCoreUnreadCounter()
     }
     
     //If the app became active n this view, we need to execute a finishReceiving message in the case there are new messages to display

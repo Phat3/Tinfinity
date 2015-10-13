@@ -13,6 +13,7 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     var api: ServerAPIController?
     
@@ -23,10 +24,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         loginButton.delegate = self
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
+        self.activityIndicator.hidden = true
+        
         let minute: NSTimeInterval = 60, hour = minute * 60, _ = hour * 24
         
         //Controlliamo se è già presente un token facebook
         if (FBSDKAccessToken.currentAccessToken() != nil && account.token == nil){
+            
+            self.activityIndicator.hidden = false
+            self.view.userInteractionEnabled = false
             
             //instantiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
@@ -44,6 +50,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     }
                     account.checkNewChat({ (result) -> Void in
                         account.updateRelationships()
+                        self.activityIndicator.hidden = true
                         self.performSegueWithIdentifier("loginExecuted", sender: self)
                     })
                     
@@ -80,7 +87,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     self.checkLoginProblem(true)
                 }
                 else{
+                    self.activityIndicator.hidden = false
+                    self.view.userInteractionEnabled = false
                     self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in
+                        self.activityIndicator.hidden = true
                         self.performSegueWithIdentifier("loginExecuted", sender: self)
                     })
                     

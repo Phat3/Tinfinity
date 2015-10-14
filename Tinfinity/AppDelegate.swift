@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
             self.window?.rootViewController = initViewController
         }else if (result.height == 2208) { //iPh6+
-            let storyboard = UIStoryboard(name:"Main6", bundle: nil)
+            let storyboard = UIStoryboard(name:"Main6p", bundle: nil)
             let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
             self.window?.rootViewController = initViewController
         }

@@ -12,6 +12,7 @@
 		4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198ECDD1AD005750048C3A0 /* Images.xcassets */; };
 		4198ECED1AD005760048C3A0 /* TinfinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */; };
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
+		5101C0D61BCE9CBB00F7FD36 /* Main6p.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5101C0D51BCE9CBB00F7FD36 /* Main6p.storyboard */; settings = {ASSET_TAGS = (); }; };
 		5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113C1DE1B19F1F8007B53AA /* Reachability.swift */; };
 		5122F9E11BB3ED0D008E73EB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122F9E01BB3ED0D008E73EB /* PageViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
@@ -77,6 +78,7 @@
 		4198ECEC1AD005760048C3A0 /* TinfinityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinfinityTests.swift; sourceTree = "<group>"; };
 		4198ECF91AD0343E0048C3A0 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5101C0D51BCE9CBB00F7FD36 /* Main6p.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main6p.storyboard; sourceTree = "<group>"; };
 		5113C1DE1B19F1F8007B53AA /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5122F9E01BB3ED0D008E73EB /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				513FFC1B1BCAA0EE00CC1CAB /* ProfileViewController.swift */,
 				515572EF1BCA95FA000017A8 /* PhotoItemViewController.swift */,
 				51F69F7E1BA05D2F00BF842C /* Main6.storyboard */,
+				5101C0D51BCE9CBB00F7FD36 /* Main6p.storyboard */,
 				51CEBDD21BA1821E000E9E4B /* Main5.storyboard */,
 				4198ECDD1AD005750048C3A0 /* Images.xcassets */,
 				4198ECD41AD005750048C3A0 /* Supporting Files */,
@@ -389,6 +392,7 @@
 				4198ECDE1AD005750048C3A0 /* Images.xcassets in Resources */,
 				51CEBDD41BA1821E000E9E4B /* Main5.storyboard in Resources */,
 				51F69F861BA05F8900BF842C /* Main6.storyboard in Resources */,
+				5101C0D61BCE9CBB00F7FD36 /* Main6p.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

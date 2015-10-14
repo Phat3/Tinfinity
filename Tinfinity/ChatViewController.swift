@@ -59,6 +59,9 @@ class ChatViewController: JSQMessagesViewController {
         //We want to show last messages
         self.scrollToBottomAnimated(false)
         
+        //Hotfix for JSQCollectionView chat width's bug
+        collectionView?.reloadData()
+        
     }
     
     /*
@@ -85,6 +88,7 @@ class ChatViewController: JSQMessagesViewController {
     
     //If the app became active n this view, we need to execute a finishReceiving message in the case there are new messages to display
     override func viewWillAppear(animated: Bool) {
+        
         if(chat?.unreadMessageCount != 0) {
             self.finishReceivingMessage()
         }

@@ -59,11 +59,6 @@ class FacebookAlbumsViewController: UIViewController,UITableViewDelegate, UITabl
         let album = albums[indexPath.row]
 		cell.albumName.text = album.name
         let url = album.cover
-        /*let url = NSURL(string: album.cover)
-        let data = NSData(contentsOfURL: url!)
-        cell.imageView!.image = UIImage(data: data!)!
-        //println("Nome album: " + album.name + "\nCover link: " + album.cover)
-        return cell*/
         
         //IMPLEMENTAZIONE CON CARICAMENTO ASINCRONO, PIU PERFORMANTE MA IMMAGINI CARICATE IN ORDINE SPARSO
         if (!url.isEmpty){

@@ -26,6 +26,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     //Metodi per la posizione sulla mappa
     
+    @IBOutlet weak var blockView: UIView!
     @IBOutlet weak var titleItem: UIBarButtonItem!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var chatButton: UIBarButtonItem!
@@ -38,22 +39,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         
-        // Require Location Permissions
-        locationManager.requestWhenInUseAuthorization()
-        
         // Check if permissions are given
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            
-            // Set the timer every 2 minutes
-            timer =  NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
-            
-            // Get first location
-            refreshLocation()
-            
+        let status = CLLocationManager.authorizationStatus()
+        if(status == CLAuthorizationStatus.AuthorizedWhenInUse) {
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                
+                // Set the timer every 2 minutes
+                timer =  NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
+                
+                // Get first location
+                refreshLocation()
+            }
+        } else if(status == CLAuthorizationStatus.NotDetermined) {
+            // Require Location Permissions
+            locationManager.requestWhenInUseAuthorization()
         } else {
-            //@TODO Block App
+            // Hide the map
+            self.blockView.hidden = false;
         }
         
         // We don't want our user to mess with the map
@@ -70,7 +74,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if(account.token != nil) {
             // Lets first update our Model
             let location: CLLocation = locations.last!
@@ -102,7 +105,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
      * use 2 minute timer.
      */
     func refreshLocation(){
-        print("Refreshing Location...", terminator: "");
+        print("Refreshing Location...");
         locationManager.startUpdatingLocation()
     }
     

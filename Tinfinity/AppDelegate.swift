@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     	let scale = UIScreen.mainScreen().scale
         result = CGSizeMake(result.width*scale, result.height*scale)
         if (result.height == 960) {//iPh4/4S
-        	let storyboard = UIStoryboard(name:"Main4", bundle: nil)
+        	let storyboard = UIStoryboard(name:"Main5", bundle: nil)
             let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
         	self.window?.rootViewController = initViewController
     	}else if (result.height == 1136) { //iPh5/5C/5S

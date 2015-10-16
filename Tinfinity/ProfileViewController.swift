@@ -174,15 +174,19 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     }
     
     @IBAction func sendRequestClick() {
-        let alert = UIAlertController(title: "Send Friend Request", message: "Do you want to add \(user!.name)?", preferredStyle: .ActionSheet)
+        if let username = user!.name {
+            let alert = UIAlertController(title: "Send Friend Request", message: "Do you want to add \(username)?", preferredStyle: .ActionSheet)
+            
+            let confirmAction = UIAlertAction(title: "Send", style: .Default, handler: handleSendRequest)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelSendRequest)
+            
+            alert.addAction(confirmAction)
+            alert.addAction(cancelAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
         
-        let confirmAction = UIAlertAction(title: "Send", style: .Default, handler: handleSendRequest)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelSendRequest)
-        
-        alert.addAction(confirmAction)
-        alert.addAction(cancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
 
     }
     

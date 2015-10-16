@@ -153,7 +153,7 @@ class User {
                                 self.gender = Gender.Female
                             }
                             
-                            self.age = String(json["age"])
+                            self.age = String(json["age"]) != "null" ? String(json["age"]) : nil
                             
                             if(json["relationship"] == "requested") {
                                 self.hasSentRequest = true

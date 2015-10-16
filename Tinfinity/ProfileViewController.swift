@@ -194,6 +194,8 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         user?.sendFriendRequest({ (result) -> Void in
             
         })
+        // Ricarichiamo i bottoni corretti
+        buttons()
     }
     
     func cancelSendRequest(alertAction: UIAlertAction!) {}

@@ -171,22 +171,36 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             accept.backgroundColor = UIColor(red: 46/255.0, green: 206/255.0, blue:113/255.0, alpha: 1)
             let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
-                print("Decline button tapped") // @TODO
+                account.chats[indexPath.row].user.declineFriendRequest({ (result) -> Void in
+                    
+                })
+                tableView.setEditing(false, animated: true)
             }
             decline.backgroundColor = UIColor(red: 52/255.0, green: 73/255.0, blue:94/255.0, alpha: 1)
             return [delete, decline, accept]
         }
         // Non sono amici ed e non è stata inviata una richiesta
         else if (account.chats[indexPath.row].user.isFriend == false &&
-                   account.chats[indexPath.row].user.hasSentRequest == false) {
-            let request = UITableViewRowAction(style: .Normal, title: "Send\nrequest") { action, index in
-                
-                self.sendRequestUserIndexPath = indexPath
-                self.confirmRequest(account.chats[indexPath.row].user.name!)
-                tableView.setEditing(false, animated: true)
-            }
-            request.backgroundColor = UIColor(red: 52/255.0, green: 152/255.0, blue:219/255.0, alpha: 1)
-            return [delete, request]
+            account.chats[indexPath.row].user.hasSentRequest == false) {
+                let request = UITableViewRowAction(style: .Normal, title: "Send\nrequest") { action, index in
+                    
+                    self.sendRequestUserIndexPath = indexPath
+                    self.confirmRequest(account.chats[indexPath.row].user.name!)
+                    tableView.setEditing(false, animated: true)
+                }
+                request.backgroundColor = UIColor(red: 52/255.0, green: 152/255.0, blue:219/255.0, alpha: 1)
+                return [delete, request]
+        }
+        // Sono amici 
+        else if (account.chats[indexPath.row].user.isFriend == true) {
+                let unfriend = UITableViewRowAction(style: .Normal, title: "Unfriend") { action, index in
+                    account.chats[indexPath.row].user.declineFriendRequest({ (result) -> Void in
+                        
+                    })
+                    tableView.setEditing(false, animated: true)
+                }
+                unfriend.backgroundColor = UIColor(red: 52/255.0, green: 152/255.0, blue:219/255.0, alpha: 1)
+                return [delete, unfriend]
         }
         
         return [delete]

@@ -116,7 +116,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in order to use this app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NHm-JU-i6y">
@@ -699,6 +699,12 @@
                                     <action selector="chatClick" destination="cYq-nK-hrC" eventType="touchUpInside" id="jrk-wg-hJ3"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="aka-GA-BBj">
+                                <rect key="frame" x="142" y="389" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -707,6 +713,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="acceptButton" destination="wF7-ar-Pig" id="r1p-yR-xKf"/>
+                        <outlet property="activityIndicator" destination="aka-GA-BBj" id="91l-2D-TwU"/>
                         <outlet property="chatButton" destination="CQK-lh-oec" id="QOf-iZ-u9w"/>
                         <outlet property="declineButton" destination="noA-ma-UE4" id="gsJ-b9-uT0"/>
                         <outlet property="disanceLabel" destination="cQ8-lA-7Hq" id="Vgl-hH-vUP"/>

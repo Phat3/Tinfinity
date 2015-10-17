@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     //Weak reference to the navigation ViewController needed for buttons action
     weak var navigationPageViewController: PageViewController?
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var pageViewControllerFrame: UIView!
     @IBOutlet weak var nameAndAgeLabel: UILabel!
     @IBOutlet weak var declineButton: UIButton!
@@ -41,6 +42,8 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
         setupPageControl()
         distance()
         buttons()
+        
+        self.activityIndicator.hidden = true;
     }
     
     /*
@@ -191,24 +194,36 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     }
     
     func handleSendRequest(alertAction: UIAlertAction!) -> Void {
+        self.activityIndicator.hidden = false;
         user?.sendFriendRequest({ (result) -> Void in
-            
+            // Ricarichiamo i bottoni corretti
+            self.buttons()
+            self.activityIndicator.hidden = true;
         })
-        // Ricarichiamo i bottoni corretti
-        buttons()
     }
     
     func cancelSendRequest(alertAction: UIAlertAction!) {}
     
     
     @IBAction func acceptClick() {
+        self.activityIndicator.hidden = false;
         user?.acceptFriendRequest({ (result) -> Void in
-            
+            // Ricarichiamo i bottoni corretti
+            self.buttons()
+            self.activityIndicator.hidden = true;
         })
+        
+        
     }
     
     @IBAction func declineClick() {
-        print("Deline request") // @TODO
+        self.activityIndicator.hidden = false;
+        user?.declineFriendRequest({ (result) -> Void in
+            // Ricarichiamo i bottoni corretti
+            self.buttons()
+            self.activityIndicator.hidden = true;
+        })
+        
     }
     
     //Function called after the close button is clicked, which dismiss the profile view Controller and goes back to the last controller(map view controller)

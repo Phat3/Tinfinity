@@ -103,6 +103,9 @@ class User {
         }
     }
     
+    /**
+     * Method used to accept the friend request
+     */
     func acceptFriendRequest(completion: (result: Bool) -> Void) {
         
         let manager = Alamofire.Manager.sharedInstance
@@ -111,11 +114,32 @@ class User {
             .responseJSON { _,_,result in
                 
                 switch result {
-                case .Success(let data):
+                case .Success(_):
                     self.hasSentRequest = false
                     self.hasReceivedRequest = false
                     self.isFriend = true
-                    print(data)
+                    completion(result: true)
+                case .Failure(_, let error):
+                    print("Request failed with error: \(error)")
+                }
+        }
+    }
+    
+    /**
+     * Method used to decline the user friend request
+     */
+    func declineFriendRequest(completion: (result: Bool) -> Void) {
+        
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(.GET, baseUrl + "/api/users/" + userId + "/decline" , encoding : .JSON, headers: ["X-Api-Token": account.token!])
+            .responseJSON { _,_,result in
+                
+                switch result {
+                case .Success(_):
+                    self.hasSentRequest = false
+                    self.hasReceivedRequest = false
+                    self.isFriend = false
                     completion(result: true)
                 case .Failure(_, let error):
                     print("Request failed with error: \(error)")

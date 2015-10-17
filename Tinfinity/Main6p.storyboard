@@ -117,7 +117,7 @@
                                         <rect key="frame" x="156" y="189" width="106" height="51"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -219,6 +219,11 @@
                                     <action selector="declineClick" destination="7g3-Y8-CqH" eventType="touchUpInside" id="Gio-gQ-PxA"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wNa-te-cPm">
+                                <rect key="frame" x="189" y="521" width="37" height="37"/>
+                                <animations/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96470588239999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,6 +232,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="acceptButton" destination="b9F-3s-ICs" id="GJi-MN-ENq"/>
+                        <outlet property="activityIndicator" destination="wNa-te-cPm" id="tWn-Mv-7VF"/>
                         <outlet property="chatButton" destination="YoZ-uW-UEc" id="NB3-Ia-XFv"/>
                         <outlet property="declineButton" destination="WyN-4u-sq3" id="1K1-6I-EpA"/>
                         <outlet property="disanceLabel" destination="uuP-GX-PdU" id="Y2d-qK-Jv5"/>

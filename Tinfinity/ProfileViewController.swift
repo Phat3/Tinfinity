@@ -31,19 +31,32 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let age = self.user!.age {
             self.nameAndAgeLabel.text = self.user!.name! + String(", ") + age
         } else {
             self.nameAndAgeLabel.text = self.user!.name
         }
         
-        
         createPageViewController()
         setupPageControl()
         distance()
         buttons()
-        
-        self.activityIndicator.hidden = true;
+        stopLoading()
+    }
+    
+    func loading() {
+        self.activityIndicator.startAnimating()
+        self.acceptButton.enabled = false
+        self.declineButton.enabled = false
+        self.sendRequestButton.enabled = false
+    }
+    
+    func stopLoading() {
+        self.activityIndicator.stopAnimating()
+        self.acceptButton.enabled = true
+        self.declineButton.enabled = true
+        self.sendRequestButton.enabled = true
     }
     
     /*
@@ -194,11 +207,11 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     }
     
     func handleSendRequest(alertAction: UIAlertAction!) -> Void {
-        self.activityIndicator.hidden = false;
+        loading()
         user?.sendFriendRequest({ (result) -> Void in
             // Ricarichiamo i bottoni corretti
             self.buttons()
-            self.activityIndicator.hidden = true;
+            self.stopLoading()
         })
     }
     
@@ -206,22 +219,22 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     
     
     @IBAction func acceptClick() {
-        self.activityIndicator.hidden = false;
+        loading()
         user?.acceptFriendRequest({ (result) -> Void in
             // Ricarichiamo i bottoni corretti
             self.buttons()
-            self.activityIndicator.hidden = true;
+            self.stopLoading()
         })
         
         
     }
     
     @IBAction func declineClick() {
-        self.activityIndicator.hidden = false;
+        loading()
         user?.declineFriendRequest({ (result) -> Void in
             // Ricarichiamo i bottoni corretti
             self.buttons()
-            self.activityIndicator.hidden = true;
+            self.stopLoading()
         })
         
     }

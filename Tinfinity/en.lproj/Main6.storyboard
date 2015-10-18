@@ -240,7 +240,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="acceptButton" destination="yuN-GP-lVQ" id="yis-zO-arZ"/>
-                        <outlet property="activityIndicator" destination="LJi-tc-z7i" id="VRI-cb-J1v"/>
+                        <outlet property="activityIndicator" destination="LJi-tc-z7i" id="MaE-y3-6TZ"/>
                         <outlet property="chatButton" destination="Zax-WY-4Wj" id="LOo-Na-vKM"/>
                         <outlet property="declineButton" destination="NLL-QF-BRL" id="Flk-z2-LNz"/>
                         <outlet property="disanceLabel" destination="csB-zL-3wC" id="gof-tW-de7"/>

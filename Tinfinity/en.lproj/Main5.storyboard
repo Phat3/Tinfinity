@@ -556,6 +556,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="MQT-sh-iEW">
+                                <rect key="frame" x="-28" y="266" width="375" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -564,6 +570,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="MQT-sh-iEW" id="JAQ-yX-xsG"/>
                         <outlet property="chatTableView" destination="ukV-gj-L4w" id="4zW-Mr-Lp4"/>
                         <outlet property="defaultMessage" destination="llS-n7-hhE" id="d9f-Ja-ZKf"/>
                         <outlet property="homeButton" destination="fCc-tL-jkl" id="exV-iC-850"/>

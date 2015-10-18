@@ -664,6 +664,11 @@
                                 <rect key="frame" x="185" y="31" width="44" height="44"/>
                                 <animations/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rXm-AH-m6V">
+                                <rect key="frame" x="19" y="350" width="375" height="37"/>
+                                <animations/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -671,6 +676,7 @@
                     <navigationItem key="navigationItem" id="Kjf-pD-ET3"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="rXm-AH-m6V" id="YbX-mN-88M"/>
                         <outlet property="chatTableView" destination="rsx-jP-Ogf" id="oyE-qM-INB"/>
                         <outlet property="defaultMessage" destination="gch-5w-cjj" id="X7j-AS-kvV"/>
                         <outlet property="homeButton" destination="ncc-q7-1yc" id="dfx-8n-Q2W"/>

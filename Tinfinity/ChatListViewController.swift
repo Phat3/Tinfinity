@@ -14,6 +14,7 @@ import JSQMessagesViewController
 class ChatListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var defaultMessage: UILabel!
@@ -81,6 +82,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         self.refreshControl.addTarget(self, action: Selector("updateData"), forControlEvents: UIControlEvents.ValueChanged)
         self.chatTableView.addSubview(refreshControl)
         
+        self.stopLoading()
     
     }
 
@@ -100,6 +102,14 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             chatTableView.reloadData()
         }
+    }
+    
+    func loading() {
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopLoading() {
+        self.activityIndicator.stopAnimating()
     }
 
     /*
@@ -164,15 +174,17 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         // Non sono amici ed è stata ricevuta una richiesta
         if(account.chats[indexPath.row].user.hasReceivedRequest == true) {
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
+                self.loading()
                 account.chats[indexPath.row].user.acceptFriendRequest({ (result) -> Void in
-                    
+                    self.stopLoading()
                 })
                 tableView.setEditing(false, animated: true)
             }
             accept.backgroundColor = UIColor(red: 46/255.0, green: 206/255.0, blue:113/255.0, alpha: 1)
             let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
+                self.loading()
                 account.chats[indexPath.row].user.declineFriendRequest({ (result) -> Void in
-                    
+                    self.stopLoading()
                 })
                 tableView.setEditing(false, animated: true)
             }
@@ -194,8 +206,9 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         // Sono amici 
         else if (account.chats[indexPath.row].user.isFriend == true) {
                 let unfriend = UITableViewRowAction(style: .Normal, title: "Unfriend") { action, index in
+                    self.loading()
                     account.chats[indexPath.row].user.declineFriendRequest({ (result) -> Void in
-                        
+                        self.stopLoading()
                     })
                     tableView.setEditing(false, animated: true)
                 }
@@ -220,9 +233,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func handleSendRequest(alertAction: UIAlertAction!) -> Void {
         if let indexPath = sendRequestUserIndexPath {
+            loading()
             sendRequestUserIndexPath = nil
             account.chats[indexPath.row].user.sendFriendRequest({ (result) -> Void in
-                
+                self.stopLoading()
             })
         }
     }

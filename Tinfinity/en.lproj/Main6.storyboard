@@ -14,16 +14,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" restorationIdentifier="loginButton" id="RTV-jp-9vd" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="61" y="569" width="252" height="36"/>
+                                <rect key="frame" x="61" y="547" width="252" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" id="TUm-ho-jq8">
-                                <rect key="frame" x="36" y="63" width="302" height="214"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" id="QNC-59-NwF">
                                 <rect key="frame" x="169" y="394" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -38,6 +33,11 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" id="TUm-ho-jq8">
+                                <rect key="frame" x="17" y="70" width="341" height="260"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -786,6 +786,6 @@
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="su9-vE-gRA"/>
+        <segue reference="qRU-h4-Ebo"/>
     </inferredMetricsTieBreakers>
 </document>

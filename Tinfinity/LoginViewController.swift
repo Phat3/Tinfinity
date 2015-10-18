@@ -24,18 +24,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         
         loginButton.delegate = self
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
-        
-        self.activityIndicator.hidden = true
-        self.loadingMessage.hidden = true
-        
+        self.stopLoading()
         let minute: NSTimeInterval = 60, hour = minute * 60, _ = hour * 24
         
         //Controlliamo se è già presente un token facebook
         if (FBSDKAccessToken.currentAccessToken() != nil && account.token == nil){
             
-            self.activityIndicator.hidden = false
-            self.loadingMessage.hidden = false
-            self.view.userInteractionEnabled = false
+            self.loading()
             
             //instantiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
@@ -53,9 +48,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     }
                     account.checkNewChat({ (result) -> Void in
                         account.updateRelationships()
-                        self.activityIndicator.hidden = true
-                        self.loadingMessage.hidden = true
-                    self.performSegueWithIdentifier("loginExecuted", sender: self)
+                        self.performSegueWithIdentifier("loginExecuted", sender: self)
                     })
                     
                     return
@@ -63,13 +56,26 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             })
         }
         else{
-            loginButton.center = self.view.center
+            //loginButton.center = self.view.center
             loginButton.readPermissions = ["public_profile", "email", "user_friends","user_photos","user_birthday"]
             loginButton.delegate = self
         }
-
-        
-        
+    }
+    
+    func loading() {
+        self.activityIndicator.startAnimating()
+        self.activityIndicator.hidden = false
+        self.loadingMessage.hidden = false
+        self.view.userInteractionEnabled = false
+        self.loginButton.hidden = true
+    }
+    
+    func stopLoading() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.hidden = true
+        self.loadingMessage.hidden = true
+        self.view.userInteractionEnabled = true
+        self.loginButton.hidden = false
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -83,6 +89,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             print("cancelled")
         }
         else {
+            self.loading()
             //instatiating the apicontroller with the current access token to authenticate with the server
             api = ServerAPIController(FBAccessToken: FBSDKAccessToken.currentAccessToken().tokenString)
             api?.retrieveProfileFromServer({ (result) -> Void in
@@ -91,12 +98,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                     self.checkLoginProblem(true)
                 }
                 else{
-                    self.activityIndicator.hidden = false
-                    self.loadingMessage.hidden = false
-                    self.view.userInteractionEnabled = false
                     self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in
-                        self.activityIndicator.hidden = true
-                        self.loadingMessage.hidden = true
                         self.performSegueWithIdentifier("loginExecuted", sender: self)
                     })
                     
@@ -128,12 +130,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             	    self.checkLoginProblem(newLogin)
             	}else{
                     if(newLogin == true){
-                        self.activityIndicator.hidden = false
-                        self.loadingMessage.hidden = false
-                        self.view.userInteractionEnabled = false
+                        self.loading()
                         self.api?.retriveChatHistory(account.user.userId, completion: { (result) -> Void in
-                            self.activityIndicator.hidden = true
-                            self.loadingMessage.hidden = true
+                            self.stopLoading()
                             self.performSegueWithIdentifier("loginExecuted", sender: self)
                         })
 
@@ -145,9 +144,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                         }
                         account.checkNewChat({ (result) -> Void in
                             account.updateRelationships()
-                            self.activityIndicator.hidden = true
-                            self.loadingMessage.hidden = true
-                                self.performSegueWithIdentifier("loginExecuted", sender: self)
+                            self.loading()
+                            self.performSegueWithIdentifier("loginExecuted", sender: self)
                         })
 
 					}

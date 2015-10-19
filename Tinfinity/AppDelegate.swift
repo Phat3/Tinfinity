@@ -83,6 +83,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
+        
+        // Refresh relationships
+        account.refreshRelationships { (result) -> Void in
+            
+        }
+        
         //If there is a logged used, we need to check if we received messages while the app was in teh background(push notification only show the notification, they do not carry data in our app)
         if(account.token != nil){
             for(var i = 0; i < account.chats.count; i++){

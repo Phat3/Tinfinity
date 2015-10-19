@@ -31,17 +31,17 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     var imageCache = [String:UIImage]()
     
     
-    /*newChat can assume 3 values:
-	* - nil: means the user got in this controller by simply clicking the regoular button
-	* - false: means the user got in this controller by selecting a nearby user on the map, so we have to open the
-	*			relative chat, which already exists
-	* - true: means the user got here by selecting a nearby user with whom he never chatted before.
-    * 
-    *  The check on this is made in the preparefore segue with id: chatSelected
-	*/
+    /* newChat can assume 3 values:
+	 * - nil: means the user got in this controller by simply clicking the regoular button
+	 * - false: means the user got in this controller by selecting a nearby user on the map, so we have to open the
+	 *			relative chat, which already exists
+	 * - true: means the user got here by selecting a nearby user with whom he never chatted before.
+     *
+     *  The check on this is made in the preparefore segue with id: chatSelected
+	 */
     var newChat: Bool?
     
-    //The id passed by the map that tells us which is the chat we need to open
+    // The id passed by the map that tells us which is the chat we need to open
     var clickedUserId: String?
     
     var refreshControl: UIRefreshControl!
@@ -69,6 +69,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         //The defualt message is hidden by default
         defaultMessage.hidden = true
         defaultMessage.text = "You have no people connected to you. Look in the map to start chatting!"
+        
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 243/255, alpha: 1)
         

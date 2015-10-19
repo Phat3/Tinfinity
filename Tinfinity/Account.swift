@@ -61,9 +61,31 @@ class Account: NSObject {
     }
     
     /**
-     * Prendiamo i dati che ci siamo salvati al momento dell'accesso e ora che 
-     * abbiamo ricaricato le chat, li utilizziamo per aggiornare le relazioni 
-     * dei vari utenti
+     * Questo metodo aggiorna le relazioni interrogando il server
+     * Viene poi utilizzata la funzione updateRelationships() per 
+     * parsare i dati ritornati
+     */
+    func refreshRelationships(completion: (result: Bool) -> Void) {
+        let manager = Alamofire.Manager.sharedInstance
+        if let token = account.token {
+            manager.request(.GET, baseUrl + "/api/users/me/relationships" , encoding : .JSON, headers: ["X-Api-Token": token])
+                .responseJSON { _,_,result in
+                    switch result {
+                    case .Success(let data):
+                        self.relationships = JSON(data)
+                        self.updateRelationships()
+                        completion(result: true)
+                    case .Failure(_, let error):
+                        print("Request failed with error: \(error)")
+                    }
+            }
+        }
+    }
+    
+    /**
+     * Prendiamo i dati che ci siamo salvati al momento dell'accesso o in altro
+     * modo e ora che abbiamo ricaricato le chat, li utilizziamo per aggiornare 
+     * le relazioni dei vari utenti
      * Questo metodo si occupa anche di creare le richieste ricevute
      */
     func updateRelationships() {
@@ -84,9 +106,20 @@ class Account: NSObject {
                     requests.append(Request(user_id: key, user: user))
                     
                 } else if(value == "accepted") {
-                    user.isFriend = true
-                    user.hasReceivedRequest = false
-                    user.hasSentRequest = false
+                    // Nuova amicizia! -> Aggiorniamo l'utente
+                    // NOTA: Quando si fa l'accept, viene già settato da quel metodo,
+                    // questo è il caso in cui è l'altro utente che ha accettato
+                    if(user.isFriend == false) {
+                        user.fetch({ (result) -> Void in
+                        })
+                    }
+                    // Non serve aggiornare i campi, lo fa già la fetch
+                    else {
+                        user.isFriend = true
+                        user.hasReceivedRequest = false
+                        user.hasSentRequest = false
+                    }
+                    
                 }
             } else {
                 if(value == "received") {

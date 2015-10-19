@@ -140,8 +140,11 @@ class User {
                         account.requests.removeAtIndex(index)
                     }
                     
+                    // Aggiorniamo le informazioni sull'utente
+                    self.fetch({ (result) -> Void in
+                        completion(result: true)
+                    })
                     
-                    completion(result: true)
                 case .Failure(_, let error):
                     print("Request failed with error: \(error)")
                 }
@@ -181,19 +184,17 @@ class User {
      * Recuperiamo dal server le informazioni legate all'utente
      */
     func fetch(completion: (result: User? ) -> Void) {
-        if(account.token != nil) { // Check
-       Alamofire.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + self.userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
+       if let token = account.token { // Check
+       Alamofire.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + self.userId, encoding : .JSON, headers: ["X-Api-Token": token])
             .responseJSON { _,_,result in
                 
                 switch result {
                     case .Success(let data):
                         let json = JSON(data)
                         if let _ = json["error"].string{
-                            
                             for(var i=0; i < account.chats.count; i++){
                                 if (account.chats[i].user.userId == self.userId){
                                     account.chats.removeAtIndex(i)
-                                    print("An user has been removed from the array")
                                     completion(result: nil)
                                 }
                             }
@@ -209,12 +210,22 @@ class User {
                             
                             self.age = String(json["age"]) != "null" ? String(json["age"]) : nil
                             
+                            // Il motivo per cui aggiorniamo sempre tutti 
+                            // e tre le variabili, è perchè potrebbe essere 
+                            // un aggiornamento di un utente esistente con 
+                            // conseguente possibile variazione di relazione
                             if(json["relationship"] == "requested") {
                                 self.hasSentRequest = true
+                                self.hasReceivedRequest = false
+                                self.isFriend = false
                             } else if(json["relationship"] == "received") {
                                 self.hasReceivedRequest = true
+                                self.hasSentRequest = false
+                                self.isFriend = false
                             } else if(json["relationship"] == "accepted") {
                                 self.isFriend = true
+                                self.hasReceivedRequest = false
+                                self.hasSentRequest = false
                             }
                         
                             // Lets download the image

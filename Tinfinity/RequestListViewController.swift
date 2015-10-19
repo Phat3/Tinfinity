@@ -14,10 +14,19 @@ class RequestListViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     weak var pageViewController: PageViewController?
+    
     var index: Int = -1
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Implement the pull to refresh
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: Selector("updateData"), forControlEvents: UIControlEvents.ValueChanged)
+        self.table.addSubview(refreshControl)
+        
         self.stopLoading()
     }
     
@@ -50,7 +59,6 @@ class RequestListViewController: UIViewController, UITableViewDelegate, UITableV
         cell.avatar.frame = frame
         cell.avatar.layer.cornerRadius = imageSize / 2.0
         cell.avatar.clipsToBounds = true
-        
         cell.nameLabel.text = request.user.name
         return cell
     }
@@ -78,6 +86,13 @@ class RequestListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func stopLoading() {
         self.activityIndicator.stopAnimating()
+    }
+    
+    func updateData(){
+        account.refreshRelationships { (result) -> Void in
+            self.refreshControl.endRefreshing()
+            self.table.reloadData()
+        }
     }
     
     func handleAccept(alertAction: UIAlertAction!) -> Void {

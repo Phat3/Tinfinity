@@ -18,6 +18,8 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var defaultMessage: UILabel!
+    @IBOutlet weak var viewSwitch: UISegmentedControl!
+    @IBOutlet weak var requestView: UITableView!
     
     
     //Weak reference to parent pageViewController
@@ -82,7 +84,12 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         self.refreshControl.addTarget(self, action: Selector("updateData"), forControlEvents: UIControlEvents.ValueChanged)
         self.chatTableView.addSubview(refreshControl)
         
+        // Hide the activity indicator
         self.stopLoading()
+        
+        // Select default tab in segmented control
+        self.viewSwitch.selectedSegmentIndex = 0
+        requestView.hidden = true
     
     }
 
@@ -111,7 +118,22 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     func stopLoading() {
         self.activityIndicator.stopAnimating()
     }
-
+    
+    /**
+     * Switch between tab views
+     */
+    @IBAction func viewSwitch(sender: UISegmentedControl) {
+        switch viewSwitch.selectedSegmentIndex {
+        case 0: // Conversations Tab
+            requestView.hidden = true
+            chatTableView.hidden = false
+        case 1: // Requests Tab
+            requestView.hidden = false
+            chatTableView.hidden = true
+        default:
+            break;
+        }
+    }
     /*
     ##################   TABLE-VIEW SETUP   ##################
     */

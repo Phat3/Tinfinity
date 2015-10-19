@@ -432,7 +432,7 @@
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="tdt-bp-iRV" customClass="PictureCollectionViewCell" customModule="Tinfinity" customModuleProvider="target">
-                                <rect key="frame" x="6" y="20" width="50" height="50"/>
+                                <rect key="frame" x="6" y="84" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -673,6 +673,14 @@
                                     <action selector="homeButtonClicked:" destination="hka-sT-wlW" eventType="touchUpInside" id="oP2-aI-Ilt"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" id="UjE-AU-aiw">
+                                <rect key="frame" x="0.0" y="107" width="375" height="559"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="2ra-eE-FF4" kind="embed" id="ghW-KI-ycJ"/>
+                                </connections>
+                            </containerView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="z3j-Js-HjH">
                                 <rect key="frame" x="0.0" y="315" width="375" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -692,24 +700,6 @@
                                     <action selector="viewSwitch:" destination="hka-sT-wlW" eventType="valueChanged" id="6xV-ef-9Nc"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fh9-Ol-vFf">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w3a-6z-2Fq">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w3a-6z-2Fq" id="Q94-wD-Tuv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -721,13 +711,13 @@
                         <outlet property="chatTableView" destination="pbS-n9-sLu" id="o0i-eY-81m"/>
                         <outlet property="defaultMessage" destination="A7f-eX-UJa" id="fQe-iU-TRZ"/>
                         <outlet property="homeButton" destination="qN2-sW-LTt" id="m9U-Wr-sN6"/>
-                        <outlet property="requestView" destination="fh9-Ol-vFf" id="QcS-5S-ea6"/>
+                        <outlet property="requestView" destination="UjE-AU-aiw" id="BP1-gI-61F"/>
                         <outlet property="viewSwitch" destination="T76-V4-l9E" id="LzR-8r-T01"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7G-vm-Crz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313.5" y="302.5"/>
+            <point key="canvasLocation" x="1347.5" y="292.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7rJ-Se-PER">
@@ -750,7 +740,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dc0-DS-6wC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348.5" y="1336.5"/>
+            <point key="canvasLocation" x="1188.5" y="1348.5"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="aNl-04-kiq">
@@ -775,7 +765,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5n-b8-ACG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954.5" y="294.5"/>
+            <point key="canvasLocation" x="1654.5" y="1122.5"/>
         </scene>
         <!--Photo Item View Controller-->
         <scene sceneID="EwB-3S-Fy7">
@@ -805,6 +795,67 @@
             </objects>
             <point key="canvasLocation" x="2499.5" y="2248"/>
         </scene>
+        <!--Request List View Controller-->
+        <scene sceneID="YX2-0i-nel">
+            <objects>
+                <viewController id="2ra-eE-FF4" customClass="RequestListViewController" customModule="Tinfinity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xKu-um-SrP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="fh9-Ol-vFf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestCell" rowHeight="76" id="w3a-6z-2Fq" customClass="RequestCustomCell" customModule="Tinfinity" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="375" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w3a-6z-2Fq" id="Q94-wD-Tuv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="81Q-o4-dS2">
+                                                    <rect key="frame" x="14" y="8" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oEg-YI-Jw1" userLabel="Name">
+                                                    <rect key="frame" x="91" y="16" width="160" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="avatar" destination="81Q-o4-dS2" id="pbZ-sg-A2U"/>
+                                            <outlet property="nameLabel" destination="oEg-YI-Jw1" id="s1c-Ss-o7h"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2ra-eE-FF4" id="Tgj-Mt-kYn"/>
+                                    <outlet property="delegate" destination="2ra-eE-FF4" id="nfJ-ad-k5O"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="L8o-9I-U3L" kind="modal" identifier="viewProfile" id="8xQ-he-4J0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cIk-hc-T9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1999.5" y="292.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Back Arrow" width="50" height="50"/>
@@ -820,5 +871,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qRU-h4-Ebo"/>
+        <segue reference="8xQ-he-4J0"/>
     </inferredMetricsTieBreakers>
 </document>

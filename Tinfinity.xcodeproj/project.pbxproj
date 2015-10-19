@@ -39,6 +39,9 @@
 		51D96C241B4A6C91001A2D29 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C231B4A6C91001A2D29 /* Album.swift */; };
 		51D96C261B4ABC42001A2D29 /* FacebookAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D96C251B4ABC41001A2D29 /* FacebookAPIController.swift */; };
 		51F69F861BA05F8900BF842C /* Main6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F69F7E1BA05D2F00BF842C /* Main6.storyboard */; };
+		8B5424861BD524CE0093FFAC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5424851BD524CE0093FFAC /* Request.swift */; settings = {ASSET_TAGS = (); }; };
+		8B5424881BD528B10093FFAC /* RequestCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5424871BD528B10093FFAC /* RequestCustomCell.swift */; settings = {ASSET_TAGS = (); }; };
+		8B54248B1BD52CAB0093FFAC /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B54248A1BD52CAB0093FFAC /* RequestListViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B5F6B751BCAC361008524BD /* DistanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F6B741BCAC361008524BD /* DistanceUtil.swift */; settings = {ASSET_TAGS = (); }; };
 		8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8BA371B9225D800F587EF /* ImageUtil.swift */; };
 		92972DF2203B1912BF6E606C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918A07EDD7E7ADDAFC70793 /* Pods.framework */; };
@@ -107,6 +110,9 @@
 		51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinfinity-Bridging-Header.h"; sourceTree = "<group>"; };
 		51F69F841BA05DA900BF842C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main6.storyboard; sourceTree = "<group>"; };
 		8918A07EDD7E7ADDAFC70793 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B5424851BD524CE0093FFAC /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		8B5424871BD528B10093FFAC /* RequestCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCustomCell.swift; sourceTree = "<group>"; };
+		8B54248A1BD52CAB0093FFAC /* RequestListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
 		8B560C411BCBED2800222729 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Release-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		8B560C421BCBED2800222729 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Release-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
 		8B560C431BCBED2800222729 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Release-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 		4198ECD31AD005750048C3A0 /* Tinfinity */ = {
 			isa = PBXGroup;
 			children = (
+				8B5424891BD52C950093FFAC /* Requests */,
 				8B8865B01BCBB14F00733C38 /* Tinfinity.entitlements */,
 				51E1227A1B11EE6A0061BD29 /* Tinfinity-Bridging-Header.h */,
 				4198ECD61AD005750048C3A0 /* AppDelegate.swift */,
@@ -259,8 +266,18 @@
 				51AADA9A1AEE2D6F007225CD /* User.swift */,
 				51D96C231B4A6C91001A2D29 /* Album.swift */,
 				51B1C0811B936A6E00116882 /* UserAnnotation.swift */,
+				8B5424851BD524CE0093FFAC /* Request.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		8B5424891BD52C950093FFAC /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				8B5424871BD528B10093FFAC /* RequestCustomCell.swift */,
+				8B54248A1BD52CAB0093FFAC /* RequestListViewController.swift */,
+			);
+			name = Requests;
 			sourceTree = "<group>";
 		};
 		93D4075F43E8D65AAB48F9B7 /* Pods */ = {
@@ -462,9 +479,11 @@
 				51ADDC0F1B57D4F100873DDB /* PictureCollectionViewCell.swift in Sources */,
 				516594971BA964FB00C186F0 /* AlbumCustomCell.swift in Sources */,
 				51ADDC0B1B57AF5C00873DDB /* FacebookPhotoCollectionViewController.swift in Sources */,
+				8B5424881BD528B10093FFAC /* RequestCustomCell.swift in Sources */,
 				515572F01BCA95FA000017A8 /* PhotoItemViewController.swift in Sources */,
 				512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */,
 				5170F32B1B5EA93000779D64 /* PictureDetailViewController.swift in Sources */,
+				8B5424861BD524CE0093FFAC /* Request.swift in Sources */,
 				8BE8BA381B9225D800F587EF /* ImageUtil.swift in Sources */,
 				51D96C241B4A6C91001A2D29 /* Album.swift in Sources */,
 				512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */,
@@ -486,6 +505,7 @@
 				51B1C0821B936A6E00116882 /* UserAnnotation.swift in Sources */,
 				513FFC1C1BCAA0EE00CC1CAB /* ProfileViewController.swift in Sources */,
 				51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */,
+				8B54248B1BD52CAB0093FFAC /* RequestListViewController.swift in Sources */,
 				5135D9E41B43E8800070A560 /* FacebookAlbumsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

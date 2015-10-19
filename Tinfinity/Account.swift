@@ -21,6 +21,9 @@ class Account: NSObject {
     // Stored chats
     var chats = [Chat]()
     
+    // Requests
+    var requests = [Request]()
+    
     var relationships: JSON?
 
     func logOut() {
@@ -61,9 +64,14 @@ class Account: NSObject {
      * Prendiamo i dati che ci siamo salvati al momento dell'accesso e ora che 
      * abbiamo ricaricato le chat, li utilizziamo per aggiornare le relazioni 
      * dei vari utenti
+     * Questo metodo si occupa anche di creare le richieste ricevute
      */
     func updateRelationships() {
+        // Resettiamo l'array
+        requests = [Request]()
+        
         for (key, value) in self.relationships! {
+            
             if let user = Chat.getChatByUserId(key).0?.user {
                 if(value == "requested") {
                     user.hasSentRequest = true
@@ -71,10 +79,26 @@ class Account: NSObject {
                 } else if(value == "received") {
                     user.hasReceivedRequest = true
                     user.hasSentRequest = false
+                    
+                    // Abbiamo l'utente, non stiamo a riprenderlo
+                    requests.append(Request(user_id: key, user: user))
+                    
                 } else if(value == "accepted") {
                     user.isFriend = true
                     user.hasReceivedRequest = false
                     user.hasSentRequest = false
+                }
+            } else {
+                if(value == "received") {
+                    // Se abbiamo già l'utente lo prendiamo da li
+                    if let user = User.getUserById(key) {
+                        requests.append(Request(user_id: key, user: user))
+                    }
+                    // Non abbiamo l'utente ne fra quelli delle chat ne 
+                    // fra quelli intorno, dobbiamo recuperarlo
+                    else {
+                        requests.append(Request(user_id: key))
+                    }
                 }
             }
         }

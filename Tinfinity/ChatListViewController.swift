@@ -19,7 +19,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var defaultMessage: UILabel!
     @IBOutlet weak var viewSwitch: UISegmentedControl!
-    @IBOutlet weak var requestView: UITableView!
+    @IBOutlet weak var requestView: UIView!
     
     
     //Weak reference to parent pageViewController
@@ -87,9 +87,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         // Hide the activity indicator
         self.stopLoading()
         
-        // Select default tab in segmented control
+        // Select default tab in segmented control and
+        // hide the requests view
         self.viewSwitch.selectedSegmentIndex = 0
-        requestView.hidden = true
+        self.requestView.hidden = true
     
     }
 

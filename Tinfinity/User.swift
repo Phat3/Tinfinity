@@ -67,6 +67,21 @@ class User {
         return initials
     }
     
+    /**
+     * Utilizziamo questo costruttore quando abbiamo solo l'id 
+     * dell'utente e nessuna altra informazione e lasciamo che sia
+     * il modello a recuperare le informazioni su se stesso
+     */
+    init(userId: String) {
+        self.userId = userId
+        self.firstName = ""
+        self.lastName = ""
+        self.fetch { (result) -> Void in
+            
+        }
+    }
+    
+    
     init(userId: String, firstName: String, lastName: String) {
         self.userId = userId
         self.firstName = firstName

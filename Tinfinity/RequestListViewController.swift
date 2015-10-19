@@ -2,8 +2,7 @@
 //  RequestListViewController.swift
 //  Tinfinity
 //
-//  Created by Riccardo Mastellone on 19/10/15.
-//  Copyright © 2015 Sebastiano Mariani. All rights reserved.
+//  @author Riccardo Mastellone <riccardo.mastellone@gmail.com>
 //
 
 import Foundation
@@ -12,12 +11,14 @@ import Foundation
 class RequestListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     weak var pageViewController: PageViewController?
     var index: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.stopLoading()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,22 +72,34 @@ class RequestListViewController: UIViewController, UITableViewDelegate, UITableV
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func loading() {}
-    func stopLoading() {}
+    func loading() {
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopLoading() {
+        self.activityIndicator.stopAnimating()
+    }
     
     func handleAccept(alertAction: UIAlertAction!) -> Void {
         loading()
         account.requests[index].user.acceptFriendRequest({ (result) -> Void in
-            self.stopLoading()
             self.index = -1
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.table.reloadData()
+                self.stopLoading()
+            })
         })
     }
     
     func handleDecline(alertAction: UIAlertAction!) -> Void {
         loading()
         account.requests[index].user.declineFriendRequest({ (result) -> Void in
-            self.stopLoading()
             self.index = -1
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.table.reloadData()
+                self.stopLoading()
+            })
+            
         })
     }
     

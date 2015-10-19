@@ -9,7 +9,6 @@ var dateFormatter = NSDateFormatter()
 class Chat {
     let user: User
     
-    
     var lastMessageId: String = "0"
     var lastMessageText: String
     var lastMessageSentDate: NSDate

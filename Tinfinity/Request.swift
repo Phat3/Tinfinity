@@ -20,4 +20,13 @@ class Request: NSObject {
         self.user_id = user_id
         self.user = user
     }
+    
+    static func getRequestByUserId(user_id: String) -> (Request?, Int?){
+        for(var i=0; i < account.requests.count; i++){
+            if (account.requests[i].user.userId == user_id){
+                return (account.requests[i],i)
+            }
+        }
+        return (nil,nil)
+    }
 }

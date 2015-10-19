@@ -844,11 +844,19 @@
                                     <outlet property="delegate" destination="2ra-eE-FF4" id="nfJ-ad-k5O"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="18Z-du-pId">
+                                <rect key="frame" x="0.0" y="261" width="375" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="18Z-du-pId" id="1Da-1c-0TG"/>
+                        <outlet property="table" destination="fh9-Ol-vFf" id="7RM-4w-Y3J"/>
                         <segue destination="L8o-9I-U3L" kind="modal" identifier="viewProfile" id="8xQ-he-4J0"/>
                     </connections>
                 </viewController>

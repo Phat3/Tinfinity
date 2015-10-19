@@ -133,6 +133,14 @@ class User {
                     self.hasSentRequest = false
                     self.hasReceivedRequest = false
                     self.isFriend = true
+                    
+                    // Eliminiamo la richiesta dall'array
+                    let (_, i) = Request.getRequestByUserId(self.userId)
+                    if let index = i {
+                        account.requests.removeAtIndex(index)
+                    }
+                    
+                    
                     completion(result: true)
                 case .Failure(_, let error):
                     print("Request failed with error: \(error)")
@@ -155,6 +163,13 @@ class User {
                     self.hasSentRequest = false
                     self.hasReceivedRequest = false
                     self.isFriend = false
+                    
+                    // Eliminiamo la richiesta dall'array
+                    let (_, i) = Request.getRequestByUserId(self.userId)
+                    if let index = i {
+                        account.requests.removeAtIndex(index)
+                    }
+                    
                     completion(result: true)
                 case .Failure(_, let error):
                     print("Request failed with error: \(error)")

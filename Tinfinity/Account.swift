@@ -60,6 +60,18 @@ class Account: NSObject {
         }
     }
     
+    func refreshChats(completion: (result: Bool) -> Void) {
+        if let _ = account.token {
+            for(var i = 0; i < account.chats.count; i++){
+                account.chats[i].fetchNewMessages({ (result) -> Void in
+                    if(i == account.chats.count) {
+                        completion(result: true)
+                    }
+                })
+            }
+        }
+    }
+    
     /**
      * Questo metodo aggiorna le relazioni interrogando il server
      * Viene poi utilizzata la funzione updateRelationships() per 

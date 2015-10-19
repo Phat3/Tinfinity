@@ -304,17 +304,10 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
-    
     func updateData(){
-        for (var i = 0; i < chats.count; i++){
-            chats[i].fetchNewMessages({ (result) -> Void in
-                //If it's the last call we reload the data in the table
-                if (i == self.chats.count){
-                    self.refreshControl.endRefreshing()
-                    self.chatTableView.reloadData()
-                }
-            })
+        account.refreshChats { (result) -> Void in
+            self.refreshControl.endRefreshing()
+            self.chatTableView.reloadData()
         }
     }
     

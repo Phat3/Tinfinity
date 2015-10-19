@@ -64,6 +64,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 sourceApplication: sourceApplication,
                 annotation: annotation)
     }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
+    {
+        let pushBots = Pushbots.sharedInstance()
+        pushBots.receivedPush(userInfo)
+        
+        account.refreshRelationships { (result) -> Void in
+            
+        }
+        account.refreshChats { (result) -> Void in
+            
+        }
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -90,11 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         //If there is a logged used, we need to check if we received messages while the app was in teh background(push notification only show the notification, they do not carry data in our app)
-        if(account.token != nil){
-            for(var i = 0; i < account.chats.count; i++){
-                account.chats[i].fetchNewMessages({ (result) -> Void in
-                })
-            }
+        account.refreshChats { (result) -> Void in
+
         }
     }
 

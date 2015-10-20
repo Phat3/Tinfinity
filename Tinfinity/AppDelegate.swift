@@ -67,15 +67,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
     {
-        let pushBots = Pushbots.sharedInstance()
-        pushBots.receivedPush(userInfo)
-        
+        /*
+         * E' il modo corretto di gestire la cosa?
+         *
         account.refreshRelationships { (result) -> Void in
             
         }
+         */
+        
+        /*
+         * Non un buon approccio, in quanto se siamo dentro una chat,
+         * crea problemi con i sockets
+         *
         account.refreshChats { (result) -> Void in
             
         }
+         */
     }
 
     func applicationWillResignActive(application: UIApplication) {

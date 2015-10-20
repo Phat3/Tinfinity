@@ -174,7 +174,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.nameLabel.text = chat.user.name
         cell.messageLabel.text = chat.lastMessageText
     	cell.messageTime.text = chat.lastMessageSentDateString
-    	cell.unreadMessagesNumber.layer.cornerRadius = 8
+    	cell.unreadMessagesNumber.layer.cornerRadius = 9
     	if(chat.unreadMessageCount != 0){
         	cell.unreadMessagesNumber.hidden = false
             cell.unreadMessagesNumber.setTitle(String(chat.unreadMessageCount), forState: .Normal)

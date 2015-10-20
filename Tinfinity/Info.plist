@@ -30,13 +30,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>9</string>
 	<key>Chat List Path</key>
 	<string>/api/chat/</string>
 	<key>FacebookAppID</key>
 	<string>439360779551762</string>
 	<key>FacebookDisplayName</key>
-	<string>TinFinity</string>
+	<string>Tinfinity</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>11</string>
 	<key>Chat List Path</key>
 	<string>/api/chat/</string>
 	<key>FacebookAppID</key>

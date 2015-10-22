@@ -197,6 +197,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
         profileViewController.user = annotation.user
         profileViewController.navigationPageViewController = self.pageViewController
+        profileViewController.cameFromMap = true
         self.presentViewController(profileViewController, animated: true, completion: nil)
 
     }

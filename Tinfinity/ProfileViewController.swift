@@ -16,6 +16,9 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
     //The user object of which we show the profile
     var user: User?
     
+    //Variable used to know if the profileView is shown from the map or not
+    var cameFromMap = false
+    
     //Weak reference to the navigation ViewController needed for buttons action
     weak var navigationPageViewController: PageViewController?
     

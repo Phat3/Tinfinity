@@ -78,11 +78,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /*
          * Non un buon approccio, in quanto se siamo dentro una chat,
          * crea problemi con i sockets
-         *
-        account.refreshChats { (result) -> Void in
-            
+         * Idea: controllare che la view attiva non sia quella in cui è attivo il socket, quindi che sia la chatlist o la chatview
+		*/
+        print("Ricevuta notifica push")
+        let topController = UIApplication.topViewController()
+        var actualControllerId: String = ""
+        if let page = topController as? UIPageViewController {
+            //Troviamo il restoration id del primo controller
+            actualControllerId = (page.viewControllers?[0].restorationIdentifier)!
         }
-         */
+        //Controlliamo che non sia un page, oppure se lo è che il primo non sia il right
+        if !(topController is PageViewController) || (actualControllerId != "rightViewController"){
+            //Dobbiamo togliere la possibilità che ci si trovi in un profileController non creato da mapKit
+            if let profileView = topController as? ProfileViewController {
+                if(profileView.cameFromMap){
+                    account.refreshChats { (result) -> Void in
+                    }
+                }
+                
+            }else{
+        		account.refreshChats { (result) -> Void in
+        		}
+            }
+        }
+
     }
 
     func applicationWillResignActive(application: UIApplication) {

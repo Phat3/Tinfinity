@@ -92,7 +92,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         // hide the requests view
         self.viewSwitch.selectedSegmentIndex = 0
         self.requestView.hidden = true
-    
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,11 +121,12 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         self.activityIndicator.stopAnimating()
     }
     
+    
     /**
      * Switch between tab views
      */
     @IBAction func viewSwitch(sender: UISegmentedControl) {
-        switch viewSwitch.selectedSegmentIndex {
+    	switch viewSwitch.selectedSegmentIndex {
         case 0: // Conversations Tab
             requestView.hidden = true
             chatTableView.hidden = false

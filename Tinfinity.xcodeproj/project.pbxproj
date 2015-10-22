@@ -14,6 +14,7 @@
 		4198ECFA1AD0343E0048C3A0 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4198ECF91AD0343E0048C3A0 /* Crypto.swift */; };
 		5101C0D61BCE9CBB00F7FD36 /* Main6p.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5101C0D51BCE9CBB00F7FD36 /* Main6p.storyboard */; settings = {ASSET_TAGS = (); }; };
 		5113C1DF1B19F1F8007B53AA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113C1DE1B19F1F8007B53AA /* Reachability.swift */; };
+		511771CE1BD649280066632B /* FindTopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511771CD1BD649280066632B /* FindTopController.swift */; settings = {ASSET_TAGS = (); }; };
 		5122F9E11BB3ED0D008E73EB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122F9E01BB3ED0D008E73EB /* PageViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		512ABEF21ADD5B1D004ED28D /* ChatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */; };
 		512ABEF31ADD5B1D004ED28D /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */; };
@@ -83,6 +84,7 @@
 		5020E30E50F65E7F471C1B85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5101C0D51BCE9CBB00F7FD36 /* Main6p.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main6p.storyboard; sourceTree = "<group>"; };
 		5113C1DE1B19F1F8007B53AA /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		511771CD1BD649280066632B /* FindTopController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindTopController.swift; sourceTree = "<group>"; };
 		5122F9E01BB3ED0D008E73EB /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		512ABEF01ADD5B1D004ED28D /* ChatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomCell.swift; sourceTree = "<group>"; };
 		512ABEF11ADD5B1D004ED28D /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				4198ECF91AD0343E0048C3A0 /* Crypto.swift */,
 				8BE8BA371B9225D800F587EF /* ImageUtil.swift */,
 				8B5F6B741BCAC361008524BD /* DistanceUtil.swift */,
+				511771CD1BD649280066632B /* FindTopController.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				51B1C0821B936A6E00116882 /* UserAnnotation.swift in Sources */,
 				513FFC1C1BCAA0EE00CC1CAB /* ProfileViewController.swift in Sources */,
 				51AADA991AEE1774007225CD /* ServerAPIController.swift in Sources */,
+				511771CE1BD649280066632B /* FindTopController.swift in Sources */,
 				8B54248B1BD52CAB0093FFAC /* RequestListViewController.swift in Sources */,
 				5135D9E41B43E8800070A560 /* FacebookAlbumsViewController.swift in Sources */,
 			);
@@ -656,7 +660,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Politecnico.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "844cb6d8-faa4-48d0-8a0b-08c67d4efa8d";
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Tinfinity-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -691,7 +695,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Politecnico.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "844cb6d8-faa4-48d0-8a0b-08c67d4efa8d";
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinfinity/Tinfinity-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

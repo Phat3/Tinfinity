@@ -40,6 +40,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //max distance from center to up-left corner of the visible map
     let maximumDistance : CLLocationDistance = 400
     
+    //--------- VIEW DELEGATE ---------//
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +78,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        refreshLocation()
+    }
+    
+    //--------- END VIEW DELEGATE ---------//
+
     
     //--------- LOCATIONMANAGER DELEGATE ---------//
     
@@ -128,6 +137,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     //--------- END MAPVIEW DELEGATE ---------//
+    
+    
+    //--------- MAP ANNOTATION METHODS ---------//
     
     func plotUsersToMap(){
         for(var i = 0; i < account.users.count; i++){
@@ -203,9 +215,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        refreshLocation()
+    func annotationClicked(annotation: UserAnnotation){
+        
+        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
+        profileViewController.user = annotation.user
+        profileViewController.navigationPageViewController = self.pageViewController
+        profileViewController.cameFromMap = true
+        self.presentViewController(profileViewController, animated: true, completion: nil)
+        
     }
+    
+    //--------- END MAP ANNOTATION METHODS ---------//
+    
     
     @IBAction func chatButtonClicked(sender: AnyObject) {
         
@@ -221,15 +242,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    func annotationClicked(annotation: UserAnnotation){
-        
-        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
-        profileViewController.user = annotation.user
-        profileViewController.navigationPageViewController = self.pageViewController
-        profileViewController.cameFromMap = true
-        self.presentViewController(profileViewController, animated: true, completion: nil)
 
-    }
     
     
 }

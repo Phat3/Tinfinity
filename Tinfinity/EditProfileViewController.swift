@@ -53,6 +53,9 @@ class EditProfileViewController: UIViewController {
     }
     
 
+    @IBAction func onCloseClick(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.

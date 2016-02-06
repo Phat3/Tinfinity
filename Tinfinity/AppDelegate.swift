@@ -128,10 +128,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        //If there is a logged used, we need to check if we received messages while the app was in teh background(push notification only show the notification, they do not carry data in our app)
+        //If there is a logged used, we need to check if we received messages while the app was in the background(push notification only show the notification, they do not carry data in our app)
         account.refreshChats { (result) -> Void in
 
         }
+        
+        if(account.token != nil){
+            //We need to check even if there are new chats
+            account.checkNewChat { (result) -> Void in
+                
+            }
+        }
+
     }
 
     func applicationWillTerminate(application: UIApplication) {

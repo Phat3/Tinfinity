@@ -187,7 +187,7 @@ class Chat {
         chat.setValue(self.unreadMessageCount, forKey: "unreadMessagesCount")
         chat.setValue(self.lastMessageText, forKey: "lastMessageText")
         chat.setValue(self.lastMessageSentDate, forKey: "lastMessageDate")
-        chat.setValue(self.hasUnloadedMessages, forKey: "hasUnloadedMessages")
+        //chat.setValue(self.hasUnloadedMessages, forKey: "hasUnloadedMessages")
         
         // User
         user.setValue(self.user.userId, forKey: "id")

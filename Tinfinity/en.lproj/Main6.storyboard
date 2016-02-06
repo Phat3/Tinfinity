@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="eyS-4q-GEQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="eyS-4q-GEQ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -556,7 +556,7 @@
                     <navigationItem key="navigationItem" title="Edit Profile Pictures" id="oyN-VH-aV7">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="3UY-KI-2Mh">
                             <connections>
-                                <segue destination="vxQ-CJ-ktZ" kind="modal" identifier="cancel" id="su9-vE-gRA"/>
+                                <action selector="onCloseClick:" destination="dW8-9x-bnX" id="fbi-vc-acg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -878,7 +878,6 @@
         <image name="logo2" width="663" height="520"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qRU-h4-Ebo"/>
         <segue reference="zDb-52-Axv"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15D21" minimumToolsVersion="Xcode 4.3">
     <entity name="Chat" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="hasUnloadedMessages" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastMessageDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastMessageText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="myUserId" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,8 +24,8 @@
         <relationship name="hasChat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="withUser" inverseEntity="Chat" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="-234" positionY="-108" width="128" height="150"/>
-        <element name="Message" positionX="-450" positionY="62" width="128" height="105"/>
-        <element name="User" positionX="-54" positionY="27" width="128" height="150"/>
+        <element name="Chat" positionX="-234" positionY="-126" width="128" height="133"/>
+        <element name="Message" positionX="-470" positionY="-108" width="128" height="105"/>
+        <element name="User" positionX="43" positionY="-141" width="128" height="150"/>
     </elements>
 </model>

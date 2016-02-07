@@ -34,6 +34,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     let locationManager = CLLocationManager()
     
+    //the value of the max visible area in the map view
+    //roughly 400m (111km : 1deg = 0.4km : xdeg)
+    let maximumSpan : MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.0036, longitudeDelta: 0.0036)
+    //max distance from center to up-left corner of the visible map
+    let maximumDistance : CLLocationDistance = 400
+    
+    //--------- VIEW DELEGATE ---------//
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,8 +69,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         // We don't want our user to mess with the map
-        //self.mapView.zoomEnabled = true;
-        //self.mapView.scrollEnabled = false;
+        self.mapView.scrollEnabled = false;
         
         
     }
@@ -72,6 +79,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        refreshLocation()
+    }
+    
+    //--------- END VIEW DELEGATE ---------//
+
+    
+    //--------- LOCATIONMANAGER DELEGATE ---------//
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        let alertController = UIAlertController(title: "TinFinity", message:
+            "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
+        print("Error while updating location " + error.localizedDescription, terminator: "")
+    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if(account.token != nil) {
@@ -80,9 +102,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             account.setLocation(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude ))
             
             if let location = account.user.position {
-                let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+                let region = MKCoordinateRegion(center: location, span: self.maximumSpan)
                 self.mapView.setRegion(region, animated: true)
-            
+                
                 // Until we add our nicely designer marker, lets use Apple one
                 self.mapView.showsUserLocation = true
                 
@@ -92,6 +114,32 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
     }
+    
+    //--------- END LOCATIONMANAGER DELEGATE ---------//
+    
+    
+    
+    //--------- MAPVIEW DELEGATE ---------//
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        //get the visible map area
+        let mapRect : MKMapRect = self.mapView.visibleMapRect;
+        //get the up-left corner coordinates
+        let cornerPoint : MKMapPoint = MKMapPointMake(mapRect.origin.x, mapRect.origin.y);
+        //get the center coordinates
+        let centerPoint : MKMapPoint = MKMapPointForCoordinate(mapView.centerCoordinate);
+        //if the distance from the center (our location) and the up-left corner of the visible map is greater than the max allowed
+        //then zoom in to the initial position
+        if(MKMetersBetweenMapPoints(cornerPoint, centerPoint) > self.maximumDistance){
+            self.mapView.setRegion(MKCoordinateRegion(center: (locationManager.location?.coordinate)!, span: self.maximumSpan), animated: true)
+        }
+        
+    }
+    
+    //--------- END MAPVIEW DELEGATE ---------//
+    
+    
+    //--------- MAP ANNOTATION METHODS ---------//
     
     func plotUsersToMap(){
         for(var i = 0; i < account.users.count; i++){
@@ -105,19 +153,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
      * use 2 minute timer.
      */
     func refreshLocation(){
-        print("Refreshing Location...");
         locationManager.startUpdatingLocation()
     }
     
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        let alertController = UIAlertController(title: "TinFinity", message:
-            "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
-        print("Error while updating location " + error.localizedDescription, terminator: "")
-    }
     
-   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     
     	if (annotation is MKUserLocation) {
         	return nil
@@ -161,7 +202,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             annotationView!.addSubview(imageView)
         	annotationView!.frame = CGRect(origin: CGPointZero, size: imageView.frame.size)
     		return annotationView
-    }
+        }
     
     	return nil
     }
@@ -174,9 +215,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        refreshLocation()
+    func annotationClicked(annotation: UserAnnotation){
+        
+        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
+        profileViewController.user = annotation.user
+        profileViewController.navigationPageViewController = self.pageViewController
+        profileViewController.cameFromMap = true
+        self.presentViewController(profileViewController, animated: true, completion: nil)
+        
     }
+    
+    //--------- END MAP ANNOTATION METHODS ---------//
+    
     
     @IBAction func chatButtonClicked(sender: AnyObject) {
         
@@ -192,15 +242,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    func annotationClicked(annotation: UserAnnotation){
-        
-        let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
-        profileViewController.user = annotation.user
-        profileViewController.navigationPageViewController = self.pageViewController
-        profileViewController.cameFromMap = true
-        self.presentViewController(profileViewController, animated: true, completion: nil)
 
-    }
     
     
 }

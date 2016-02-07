@@ -42,8 +42,7 @@ class EditProfileViewController: UIViewController {
         
         buttonHorizontalDistance = buttonX + buttonWidth
         buttonVerticalDistance = 20 + buttonHeight
-
-        
+  
 
     }
 

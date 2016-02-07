@@ -54,6 +54,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    //--------- FACEBOOK DELEGATE ---------//
         
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil) {
@@ -78,6 +79,8 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         account.logOut()
         performSegueWithIdentifier("logoutExecuted", sender: self)
     }
+    
+    //--------- END FACEBOOK DELEGATE ---------//
     
     @IBAction func homeButtonClicked(sender: AnyObject){
         

@@ -46,8 +46,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                 
-                // Set the timer every 2 minutes
-                timer =  NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
+                // Set the timer every 10 seconds
+                timer =  NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
                 
                 // Get first location
                 refreshLocation()

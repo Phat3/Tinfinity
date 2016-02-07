@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Socket_IO_Client_Swift
+import SocketIOClientSwift
 import SwiftyJSON
 import JSQMessagesViewController
 
@@ -47,7 +47,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     var refreshControl: UIRefreshControl!
     
     // Socket IO client
-    private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
+    private let socket = SocketIOClient(socketURL: NSURL(string:NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)!)
     
     var isConnected = false
     
@@ -329,7 +329,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     func disconnectFromServer(){
         // Avoid multiple connections
         if(self.isConnected) {
-            self.socket.close()
+            self.socket.disconnect()
         }
     }
     

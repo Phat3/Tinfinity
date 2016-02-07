@@ -9,7 +9,7 @@
 
 import UIKit
 import Alamofire
-import Socket_IO_Client_Swift
+import SocketIOClientSwift
 import MapKit
 import CoreLocation
 import Foundation

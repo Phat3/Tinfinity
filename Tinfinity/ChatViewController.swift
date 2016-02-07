@@ -8,7 +8,7 @@
 
 import UIKit
 import JSQMessagesViewController
-import Socket_IO_Client_Swift
+import SocketIOClientSwift
 import SwiftyJSON
 
 class ChatViewController: JSQMessagesViewController {
@@ -29,7 +29,7 @@ class ChatViewController: JSQMessagesViewController {
     weak var pageViewController: PageViewController?
 
     // Socket IO client
-    private let socket = SocketIOClient(socketURL: NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)
+    private let socket = SocketIOClient(socketURL: NSURL(string:NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String)!)
     
     override func viewDidLoad() {
         super.viewDidLoad()

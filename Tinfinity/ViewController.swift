@@ -131,7 +131,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //if the distance from the center (our location) and the up-left corner of the visible map is greater than the max allowed
         //then zoom in to the initial position
         if(MKMetersBetweenMapPoints(cornerPoint, centerPoint) > self.maximumDistance){
-            self.mapView.setRegion(MKCoordinateRegion(center: (locationManager.location?.coordinate)!, span: self.maximumSpan), animated: true)
+            // Avoid possible rush condition
+            if let center = locationManager.location?.coordinate {
+                self.mapView.setRegion(MKCoordinateRegion(center: center, span: self.maximumSpan), animated: true)
+            } else {
+                // Milano
+                let center = CLLocationCoordinate2D(latitude: ("45.4718727" as NSString).doubleValue, longitude: ("9.1925188" as NSString).doubleValue)
+                self.mapView.setRegion(MKCoordinateRegion(center: center, span: self.maximumSpan), animated: true)
+            }
         }
         
     }

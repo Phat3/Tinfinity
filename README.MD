@@ -1,11 +1,16 @@
 ## Description
 
-Tinfinity is an IOS application that provide an encrypted point-to-point proximity chat.
+Tinfinity is a proximity chat iOS application.
+
+Original prototyping: [https://invis.io/S327L5EBH](https://invis.io/S327L5EBH)
+
+Backend web application: [https://github.com/riccamastellone/Tinfinity](https://github.com/riccamastellone/Tinfinity)
+
 
 
 ## Requirements
 
-- iOS 8.3+ / Mac OS X 10.10+
+- iOS 8.4+ / Mac OS X 10.10+
 - Xcode 6.3
 
 

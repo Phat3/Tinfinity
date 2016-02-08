@@ -50,3 +50,4 @@ Pods/*
 .bundle
 
 Podfile.lock
+/.texpadtmp/*

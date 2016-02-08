@@ -1,0 +1,129 @@
+\documentclass[15pt,a4paper,oneside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{tabularx}
+%\usepackage{frontespizio}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{sidecap}
+\hypersetup{%
+    pdfborder = {0 0 0}
+}
+\usepackage{verbatim}
+\lstset{basicstyle=\small\ttfamily,keywordstyle=\color{black}\bfseries,language=java,escapeinside={<@}{@>}}
+\pagestyle{fancy}
+\lhead{Fumagalli - Mariani - Mastellone}
+\chead{}
+\rhead{Tinfinity}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\sidecaptionvpos{figure}{c}
+
+\begin{document}
+
+\thispagestyle{empty}
+\enlargethispage{60mm}
+\begin{center}
+\Large{\textsc{Politecnico di Milano}}\\
+%\vspace{5mm}
+\large{Scuola di Ingegneria Industriale e dell'Informazione}\\
+%\vspace{5mm}
+\large{Corso di laurea magistrale in Ingegneria Informatica}\\
+\vspace{7mm}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.15]{./images/logo-polimi}
+\end{center}
+\end{figure}
+\vspace{2mm}
+
+\begin{huge}
+\begin{center}
+Tinfinity
+\end{center}
+\end{huge}
+\vspace{25mm}
+
+\begin{LARGE}
+\begin{center}
+Design and Implementation of Mobile Applications
+\end{center}
+\vspace{2mm}
+\end{LARGE}
+\vspace{20mm}
+
+
+\begin{flushleft}
+\begin{tabular}{l l }
+
+\end{tabular}
+\end{flushleft}
+\vspace{5mm}
+
+\begin{flushleft}
+\begin{tabular}{l l }
+Professor : Luciano Baresi\\
+\end{tabular}
+\end{flushleft}
+
+\begin{flushright}
+\begin{tabular}{l l }
+Alberto Fumagalli & Matr. 888888\\
+Mariani Sebastiano & Matr. 817781\\
+Mastellone Riccardo & Matr. 888888\\
+\end{tabular}
+\end{flushright}
+
+\vspace{43mm}
+{\large{\bf Academic Year 2015-2016}}
+\end{center}
+
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+
+\input{sections/introduction}
+
+\input{sections/high_level_description}
+\newpage
+\input{sections/requirements}
+\newpage
+\input{sections/architecture}
+\newpage
+\input{sections/design_app}
+\newpage
+\input{sections/user_experience}
+\newpage
+\input{sections/design_webapp}
+
+%\newpage
+%\appendix
+%\input{sections/workflow}
+
+%\input{sections/supports}
+
+%\input{sections/testing}
+
+
+\end{document}

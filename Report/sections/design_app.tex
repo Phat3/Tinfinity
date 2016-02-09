@@ -11,12 +11,12 @@
 The above class diagram shows a simplified version (only the most important classes are shown) of the application. The mobile application is based on eight main ViewController which handle the functionalities provided by Tinfinity:
 \begin{itemize}
 \item \textbf{LoginViewController} : Provides the login with Facebook functionalities and updates the account informations
-\item \textbf{ViewController} : Provides to the user a map that shows where the other user are located and thei profiles.
+\item \textbf{ViewController} : Provides to the user a map that shows where the other user are located and their profiles.
 \item \textbf{SettingViewController} : Provides a recap view of the informations about the user and the ability to change them.
 \item \textbf{EditProfileViewController} : Provides the functionalities to decide which photos have to be displayed.
 \item \textbf{ProfileViewController} : Provides a view that shows the profile of other users which have sent a friendship request, and the abilities to accept / decline it.
-\item \textbf{ChatListViewController} : Provides a view with a list of the chat and the provides the functionalitiies to delete them.
-\item \textbf{ChatViewController} : Provides a view with the conversation with the specified user and the abiluity to send messages.
+\item \textbf{ChatListViewController} : Provides a view with a list of the chat and the provides the functionalities to delete them.
+\item \textbf{ChatViewController} : Provides a view with the conversation with the specified user and the ability to send messages.
 \item \textbf{PageViewController} : Manages all the other views. It doesn't provide any functionality to the user, but it is used only for internal purposes.
 \end{itemize}  
 
@@ -57,7 +57,7 @@ The ViewController manages the main view of the application and it show the map 
 
 \end{figure}
 
-The SettingsViewController shows a view with the recap iof the user informations and implement the logout functionality.
+The SettingsViewController shows a view with the recap of the user informations and implement the logout functionality.
 
 \begin{itemize}
 \item \textbf{viewDidLoad()} : When the view is loaded all the informations about the user, like the profile picture, are retrieved and displayed properly.
@@ -88,10 +88,10 @@ The EditProfileViewController and the other auxiliary ViewControllers (FacebookA
 \end{figure}
 
 
-The ProfileViewController manages the view displyed when the user click on a marker on the map or when he receive a friendship request. this view shows all the details relative to the other user like the distance, his photos and his name and age. It provides also the functionalities in order to accept or decline a friendship request, send a new request, or start a new chat with the selected user.
+The ProfileViewController manages the view displayed when the user click on a marker on the map or when he receive a friendship request. this view shows all the details relative to the other user like the distance, his photos and his name and age. It provides also the functionalities in order to accept or decline a friendship request, send a new request, or start a new chat with the selected user.
 
 \begin{itemize}
-\item \textbf{buttons()} : Based on the reletionship with the other user, this function decides which buttons have to be displayed.
+\item \textbf{buttons()} : Based on the relationship with the other user, this function decides which buttons have to be displayed.
 \item \textbf{distance()} : This functions calculate the distance between the user and the other selected user.
 \item \textbf{createPageViewController()} : Creates the photos slideshows with the photos of the other user.
 \item \textbf{chatClick()} : Start a new chat with the other user.
@@ -112,7 +112,7 @@ The persistent Core Data is composed by 3 classes:
 \begin{itemize}
 \item \textbf{Message} : contains the informations of a single message(the date in which the message has been sent,the sender and the actual message text) and has a one-to-one relationship that associate it to a certain chat;
 \item \textbf{Chat} : contains the information of a chat(the date and text of the last message that has been received, the id of the logged user and the counter of unread messages) and has two relationships, one is a one-to-many relationship with the message class, that associate the chat with all of his messages, and the other a one-to-one relationship with the User class, that represent the other user.
-\item \textbf{User} : contains all the inforrmation of a user(email, firstname, lastname, id, the user image and its url) and has a one-to-one relationship with the chat that is associated with it.
+\item \textbf{User} : contains all the information of a user(email, name, surname, id, the user image and its url) and has a one-to-one relationship with the chat that is associated with it.
 \end{itemize}
 \end{figure}
 

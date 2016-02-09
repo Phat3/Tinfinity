@@ -89,9 +89,9 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
             let distance = start.distanceFromLocation(end)
             
             if(distance >= 1000) {
-                self.disanceLabel.text = "\(round(distance/1000)) kilometers away"
+                self.disanceLabel.text = "\(String(format:"%.0f", round(distance/1000))) kilometers away"
             } else {
-                self.disanceLabel.text = "\(round(distance)) meters away"
+                self.disanceLabel.text = "\(String(format:"%.0f", round(distance))) meters away"
             }
         } else {
             self.disanceLabel.text = "Location unknown"

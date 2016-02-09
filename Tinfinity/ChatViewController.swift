@@ -217,7 +217,16 @@ class ChatViewController: JSQMessagesViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "viewProfile"){
             let profileController = segue.destinationViewController as! ProfileViewController
-            profileController.user = self.chat?.user
+            // Basic idea: if we have the user info becouse he's near, we use that,
+            // allowing us to show the distance, otherwise, lets use the data
+            // we have from the chat
+            
+            // User in the 'near' list
+            if let user = User.getUserById((self.chat?.user.userId)!) {
+                profileController.user = user
+            } else {
+                profileController.user = self.chat?.user
+            }
             profileController.navigationPageViewController = self.pageViewController
         }
     }

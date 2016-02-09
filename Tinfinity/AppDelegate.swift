@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
             self.window?.rootViewController = initViewController
         }
-               return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication,
@@ -80,7 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          * crea problemi con i sockets
          * Idea: controllare che la view attiva non sia quella in cui è attivo il socket, quindi che sia la chatlist o la chatview
 		*/
-        print("Ricevuta notifica push")
         let topController = UIApplication.topViewController()
         var actualControllerId: String = ""
         if let page = topController as? UIPageViewController {

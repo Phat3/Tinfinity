@@ -55,23 +55,23 @@
 			<key>akamaihd.net</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
-				<string>false</string>
+				<false/>
 				<key>NSIncludesSubdomains</key>
-				<string>true</string>
+				<true/>
 			</dict>
 			<key>facebook.com</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
-				<string>false</string>
+				<false/>
 				<key>NSIncludesSubdomains</key>
-				<string>true</string>
+				<true/>
 			</dict>
 			<key>fbcdn.net</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
-				<string>false</string>
+				<false/>
 				<key>NSIncludesSubdomains</key>
-				<string>true</string>
+				<true/>
 			</dict>
 		</dict>
 	</dict>

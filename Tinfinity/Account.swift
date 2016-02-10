@@ -136,7 +136,7 @@ class Account: NSObject {
             } else {
                 if(value == "received") {
                     // Se abbiamo già l'utente lo prendiamo da li
-                    if let user = User.getUserById(key) {
+                    if let user = User.getUserById(key).0 {
                         requests.append(Request(user_id: key, user: user))
                     }
                     // Non abbiamo l'utente ne fra quelli delle chat ne 
@@ -159,22 +159,30 @@ class Account: NSObject {
                 .responseJSON { _,_,result in
                     switch result {
                     	case .Success(let data):
+                            // Removing all current nearby users
+                            self.users.removeAll(keepCapacity: false)
                         	var json = JSON(data)
                             for(var i = 0; i < json.count; i++){
-                                
                                 if(json[i]["user"].count > 0) {
                                     let userData = json[i]["user"]
                                     let position = json[i]["position"]
                                     let newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
+                                    // Retreive user details
                                     newUser.fetch({ (result) -> Void in
                                         let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
-                                        
                                         newUser.position = userPosition
-                                        self.users.removeAll(keepCapacity: false)
+                                        
+                                        // Avoid possible race condition by deleting user if somehow is already
+                                        // in our list
+                                        if let existingUserIndex = User.getUserById(newUser.userId).1 {
+                                            self.users.removeAtIndex(existingUserIndex)
+                                        }
+                                        // Appending new user
                                         self.users.append(newUser)
                                     })
                                 }
                             }
+                        
                         case .Failure(_, let error):
                             print("Request failed with error: \(error)")
                     }

@@ -90,15 +90,15 @@ class User {
     
     /**
      * Recuperiamo uno specifico utente a partire dal suo userId
-     * @returns User
+     * @returns User|nil
      */
-    static func getUserById(user_id: String) -> User? {
+    static func getUserById(user_id: String) -> (User?, Int?) {
         for(var i=0; i < account.users.count; i++){
             if (account.users[i].userId == user_id){
-                return account.users[i]
+                return (account.users[i],i)
             }
         }
-        return nil
+        return (nil,nil)
     }
     
     func sendFriendRequest(completion: (result: Bool) -> Void) {

@@ -54,8 +54,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                 
-                // Set the timer every 10 seconds
-                timer =  NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
+                // Set the timer every 15 seconds
+                timer =  NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: Selector("refreshLocation"), userInfo: nil, repeats: true)
                 
                 // Get first location
                 refreshLocation()
@@ -89,7 +89,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //--------- LOCATIONMANAGER DELEGATE ---------//
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        let alertController = UIAlertController(title: "TinFinity", message:
+        let alertController = UIAlertController(title: "Tinfinity", message:
             "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
         print("Error while updating location " + error.localizedDescription, terminator: "")

@@ -222,7 +222,7 @@ class ChatViewController: JSQMessagesViewController {
             // we have from the chat
             
             // User in the 'near' list
-            if let user = User.getUserById((self.chat?.user.userId)!) {
+            if let user = User.getUserById((self.chat?.user.userId)!).0 {
                 profileController.user = user
             } else {
                 profileController.user = self.chat?.user

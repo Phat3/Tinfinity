@@ -149,9 +149,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //--------- MAP ANNOTATION METHODS ---------//
     
     func plotUsersToMap(){
+        //Adding new user annotations
+        print(account.users.count)
         for(var i = 0; i < account.users.count; i++){
-            let dropPin = UserAnnotation(user: account.users[i])
-            mapView.addAnnotation(dropPin)
+            var found = false
+            for annotation in mapView.annotations{
+                if let userAnn = annotation as? UserAnnotation{
+                    if(userAnn.user.userId == account.users[i].userId){
+                        found = true
+                    }
+                }
+            }
+            if(!found){
+            	let dropPin = UserAnnotation(user: account.users[i])
+            	mapView.addAnnotation(dropPin)
+            }
         }
     }
     

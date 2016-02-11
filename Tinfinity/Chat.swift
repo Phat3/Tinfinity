@@ -20,7 +20,7 @@ class Chat {
     var unreadMessageCount: Int = 0 // subtacted from total when read
     var hasUnloadedMessages = false
     var draft = ""
-    
+        
     let baseUrl = NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String
     let chatListPath = NSBundle.mainBundle().objectForInfoDictionaryKey("Chat List Path") as! String
 
@@ -146,8 +146,8 @@ class Chat {
                     completion(result: true)
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    ServerAPIController.networkError()
                     completion(result: false)
-                
                 }
             }
     }

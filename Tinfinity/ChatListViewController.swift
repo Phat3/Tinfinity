@@ -93,7 +93,9 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         // hide the requests view
         self.viewSwitch.selectedSegmentIndex = 0
         self.requestView.hidden = true
-
+        
+        // Sort the rows
+        account.reorderChat()
     }
 
     override func didReceiveMemoryWarning() {

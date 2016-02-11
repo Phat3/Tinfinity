@@ -65,11 +65,19 @@ class Account: NSObject {
             for(var i = 0; i < account.chats.count; i++){
                 account.chats[i].fetchNewMessages({ (result: Bool) in
                     if(i == account.chats.count) {
+                        self.reorderChat()
                         completion(result: true)
                     }
                 })
             }
         }
+    }
+    
+    /**
+     * Sort the chat rows according to the last message timestamp
+     */
+    func reorderChat() {
+        account.chats.sortInPlace({ $0.lastMessageSentDate.compare($1.lastMessageSentDate) == NSComparisonResult.OrderedDescending })
     }
     
     /**
@@ -89,6 +97,7 @@ class Account: NSObject {
                         completion(result: true)
                     case .Failure(let error):
                         print("Request failed with error: \(error)")
+                        ServerAPIController.networkError()
                         completion(result: false)
                     }
             }
@@ -185,6 +194,7 @@ class Account: NSObject {
                         
                         case .Failure(let error):
                             print("Request failed with error: \(error)")
+                            ServerAPIController.networkError()
                     }
                 }
         	}
@@ -206,6 +216,7 @@ class Account: NSObject {
                         completion(result: newUser)
                     case .Failure(let error):
                         print("Request failed with error: \(error)")
+                        ServerAPIController.networkError()
                         completion(result: nil)
                 }
         }
@@ -288,6 +299,7 @@ class Account: NSObject {
                     }
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    ServerAPIController.networkError()
                     completion(false)
                 }
                 

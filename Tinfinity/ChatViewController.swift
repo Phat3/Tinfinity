@@ -69,10 +69,16 @@ class ChatViewController: JSQMessagesViewController {
      * Enables and disables send button
      */
     func toggleSend() {
-        // User in the 'near' list
-        if let _ = User.getUserById((self.chat?.user.userId)!).0 {
+        // User is a friend
+        if chat!.user.isFriend {
             self.inputToolbar!.contentView!.textView!.editable = self.isConnected
-        } else {
+        }
+        // User in the 'near' list
+        else if let _ = User.getUserById((self.chat?.user.userId)!).0 {
+            self.inputToolbar!.contentView!.textView!.editable = self.isConnected
+        }
+        // Nor friend, nor near! Sorry we have to block it
+        else {
            self.inputToolbar!.contentView!.textView!.editable = false
             let alertController = UIAlertController(title: "Out of range!", message:
                 "\(chat!.user.name!) is too far away from you! Send him a friend request to enable the chat again at any distance", preferredStyle: UIAlertControllerStyle.Alert)

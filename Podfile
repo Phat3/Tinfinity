@@ -21,3 +21,4 @@ pod 'FBSDKShareKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git',
 pod 'FBSDKLoginKit', :git => 'https://github.com/facebook/facebook-ios-sdk.git', :branch => 'dev'
 pod 'JSQMessagesViewController'
 pod 'Pushbots', '~> 1.2.3'
+pod 'EZAlertController', '0.3'

@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import JSQMessagesViewController
+import EZAlertController
 
 class ServerAPIController{
     
@@ -17,6 +18,8 @@ class ServerAPIController{
     let authenticationPath: String
     let baseUrl: String
     let chatListPath: String
+    
+    static var errorShowing: Bool = false
     
     init(FBAccessToken: String){
         FBToken = FBAccessToken
@@ -131,6 +134,18 @@ class ServerAPIController{
         let date = NSDate(timeIntervalSince1970: Double(myDouble))
         let message = JSQMessage(senderId: user,senderDisplayName: "Sender",date: date,text: text)
         return message
+    }
+    
+    /**
+     * Show a warning alert when there are network issues
+     */
+    static func networkError() {
+        if (!self.errorShowing) {
+            self.errorShowing = true
+            EZAlertController.alert("Network Error", message: "Whops. The request could not be completed, please check your connection and retry.", acceptMessage: "Dismiss") {
+                self.errorShowing = false
+            }
+        }
     }
     
 }

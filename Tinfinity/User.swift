@@ -191,6 +191,7 @@ class User {
                     
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    ServerAPIController.networkError()
                     completion(result: false)
                 }
         }

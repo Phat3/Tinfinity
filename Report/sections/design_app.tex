@@ -100,6 +100,46 @@ The ProfileViewController manages the view displayed when the user click on a ma
 \end{itemize}
 
 
+\subsection{ChatListViewController} 
+
+The ChatListViewController implements the application logic that takes care of these two thing:
+
+\begin{enumerate}
+\item Shows all the chat that the user has begun
+\item Shows all the pending friendship request
+\end{enumerate}
+
+It also provides different functionalities based on the relationship between the two users. If they are frriend it is possible to revoke the friendhip status or delete the chat, if they are not it is possible to accept or decline the request or delete the chat.
+
+\begin{itemize}
+
+\item \textbf{viewDidLoad()} : Configure the table view that will handle the chat list and the binded actions
+
+\item \textbf{tableView(editActionsForRowAtIndexPath indexPath: NSIndexPath)} : Set the proper action for each row:
+
+\begin{itemize}
+\item \textbf{accept} : set the status between the two user as "Friend" and sycronize it with the server
+\item \textbf{decline} : send a request to the server in order to delete the friendship request
+\item \textbf{request} : send a friendship request to te selected user
+\item \textbf{unfriend} : delete the relationship between the users and syncronize it with the server
+
+\end{itemize}
+
+\item \textbf{updateData()} : refresh the information in the table view. this function is trigger when the user pull down the view
+
+\end{itemize}
+
+\subsection{ChatListViewController} 
+
+The ChatViewController manages and display correcly the chat history between two users. Every message is displayed as a bubble, a blue one for the current user and a gray one for the other. It provides also the functionalities in order to send messages and updates the history when a new one is received.
+
+\begin{itemize}
+
+\item \textbf{viewDidLoad()} : Enables the chat only when the connection to the server is established
+\item \textbf{toggleSend()} : Disable the send button if the connection to the server is interrupted. When the connection has been restablished, it re-enable the send button again. It disable the chat also if two users are not friend and the distance of the other is out of range (the distance between the two people are greater than 800m)
+\item \textbf{didPressSendButton()} : Prepare the correct data structure for the message and send it. it also update the chat list appending the new message at the end of the list.
+\end{itemize}
+
 \subsection{Persistent Data Design}
 \begin{figure}[H]
 \centering

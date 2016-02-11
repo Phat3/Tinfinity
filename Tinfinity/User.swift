@@ -101,6 +101,20 @@ class User {
         return (nil,nil)
     }
     
+    /**
+     * Distance from the current user. If the user is not nearby, returns nil
+     * @returns CLLocationDistance|nil
+     */
+    var distance: CLLocationDistance? {
+        if let position = self.position {
+            let start = CLLocation(latitude: position.latitude, longitude: position.longitude)
+            let end = CLLocation(latitude: account.user.position!.latitude, longitude: account.user.position!.longitude)
+            let distance = start.distanceFromLocation(end)
+            return distance
+        }
+        return nil
+    }
+    
     func sendFriendRequest(completion: (result: Bool) -> Void) {
         
         let manager = Alamofire.Manager.sharedInstance

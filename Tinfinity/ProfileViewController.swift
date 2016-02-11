@@ -83,11 +83,7 @@ class ProfileViewController: UIViewController, UIPageViewControllerDataSource {
      * nella sua label
      */
     private func distance() {
-        if let position = self.user!.position {
-            let start = CLLocation(latitude: position.latitude, longitude: position.longitude)
-            let end = CLLocation(latitude: account.user.position!.latitude, longitude: account.user.position!.longitude)
-            let distance = start.distanceFromLocation(end)
-            
+        if let distance = self.user!.distance {
             if(distance >= 1000) {
                 self.disanceLabel.text = "\(String(format:"%.0f", round(distance/1000))) kilometers away"
             } else {

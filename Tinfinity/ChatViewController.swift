@@ -2,8 +2,9 @@
 //  ChatViewController.swift
 //  Tinfinity
 //
-//  Created by Alberto Fumagalli on 24/05/15.
-//  Copyright (c) 2015 Sebastiano Mariani. All rights reserved.
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
+//  @author Sebastiano Mariani
 //
 
 import UIKit

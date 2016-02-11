@@ -135,8 +135,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if let center = locationManager.location?.coordinate {
                 self.mapView.setRegion(MKCoordinateRegion(center: center, span: self.maximumSpan), animated: true)
             } else {
-                // Milano
-                let center = CLLocationCoordinate2D(latitude: ("45.4718727" as NSString).doubleValue, longitude: ("9.1925188" as NSString).doubleValue)
+                // Politecnico di Milano
+                let center = CLLocationCoordinate2D(latitude: ("45.4781357" as NSString).doubleValue, longitude: ("9.2264235" as NSString).doubleValue)
                 self.mapView.setRegion(MKCoordinateRegion(center: center, span: self.maximumSpan), animated: true)
             }
         }
@@ -177,7 +177,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     /*
      * We don't need to keep refreshing the location all the time, hence we 
-     * use 2 minute timer.
+     * use the timer.
      */
     func refreshLocation(){
         locationManager.startUpdatingLocation()
@@ -243,7 +243,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func annotationClicked(annotation: UserAnnotation){
-        
         let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("profileController") as! ProfileViewController
         profileViewController.user = annotation.user
         profileViewController.navigationPageViewController = self.pageViewController
@@ -256,13 +255,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     @IBAction func chatButtonClicked(sender: AnyObject) {
-        
         let newViewController = self.pageViewController!.viewControllerAtIndex(2)
         self.pageViewController!.setViewControllers([newViewController], direction: .Forward, animated: true,completion: nil)
     }
     
     @IBAction func settingsButtonClicked(sender: AnyObject) {
-        
         let newViewController = self.pageViewController!.viewControllerAtIndex(0)
         self.pageViewController!.setViewControllers([newViewController], direction: .Reverse, animated: true,completion: nil)
 

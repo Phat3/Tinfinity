@@ -62,22 +62,13 @@ class Chat {
     }
     
     func reorderChat(){
-        /*Insertion Sort*/
-        /*for i = 1:n,
-        for (k = i; k > 0 and a[k] < a[k-1]; k--)
-        swap a[k,k-1]*/
-        
-        for(var i = 1; i < self.allMessages.count; i++){
-            
-            for(var k = i; k > 0 && self.allMessages[k - 1].date.compare(self.allMessages[k].date) == NSComparisonResult.OrderedDescending; k--){
-                
-                let temp = allMessages[k-1]
-            	allMessages[k-1] = allMessages[k]
-                allMessages[k] = temp
-            }
-        }
+        self.allMessages.sortInPlace({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
         updateLastMessage()
-        
+    }
+    
+    func updateLastMessage(){
+        lastMessageSentDate = allMessages[allMessages.count-1].date
+        lastMessageText = allMessages[allMessages.count-1].text
     }
     
     /*
@@ -94,11 +85,6 @@ class Chat {
             account.chats.insert(self, atIndex: i)
         }
 
-    }
-    
-    func updateLastMessage(){
-        lastMessageSentDate = allMessages[allMessages.count-1].date
-        lastMessageText = allMessages[allMessages.count-1].text
     }
     
     func fetchNewMessages(completion: (result: Bool) -> Void){

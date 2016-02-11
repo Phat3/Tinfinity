@@ -30,7 +30,7 @@ The LoginViewController manages the view that implement the login functionalitie
 
 \begin{itemize}
 \item \textbf{viewDidLoad()} : When the view is loaded this callback tries to check if there is already a valid Facebook OAuth token binded to the account. If the token is present and valid then the application will display the main view of the application.
-\item \textbf{loginButton()} : This function is triggered when the login button is pressed. This function exploit the Facebook SDK in order to retrieve a valid Oauth token. If this operation succeed, then the other account settings, like the chat history, are retrieved and set and the main view of the application is displayed.
+\item \textbf{loginButton()} : This function is triggered when the login button is pressed. This function exploit the Facebook SDK in order to retrieve a valid OAuth token. If this operation succeed, then the other account settings, like the chat history, are retrieved and set and the main view of the application is displayed.
 \end{itemize}
 
 
@@ -47,7 +47,7 @@ The ViewController manages the main view of the application and it show the map 
 \item \textbf{viewDidLoad()} : When the view is loaded this callback checks if the permissions needed in order to locate the user properly are given. if these are not given the map is hidden, otherwise the map is displayed and the user location is retrieved.
 \item \textbf{viewWillAppear()} : Every time the view is shown the location of the user is updated.
 \item \textbf{locationManager(didUpdateLocations error)} : Set the latitude and longitude of the user and add a marker on the map.
-\item \textbf{annotationClicked(UserAnnotation annotation)} : When a marker of anopther is clicked the information relative to him are retrieved and passed to the ProfileViewController
+\item \textbf{annotationClicked(UserAnnotation annotation)} : When a marker of another is clicked the information relative to him are retrieved and passed to the ProfileViewController
 \end{itemize}
 
 \subsection{SettingsViewController} 
@@ -88,7 +88,7 @@ The EditProfileViewController and the other auxiliary ViewControllers (FacebookA
 \end{figure}
 
 
-The ProfileViewController manages the view displayed when the user click on a marker on the map or when he receive a friendship request. this view shows all the details relative to the other user like the distance, his photos and his name and age. It provides also the functionalities in order to accept or decline a friendship request, send a new request, or start a new chat with the selected user.
+The ProfileViewController manages the view displayed when the user click on a marker on the map or when he receive a friendship request. This view shows all the details relative to the other user like the distance, his photos and his name and age. It provides also the functionalities in order to accept or decline a friendship request, send a new request, or start a new chat with the selected user.
 
 \begin{itemize}
 \item \textbf{buttons()} : Based on the relationship with the other user, this function decides which buttons have to be displayed.
@@ -109,7 +109,7 @@ The ChatListViewController implements the application logic that takes care of t
 \item Shows all the pending friendship request
 \end{enumerate}
 
-It also provides different functionalities based on the relationship between the two users. If they are frriend it is possible to revoke the friendhip status or delete the chat, if they are not it is possible to accept or decline the request or delete the chat.
+It also provides different functionalities based on the relationship between the two users. If they are friend it is possible to revoke the friendship status or delete the chat, if they are not it is possible to accept or decline the request or delete the chat.
 
 \begin{itemize}
 
@@ -121,7 +121,7 @@ It also provides different functionalities based on the relationship between the
 \item \textbf{accept} : set the status between the two user as "Friend" and sycronize it with the server
 \item \textbf{decline} : send a request to the server in order to delete the friendship request
 \item \textbf{request} : send a friendship request to te selected user
-\item \textbf{unfriend} : delete the relationship between the users and syncronize it with the server
+\item \textbf{unfriend} : delete the relationship between the users and synchronise it with the server
 
 \end{itemize}
 
@@ -131,12 +131,12 @@ It also provides different functionalities based on the relationship between the
 
 \subsection{ChatListViewController} 
 
-The ChatViewController manages and display correcly the chat history between two users. Every message is displayed as a bubble, a blue one for the current user and a gray one for the other. It provides also the functionalities in order to send messages and updates the history when a new one is received.
+The ChatViewController manages and display correctly the chat history between two users. Every message is displayed as a bubble, a blue one for the current user and a grey one for the other. It provides also the functionalities in order to send messages and updates the history when a new one is received.
 
 \begin{itemize}
 
 \item \textbf{viewDidLoad()} : Enables the chat only when the connection to the server is established
-\item \textbf{toggleSend()} : Disable the send button if the connection to the server is interrupted. When the connection has been restablished, it re-enable the send button again. It disable the chat also if two users are not friend and the distance of the other is out of range (the distance between the two people are greater than 800m)
+\item \textbf{toggleSend()} : Disable the send button if the connection to the server is interrupted. When the connection has been re-established, it re-enable the send button again. It disable the chat also if two users are not friend and the distance of the other is out of range (the distance between the two people are greater than 800m)
 \item \textbf{didPressSendButton()} : Prepare the correct data structure for the message and send it. it also update the chat list appending the new message at the end of the list.
 \end{itemize}
 

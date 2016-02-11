@@ -99,8 +99,14 @@ The ProfileViewController manages the view displayed when the user click on a ma
 \item \textbf{acceptClick() / declineClick()} : accept / decline a received friendship request.
 \end{itemize}
 
-
+\newpage
 \subsection{ChatListViewController} 
+
+
+\begin{figure}[H]
+ \makebox[\textwidth][c]{\includegraphics[width=1.6\textwidth]{./images/Tinfinity_ChatListViewController.png}}%
+\caption{ChatListViewController class diagram}
+\end{figure}
 
 The ChatListViewController implements the application logic that takes care of these two thing:
 
@@ -129,7 +135,14 @@ It also provides different functionalities based on the relationship between the
 
 \end{itemize}
 
-\subsection{ChatListViewController} 
+\newpage
+\subsection{ChatViewController} 
+
+
+\begin{figure}[H]
+ \makebox[\textwidth][c]{\includegraphics[width=1.6\textwidth]{./images/Tinfinity_ChatViewController.png}}%
+\caption{ChatViewController class diagram}
+\end{figure}
 
 The ChatViewController manages and display correcly the chat history between two users. Every message is displayed as a bubble, a blue one for the current user and a gray one for the other. It provides also the functionalities in order to send messages and updates the history when a new one is received.
 
@@ -140,6 +153,7 @@ The ChatViewController manages and display correcly the chat history between two
 \item \textbf{didPressSendButton()} : Prepare the correct data structure for the message and send it. it also update the chat list appending the new message at the end of the list.
 \end{itemize}
 
+\newpage
 \subsection{Persistent Data Design}
 \begin{figure}[H]
 \centering

@@ -150,7 +150,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func plotUsersToMap(){
         //Adding new user annotations
-        print(account.users.count)
         for(var i = 0; i < account.users.count; i++){
             var found = false
             for annotation in mapView.annotations{

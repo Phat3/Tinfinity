@@ -160,18 +160,17 @@ class Account: NSObject {
                     switch result {
                     	case .Success(let data):
                             // Removing all current nearby users
-                            self.users.removeAll(keepCapacity: false)
+                            // self.users.removeAll(keepCapacity: false)
                         	var json = JSON(data)
                             for(var i = 0; i < json.count; i++){
                                 if(json[i]["user"].count > 0) {
                                     let userData = json[i]["user"]
                                     let position = json[i]["position"]
                                     let newUser = User(userId: userData["_id"].string!, firstName: userData["name"].string!, lastName: userData["surname"].string!)
+                                    let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
+                                    newUser.position = userPosition
                                     // Retreive user details
                                     newUser.fetch({ (result) -> Void in
-                                        let userPosition = CLLocationCoordinate2D(latitude: position["latitude"].double!, longitude: position["longitude"].double!)
-                                        newUser.position = userPosition
-                                        
                                         // Avoid possible race condition by deleting user if somehow is already
                                         // in our list
                                         if let existingUserIndex = User.getUserById(newUser.userId).1 {

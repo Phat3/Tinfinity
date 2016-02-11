@@ -63,7 +63,7 @@ class Account: NSObject {
     func refreshChats(completion: (result: Bool) -> Void) {
         if let _ = account.token {
             for(var i = 0; i < account.chats.count; i++){
-                account.chats[i].fetchNewMessages({ (result) -> Void in
+                account.chats[i].fetchNewMessages({ (result: Bool) in
                     if(i == account.chats.count) {
                         completion(result: true)
                     }
@@ -81,14 +81,15 @@ class Account: NSObject {
         let manager = Alamofire.Manager.sharedInstance
         if let token = account.token {
             manager.request(.GET, baseUrl + "/api/users/me/relationships" , encoding : .JSON, headers: ["X-Api-Token": token])
-                .responseJSON { _,_,result in
-                    switch result {
+                .responseJSON { result in
+                    switch result.result {
                     case .Success(let data):
                         self.relationships = JSON(data)
                         self.updateRelationships()
                         completion(result: true)
-                    case .Failure(_, let error):
+                    case .Failure(let error):
                         print("Request failed with error: \(error)")
+                        completion(result: false)
                     }
             }
         }
@@ -156,12 +157,12 @@ class Account: NSObject {
     func fetchNearbyUsers(){
         if let userPosition = self.user.position{
             Alamofire.request(.POST, baseUrl + "/api/users", parameters: ["lat" : userPosition.latitude, "lon": userPosition.longitude], encoding : .JSON, headers: ["X-Api-Token": account.token!])
-                .responseJSON { _,_,result in
-                    switch result {
+                .responseJSON { result in
+                    switch result.result {
                     	case .Success(let data):
                             // Removing all current nearby users
                             // self.users.removeAll(keepCapacity: false)
-                        	var json = JSON(data)
+                        	let json = JSON(data)
                             for(var i = 0; i < json.count; i++){
                                 if(json[i]["user"].count > 0) {
                                     let userData = json[i]["user"]
@@ -182,7 +183,7 @@ class Account: NSObject {
                                 }
                             }
                         
-                        case .Failure(_, let error):
+                        case .Failure(let error):
                             print("Request failed with error: \(error)")
                     }
                 }
@@ -195,16 +196,17 @@ class Account: NSObject {
      */
     func fetchUserByID(userId: String, completion: (result: User? ) -> Void){
         Alamofire.request(.GET, baseUrl + "/api/users/" + userId, encoding : .JSON, headers: ["X-Api-Token": account.token!])
-            .responseJSON { _,_,result in
-                switch result {
+            .responseJSON { result in
+                switch result.result {
                     case .Success(let data):
                         var json = JSON(data)
                         print(json)
                         let newUser = User(userId: json["_id"].string!, firstName: json["name"].string!, lastName: json["surname"].string!)
                         newUser.decodeImages(json["images"])
                         completion(result: newUser)
-                    case .Failure(_, let error):
+                    case .Failure(let error):
                         print("Request failed with error: \(error)")
+                        completion(result: nil)
                 }
         }
 
@@ -219,17 +221,16 @@ class Account: NSObject {
         
     }
     
-    func checkNewChat( completion: (Void) -> Void){
+    func checkNewChat( completion: (Bool) -> Void){
         Alamofire.request(.GET, baseUrl + "/api/chat", encoding : .JSON, headers: ["X-Api-Token": account.token])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON { result in
+                switch result.result {
                 case .Success(let data):
                     var json = JSON(data)
                     let length = json.count
                     
                     if(length == 0){
-                        completion()
+                        completion(true)
                     }
                     
                     var atLeastOneNew = false
@@ -240,7 +241,7 @@ class Account: NSObject {
                         let user1 = innerData["_id"]["user1"].string
                         let user2 = innerData["_id"]["user2"].string
                         
-                        var newUser: User
+                        let newUser: User
                         let user1MessagesCount = innerData["user1"].count
                         let user2MessagesCount = innerData["user2"].count
                         
@@ -276,17 +277,18 @@ class Account: NSObject {
                                 newChat.reorderChat()
                                 newChat.saveNewChat()
                                 newChat.insertChat()
-                                completion()
+                                completion(true)
                             })
                         }
                         
                     }
                     
                     if(atLeastOneNew == false){
-                        completion()
+                        completion(true)
                     }
-                case .Failure(_, let error):
+                case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    completion(false)
                 }
                 
         }

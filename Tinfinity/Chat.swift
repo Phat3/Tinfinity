@@ -112,9 +112,8 @@ class Chat {
         
     
         manager.request(.GET, baseUrl + "/api/chat/" + self.user.userId + "/" + stringTime , encoding : .JSON, headers: ["X-Api-Token": account.token!])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                 case .Success(let data):
                     var innerData = JSON(data)
                     let user1 = innerData["_id"]["user1"].string
@@ -145,7 +144,7 @@ class Chat {
                     }
                     self.reorderChat()
                     completion(result: true)
-                case .Failure(_, let error):
+                case .Failure(let error):
                     print("Request failed with error: \(error)")
                     completion(result: false)
                 

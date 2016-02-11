@@ -201,7 +201,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         if(account.chats[indexPath.row].user.hasReceivedRequest == true) {
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
                 self.loading()
-                account.chats[indexPath.row].user.acceptFriendRequest({ (result) -> Void in
+                account.chats[indexPath.row].user.acceptFriendRequest({ (_) in
                     self.stopLoading()
                 })
                 tableView.setEditing(false, animated: true)
@@ -209,7 +209,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
             accept.backgroundColor = UIColor(red: 46/255.0, green: 206/255.0, blue:113/255.0, alpha: 1)
             let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
                 self.loading()
-                account.chats[indexPath.row].user.declineFriendRequest({ (result) -> Void in
+                account.chats[indexPath.row].user.declineFriendRequest({ (_) in
                     self.stopLoading()
                 })
                 tableView.setEditing(false, animated: true)
@@ -233,7 +233,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         else if (account.chats[indexPath.row].user.isFriend == true) {
                 let unfriend = UITableViewRowAction(style: .Normal, title: "Unfriend") { action, index in
                     self.loading()
-                    account.chats[indexPath.row].user.declineFriendRequest({ (result) -> Void in
+                    account.chats[indexPath.row].user.declineFriendRequest({ (_) in
                         self.stopLoading()
                     })
                     tableView.setEditing(false, animated: true)
@@ -261,7 +261,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
         if let indexPath = sendRequestUserIndexPath {
             loading()
             sendRequestUserIndexPath = nil
-            account.chats[indexPath.row].user.sendFriendRequest({ (result) -> Void in
+            account.chats[indexPath.row].user.sendFriendRequest({ (_) in
                 self.stopLoading()
             })
         }
@@ -307,7 +307,7 @@ class ChatListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func updateData(){
-        account.refreshChats { (result) -> Void in
+        account.refreshChats { (_) in
             self.refreshControl.endRefreshing()
             self.chatTableView.reloadData()
         }

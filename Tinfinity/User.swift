@@ -120,14 +120,15 @@ class User {
         let manager = Alamofire.Manager.sharedInstance
         
         manager.request(.GET, baseUrl + "/api/users/" + userId + "/add" , encoding : .JSON, headers: ["X-Api-Token": account.token!])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                 case .Success(_):
                     self.hasSentRequest = true
                     completion(result: true)
-                case .Failure(_, let error):
+                case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    ServerAPIController.networkError()
+                    completion(result: false)
                 }
         }
     }
@@ -140,9 +141,8 @@ class User {
         let manager = Alamofire.Manager.sharedInstance
         
         manager.request(.GET, baseUrl + "/api/users/" + userId + "/accept" , encoding : .JSON, headers: ["X-Api-Token": account.token!])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                 case .Success(_):
                     self.hasSentRequest = false
                     self.hasReceivedRequest = false
@@ -159,8 +159,10 @@ class User {
                         completion(result: true)
                     })
                     
-                case .Failure(_, let error):
+                case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    ServerAPIController.networkError()
+                    completion(result: false)
                 }
         }
     }
@@ -173,9 +175,8 @@ class User {
         let manager = Alamofire.Manager.sharedInstance
         
         manager.request(.GET, baseUrl + "/api/users/" + userId + "/decline" , encoding : .JSON, headers: ["X-Api-Token": account.token!])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                 case .Success(_):
                     self.hasSentRequest = false
                     self.hasReceivedRequest = false
@@ -186,10 +187,11 @@ class User {
                     if let index = i {
                         account.requests.removeAtIndex(index)
                     }
-                    
                     completion(result: true)
-                case .Failure(_, let error):
+                    
+                case .Failure(let error):
                     print("Request failed with error: \(error)")
+                    completion(result: false)
                 }
         }
     }
@@ -200,9 +202,8 @@ class User {
     func fetch(completion: (result: User? ) -> Void) {
        if let token = account.token { // Check
        Alamofire.request(.GET, NSBundle.mainBundle().objectForInfoDictionaryKey("Server URL") as! String + "/api/users/" + self.userId, encoding : .JSON, headers: ["X-Api-Token": token])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                     case .Success(let data):
                         let json = JSON(data)
                         if let _ = json["error"].string{
@@ -247,8 +248,10 @@ class User {
                             
                             completion(result: self)
                         }
-                	case .Failure(_, let error):
+                	case .Failure(let error):
                     	print("Request failed with error: \(error)")
+                        ServerAPIController.networkError()
+                        completion(result: nil)
                 }
             }
         }
@@ -273,6 +276,5 @@ class User {
         }
     }
     
-
 }
 

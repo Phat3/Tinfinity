@@ -15,8 +15,7 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -34,23 +33,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var result = UIScreen.mainScreen().bounds.size
     	let scale = UIScreen.mainScreen().scale
         result = CGSizeMake(result.width*scale, result.height*scale)
+        
+        // Default: iPhone6
+        var storyboard = UIStoryboard(name:"Main6", bundle: nil)
+        
         if (result.height == 960) {//iPh4/4S
-        	let storyboard = UIStoryboard(name:"Main5", bundle: nil)
-            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
-        	self.window?.rootViewController = initViewController
+            storyboard = UIStoryboard(name:"Main5", bundle: nil)
     	}else if (result.height == 1136) { //iPh5/5C/5S
-            let storyboard = UIStoryboard(name:"Main5", bundle: nil)
-            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
-            self.window?.rootViewController = initViewController
-        }else if (result.height == 1334) { //iPh6
-            let storyboard = UIStoryboard(name:"Main6", bundle: nil)
-            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
-            self.window?.rootViewController = initViewController
-        }else if (result.height == 2208) { //iPh6+
-            let storyboard = UIStoryboard(name:"Main6p", bundle: nil)
-            let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
-            self.window?.rootViewController = initViewController
+            storyboard = UIStoryboard(name:"Main5", bundle: nil)
+        //} else if (result.height == 1334) { //iPh6
+        } else if (result.height == 2208) { //iPh6+
+            storyboard = UIStoryboard(name:"Main6p", bundle: nil)
         }
+        
+        let initViewController = storyboard.instantiateInitialViewController() as! LoginViewController
+        self.window?.rootViewController = initViewController
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -68,14 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
     {
-        /*
-         * E' il modo corretto di gestire la cosa?
-         *
-        account.refreshRelationships { (result) -> Void in
-            
-        }
-         */
-        
         /*
          * Non un buon approccio, in quanto se siamo dentro una chat,
          * crea problemi con i sockets

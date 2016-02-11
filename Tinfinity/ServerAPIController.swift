@@ -28,9 +28,8 @@ class ServerAPIController{
     //Funzione che chiama il server e setta i parametri dell'utente. Ritorna true se la richiesta è andata a buon fine,altrimenti false
     func retrieveProfileFromServer(completion: (result: Bool) -> Void){
         Alamofire.request(.POST, baseUrl + authenticationPath, parameters: ["token" : FBToken], encoding : .JSON)
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                 case .Success(let data):
                     let json = JSON(data)
                 
@@ -61,7 +60,7 @@ class ServerAPIController{
                     
                     completion(result: true)
                     
-                case .Failure(_, let error):
+                case .Failure(let error):
                     print("Request failed with error: \(error)")
                     completion(result: false)
                 }
@@ -70,11 +69,9 @@ class ServerAPIController{
     }
     
     func retriveChatHistory(id: String, completion: (result: [(Chat)] ) -> Void){
-        
         Alamofire.request(.GET, baseUrl + "/api/chat", encoding : .JSON, headers: ["X-Api-Token": account.token])
-            .responseJSON { _,_,result in
-                
-                switch result {
+            .responseJSON {result in
+                switch result.result {
                     case .Success(let data):
                         var json = JSON(data)
                         let length = json.count
@@ -118,16 +115,14 @@ class ServerAPIController{
                                 newChat.insertChat()
                                 completion(result: account.chats)
                             })
-                            
-                            
                         }
-                    case .Failure(_, let error):
+                    
+                    case .Failure(let error):
                         print("Request failed with error: \(error)")
                 }
                 
         }
     }
-    
     
     static func createJSQMessage(user: String,localMessage: JSON)->JSQMessage{
         let timestamp = localMessage["timestamp"].double!/1000

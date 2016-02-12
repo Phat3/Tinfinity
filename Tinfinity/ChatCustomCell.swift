@@ -1,9 +1,9 @@
 //
 //  ChatCustomCell.swift
-//  tinFinity
+//  Tinfinity
 //
-//  Created by Alberto Fumagalli on 16/02/15.
-//  Copyright (c) 2015 Alberto Fumagalli. All rights reserved.
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
 //
 
 import UIKit

@@ -1,10 +1,11 @@
 //
-//  UserProfile.swift
+//  User.swift
 //  Tinfinity
 //
 //  @author Alberto Fumagalli
 //  @author Riccardo Mastellone
 //
+
 import Foundation.NSString
 import UIKit
 import Alamofire

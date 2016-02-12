@@ -1,9 +1,9 @@
 //
 //  SettingsViewController.swift
-//  
+//  Tinfinity
 //
-//  Created by Alberto Fumagalli on 20/05/15.
-//
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
 //
 
 import UIKit

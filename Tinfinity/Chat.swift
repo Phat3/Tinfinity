@@ -1,3 +1,11 @@
+//
+//  Chat.swift
+//  Tinfinity
+//
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
+//
+
 import Foundation.NSDate
 import JSQMessagesViewController
 import Alamofire

@@ -1,9 +1,8 @@
 //
-//  Album.swift
+//  ViewController.swift
 //  Tinfinity
 //
-//  Created by Alberto Fumagalli on 06/07/15.
-//  Copyright (c) 2015 Sebastiano Mariani. All rights reserved.
+//  @author Alberto Fumagalli
 //
 
 import UIKit

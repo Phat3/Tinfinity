@@ -91,8 +91,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         let alertController = UIAlertController(title: "Tinfinity", message:
             "Error while updating location!", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: nil))
-        print("Error while updating location " + error.localizedDescription, terminator: "")
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -159,7 +159,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         //Adding new user annotations
         for(var i = 0; i < account.users.count; i++){
-            print(account.users.count)
             var found = false
             for annotation in mapView.annotations{
                 if let userAnn = annotation as? UserAnnotation{

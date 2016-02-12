@@ -1,3 +1,11 @@
+//
+//  Account.swift
+//  Tinfinity
+//
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
+//
+
 import ObjectiveC.NSObject
 import Alamofire
 import SwiftyJSON

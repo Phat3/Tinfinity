@@ -1,9 +1,10 @@
 //
+//
 //  PageViewController.swift
-//  
-//
-//  Created by Alberto Fumagalli on 24/09/15.
-//
+//  Tinfinity
+
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
 //
 
 import UIKit

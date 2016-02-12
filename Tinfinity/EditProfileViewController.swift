@@ -2,8 +2,8 @@
 //  EditProfileViewController.swift
 //  Tinfinity
 //
-//  Created by Alberto Fumagalli on 30/06/15.
-//  Copyright (c) 2015 Sebastiano Mariani. All rights reserved.
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
 //
 
 import UIKit

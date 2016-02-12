@@ -2,8 +2,9 @@
 //  AppDelegate.swift
 //  Tinfinity
 //
-//  Created by Sebastiano Mariani on 04/04/15.
-//  Copyright (c) 2015 Sebastiano Mariani. All rights reserved.
+//  @author Alberto Fumagalli
+//  @author Riccardo Mastellone
+//  @author Sebastiano Mariani
 //
 
 import UIKit
